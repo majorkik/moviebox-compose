@@ -1,20 +1,21 @@
 @file:Suppress("detekt.StringLiteralDuplication")
 
 object Versions {
-    //Kotlin
+    // Kotlin
     const val kotlin = "1.4.30"
 
-    //Gradle
+    // Gradle
     const val androidGradle = "7.0.0-alpha08"
 
-    //Versions
+    // Versions
     const val gradleVersions = "0.36.0"
 
-    //Static analysis tools
-    const val spotless = "5.10.0"
+    // Static analysis tools
+    const val spotless = "5.10.2"
     const val ktlintJLLeitschuh = "10.0.0"
     const val ktlint = "0.40.0"
     const val detekt = "1.16.0-RC2"
+
     const val koin = "2.2.2"
 }
 
@@ -30,6 +31,7 @@ object Plugins {
     const val gms = "com.google.gms.google-services"
     const val android = "android"
     const val koin = "koin"
+    const val spotless = "com.diffplug.spotless"
 }
 
 object Libs {
@@ -97,7 +99,7 @@ object Libs {
             const val tooling = "androidx.compose.ui:ui-tooling:$version"
             const val test = "androidx.compose.ui:ui-test:$version"
             const val uiTest = "androidx.compose.ui:ui-test-junit4:$version"
-            const val uiUtil = "androidx.compose.ui:ui-util:${version}"
+            const val uiUtil = "androidx.compose.ui:ui-util:$version"
             const val viewBinding = "androidx.compose.ui:ui-viewbinding:$version"
         }
     }
@@ -135,7 +137,6 @@ object Libs {
             const val OKHTTP_3 = "com.squareup.okhttp3:okhttp:$version"
             const val LOGGING_INTERCEPTOR = "com.squareup.okhttp3:logging-interceptor:$version"
         }
-
     }
 
     object Test {

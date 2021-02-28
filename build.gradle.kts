@@ -4,6 +4,7 @@ plugins {
     id(Plugins.ktlint) version Versions.ktlintJLLeitschuh
     id(Plugins.detekt) version Versions.detekt
     id(Plugins.koin) version Versions.koin
+    id(Plugins.spotless) version Versions.spotless
     id(Plugins.gradleVersions) version Versions.gradleVersions
     kotlin(Plugins.android) version Versions.kotlin apply false
     id(Plugins.androidApplication) version Versions.androidGradle apply false
@@ -18,9 +19,14 @@ allprojects {
         maven("https://jitpack.io")
     }
 
-    // We want to apply ktlint at all project level because it also checks Gradle config files (*.kts)
-    apply(plugin = Plugins.ktlint)
-    apply(plugin = "koin")
+    apply {
+        // We want to apply ktlint at all project level because it also checks Gradle config files (*.kts)
+        plugin(Plugins.ktlint)
+
+        plugin(Plugins.koin)
+
+        plugin(Plugins.spotless)
+    }
 
     // Ktlint configuration for sub-projects
     ktlint {
@@ -38,6 +44,37 @@ allprojects {
 
         filter {
             exclude { element -> element.file.path.contains("generated/") }
+        }
+    }
+
+    spotless {
+        java {
+            target("**/*.java")
+            googleJavaFormat().aosp()
+            removeUnusedImports()
+            trimTrailingWhitespace()
+            indentWithSpaces()
+            endWithNewline()
+        }
+        kotlin {
+            target("**/*.kt")
+            ktlint()
+            trimTrailingWhitespace()
+            indentWithSpaces()
+            endWithNewline()
+        }
+        format("misc") {
+            target("**/*.gradle", "**/*.md", "**/.gitignore")
+            indentWithSpaces()
+            trimTrailingWhitespace()
+            endWithNewline()
+        }
+
+        format("xml") {
+            target("**/*.xml")
+            indentWithSpaces()
+            trimTrailingWhitespace()
+            endWithNewline()
         }
     }
 }
@@ -69,9 +106,10 @@ subprojects {
     }
 }
 
-tasks.register("clean", Delete::class) {
-    delete(rootProject.buildDir)
-}
+// #Remove if swears when using the 'spotless' plugin
+// tasks.register("clean", Delete::class) {
+//    delete(rootProject.buildDir)
+// }
 
 fun Project.configureAndroid() {
     (project.extensions.findByName("android") as? BaseExtension)?.run {

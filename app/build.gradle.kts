@@ -47,11 +47,10 @@ android {
         compose = true
 
         // Disable unused AGP features
-//        buildConfig = false
-//        aidl = false
-//        renderScript = false
-//        resValues = false
-//        shaders = false
+        aidl = false
+        renderScript = false
+        resValues = false
+        shaders = false
     }
 
     kotlinOptions {
