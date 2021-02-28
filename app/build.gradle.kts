@@ -1,10 +1,11 @@
 import com.android.build.api.dsl.BaseFlavor
+import com.android.build.gradle.internal.cxx.configure.gradleLocalProperties
 import com.android.build.gradle.internal.dsl.DefaultConfig
-import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 
 plugins {
     id(Plugins.androidApplication)
     kotlin(Plugins.android)
+    id(Plugins.ktlint)
 }
 
 android {
@@ -26,6 +27,7 @@ android {
         buildConfigFieldFromGradleProperty("keyTrakTv")
 
         vectorDrawables.useSupportLibrary = true
+        multiDexEnabled = true
     }
 
     buildTypes {
@@ -46,19 +48,19 @@ android {
 
         // Disable unused AGP features
 //        buildConfig = false
-        aidl = false
-        renderScript = false
-        resValues = false
-        shaders = false
+//        aidl = false
+//        renderScript = false
+//        resValues = false
+//        shaders = false
+    }
+
+    kotlinOptions {
+        jvmTarget = JavaVersion.VERSION_1_8.toString()
     }
 
     compileOptions {
         sourceCompatibility = JavaVersion.VERSION_1_8
         targetCompatibility = JavaVersion.VERSION_1_8
-    }
-
-    kotlinOptions {
-        jvmTarget = "1.8"
     }
 
     composeOptions {
@@ -77,10 +79,11 @@ dependencies {
 
     implementation(Libs.AndroidX.coreKtx)
     implementation(Libs.AndroidX.material)
+    implementation(Libs.AndroidX.multidex)
 
-    implementation(Libs.Koin.koinScope)
-    implementation(Libs.Koin.koinFragment)
-    implementation(Libs.Koin.koinViewModel)
+    implementation(Libs.Koin.scope)
+    implementation(Libs.Koin.viewModel)
+    implementation(Libs.Koin.compose)
 
     implementation(Libs.Loggers.timber)
     implementation(Libs.Loggers.prettyLogger)
@@ -93,9 +96,6 @@ dependencies {
     implementation(Libs.AndroidX.Lifecycle.viewModelCompose)
 
     implementation(Libs.Others.klock)
-
-    implementation(Libs.Firebase.firebaseAnalytics)
-    implementation(Libs.Firebase.firebaseCrashlytics)
 
     implementation(Libs.Others.stfalconImageViewer)
 
@@ -126,15 +126,8 @@ dependencies {
     }
 }
 
-tasks.withType(KotlinCompile::class.java).configureEach {
-    kotlinOptions {
-        jvmTarget = "1.8"
-    }
-}
-
 fun BaseFlavor.buildConfigFieldFromGradleProperty(gradlePropertyName: String) {
-    val propertyValue =
-        com.android.build.gradle.internal.cxx.configure.gradleLocalProperties(rootDir)[gradlePropertyName] as? String
+    val propertyValue = gradleLocalProperties(rootDir)[gradlePropertyName] as? String
     checkNotNull(propertyValue) { "Gradle property $gradlePropertyName is null" }
 
     val androidResourceName = "GRADLE_${gradlePropertyName.toSnakeCase()}".toUpperCase()
@@ -145,8 +138,11 @@ fun String.toSnakeCase() = this.split(Regex("(?=[A-Z])")).joinToString("_") { it
 
 fun DefaultConfig.buildConfigField(name: String, value: Set<String>) {
     // Generates String that holds Java String Array code
-    val strValue = value.joinToString(prefix = "{", separator = ",", postfix = "}", transform = {
-        "\"$it\""
-    })
+    val strValue = value.joinToString(
+        prefix = "{", separator = ",", postfix = "}",
+        transform = {
+            "\"$it\""
+        }
+    )
     buildConfigField("String[]", name, strValue)
 }

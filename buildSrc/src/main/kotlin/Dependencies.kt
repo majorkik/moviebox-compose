@@ -5,14 +5,17 @@ object Versions {
     const val kotlin = "1.4.30"
 
     //Gradle
-    const val androidGradle = "7.0.0-alpha05"
+    const val androidGradle = "7.0.0-alpha08"
 
     //Versions
     const val gradleVersions = "0.36.0"
 
     //Static analysis tools
+    const val spotless = "5.10.0"
+    const val ktlintJLLeitschuh = "10.0.0"
     const val ktlint = "0.40.0"
-    const val detekt = ""
+    const val detekt = "1.16.0-RC2"
+    const val koin = "2.2.2"
 }
 
 object Plugins {
@@ -26,6 +29,7 @@ object Plugins {
     const val crashlytics = "com.google.firebase.crashlytics"
     const val gms = "com.google.gms.google-services"
     const val android = "android"
+    const val koin = "koin"
 }
 
 object Libs {
@@ -50,20 +54,22 @@ object Libs {
     }
 
     object Accompanist {
-        private const val version = "0.6.0"
+        private const val version = "0.6.1"
 
         const val coil = "dev.chrisbanes.accompanist:accompanist-coil:$version"
         const val insets = "dev.chrisbanes.accompanist:accompanist-insets:$version"
     }
 
     object AndroidX {
-        const val vectorDrawable = "androidx.vectordrawable:vectordrawable:1.1.0"
-        const val annotation = "androidx.annotation:annotation:1.1.0"
+        const val vectorDrawable = "androidx.vectordrawable:vectordrawable:1.2.0-alpha02"
+        const val annotation = "androidx.annotation:annotation:1.2.0-rc01"
 
         const val appcompat = "androidx.appcompat:appcompat:1.2.0-rc01"
-        const val coreKtx = "androidx.core:core-ktx:1.5.0-beta01"
+        const val coreKtx = "androidx.core:core-ktx:1.5.0-beta02"
 
-        const val material = "com.google.android.material:material:1.1.0"
+        const val material = "com.google.android.material:material:1.4.0-alpha01"
+
+        const val multidex = "androidx.multidex:multidex:2.0.1"
 
         object Activity {
             const val activityCompose = "androidx.activity:activity-compose:1.3.0-alpha03"
@@ -102,11 +108,9 @@ object Libs {
     }
 
     object Koin {
-        private const val version = "2.2.2"
-
-        const val koinScope = "org.koin:koin-androidx-scope:$version"
-        const val koinViewModel = "org.koin:koin-androidx-viewmodel:$version"
-        const val koinFragment = "org.koin:koin-androidx-fragment:$version"
+        const val scope = "org.koin:koin-androidx-scope:${Versions.koin}"
+        const val viewModel = "org.koin:koin-androidx-viewmodel:${Versions.koin}"
+        const val compose = "org.koin:koin-androidx-compose:${Versions.koin}"
     }
 
     object Firebase {
