@@ -1,0 +1,2 @@
+rootProject.name = "MovieBox Compose"
+include ':app'
