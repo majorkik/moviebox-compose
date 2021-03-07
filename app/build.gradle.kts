@@ -138,7 +138,9 @@ fun String.toSnakeCase() = this.split(Regex("(?=[A-Z])")).joinToString("_") { it
 fun DefaultConfig.buildConfigField(name: String, value: Set<String>) {
     // Generates String that holds Java String Array code
     val strValue = value.joinToString(
-        prefix = "{", separator = ",", postfix = "}",
+        prefix = "{",
+        separator = ",",
+        postfix = "}",
         transform = {
             "\"$it\""
         }

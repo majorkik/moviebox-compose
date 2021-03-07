@@ -1,4 +1,6 @@
 import com.android.build.gradle.BaseExtension
+import org.jlleitschuh.gradle.ktlint.reporter.ReporterType.CHECKSTYLE
+import org.jlleitschuh.gradle.ktlint.reporter.ReporterType.PLAIN
 
 plugins {
     id(Plugins.ktlint) version Versions.ktlintJLLeitschuh
@@ -32,18 +34,28 @@ allprojects {
     ktlint {
         // Version of ktlint cmd tool (Ktlint Gradle plugin is just a wrapper for this tool)
         version.set(Versions.ktlint)
+        debug.set(true)
         verbose.set(true)
         android.set(true)
+        outputToConsole.set(true)
+        outputColorName.set("BLUE")
+        ignoreFailures.set(true)
+        enableExperimentalRules.set(true)
 
         // Uncomment below line and run .\gradlew ktlintCheck to see check ktlint experimental rules
         // enableExperimentalRules.set(true)
 
         reporters {
-            reporter(org.jlleitschuh.gradle.ktlint.reporter.ReporterType.CHECKSTYLE)
+            reporter(PLAIN)
+            reporter(CHECKSTYLE)
         }
 
+        kotlinScriptAdditionalPaths {
+            include(fileTree("scripts/"))
+        }
         filter {
-            exclude { element -> element.file.path.contains("generated/") }
+            exclude("**/generated/**")
+            include("**/kotlin/**")
         }
     }
 
@@ -58,7 +70,7 @@ allprojects {
         }
         kotlin {
             target("**/*.kt")
-            ktlint()
+            // ktlint()
             trimTrailingWhitespace()
             indentWithSpaces()
             endWithNewline()
@@ -68,6 +80,11 @@ allprojects {
             indentWithSpaces()
             trimTrailingWhitespace()
             endWithNewline()
+        }
+
+        kotlinGradle {
+            target("*.gradle.kts")
+            ktlint()
         }
 
         format("xml") {

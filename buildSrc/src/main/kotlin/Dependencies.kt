@@ -20,30 +20,27 @@ object Versions {
 }
 
 object Plugins {
+    const val android = "android"
+    const val androidApplication = "com.android.application"
+    const val androidLibrary = "com.android.library"
+
+    // Updates versions
+    const val gradleVersions = "com.github.ben-manes.versions"
+
+    // Static analysis plugins
     const val detekt = "io.gitlab.arturbosch.detekt"
     const val ktlint = "org.jlleitschuh.gradle.ktlint"
-    const val androidApplication = "com.android.application"
-    const val androidDynamicFeature = "com.android.dynamic-feature"
-    const val androidLibrary = "com.android.library"
-    const val gradleVersions = "com.github.ben-manes.versions"
-    const val navSafeArgs = "androidx.navigation.safeargs.kotlin"
-    const val crashlytics = "com.google.firebase.crashlytics"
-    const val gms = "com.google.gms.google-services"
-    const val android = "android"
-    const val koin = "koin"
     const val spotless = "com.diffplug.spotless"
+
+    // Koin
+    const val koin = "koin"
 }
 
 object Libs {
-    const val androidGradlePlugin = "com.android.tools.build:gradle:7.0.0-alpha08"
-
-    const val jdkDesugar = "com.android.tools:desugar_jdk_libs:1.0.9"
-
     const val junit = "junit:junit:4.13"
 
     object Kotlin {
         const val stdlib = "org.jetbrains.kotlin:kotlin-stdlib-jdk8:${Versions.kotlin}"
-        const val gradlePlugin = "org.jetbrains.kotlin:kotlin-gradle-plugin:${Versions.kotlin}"
         const val extensions = "org.jetbrains.kotlin:kotlin-android-extensions:${Versions.kotlin}"
     }
 
@@ -66,7 +63,6 @@ object Libs {
         const val vectorDrawable = "androidx.vectordrawable:vectordrawable:1.2.0-alpha02"
         const val annotation = "androidx.annotation:annotation:1.2.0-rc01"
 
-        const val appcompat = "androidx.appcompat:appcompat:1.2.0-rc01"
         const val coreKtx = "androidx.core:core-ktx:1.5.0-beta02"
 
         const val material = "com.google.android.material:material:1.4.0-alpha01"

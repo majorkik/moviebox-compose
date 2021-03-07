@@ -2,46 +2,81 @@ package com.example.movieboxcompose.ui.theme
 
 import androidx.compose.foundation.isSystemInDarkTheme
 import androidx.compose.material.MaterialTheme
-import androidx.compose.material.darkColors
-import androidx.compose.material.lightColors
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.CompositionLocalProvider
+import androidx.compose.runtime.ReadOnlyComposable
+import androidx.compose.runtime.SideEffect
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
+import androidx.compose.runtime.staticCompositionLocalOf
+import androidx.compose.runtime.structuralEqualityPolicy
+import androidx.compose.ui.graphics.Color
+import com.example.movieboxcompose.ui.utils.LocalSysUiController
 
-private val DarkColorPalette = darkColors(
-    primary = purple200,
-    primaryVariant = purple700,
-    secondary = teal200
-)
+class MovieBoxColors(
+    primary: Color,
+    background: Color,
+    isDark: Boolean
+) {
+    var primary by mutableStateOf(primary, structuralEqualityPolicy())
+        internal set
 
-private val LightColorPalette = lightColors(
-    primary = purple500,
-    primaryVariant = purple700,
-    secondary = teal200
+    var background by mutableStateOf(background, structuralEqualityPolicy())
+        internal set
 
-    /* Other default colors to override
-    background = Color.White,
-    surface = Color.White,
-    onPrimary = Color.White,
-    onSecondary = Color.Black,
-    onBackground = Color.Black,
-    onSurface = Color.Black,
-    */
-)
+    var isDark by mutableStateOf(isDark)
+        internal set
+
+    fun update(other: MovieBoxColors) {
+        primary = other.primary
+        background = other.background
+        isDark = other.isDark
+    }
+}
+
+object MovieBoxTheme {
+    val colors: MovieBoxColors
+        @Composable
+        @ReadOnlyComposable
+        get() = LocalMovieBoxColors.current
+}
+
+internal val LocalMovieBoxColors = staticCompositionLocalOf<MovieBoxColors> {
+    error("No MovieBoxColorsPalette provided")
+}
 
 @Composable
-fun MovieBoxComposeTheme(
+fun MovieBoxTheme(
     darkTheme: Boolean = isSystemInDarkTheme(),
-    content: @Composable() () -> Unit
+    content: @Composable () -> Unit
 ) {
-    val colors = if (darkTheme) {
-        DarkColorPalette
-    } else {
-        LightColorPalette
+    val colors = if (darkTheme) darkColors() else lightColors()
+
+    val sysUiController = LocalSysUiController.current
+
+    SideEffect {
+        sysUiController.setSystemBarsColor(
+            color = colors.background.copy(alpha = AlphaNearOpaque)
+        )
     }
 
-    MaterialTheme(
-        colors = colors,
-        typography = typography,
-        shapes = shapes,
-        content = content
-    )
+    ProvideMovieBoxColors(colors) {
+        MaterialTheme(
+            colors = debugColors(darkTheme),
+            shapes = Shapes,
+            content = content
+        )
+    }
+}
+
+@Composable
+fun ProvideMovieBoxColors(
+    colors: MovieBoxColors,
+    content: @Composable () -> Unit
+) {
+    val colorPalette = remember { colors }
+    colorPalette.update(colors)
+    CompositionLocalProvider(LocalMovieBoxColors provides colorPalette, content = content)
 }
