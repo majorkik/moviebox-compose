@@ -73,7 +73,7 @@ dependencies {
 
     implementation(Libs.Network.OkHttp3.OKHTTP_3)
 
-    implementation(Libs.Network.Retrofit.retrofit)
+    implementation(Libs.Network.Retrofit.retrofitLib)
     implementation(Libs.Network.Retrofit.retrofitMoshi)
 
     implementation(Libs.AndroidX.coreKtx)
