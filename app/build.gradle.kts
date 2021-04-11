@@ -68,7 +68,11 @@ android {
 }
 
 dependencies {
-    implementation(project(":feature_navigation"))
+    ModuleDependency.getAllFeatureModules().forEach { moduleName ->
+        implementation(
+            project(moduleName)
+        )
+    }
     implementation(project(":core_ui"))
 
     implementation(Libs.Kotlin.stdlib)

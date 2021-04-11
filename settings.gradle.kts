@@ -21,6 +21,9 @@ pluginManagement {
 
 rootProject.buildFileName = "build.gradle.kts"
 
+// Main module
 include(":app")
+// Core modules
 include(":core_network", ":core_ui")
+// Feature modules
 include(":feature_navigation", ":feature_discover", ":feature_details", ":feature_collections")
