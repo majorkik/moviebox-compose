@@ -1,4 +1,4 @@
-package com.example.movieboxcompose
+package com.majorkik.movieboxcompose
 
 import android.app.Application
 

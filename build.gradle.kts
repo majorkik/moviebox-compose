@@ -58,7 +58,7 @@ fun Project.configDetekt() {
         // By default detekt does not check test source set and gradle specific files, so hey have to be added manually
         input = files(
             "$rootDir/buildSrc",
-            "$rootDir/build.gradle.kts",
+            "$rootDir/build.gradle.kts.kts",
             "$rootDir/settings.gradle.kts",
             "src/main/kotlin",
             "src/test/kotlin"

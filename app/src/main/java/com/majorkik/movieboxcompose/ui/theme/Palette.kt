@@ -1,4 +1,4 @@
-package com.example.movieboxcompose.ui.theme
+package com.majorkik.movieboxcompose.ui.theme
 
 import androidx.compose.material.Colors
 import androidx.compose.material.MaterialTheme

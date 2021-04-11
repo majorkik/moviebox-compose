@@ -1,4 +1,4 @@
-package com.example.movieboxcompose.ui.utils
+package com.majorkik.movieboxcompose.ui.utils
 
 import android.os.Build
 import android.view.View
@@ -123,7 +123,7 @@ private class SystemUiControllerImpl(private val window: Window) : SystemUiContr
 }
 
 /**
- * An [androidx.compose.runtime.Ambient] holding the current [LocalSysUiController]. Defaults to a
+ * An [androidx.compose.runtime.CompositionLocal] holding the current [LocalSysUiController]. Defaults to a
  * no-op controller; consumers should [provide][androidx.compose.runtime.CompositionLocalProvider] a real one.
  */
 val LocalSysUiController = staticCompositionLocalOf<SystemUiController> {

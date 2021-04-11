@@ -68,13 +68,11 @@ android {
 }
 
 dependencies {
+    implementation(project(":feature_navigation"))
+    implementation(project(":core_ui"))
+
     implementation(Libs.Kotlin.stdlib)
     implementation(Libs.Coroutines.android)
-
-    implementation(Libs.Network.OkHttp3.OKHTTP_3)
-
-    implementation(Libs.Network.Retrofit.retrofitLib)
-    implementation(Libs.Network.Retrofit.retrofitMoshi)
 
     implementation(Libs.AndroidX.coreKtx)
     implementation(Libs.AndroidX.material)
@@ -97,18 +95,6 @@ dependencies {
     implementation(Libs.Others.klock)
 
     implementation(Libs.Others.stfalconImageViewer)
-
-    implementation(Libs.AndroidX.Compose.layout)
-    implementation(Libs.AndroidX.Compose.material)
-    implementation(Libs.AndroidX.Compose.materialIconsExtended)
-    implementation(Libs.AndroidX.Compose.tooling)
-    implementation(Libs.AndroidX.Compose.uiUtil)
-    implementation(Libs.AndroidX.Compose.runtime)
-    implementation(Libs.AndroidX.Compose.runtimeLivedata)
-    implementation(Libs.AndroidX.Compose.viewBinding)
-
-    implementation(Libs.Accompanist.coil)
-    implementation(Libs.Accompanist.insets)
 
     androidTestImplementation(Libs.junit)
     androidTestImplementation(Libs.Test.core)

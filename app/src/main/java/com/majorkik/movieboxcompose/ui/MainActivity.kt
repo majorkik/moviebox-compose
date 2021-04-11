@@ -1,4 +1,4 @@
-package com.example.movieboxcompose.ui
+package com.majorkik.movieboxcompose.ui
 
 import android.os.Bundle
 import androidx.activity.compose.setContent
@@ -8,8 +8,8 @@ import androidx.compose.runtime.CompositionLocalProvider
 import androidx.compose.runtime.remember
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.core.view.WindowCompat
-import com.example.movieboxcompose.ui.utils.LocalSysUiController
-import com.example.movieboxcompose.ui.utils.SystemUiController
+import com.majorkik.movieboxcompose.ui.utils.LocalSysUiController
+import com.majorkik.movieboxcompose.ui.utils.SystemUiController
 
 class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {

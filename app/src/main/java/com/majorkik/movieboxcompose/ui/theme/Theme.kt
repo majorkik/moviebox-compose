@@ -1,4 +1,4 @@
-package com.example.movieboxcompose.ui.theme
+package com.majorkik.movieboxcompose.ui.theme
 
 import androidx.compose.foundation.isSystemInDarkTheme
 import androidx.compose.material.MaterialTheme
@@ -13,7 +13,7 @@ import androidx.compose.runtime.setValue
 import androidx.compose.runtime.staticCompositionLocalOf
 import androidx.compose.runtime.structuralEqualityPolicy
 import androidx.compose.ui.graphics.Color
-import com.example.movieboxcompose.ui.utils.LocalSysUiController
+import com.majorkik.movieboxcompose.ui.utils.LocalSysUiController
 
 class MovieBoxColors(
     primary: Color,

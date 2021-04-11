@@ -1,4 +1,4 @@
-package com.example.movieboxcompose
+package com.majorkik.movieboxcompose
 
 import org.junit.Assert.assertEquals
 import org.junit.Test
