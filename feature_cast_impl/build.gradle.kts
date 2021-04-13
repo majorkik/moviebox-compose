@@ -39,15 +39,6 @@ android {
 }
 
 dependencies {
-    api(Libs.AndroidX.Compose.layout)
-    api(Libs.AndroidX.Compose.material)
-    // api(Libs.AndroidX.Compose.materialIconsExtended)
-    api(Libs.AndroidX.Compose.tooling)
-    api(Libs.AndroidX.Compose.uiUtil)
-    api(Libs.AndroidX.Compose.runtime)
-    api(Libs.AndroidX.Compose.runtimeLivedata)
-    api(Libs.AndroidX.Compose.viewBinding)
-
-    api(Libs.Accompanist.coil)
-    api(Libs.Accompanist.insets)
+    implementation(project(ModuleDependency.coreNetwork))
+    implementation(project(ModuleDependency.featureCastApi))
 }

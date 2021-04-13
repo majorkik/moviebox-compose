@@ -5,7 +5,6 @@ import com.android.build.gradle.internal.dsl.DefaultConfig
 plugins {
     id(Plugins.androidApplication)
     kotlin(Plugins.android)
-    id(Plugins.ktlint)
 }
 
 android {

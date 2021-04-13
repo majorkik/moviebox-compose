@@ -27,3 +27,7 @@ include(":app")
 include(":core_network", ":core_ui")
 // Feature modules
 include(":feature_navigation", ":feature_discover", ":feature_details", ":feature_collections")
+// Feature api modules
+include(":feature_movie_api", ":feature_tv_api", ":feature_cast_api", ":feature_discover_api")
+// Feature impl modules
+include(":feature_movie_impl", ":feature_tv_impl", ":feature_cast_impl", ":feature_discover_impl")

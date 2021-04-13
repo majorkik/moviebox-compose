@@ -1,7 +1,6 @@
 plugins {
     id(Plugins.androidLibrary)
     kotlin(Plugins.android)
-    id(Plugins.ktlint)
 }
 
 android {
@@ -40,6 +39,6 @@ android {
 }
 
 dependencies {
-    implementation(project(":core_ui"))
-    implementation(project(":core_network"))
+    implementation(project(ModuleDependency.coreUi))
+    implementation(project(ModuleDependency.featureDiscoverApi))
 }
