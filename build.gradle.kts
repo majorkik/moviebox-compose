@@ -5,7 +5,7 @@ import org.jlleitschuh.gradle.ktlint.reporter.ReporterType.PLAIN
 plugins {
     id(Plugins.ktlint) version Versions.ktlintJLLeitschuh
     id(Plugins.detekt) version Versions.detekt
-    id(Plugins.koin) version Versions.koin
+    id(Plugins.koin) version Versions.koinPlugin
     id(Plugins.spotless) version Versions.spotless
     id(Plugins.gradleVersions) version Versions.gradleVersions
     kotlin(Plugins.android) version Versions.kotlin apply false

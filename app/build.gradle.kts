@@ -81,8 +81,7 @@ dependencies {
     implementation(Libs.AndroidX.material)
     implementation(Libs.AndroidX.multidex)
 
-    implementation(Libs.Koin.scope)
-    implementation(Libs.Koin.viewModel)
+    implementation(Libs.Koin.android)
     implementation(Libs.Koin.compose)
 
     implementation(Libs.Loggers.timber)

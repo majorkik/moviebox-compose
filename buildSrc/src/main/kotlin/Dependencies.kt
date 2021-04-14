@@ -16,7 +16,7 @@ object Versions {
     const val ktlint = "0.40.0"
     const val detekt = "1.16.0"
 
-    const val koin = "2.2.2"
+    const val koinPlugin = "3.0.1-beta-2"
 }
 
 object Plugins {
@@ -106,9 +106,10 @@ object Libs {
     }
 
     object Koin {
-        const val scope = "org.koin:koin-androidx-scope:${Versions.koin}"
-        const val viewModel = "org.koin:koin-androidx-viewmodel:${Versions.koin}"
-        const val compose = "org.koin:koin-androidx-compose:${Versions.koin}"
+        private const val version = "3.0.1-beta-2"
+
+        const val android = "io.insert-koin:koin-android:$version"
+        const val compose = "io.insert-koin:koin-androidx-compose:$version"
     }
 
     object Firebase {
