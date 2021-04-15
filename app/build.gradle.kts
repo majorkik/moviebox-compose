@@ -84,9 +84,6 @@ dependencies {
     implementation(Libs.Koin.android)
     implementation(Libs.Koin.compose)
 
-    implementation(Libs.Loggers.timber)
-    implementation(Libs.Loggers.prettyLogger)
-
     implementation(Libs.AndroidX.annotation)
     implementation(Libs.AndroidX.Activity.activityCompose)
     implementation(Libs.AndroidX.vectorDrawable)

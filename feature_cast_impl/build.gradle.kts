@@ -15,6 +15,19 @@ android {
         versionName = AndroidConfig.versionName
     }
 
+    buildFeatures {
+        buildConfig = false // Disable generation of BuildConfig files in modules where they are not needed
+
+        aidl = false
+        prefab = false
+        shaders = false
+
+        compose = false
+
+        dataBinding = false
+        viewBinding = false
+    }
+
     buildTypes {
         getByName(BuildType.RELEASE) {
             isMinifyEnabled = BuildTypeRelease.isMinifyEnabled

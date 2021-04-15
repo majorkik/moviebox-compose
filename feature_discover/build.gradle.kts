@@ -15,6 +15,19 @@ android {
         versionName = AndroidConfig.versionName
     }
 
+    buildFeatures {
+        buildConfig = true
+
+        aidl = false
+        prefab = false
+        shaders = true
+
+        compose = true
+
+        dataBinding = false
+        viewBinding = false
+    }
+
     buildTypes {
         getByName(BuildType.RELEASE) {
             isMinifyEnabled = BuildTypeRelease.isMinifyEnabled

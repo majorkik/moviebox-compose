@@ -1,3 +1,5 @@
+
+
 plugins {
     id(Plugins.androidLibrary)
     kotlin(Plugins.android)
@@ -13,6 +15,19 @@ android {
 
         versionCode = AndroidConfig.versionCode
         versionName = AndroidConfig.versionName
+    }
+
+    buildFeatures {
+        buildConfig = false // Disable generation of BuildConfig files in modules where they are not needed
+
+        aidl = false
+        prefab = false
+        shaders = false
+
+        compose = false
+
+        dataBinding = false
+        viewBinding = false
     }
 
     buildTypes {
