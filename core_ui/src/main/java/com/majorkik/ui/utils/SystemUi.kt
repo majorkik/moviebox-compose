@@ -1,4 +1,4 @@
-package com.majorkik.movieboxcompose.ui.utils
+package com.majorkik.ui.utils
 
 import android.os.Build
 import android.view.View

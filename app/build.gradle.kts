@@ -67,33 +67,17 @@ android {
 }
 
 dependencies {
-    ModuleDependency.getAllFeatureModules().forEach { moduleName ->
-        implementation(
-            project(moduleName)
-        )
-    }
-    implementation(project(":core_ui"))
+    implementation(project(ModuleDependency.featureNavigation))
+    implementation(project(ModuleDependency.featureDetails))
+    implementation(project(ModuleDependency.featureCollections))
+    implementation(project(ModuleDependency.featureDiscover))
+
+    implementation(project(ModuleDependency.coreUi))
 
     implementation(Libs.Kotlin.stdlib)
     implementation(Libs.Coroutines.android)
 
-    implementation(Libs.AndroidX.coreKtx)
-    implementation(Libs.AndroidX.material)
-    implementation(Libs.AndroidX.multidex)
-
-    implementation(Libs.Koin.android)
-    implementation(Libs.Koin.compose)
-
-    implementation(Libs.AndroidX.annotation)
-    implementation(Libs.AndroidX.Activity.activityCompose)
-    implementation(Libs.AndroidX.vectorDrawable)
-
-    implementation(Libs.AndroidX.Lifecycle.livedata)
-    implementation(Libs.AndroidX.Lifecycle.viewModelCompose)
-
     implementation(Libs.Others.klock)
-
-    implementation(Libs.Others.stfalconImageViewer)
 
     androidTestImplementation(Libs.junit)
     androidTestImplementation(Libs.Test.core)

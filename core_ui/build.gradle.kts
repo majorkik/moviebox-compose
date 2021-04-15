@@ -43,6 +43,20 @@ android {
 }
 
 dependencies {
+    api(Libs.AndroidX.coreKtx)
+    api(Libs.AndroidX.material)
+    api(Libs.AndroidX.multidex)
+
+    api(Libs.Koin.android)
+    api(Libs.Koin.compose)
+
+    api(Libs.AndroidX.annotation)
+    api(Libs.AndroidX.Activity.activityCompose)
+    api(Libs.AndroidX.vectorDrawable)
+
+    api(Libs.AndroidX.Lifecycle.livedata)
+    api(Libs.AndroidX.Lifecycle.viewModelCompose)
+
     api(Libs.AndroidX.Compose.layout)
     api(Libs.AndroidX.Compose.material)
     // api(Libs.AndroidX.Compose.materialIconsExtended)
@@ -54,4 +68,6 @@ dependencies {
 
     api(Libs.Accompanist.coil)
     api(Libs.Accompanist.insets)
+
+    api(Libs.Others.stfalconImageViewer)
 }

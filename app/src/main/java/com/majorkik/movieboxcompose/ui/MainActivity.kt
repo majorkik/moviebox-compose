@@ -8,8 +8,8 @@ import androidx.compose.runtime.CompositionLocalProvider
 import androidx.compose.runtime.remember
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.core.view.WindowCompat
-import com.majorkik.movieboxcompose.ui.utils.LocalSysUiController
-import com.majorkik.movieboxcompose.ui.utils.SystemUiController
+import com.majorkik.ui.utils.LocalSysUiController
+import com.majorkik.ui.utils.SystemUiController
 
 class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
