@@ -55,6 +55,7 @@ android {
 
 dependencies {
     api(Libs.Network.OkHttp3.OKHTTP_3)
+    api(Libs.Network.OkHttp3.LOGGING_INTERCEPTOR)
 
     api(Libs.Network.Retrofit.retrofitLib)
     api(Libs.Network.Retrofit.retrofitMoshi)
