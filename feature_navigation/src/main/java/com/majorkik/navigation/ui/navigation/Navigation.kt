@@ -17,12 +17,20 @@ import com.google.accompanist.insets.navigationBarsHeight
 import com.majorkik.navigation.domain.NavigationItem
 import com.majorkik.ui.theme.MovieBoxTheme
 
+/**
+ * Bottom navigation layout
+ *
+ * @param navController which manages navigation using NavHost
+ * @param tabs an array of possible tabs on the bottom navigation
+ */
+
 @Composable
 fun MovieBoxBottomBar(navController: NavController, tabs: Array<NavigationItem>) {
     val navBackStackEntry by navController.currentBackStackEntryAsState()
     val currentRoute = navBackStackEntry?.arguments?.getString(KEY_ROUTE) ?: NavigationItem.HOME.route
 
     val routes = remember { NavigationItem.values().map { it.route } }
+
     if (currentRoute in routes) {
         BottomNavigation(
             Modifier.navigationBarsHeight(additional = 56.dp),

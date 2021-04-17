@@ -7,6 +7,10 @@ import com.majorkik.navigation.domain.CoursesDestinations.DISCOVER_ROUTE
 import com.majorkik.navigation.domain.CoursesDestinations.HOME_ROUTE
 import com.majorkik.navigation.domain.CoursesDestinations.PROFILE_ROUTE
 
+/**
+ * Bottom navigation elements that contain: icon [NavigationItem.icon], tab name [NavigationItem.title] and
+ * route [NavigationItem.route]
+ */
 enum class NavigationItem(
     @StringRes val title: Int,
     @DrawableRes val icon: Int,

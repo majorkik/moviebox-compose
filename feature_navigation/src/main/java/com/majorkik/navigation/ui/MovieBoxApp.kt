@@ -11,6 +11,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
+import androidx.navigation.NavController
 import androidx.navigation.compose.rememberNavController
 import com.google.accompanist.insets.ProvideWindowInsets
 import com.majorkik.navigation.domain.NavigationItem
@@ -24,15 +25,10 @@ fun MovieBoxApp(finishActivity: () -> Unit) {
             MovieBoxTheme {
                 val tabs = remember { NavigationItem.values() }
                 val navController = rememberNavController()
+
                 Scaffold(
                     backgroundColor = Color.White,
-                    bottomBar = {
-                        Box(
-                            modifier = Modifier.padding(all = 16.dp).clip(shape = RoundedCornerShape(12.dp))
-                        ) {
-                            MovieBoxBottomBar(navController = navController, tabs)
-                        }
-                    }
+                    bottomBar = { BottomBar(navController = navController, tabs = tabs) }
                 ) { innerPaddingModifier ->
                     NavGraph(
                         finishActivity = finishActivity,
@@ -42,5 +38,16 @@ fun MovieBoxApp(finishActivity: () -> Unit) {
                 }
             }
         }
+    }
+}
+
+@Composable
+fun BottomBar(navController: NavController, tabs: Array<NavigationItem>) {
+    Box(
+        modifier = Modifier
+            .padding(all = 16.dp)
+            .clip(shape = RoundedCornerShape(12.dp))
+    ) {
+        MovieBoxBottomBar(navController = navController, tabs = tabs)
     }
 }

@@ -15,6 +15,10 @@ object MainDestinations {
     const val PROFILE_ROUTE = "profile"
 }
 
+/**
+ * Manages NavHost and internally defined screens.
+ */
+
 @Composable
 fun NavGraph(
     modifier: Modifier = Modifier,
