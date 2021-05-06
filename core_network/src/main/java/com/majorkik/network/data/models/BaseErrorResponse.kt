@@ -14,7 +14,7 @@ data class BaseErrorResponse(
     val statusMessage: String?
 )
 
-fun HttpException.toErrorResponse(): BaseErrorResponse? {
+fun HttpException.toErrorResponse(): BaseErrorResponse {
     return response()?.errorBody()?.source()?.runCatching {
         BaseErrorResponseJsonAdapter(Moshi.Builder().build()).fromJson(this)
     }.getOrNull()
