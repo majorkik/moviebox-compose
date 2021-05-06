@@ -20,6 +20,7 @@ object MainDestinations {
 /**
  * Manages NavHost and internally defined screens.
  */
+@Suppress("detekt.UnusedPrivateMember")
 @Composable
 fun NavGraph(
     modifier: Modifier = Modifier,
