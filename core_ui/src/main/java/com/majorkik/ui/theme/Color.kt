@@ -2,6 +2,7 @@ package com.majorkik.ui.theme
 
 import androidx.compose.ui.graphics.Color
 
+@Suppress("detekt.UnusedPrivateMember")
 const val AlphaNearOpaque = 0.95f
 
 val primary = Color(0xff3772ff)

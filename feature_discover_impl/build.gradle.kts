@@ -1,7 +1,7 @@
 plugins {
     id(Plugins.androidLibrary)
     kotlin(Plugins.android)
-    kotlin(Plugins.kapt)
+    id(Plugins.kapt)
 }
 
 android {

@@ -1,11 +1,14 @@
-package com.majorkik.movie_impl.repository
+package com.majorkik.movie.impl.repository
 
-import com.majorkik.movie_api.model.Movies
-import com.majorkik.movie_api.repository.MovieRepository
-import com.majorkik.movie_impl.model.response.toDomainModel
-import com.majorkik.movie_impl.service.MoviesApiService
+import com.majorkik.api.model.Movies
+import com.majorkik.api.repository.MovieRepository
+import com.majorkik.movie.impl.model.response.toDomainModel
+import com.majorkik.movie.impl.service.MoviesApiService
 import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.flow.*
+import kotlinx.coroutines.flow.flow
+import kotlinx.coroutines.flow.flowOn
+import kotlinx.coroutines.flow.map
+import kotlinx.coroutines.flow.Flow
 
 internal class MovieRepositoryImpl(private val api: MoviesApiService) : MovieRepository {
 

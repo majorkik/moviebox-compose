@@ -24,7 +24,7 @@ object Plugins {
     const val androidApplication = "com.android.application"
     const val androidLibrary = "com.android.library"
 
-    const val kapt = "kapt"
+    const val kapt = "kotlin-kapt"
 
     // Updates versions
     const val gradleVersions = "com.github.ben-manes.versions"

@@ -1,6 +1,6 @@
-package com.majorkik.movie_impl.service
+package com.majorkik.movie.impl.service
 
-import com.majorkik.movie_impl.model.response.MovieResponse
+import com.majorkik.movie.impl.model.response.MovieResponse
 import retrofit2.http.GET
 import retrofit2.http.Path
 import retrofit2.http.Query

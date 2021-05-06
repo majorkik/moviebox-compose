@@ -4,7 +4,9 @@ import androidx.activity.compose.BackHandler
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.navigation.NavHostController
-import androidx.navigation.compose.*
+import androidx.navigation.compose.NavHost
+import androidx.navigation.compose.composable
+import androidx.navigation.compose.rememberNavController
 
 /**
  * Destinations used in the ([com.majorkik.navigation.ui.MovieBoxApp]).
@@ -18,7 +20,6 @@ object MainDestinations {
 /**
  * Manages NavHost and internally defined screens.
  */
-
 @Composable
 fun NavGraph(
     modifier: Modifier = Modifier,
@@ -30,18 +31,11 @@ fun NavGraph(
         navController = navController,
         startDestination = startDestination
     ) {
-        composable(MainDestinations.HOME_ROUTE) {
-            // Intercept back in Onboarding: make it finish the activity
-            BackHandler {
-                finishActivity()
-            }
-        }
+        composable(MainDestinations.HOME_ROUTE) { BackHandler { finishActivity() } }
 
-        composable(route = MainDestinations.DISCOVER_ROUTE) { backStackEntry ->
-        }
+        composable(route = MainDestinations.DISCOVER_ROUTE) {}
 
-        composable(route = MainDestinations.PROFILE_ROUTE) { backStackEntry ->
-        }
+        composable(route = MainDestinations.PROFILE_ROUTE) {}
     }
 }
 

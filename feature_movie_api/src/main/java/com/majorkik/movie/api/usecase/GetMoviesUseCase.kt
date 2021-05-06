@@ -1,7 +1,7 @@
-package com.majorkik.movie_api.usecase
+package com.majorkik.api.usecase
 
-import com.majorkik.movie_api.model.Movie
-import com.majorkik.movie_api.repository.MovieRepository
+import com.majorkik.api.model.Movie
+import com.majorkik.api.repository.MovieRepository
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.map
 

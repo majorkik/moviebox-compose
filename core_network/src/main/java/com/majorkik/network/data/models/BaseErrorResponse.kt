@@ -1,6 +1,5 @@
 package com.majorkik.network.data.models
 
-import com.majorkik.network.network.models.BaseErrorResponseJsonAdapter
 import com.squareup.moshi.Json
 import com.squareup.moshi.JsonClass
 import com.squareup.moshi.Moshi
@@ -14,8 +13,8 @@ data class BaseErrorResponse(
     val statusMessage: String?
 )
 
-fun HttpException.toErrorResponse(): BaseErrorResponse {
+fun HttpException.toErrorResponse(): BaseErrorResponse? {
     return response()?.errorBody()?.source()?.runCatching {
         BaseErrorResponseJsonAdapter(Moshi.Builder().build()).fromJson(this)
-    }.getOrNull()
+    }?.getOrNull()
 }

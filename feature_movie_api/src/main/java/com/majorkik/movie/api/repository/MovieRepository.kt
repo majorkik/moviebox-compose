@@ -1,6 +1,6 @@
-package com.majorkik.movie_api.repository
+package com.majorkik.api.repository
 
-import com.majorkik.movie_api.model.Movies
+import com.majorkik.api.model.Movies
 import kotlinx.coroutines.flow.Flow
 
 interface MovieRepository {
