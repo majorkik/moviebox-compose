@@ -7,12 +7,14 @@ import androidx.compose.ui.graphics.Color
 fun lightColors() = MovieBoxColors(
     primary = Color.Blue,
     background = Color.Black,
+    main = Color.White,
     isDark = false
 )
 
 fun darkColors() = MovieBoxColors(
-    primary = Color.Blue,
-    background = Color.Black,
+    primary = primary,
+    background = background,
+    main = main,
     isDark = true
 )
 

@@ -2,10 +2,10 @@
 
 object Versions {
     // Kotlin
-    const val kotlin = "1.4.31"
+    const val kotlin = "1.4.32"
 
     // Gradle
-    const val androidGradle = "7.0.0-alpha08"
+    const val androidGradle = "7.0.0-alpha14"
 
     // Versions
     const val gradleVersions = "0.38.0"
@@ -23,6 +23,8 @@ object Plugins {
     const val android = "android"
     const val androidApplication = "com.android.application"
     const val androidLibrary = "com.android.library"
+
+    const val kapt = "kotlin-kapt"
 
     // Updates versions
     const val gradleVersions = "com.github.ben-manes.versions"
@@ -68,6 +70,8 @@ object Libs {
         const val material = "com.google.android.material:material:1.4.0-alpha01"
 
         const val multidex = "androidx.multidex:multidex:2.0.1"
+
+        const val navigationCompose = "androidx.navigation:navigation-compose:1.0.0-alpha10"
 
         object Activity {
             const val activityCompose = "androidx.activity:activity-compose:1.3.0-alpha05"

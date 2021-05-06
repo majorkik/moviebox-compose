@@ -1,6 +1,5 @@
 package com.majorkik.ui.theme
 
-import androidx.compose.foundation.isSystemInDarkTheme
 import androidx.compose.material.MaterialTheme
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.CompositionLocalProvider
@@ -18,6 +17,7 @@ import com.majorkik.ui.utils.LocalSysUiController
 class MovieBoxColors(
     primary: Color,
     background: Color,
+    main: Color,
     isDark: Boolean
 ) {
     var primary by mutableStateOf(primary, structuralEqualityPolicy())
@@ -26,12 +26,16 @@ class MovieBoxColors(
     var background by mutableStateOf(background, structuralEqualityPolicy())
         internal set
 
+    var main by mutableStateOf(main, structuralEqualityPolicy())
+        internal set
+
     var isDark by mutableStateOf(isDark)
         internal set
 
     fun update(other: MovieBoxColors) {
         primary = other.primary
         background = other.background
+        main = other.main
         isDark = other.isDark
     }
 }
@@ -49,7 +53,7 @@ internal val LocalMovieBoxColors = staticCompositionLocalOf<MovieBoxColors> {
 
 @Composable
 fun MovieBoxTheme(
-    darkTheme: Boolean = isSystemInDarkTheme(),
+    darkTheme: Boolean = true,
     content: @Composable () -> Unit
 ) {
     val colors = if (darkTheme) darkColors() else lightColors()

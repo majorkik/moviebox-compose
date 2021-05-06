@@ -24,6 +24,7 @@ object ModuleDependency {
 
     const val coreUi = ":core_ui"
     const val coreNetwork = ":core_network"
+    const val coreBase = ":core_base"
 
     fun getAllFeatureModules() = ModuleDependency::class.memberProperties
         .filter { it.isConst }

@@ -1,8 +1,7 @@
-
-
 plugins {
     id(Plugins.androidLibrary)
     kotlin(Plugins.android)
+    id(Plugins.kapt)
 }
 
 android {
@@ -54,9 +53,14 @@ android {
 }
 
 dependencies {
+    api(Libs.Kotlin.stdlib)
+    api(Libs.Coroutines.core)
+
     api(Libs.Network.OkHttp3.OKHTTP_3)
     api(Libs.Network.OkHttp3.LOGGING_INTERCEPTOR)
 
     api(Libs.Network.Retrofit.retrofitLib)
     api(Libs.Network.Retrofit.retrofitMoshi)
+    implementation("com.squareup.moshi:moshi:1.12.0")
+    kapt("com.squareup.moshi:moshi-kotlin-codegen:1.12.0")
 }

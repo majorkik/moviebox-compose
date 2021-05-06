@@ -24,7 +24,7 @@ rootProject.buildFileName = "build.gradle.kts"
 // Main module
 include(":app")
 // Core modules
-include(":core_network", ":core_ui")
+include(":core_network", ":core_ui", ":core_base")
 // Feature modules
 include(":feature_navigation", ":feature_discover", ":feature_details", ":feature_collections")
 // Feature api modules

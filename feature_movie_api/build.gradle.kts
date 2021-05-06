@@ -52,4 +52,5 @@ android {
 }
 
 dependencies {
+    api(Libs.Coroutines.core)
 }

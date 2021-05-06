@@ -17,6 +17,8 @@ android {
 
     buildFeatures {
         buildConfig = false // Disable generation of BuildConfig files in modules where they are not needed
+
+        compose = true
     }
 
     buildTypes {
@@ -40,12 +42,17 @@ android {
         sourceCompatibility = JavaVersion.VERSION_1_8
         targetCompatibility = JavaVersion.VERSION_1_8
     }
+
+    composeOptions {
+        kotlinCompilerExtensionVersion = Libs.AndroidX.Compose.version
+    }
 }
 
 dependencies {
     api(Libs.AndroidX.coreKtx)
     api(Libs.AndroidX.material)
     api(Libs.AndroidX.multidex)
+    api(Libs.AndroidX.navigationCompose)
 
     api(Libs.Koin.android)
     api(Libs.Koin.compose)
