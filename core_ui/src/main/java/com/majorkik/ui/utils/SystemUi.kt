@@ -9,6 +9,7 @@ import androidx.compose.ui.graphics.compositeOver
 import androidx.compose.ui.graphics.luminance
 import androidx.compose.ui.graphics.toArgb
 
+@Suppress("detekt.MagicNumber")
 interface SystemUIController {
     fun setStatusBarColor(
         color: Color,
@@ -82,6 +83,7 @@ private class SystemUiControllerImpl(private val window: Window) : SystemUIContr
      * @param transformColorForLightContent A lambda which will be invoked to transform [color] if
      * dark icons were requested but are not available. Defaults to applying a black scrim.
      */
+    @Suppress("detekt.MagicNumber")
     override fun setNavigationBarColor(
         color: Color,
         darkIcons: Boolean,
@@ -130,6 +132,7 @@ val LocalSysUiController = staticCompositionLocalOf<SystemUIController> {
     FakeSystemUiController
 }
 
+@Suppress("detekt.MagicNumber")
 private val BlackScrim = Color(0f, 0f, 0f, 0.2f) // 20% opaque black
 
 private val BlackScrimmed: (Color) -> Color = { original ->
