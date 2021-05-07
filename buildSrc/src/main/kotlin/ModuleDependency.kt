@@ -21,7 +21,6 @@ object ModuleDependency {
     const val featureDiscoverApi = ":feature_discover_api"
     const val featureDiscoverImpl = ":feature_discover_impl"
 
-
     const val coreUi = ":core_ui"
     const val coreNetwork = ":core_network"
     const val coreBase = ":core_base"
