@@ -9,7 +9,8 @@ import androidx.compose.ui.graphics.compositeOver
 import androidx.compose.ui.graphics.luminance
 import androidx.compose.ui.graphics.toArgb
 
-interface SystemUiController {
+@Suppress("detekt.MagicNumber")
+interface SystemUIController {
     fun setStatusBarColor(
         color: Color,
         darkIcons: Boolean = color.luminance() > 0.5f,
@@ -29,7 +30,7 @@ interface SystemUiController {
     )
 }
 
-fun SystemUiController(window: Window): SystemUiController {
+fun SystemUIController(window: Window): SystemUIController {
     return SystemUiControllerImpl(window)
 }
 
@@ -37,7 +38,7 @@ fun SystemUiController(window: Window): SystemUiController {
  * A helper class for setting the navigation and status bar colors for a [Window], gracefully
  * degrading behavior based upon API level.
  */
-private class SystemUiControllerImpl(private val window: Window) : SystemUiController {
+private class SystemUiControllerImpl(private val window: Window) : SystemUIController {
 
     /**
      * Set the status bar color.
@@ -82,6 +83,7 @@ private class SystemUiControllerImpl(private val window: Window) : SystemUiContr
      * @param transformColorForLightContent A lambda which will be invoked to transform [color] if
      * dark icons were requested but are not available. Defaults to applying a black scrim.
      */
+    @Suppress("detekt.MagicNumber")
     override fun setNavigationBarColor(
         color: Color,
         darkIcons: Boolean,
@@ -126,11 +128,13 @@ private class SystemUiControllerImpl(private val window: Window) : SystemUiContr
  * An [androidx.compose.runtime.CompositionLocal] holding the current [LocalSysUiController]. Defaults to a
  * no-op controller; consumers should [provide][androidx.compose.runtime.CompositionLocalProvider] a real one.
  */
-val LocalSysUiController = staticCompositionLocalOf<SystemUiController> {
+val LocalSysUiController = staticCompositionLocalOf<SystemUIController> {
     FakeSystemUiController
 }
 
+@Suppress("detekt.MagicNumber")
 private val BlackScrim = Color(0f, 0f, 0f, 0.2f) // 20% opaque black
+
 private val BlackScrimmed: (Color) -> Color = { original ->
     BlackScrim.compositeOver(original)
 }
@@ -138,7 +142,7 @@ private val BlackScrimmed: (Color) -> Color = { original ->
 /**
  * A fake implementation, useful as a default or used in Previews.
  */
-private object FakeSystemUiController : SystemUiController {
+private object FakeSystemUiController : SystemUIController {
     override fun setStatusBarColor(
         color: Color,
         darkIcons: Boolean,
