@@ -112,6 +112,7 @@ object Libs {
     object Koin {
         private const val version = "3.0.1-beta-2"
 
+        const val core = "io.insert-koin:koin-core:$version"
         const val android = "io.insert-koin:koin-android:$version"
         const val compose = "io.insert-koin:koin-androidx-compose:$version"
     }
@@ -124,6 +125,9 @@ object Libs {
     object Network {
         const val retrofitCoroutinesAdapter =
             "com.jakewharton.retrofit:retrofit2-kotlin-coroutines-adapter:0.9.2"
+
+        const val moshi = "com.squareup.moshi:moshi:1.12.0"
+        const val moshiKapt = "com.squareup.moshi:moshi-kotlin-codegen:1.12.0"
 
         object Retrofit {
             private const val version = "2.9.0"

@@ -53,6 +53,9 @@ android {
 }
 
 dependencies {
+    implementation(project(ModuleDependency.coreBase))
     implementation(project(ModuleDependency.coreNetwork))
+
     implementation(project(ModuleDependency.featureMovieApi))
+    kapt(Libs.Network.moshiKapt)
 }

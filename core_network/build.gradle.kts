@@ -1,3 +1,6 @@
+import com.android.build.api.dsl.BaseFlavor
+import com.android.build.gradle.internal.cxx.configure.gradleLocalProperties
+
 plugins {
     id(Plugins.androidLibrary)
     kotlin(Plugins.android)
@@ -14,10 +17,15 @@ android {
 
         versionCode = AndroidConfig.versionCode
         versionName = AndroidConfig.versionName
+
+        buildConfigFieldFromGradleProperty("keyTmdb")
+        buildConfigFieldFromGradleProperty("keyTmdbv4")
+        buildConfigFieldFromGradleProperty("youTubeKey")
+        buildConfigFieldFromGradleProperty("keyTrakTv")
     }
 
     buildFeatures {
-        buildConfig = false // Disable generation of BuildConfig files in modules where they are not needed
+        buildConfig = true
 
         aidl = false
         prefab = false
@@ -61,6 +69,16 @@ dependencies {
 
     api(Libs.Network.Retrofit.retrofitLib)
     api(Libs.Network.Retrofit.retrofitMoshi)
-    implementation("com.squareup.moshi:moshi:1.12.0")
-    kapt("com.squareup.moshi:moshi-kotlin-codegen:1.12.0")
+    implementation(Libs.Network.moshi)
+    kapt(Libs.Network.moshiKapt)
 }
+
+fun BaseFlavor.buildConfigFieldFromGradleProperty(gradlePropertyName: String) {
+    val propertyValue = gradleLocalProperties(rootDir)[gradlePropertyName] as? String
+    checkNotNull(propertyValue) { "Gradle property $gradlePropertyName is null" }
+
+    val androidResourceName = "GRADLE_${gradlePropertyName.toSnakeCase()}".toUpperCase()
+    buildConfigField("String", androidResourceName, propertyValue)
+}
+
+fun String.toSnakeCase() = this.split(Regex("(?=[A-Z])")).joinToString("_") { it.toLowerCase() }

@@ -1,6 +1,7 @@
 plugins {
     id(Plugins.androidLibrary)
     kotlin(Plugins.android)
+    id(Plugins.kapt)
 }
 
 android {
@@ -52,5 +53,7 @@ android {
 }
 
 dependencies {
+    implementation(project(ModuleDependency.coreBase))
+
     api(Libs.Coroutines.core)
 }
