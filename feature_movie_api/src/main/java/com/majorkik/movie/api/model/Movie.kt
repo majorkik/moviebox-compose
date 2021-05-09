@@ -1,4 +1,4 @@
-package com.majorkik.api.model
+package com.majorkik.movie.api.model
 
 data class Movie(
     val adult: Boolean,

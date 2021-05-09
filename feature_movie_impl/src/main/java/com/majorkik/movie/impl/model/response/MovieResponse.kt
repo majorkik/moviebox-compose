@@ -1,7 +1,7 @@
 package com.majorkik.movie.impl.model.response
 
-import com.majorkik.api.model.Movie
-import com.majorkik.api.model.Movies
+import com.majorkik.movie.api.model.Movie
+import com.majorkik.movie.api.model.Movies
 import com.squareup.moshi.Json
 import com.squareup.moshi.JsonClass
 
