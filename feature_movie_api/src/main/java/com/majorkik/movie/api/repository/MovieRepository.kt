@@ -1,10 +1,11 @@
-package com.majorkik.api.repository
+package com.majorkik.movie.api.repository
 
-import com.majorkik.api.model.Movies
+import com.majorkik.base.models.ResultWrapper
+import com.majorkik.movie.api.model.Movies
 import kotlinx.coroutines.flow.Flow
 
 interface MovieRepository {
-    suspend fun fetchPopularMovies(page: Int?, language: String?, region: String?): Flow<Movies>
+    suspend fun fetchPopularMovies(page: Int?, language: String?, region: String?): Flow<ResultWrapper<Movies>>
 
     suspend fun fetchTopRatedMovies(page: Int?, language: String?, region: String?): Flow<Movies>
 

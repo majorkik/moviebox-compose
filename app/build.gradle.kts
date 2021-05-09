@@ -5,6 +5,7 @@ import com.android.build.gradle.internal.dsl.DefaultConfig
 plugins {
     id(Plugins.androidApplication)
     kotlin(Plugins.android)
+    id(Plugins.kapt)
 }
 
 android {
@@ -72,7 +73,11 @@ dependencies {
     implementation(project(ModuleDependency.featureCollections))
     implementation(project(ModuleDependency.featureDiscover))
 
+    implementation(project(ModuleDependency.featureMovieApi))
+    implementation(project(ModuleDependency.featureMovieImpl))
+
     implementation(project(ModuleDependency.coreUi))
+    implementation(project(ModuleDependency.coreBase))
 
     implementation(Libs.Kotlin.stdlib)
     implementation(Libs.Coroutines.android)
