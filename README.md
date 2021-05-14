@@ -62,7 +62,6 @@
 
     -   [Pretty Logger](https://github.com/orhanobut/logger) - simple, pretty and powerful logger for android
 
-## Дополнительные настройки градл сборки
 
 ## Links
 
