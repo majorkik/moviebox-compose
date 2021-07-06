@@ -8,12 +8,8 @@ plugins {
 }
 
 android {
-    compileSdk = AndroidConfig.compileSdk
-
     defaultConfig {
-        minSdk = AndroidConfig.minSdk
-        targetSdk = AndroidConfig.targetSdk
-        buildToolsVersion = AndroidConfig.buildTools
+        buildConfigFieldFromGradleProperty("keyTmdb")
     }
 
     buildFeatures {
@@ -27,15 +23,6 @@ android {
 
         dataBinding = false
         viewBinding = false
-    }
-
-    kotlinOptions {
-        jvmTarget = JavaVersion.VERSION_1_8.toString()
-    }
-
-    compileOptions {
-        sourceCompatibility = JavaVersion.VERSION_1_8
-        targetCompatibility = JavaVersion.VERSION_1_8
     }
 }
 

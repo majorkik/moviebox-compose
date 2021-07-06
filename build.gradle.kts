@@ -18,6 +18,7 @@ allprojects {
     repositories {
         google()
         jcenter()
+        mavenCentral()
         maven("https://jitpack.io")
     }
 
@@ -26,7 +27,6 @@ allprojects {
         plugin(Plugins.ktlint)
         plugin(Plugins.spotless)
         plugin(Plugins.detekt)
-
         plugin(Plugins.koin)
     }
 
@@ -36,10 +36,6 @@ allprojects {
 }
 
 subprojects {
-    tasks.withType<Test> {
-        maxParallelForks = (Runtime.getRuntime().availableProcessors() / 2).takeIf { it > 0 } ?: 1
-    }
-
     afterEvaluate {
         configureAndroid()
     }
@@ -127,9 +123,6 @@ fun Project.configureKtlint() {
             reporter(CHECKSTYLE)
         }
 
-        kotlinScriptAdditionalPaths {
-            include(fileTree("scripts/"))
-        }
         filter {
             exclude("**/generated/**")
             include("**/kotlin/**")
@@ -139,8 +132,24 @@ fun Project.configureKtlint() {
 
 fun Project.configureAndroid() {
     (project.extensions.findByName("android") as? BaseExtension)?.run {
-        sourceSets {
-            map { it.java.srcDir("src/${it.name}/kotlin") }
+        compileSdkVersion(AndroidConfig.compileSdk)
+
+        defaultConfig {
+            minSdk = AndroidConfig.minSdk
+            targetSdk = AndroidConfig.targetSdk
+            buildToolsVersion(AndroidConfig.buildTools)
+
+            versionCode = AndroidConfig.versionCode
+            versionName = AndroidConfig.versionName
+        }
+
+        compileOptions {
+            sourceCompatibility = JavaVersion.VERSION_1_8
+            targetCompatibility = JavaVersion.VERSION_1_8
+        }
+
+        sourceSets.all {
+            java.srcDir("src/$name/kotlin")
         }
     }
 }

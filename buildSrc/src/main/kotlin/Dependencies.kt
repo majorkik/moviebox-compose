@@ -2,7 +2,7 @@
 
 object Versions {
     // Kotlin
-    const val kotlin = "1.4.32"
+    const val kotlin = "1.5.20"
 
     // Gradle
     const val androidGradle = "7.0.0-beta04"
