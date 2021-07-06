@@ -9,22 +9,19 @@ plugins {
 }
 
 android {
-    compileSdkVersion(AndroidConfig.compileSdk)
+    compileSdk = AndroidConfig.compileSdk
 
     defaultConfig {
         applicationId = AndroidConfig.applicationId
 
-        minSdkVersion(AndroidConfig.minSdk)
-        targetSdkVersion(AndroidConfig.targetSdk)
-        buildToolsVersion(AndroidConfig.buildTools)
+        minSdk = AndroidConfig.minSdk
+        targetSdk = AndroidConfig.targetSdk
+        buildToolsVersion = AndroidConfig.buildTools
 
         versionCode = AndroidConfig.versionCode
         versionName = AndroidConfig.versionName
 
         buildConfigFieldFromGradleProperty("keyTmdb")
-        buildConfigFieldFromGradleProperty("keyTmdbv4")
-        buildConfigFieldFromGradleProperty("youTubeKey")
-        buildConfigFieldFromGradleProperty("keyTrakTv")
 
         vectorDrawables.useSupportLibrary = true
         multiDexEnabled = true
@@ -68,14 +65,6 @@ android {
 }
 
 dependencies {
-    implementation(project(ModuleDependency.featureNavigation))
-    implementation(project(ModuleDependency.featureDetails))
-    implementation(project(ModuleDependency.featureCollections))
-    implementation(project(ModuleDependency.featureDiscover))
-
-    implementation(project(ModuleDependency.featureMovieApi))
-    implementation(project(ModuleDependency.featureMovieImpl))
-
     implementation(project(ModuleDependency.coreUi))
     implementation(project(ModuleDependency.coreBase))
 

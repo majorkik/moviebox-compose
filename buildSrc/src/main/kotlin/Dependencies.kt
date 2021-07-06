@@ -5,7 +5,7 @@ object Versions {
     const val kotlin = "1.4.32"
 
     // Gradle
-    const val androidGradle = "7.0.0-alpha14"
+    const val androidGradle = "7.0.0-beta04"
 
     // Versions
     const val gradleVersions = "0.38.0"

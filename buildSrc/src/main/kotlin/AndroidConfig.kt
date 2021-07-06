@@ -4,8 +4,8 @@ object AndroidConfig {
     const val targetSdk = 30
     const val buildTools = "30.0.2"
 
-    const val versionCode = 1
-    const val versionName = "1.0"
+    const val versionCode = 37
+    const val versionName = "0.5.1"
 
     const val applicationId = "com.majorkik.movieboxcompose"
 }
@@ -29,8 +29,4 @@ object BuildTypeDebug : BuildType {
 object BuildTypeRelease : BuildType {
     override val isMinifyEnabled = true
     override val isDebuggable = false
-}
-
-object TestOptions {
-    const val IS_RETURN_DEFAULT_VALUES = true
 }

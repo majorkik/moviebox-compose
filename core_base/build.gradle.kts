@@ -4,15 +4,12 @@ plugins {
 }
 
 android {
-    compileSdkVersion(AndroidConfig.compileSdk)
+    compileSdk = AndroidConfig.compileSdk
 
     defaultConfig {
-        minSdkVersion(AndroidConfig.minSdk)
-        targetSdkVersion(AndroidConfig.targetSdk)
-        buildToolsVersion(AndroidConfig.buildTools)
-
-        versionCode = AndroidConfig.versionCode
-        versionName = AndroidConfig.versionName
+        minSdk = AndroidConfig.minSdk
+        targetSdk = AndroidConfig.targetSdk
+        buildToolsVersion = AndroidConfig.buildTools
     }
 
     buildFeatures {
@@ -26,19 +23,6 @@ android {
 
         dataBinding = false
         viewBinding = false
-    }
-
-    buildTypes {
-        getByName(BuildType.RELEASE) {
-            isMinifyEnabled = BuildTypeRelease.isMinifyEnabled
-            isDebuggable = BuildTypeRelease.isDebuggable
-            proguardFiles("proguard-android.txt", "proguard-rules.pro")
-        }
-
-        getByName(BuildType.DEBUG) {
-            isMinifyEnabled = BuildTypeDebug.isMinifyEnabled
-            isDebuggable = BuildTypeDebug.isDebuggable
-        }
     }
 
     kotlinOptions {
