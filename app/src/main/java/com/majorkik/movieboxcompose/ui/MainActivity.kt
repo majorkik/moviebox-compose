@@ -6,7 +6,6 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.compose.runtime.CompositionLocalProvider
 import androidx.compose.runtime.remember
 import androidx.core.view.WindowCompat
-import com.majorkik.navigation.ui.MovieBoxApp
 import com.majorkik.ui.utils.LocalSysUiController
 import com.majorkik.ui.utils.SystemUIController
 
@@ -20,7 +19,6 @@ class MainActivity : AppCompatActivity() {
         setContent {
             val systemUiController = remember { SystemUIController(window) }
             CompositionLocalProvider(LocalSysUiController provides systemUiController) {
-                MovieBoxApp(finishActivity = { })
             }
         }
     }

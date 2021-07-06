@@ -71,7 +71,12 @@ dependencies {
     implementation(Libs.Kotlin.stdlib)
     implementation(Libs.Coroutines.android)
 
+    implementation(Libs.Koin.android)
+
     implementation(Libs.Others.klock)
+
+    implementation(Libs.Loggers.timber)
+    implementation(Libs.Loggers.prettyLogger)
 
     androidTestImplementation(Libs.junit)
     androidTestImplementation(Libs.Test.core)
