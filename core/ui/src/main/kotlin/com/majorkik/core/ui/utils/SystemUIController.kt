@@ -1,4 +1,4 @@
-package com.majorkik.ui.utils
+package com.majorkik.core.ui.utils
 
 import android.os.Build
 import android.view.View

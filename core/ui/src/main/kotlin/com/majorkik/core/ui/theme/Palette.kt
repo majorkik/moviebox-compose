@@ -1,4 +1,4 @@
-package com.majorkik.ui.theme
+package com.majorkik.core.ui.theme
 
 import androidx.compose.material.Colors
 import androidx.compose.material.MaterialTheme

@@ -6,8 +6,8 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.compose.runtime.CompositionLocalProvider
 import androidx.compose.runtime.remember
 import androidx.core.view.WindowCompat
-import com.majorkik.ui.utils.LocalSysUiController
-import com.majorkik.ui.utils.SystemUIController
+import com.majorkik.core.ui.utils.LocalSysUiController
+import com.majorkik.core.ui.utils.SystemUIController
 
 class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
