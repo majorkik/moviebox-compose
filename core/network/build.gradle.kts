@@ -27,16 +27,6 @@ android {
 }
 
 dependencies {
-    api(Libs.Kotlin.stdlib)
-    api(Libs.Coroutines.core)
-
-    api(Libs.Network.OkHttp3.OKHTTP_3)
-    api(Libs.Network.OkHttp3.LOGGING_INTERCEPTOR)
-
-    api(Libs.Network.Retrofit.retrofitLib)
-    api(Libs.Network.Retrofit.retrofitMoshi)
-    implementation(Libs.Network.moshi)
-    kapt(Libs.Network.moshiKapt)
 }
 
 fun BaseFlavor.buildConfigFieldFromGradleProperty(gradlePropertyName: String) {

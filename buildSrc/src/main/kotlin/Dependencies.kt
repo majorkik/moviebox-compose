@@ -2,19 +2,19 @@
 
 object Versions {
     // Kotlin
-    const val kotlin = "1.5.20"
+    const val kotlin = "1.5.10"
 
     // Gradle
     const val androidGradle = "7.0.0-beta04"
 
     // Versions
-    const val gradleVersions = "0.38.0"
+    const val gradleVersions = "0.39.0"
 
     // Static analysis tools
-    const val spotless = "5.11.1"
-    const val ktlintJLLeitschuh = "10.0.0"
+    const val spotless = "5.14.1"
+    const val ktlintJLLeitschuh = "10.1.0"
     const val ktlint = "0.40.0"
-    const val detekt = "1.16.0"
+    const val detekt = "1.18.0-RC1"
 
     const val koinPlugin = "3.0.1-beta-2"
 }
@@ -39,15 +39,13 @@ object Plugins {
 }
 
 object Libs {
-    const val junit = "junit:junit:4.13"
-
     object Kotlin {
         const val stdlib = "org.jetbrains.kotlin:kotlin-stdlib-jdk8:${Versions.kotlin}"
         const val extensions = "org.jetbrains.kotlin:kotlin-android-extensions:${Versions.kotlin}"
     }
 
     object Coroutines {
-        private const val version = "1.4.2"
+        private const val version = "1.5.1"
 
         const val core = "org.jetbrains.kotlinx:kotlinx-coroutines-core:$version"
         const val android = "org.jetbrains.kotlinx:kotlinx-coroutines-android:$version"
@@ -55,7 +53,7 @@ object Libs {
     }
 
     object Accompanist {
-        private const val version = "0.7.0"
+        private const val version = "0.13.0"
 
         const val coil = "com.google.accompanist:accompanist-coil:$version"
         const val insets = "com.google.accompanist:accompanist-insets:$version"
@@ -66,15 +64,12 @@ object Libs {
         const val annotation = "androidx.annotation:annotation:1.2.0-rc01"
 
         const val coreKtx = "androidx.core:core-ktx:1.5.0-beta02"
+        const val compat = "androidx.appcompat:appcompat:1.3.0"
 
-        const val material = "com.google.android.material:material:1.4.0-alpha01"
-
-        const val multidex = "androidx.multidex:multidex:2.0.1"
-
-        const val navigationCompose = "androidx.navigation:navigation-compose:1.0.0-alpha10"
+        const val navigationCompose = "androidx.navigation:navigation-compose:2.4.0-alpha04"
 
         object Activity {
-            const val activityCompose = "androidx.activity:activity-compose:1.3.0-alpha05"
+            const val activityCompose = "androidx.activity:activity-compose:1.3.0-rc01"
         }
 
         object Lifecycle {
@@ -83,11 +78,11 @@ object Libs {
             const val livedata = "androidx.lifecycle:lifecycle-livedata-ktx:$version"
             const val viewmodel = "androidx.lifecycle:lifecycle-viewmodel-ktx:$version"
             const val viewModelCompose =
-                "androidx.lifecycle:lifecycle-viewmodel-compose:1.0.0-alpha02"
+                "androidx.lifecycle:lifecycle-viewmodel-compose:1.0.0-alpha07"
         }
 
         object Compose {
-            const val version = "1.0.0-beta04"
+            const val version = "1.0.0-rc01"
 
             const val foundation = "androidx.compose.foundation:foundation:$version"
             const val layout = "androidx.compose.foundation:foundation-layout:$version"
@@ -110,55 +105,10 @@ object Libs {
     }
 
     object Koin {
-        private const val version = "3.0.1-beta-2"
+        private const val version = "3.1.2"
 
         const val core = "io.insert-koin:koin-core:$version"
         const val android = "io.insert-koin:koin-android:$version"
         const val compose = "io.insert-koin:koin-androidx-compose:$version"
-    }
-
-    object Firebase {
-        const val firebaseAnalytics = "com.google.firebase:firebase-analytics:18.0.0"
-        const val firebaseCrashlytics = "com.google.firebase:firebase-crashlytics:17.3.0"
-    }
-
-    object Network {
-        const val retrofitCoroutinesAdapter =
-            "com.jakewharton.retrofit:retrofit2-kotlin-coroutines-adapter:0.9.2"
-
-        const val moshi = "com.squareup.moshi:moshi:1.12.0"
-        const val moshiKapt = "com.squareup.moshi:moshi-kotlin-codegen:1.12.0"
-
-        object Retrofit {
-            private const val version = "2.9.0"
-
-            const val retrofitLib = "com.squareup.retrofit2:retrofit:$version"
-            const val retrofitMoshi = "com.squareup.retrofit2:converter-moshi:$version"
-        }
-
-        object OkHttp3 {
-            private const val version = "4.9.0"
-
-            const val OKHTTP_3 = "com.squareup.okhttp3:okhttp:$version"
-            const val LOGGING_INTERCEPTOR = "com.squareup.okhttp3:logging-interceptor:$version"
-        }
-    }
-
-    object Test {
-        private const val version = "1.3.0"
-        const val core = "androidx.test:core:$version"
-        const val rules = "androidx.test:rules:$version"
-
-        object Ext {
-            private const val version = "1.1.2"
-            const val junit = "androidx.test.ext:junit-ktx:$version"
-        }
-
-        const val espressoCore = "androidx.test.espresso:espresso-core:3.3.0"
-    }
-
-    object Others {
-        const val stfalconImageViewer = "com.github.stfalcon:stfalcon-imageviewer:1.0.10"
-        const val klock = "com.soywiz.korlibs.klock:klock:1.12.0"
     }
 }

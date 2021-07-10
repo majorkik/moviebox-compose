@@ -1,5 +1,3 @@
-
-
 plugins {
     id(Plugins.androidApplication)
     kotlin(Plugins.android)
@@ -24,7 +22,7 @@ android {
 
         getByName(BuildType.DEBUG) {
             isMinifyEnabled = BuildTypeDebug.isMinifyEnabled
-            isDebuggable = BuildTypeDebug.isDebuggable
+            isDebuggable = BuildTypeDebug.isMinifyEnabled
         }
     }
 
@@ -37,33 +35,25 @@ android {
         resValues = false
         shaders = false
     }
+
+    composeOptions {
+        kotlinCompilerExtensionVersion = Libs.AndroidX.Compose.version
+    }
 }
 
 dependencies {
     implementation(project(ModuleDependency.coreUi))
-    implementation(project(ModuleDependency.coreBase))
+
+    implementation(Libs.AndroidX.Activity.activityCompose)
 
     implementation(Libs.Kotlin.stdlib)
     implementation(Libs.Coroutines.android)
 
-    implementation(Libs.Koin.android)
+    implementation(Libs.AndroidX.coreKtx)
+    implementation(Libs.AndroidX.compat)
 
-    implementation(Libs.Others.klock)
+    implementation(Libs.Koin.android)
 
     implementation(Libs.Loggers.timber)
     implementation(Libs.Loggers.prettyLogger)
-
-    androidTestImplementation(Libs.junit)
-    androidTestImplementation(Libs.Test.core)
-    androidTestImplementation(Libs.Test.espressoCore)
-    androidTestImplementation(Libs.Test.rules)
-    androidTestImplementation(Libs.Test.Ext.junit)
-    androidTestImplementation(Libs.AndroidX.Compose.uiTest)
-
-    // androidx.test is forcing JUnit, 4.12. This forces it to use 4.13
-    configurations.configureEach {
-        resolutionStrategy {
-            force(Libs.junit)
-        }
-    }
 }

@@ -20,9 +20,4 @@ android {
 
 dependencies {
     api(Libs.Kotlin.stdlib)
-
-    api(Libs.Koin.core)
-
-    api(Libs.Loggers.timber)
-    api(Libs.Loggers.prettyLogger)
 }
