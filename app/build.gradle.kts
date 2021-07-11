@@ -27,7 +27,9 @@ android {
     }
 
     buildFeatures {
-        compose = true
+        compose = false
+        viewBinding = false
+        dataBinding = false
 
         // Disable unused AGP features
         aidl = false
@@ -45,11 +47,8 @@ dependencies {
     implementation(project(ModuleDependency.Core.ui))
 
     implementation(project(ModuleDependency.UI.main))
+    implementation(project(ModuleDependency.UI.home))
 
-    implementation(Libs.Kotlin.stdlib)
-    implementation(Libs.Coroutines.android)
-
-    implementation(Libs.AndroidX.coreKtx)
     implementation(Libs.AndroidX.compat)
 
     implementation(Libs.Koin.android)

@@ -25,8 +25,5 @@ android {
 dependencies {
     implementation(project(ModuleDependency.Core.ui))
 
-    implementation(Libs.AndroidX.Activity.activityCompose)
-    implementation(Libs.AndroidX.compat)
-
     implementation(Libs.Koin.android)
 }

@@ -4,6 +4,7 @@ object ModuleDependency {
 
     object UI {
         const val main = ":ui:main"
+        const val home = ":ui:home"
     }
 
     object Core {
