@@ -38,6 +38,35 @@
 
 ![Future modules](docs/image/future-modules.svg?raw=true)
 
+## Getting started
+
+There are a few ways to open this project.
+
+### Android Studio
+
+1. `Android Studio` -> `File` -> `New` -> `From Version control` -> `Git`
+2. Enter `https://github.com/majorkik/MovieBox-Compose.git` into URL field an press `Clone` button
+
+### Command-line + Android Studio
+
+1. Run `git clone https://github.com/majorkik/MovieBox-Compose.git` command to clone project
+2. Open `Android Studio` and select `File | Open...` from the menu. Select cloned directory and press `Open` button
+
+### Project configuration
+
+Add parameters in the locale.properties file as shown in the example below.
+
+```properties
+
+keyTmdb="Your TMDb Key"
+
+```
+
+#### Where can I get a TMDb API key?
+
+1. Open [TheMovieDatabase](https://www.themoviedb.org/) -> `Login/Join TMDb` -> `Profile` -> `Settings` -> `API` -> Copy `API Key (v3 auth)`
+2. Paste copied key into `local.properties` file (`keyTmdb`)
+
 ## Links
 
 Here I will leave useful links to utilities, projects or articles that may come in handy when developing mobile applications.
