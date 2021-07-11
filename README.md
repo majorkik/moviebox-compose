@@ -34,6 +34,15 @@
 
 ![Multi-module architecture](docs/image/multimodule-arch-future-core-modules.svg?raw=true)
 
+- **App module**: the entry point to the application, contains almost no code, depends on the feature-modules.
+- **Feature module**: contain specific functionality. By structure, these modules can contain all the layers of your architecture, but they can also just contain some feature without any layers. A feature module can have dependencies on other feature modules **only** through an API module or on the main module, if we are talking about an feature UI module.
+  Feature modules can be divided into three types:
+  - **Feature UI module**: contains a screen, a group of screens, views, resources, and other code to implement a specific UI. Feature UI modules are independent of other feature UI modules. For interconnection between feature UI modules, a helper module is usually used that contains specific code for their interaction (for example, a module that contains code for navigating between screens).
+  - **Feature module of implementation**: contains implementations of interfaces from the API module, contains classes for working with the database and server, data models with JSON annotations for *serializing/deserializing* data. It resembles a **data layer** from a Clean architecture;
+  - **Feature API module**: contains interfaces for working with data, data models without JSON annotations, business logic and usecases.
+- **Core module**: contains helper code that can be used in more than one module. These can be abstract classes, utilities, providing libraries through transitive dependencies, and so on. Core modules do not depend on any other modules.
+- **BuildSrc**: can contain application configuration, dependency versions and custom gradle tasks.
+
 ### Future modules
 
 ![Future modules](docs/image/future-modules.svg?raw=true)
