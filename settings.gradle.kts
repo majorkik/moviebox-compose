@@ -21,7 +21,11 @@ pluginManagement {
 
 rootProject.buildFileName = "build.gradle.kts"
 
+rootProject.name = "moviebox-compose"
+
 // Main module
 include(":app")
 // Core modules
 include(":core:network", ":core:ui", ":core:base")
+// UI modules
+include(":ui:main")

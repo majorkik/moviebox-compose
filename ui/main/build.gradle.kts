@@ -7,7 +7,14 @@ android {
     buildFeatures {
         buildConfig = false // Disable generation of BuildConfig files in modules where they are not needed
 
+        aidl = false
+        prefab = false
+        shaders = false
+
         compose = true
+
+        dataBinding = false
+        viewBinding = false
     }
 
     composeOptions {
@@ -16,15 +23,10 @@ android {
 }
 
 dependencies {
-    api(Libs.Koin.android)
+    implementation(project(ModuleDependency.Core.ui))
 
-    api(Libs.AndroidX.annotation)
+    implementation(Libs.AndroidX.Activity.activityCompose)
+    implementation(Libs.AndroidX.compat)
 
-    api(Libs.AndroidX.Compose.layout)
-    api(Libs.AndroidX.Compose.material)
-    api(Libs.AndroidX.Compose.tooling)
-    api(Libs.AndroidX.Compose.uiUtil)
-    api(Libs.AndroidX.Compose.runtime)
-    api(Libs.AndroidX.Compose.runtimeLivedata)
-    api(Libs.AndroidX.Compose.viewBinding)
+    implementation(Libs.Koin.android)
 }

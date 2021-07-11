@@ -1,3 +1,5 @@
+@file:Suppress("detekt.FunctionNaming", "detekt.MagicNumber")
+
 package com.majorkik.core.ui.utils
 
 import android.os.Build
@@ -9,7 +11,6 @@ import androidx.compose.ui.graphics.compositeOver
 import androidx.compose.ui.graphics.luminance
 import androidx.compose.ui.graphics.toArgb
 
-@Suppress("detekt.MagicNumber")
 interface SystemUIController {
     fun setStatusBarColor(
         color: Color,
@@ -64,10 +65,10 @@ private class SystemUiControllerImpl(private val window: Window) : SystemUIContr
         @Suppress("DEPRECATION")
         if (darkIcons) {
             window.decorView.systemUiVisibility = window.decorView.systemUiVisibility or
-                View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR
+                    View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR
         } else {
             window.decorView.systemUiVisibility = window.decorView.systemUiVisibility and
-                View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR.inv()
+                    View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR.inv()
         }
     }
 
@@ -100,10 +101,10 @@ private class SystemUiControllerImpl(private val window: Window) : SystemUIContr
             @Suppress("DEPRECATION")
             if (darkIcons) {
                 window.decorView.systemUiVisibility = window.decorView.systemUiVisibility or
-                    View.SYSTEM_UI_FLAG_LIGHT_NAVIGATION_BAR
+                        View.SYSTEM_UI_FLAG_LIGHT_NAVIGATION_BAR
             } else {
                 window.decorView.systemUiVisibility = window.decorView.systemUiVisibility and
-                    View.SYSTEM_UI_FLAG_LIGHT_NAVIGATION_BAR.inv()
+                        View.SYSTEM_UI_FLAG_LIGHT_NAVIGATION_BAR.inv()
             }
         }
     }

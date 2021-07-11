@@ -1,5 +1,5 @@
 <resources>
-    <style name="Theme.MovieBoxCompose" parent="android:Theme.Material.Light">
+    <style name="Theme.MovieBoxCompose" parent="Theme.AppCompat.NoActionBar">
         <item name="android:colorPrimary">@color/purple_500</item>
         <item name="android:colorPrimaryDark">@color/teal_200</item>
     </style>

@@ -1,4 +1,4 @@
-package com.majorkik.movieboxcompose.ui
+package com.majorkik.ui.main.ui
 
 import android.os.Bundle
 import androidx.activity.compose.setContent
