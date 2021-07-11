@@ -42,9 +42,9 @@ android {
 }
 
 dependencies {
-    implementation(project(ModuleDependency.coreUi))
+    implementation(project(ModuleDependency.Core.ui))
 
-    implementation(Libs.AndroidX.Activity.activityCompose)
+    implementation(project(ModuleDependency.UI.main))
 
     implementation(Libs.Kotlin.stdlib)
     implementation(Libs.Coroutines.android)

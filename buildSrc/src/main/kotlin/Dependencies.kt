@@ -14,7 +14,7 @@ object Versions {
     const val spotless = "5.14.1"
     const val ktlintJLLeitschuh = "10.1.0"
     const val ktlint = "0.40.0"
-    const val detekt = "1.18.0-RC1"
+    const val detekt = "1.17.1"
 
     const val koinPlugin = "3.0.1-beta-2"
 }
@@ -109,6 +109,6 @@ object Libs {
 
         const val core = "io.insert-koin:koin-core:$version"
         const val android = "io.insert-koin:koin-android:$version"
-        const val compose = "io.insert-koin:koin-androidx-compose:$version"
+//        const val compose = "io.insert-koin:koin-androidx-compose:$version"
     }
 }
