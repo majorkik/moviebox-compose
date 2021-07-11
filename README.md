@@ -28,6 +28,16 @@
 -   **Gradle**: [Gradle Kotlin DSL](https://docs.gradle.org/current/userguide/kotlin_dsl.html) + Custom tasks
 -   **Loggers**: [Timber](https://github.com/JakeWharton/timber) + [Pretty Logger](https://github.com/orhanobut/logger) - simple, pretty and powerful logger for android
 
+## Architecture
+
+### Multi-module architecture
+
+![Multi-module architecture](docs/image/multimodule-arch-future-core-modules.svg?raw=true)
+
+### Future modules
+
+![Future modules](docs/image/future-modules.svg?raw=true)
+
 ## Links
 
 Here I will leave useful links to utilities, projects or articles that may come in handy when developing mobile applications.
