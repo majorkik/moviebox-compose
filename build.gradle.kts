@@ -1,44 +1,38 @@
-import com.android.build.gradle.BaseExtension
 import org.jlleitschuh.gradle.ktlint.reporter.ReporterType.CHECKSTYLE
 import org.jlleitschuh.gradle.ktlint.reporter.ReporterType.PLAIN
 
-plugins {
-    id(Plugins.ktlint) version Versions.ktlintJLLeitschuh
-    id(Plugins.detekt) version Versions.detekt
-    id(Plugins.koin) version Versions.koinPlugin
-    id(Plugins.spotless) version Versions.spotless
-    id(Plugins.gradleVersions) version Versions.gradleVersions
-    kotlin(Plugins.android) version Versions.kotlin apply false
-    id(Plugins.androidApplication) version Versions.androidGradle apply false
-    id(Plugins.androidLibrary) version Versions.androidGradle apply false
-}
-
-// all projects = root project + sub projects
-allprojects {
+// Top-level build file where you can add configuration options common to all sub-projects/modules.
+buildscript {
     repositories {
         google()
-        jcenter()
         mavenCentral()
-        maven("https://jitpack.io")
     }
 
+    dependencies {
+        classpath("com.android.tools.build:gradle:${Version.androidGradle}")
+        classpath("org.jetbrains.kotlin:kotlin-gradle-plugin:${Version.kotlin}")
+        classpath("com.diffplug.spotless:spotless-plugin-gradle:${Version.spotless}")
+    }
+}
+
+plugins {
+    id(Plugin.ktlint) version Version.ktlintJLLeitschuh
+    id(Plugin.detekt) version Version.detekt
+    id(Plugin.spotless) version Version.spotless
+    id(Plugin.gradleVersions) version Version.gradleVersions
+}
+
+subprojects {
     apply {
         // We want to apply ktlint at all project level because it also checks Gradle config files (*.kts)
-        plugin(Plugins.ktlint)
-        plugin(Plugins.spotless)
-        plugin(Plugins.detekt)
-        plugin(Plugins.koin)
+        plugin(Plugin.ktlint)
+        plugin(Plugin.spotless)
+        plugin(Plugin.detekt)
     }
 
     configureKtlint()
     configureSpotless()
     configDetekt()
-}
-
-subprojects {
-    afterEvaluate {
-        configureAndroid()
-    }
 }
 
 /**
@@ -54,7 +48,7 @@ fun Project.configDetekt() {
         // By default detekt does not check test source set and gradle specific files, so hey have to be added manually
         input = files(
             "$rootDir/buildSrc",
-            "$rootDir/build.gradle.kts.kts",
+            "$rootDir/build.gradle.kts",
             "$rootDir/settings.gradle.kts",
             "src/main/kotlin",
             "src/test/kotlin"
@@ -106,7 +100,7 @@ fun Project.configureKtlint() {
     // Ktlint configuration for sub-projects
     ktlint {
         // Version of ktlint cmd tool (Ktlint Gradle plugin is just a wrapper for this tool)
-        version.set(Versions.ktlint)
+        version.set(Version.ktlint)
         debug.set(true)
         verbose.set(true)
         android.set(true)
@@ -128,35 +122,6 @@ fun Project.configureKtlint() {
             include("**/kotlin/**")
         }
     }
-}
-
-fun Project.configureAndroid() {
-    (project.extensions.findByName("android") as? BaseExtension)?.run {
-        compileSdkVersion(AndroidConfig.compileSdk)
-
-        defaultConfig {
-            minSdk = AndroidConfig.minSdk
-            targetSdk = AndroidConfig.targetSdk
-            buildToolsVersion(AndroidConfig.buildTools)
-
-            versionCode = AndroidConfig.versionCode
-            versionName = AndroidConfig.versionName
-        }
-
-        compileOptions {
-            sourceCompatibility = JavaVersion.VERSION_1_8
-            targetCompatibility = JavaVersion.VERSION_1_8
-        }
-
-        sourceSets.all {
-            java.srcDir("src/$name/kotlin")
-        }
-    }
-}
-
-// JVM target applied to all Kotlin tasks across all sub-projects
-tasks.withType<org.jetbrains.kotlin.gradle.tasks.KotlinCompile> {
-    kotlinOptions.jvmTarget = JavaVersion.VERSION_1_8.toString()
 }
 
 // #Remove if swears when using the 'spotless' plugin

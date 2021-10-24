@@ -1,86 +1,58 @@
 package com.majorkik.core.ui.theme
 
-import androidx.compose.material.MaterialTheme
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.CompositionLocalProvider
-import androidx.compose.runtime.ReadOnlyComposable
-import androidx.compose.runtime.SideEffect
-import androidx.compose.runtime.getValue
-import androidx.compose.runtime.mutableStateOf
-import androidx.compose.runtime.remember
-import androidx.compose.runtime.setValue
+import androidx.compose.runtime.Immutable
 import androidx.compose.runtime.staticCompositionLocalOf
-import androidx.compose.runtime.structuralEqualityPolicy
 import androidx.compose.ui.graphics.Color
-import com.majorkik.core.ui.utils.LocalSysUiController
+import androidx.compose.ui.text.TextStyle
+import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.unit.sp
 
-class MovieBoxColors(
-    primary: Color,
-    background: Color,
-    main: Color,
-    isDark: Boolean
-) {
-    var primary by mutableStateOf(primary, structuralEqualityPolicy())
-        internal set
+@Immutable
+data class AppColor(
+    val primary: Color,
+    val primaryLight: Color,
+    val secondary: Color,
+    val background: Color,
+    val isLight: Boolean = true
+)
 
-    var background by mutableStateOf(background, structuralEqualityPolicy())
-        internal set
+@Immutable
+data class AppTypography(
+    val title: TextStyle = TextStyle(fontFamily = rubikFamily, fontSize = 24.sp, fontWeight = FontWeight.Black),
+    val h1: TextStyle = TextStyle(fontFamily = rubikFamily, fontSize = 24.sp, fontWeight = FontWeight.Bold),
+    val h2: TextStyle = TextStyle(fontFamily = rubikFamily, fontSize = 20.sp, fontWeight = FontWeight.Bold),
+    val h3: TextStyle = TextStyle(fontFamily = rubikFamily, fontSize = 18.sp, fontWeight = FontWeight.Bold),
+    val h4: TextStyle = TextStyle(fontFamily = rubikFamily, fontSize = 16.sp, fontWeight = FontWeight.Bold),
+    val body1: TextStyle = TextStyle(fontFamily = montserratFamily, fontSize = 16.sp, fontWeight = FontWeight.Medium),
+    val body2: TextStyle = TextStyle(fontFamily = montserratFamily, fontSize = 14.sp, fontWeight = FontWeight.Normal),
+)
 
-    var main by mutableStateOf(main, structuralEqualityPolicy())
-        internal set
+internal val LocalCustomColors = staticCompositionLocalOf { lightColors() }
 
-    var isDark by mutableStateOf(isDark)
-        internal set
-
-    fun update(other: MovieBoxColors) {
-        primary = other.primary
-        background = other.background
-        main = other.main
-        isDark = other.isDark
-    }
-}
-
-object MovieBoxTheme {
-    val colors: MovieBoxColors
-        @Composable
-        @ReadOnlyComposable
-        get() = LocalMovieBoxColors.current
-}
-
-internal val LocalMovieBoxColors = staticCompositionLocalOf<MovieBoxColors> {
-    error("No MovieBoxColorsPalette provided")
-}
+internal val LocalCustomTypography = staticCompositionLocalOf { AppTypography() }
 
 @Composable
 fun MovieBoxTheme(
-    darkTheme: Boolean = true,
     content: @Composable () -> Unit
 ) {
-    val colors = if (darkTheme) darkColors() else lightColors()
+    val customColors = lightColors()
+    val customTypography = AppTypography()
 
-    val sysUiController = LocalSysUiController.current
-
-    SideEffect {
-        sysUiController.setSystemBarsColor(
-            color = colors.background.copy(alpha = AlphaNearOpaque)
-        )
-    }
-
-    ProvideMovieBoxColors(colors) {
-        MaterialTheme(
-            colors = debugColors(darkTheme),
-            shapes = Shapes,
-            content = content
-        )
-    }
+    CompositionLocalProvider(
+        LocalCustomColors provides customColors,
+        LocalCustomTypography provides customTypography,
+        content = content
+    )
 }
 
-@Composable
-fun ProvideMovieBoxColors(
-    colors: MovieBoxColors,
-    content: @Composable () -> Unit
-) {
-    val colorPalette = remember { colors }
-    colorPalette.update(colors)
-    CompositionLocalProvider(LocalMovieBoxColors provides colorPalette, content = content)
+object MovieBoxTheme {
+    val colors: AppColor
+        @Composable
+        get() = LocalCustomColors.current
+
+    val typography: AppTypography
+        @Composable
+        get() = LocalCustomTypography.current
 }

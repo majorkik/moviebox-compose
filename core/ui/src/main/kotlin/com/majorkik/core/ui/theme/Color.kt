@@ -4,8 +4,8 @@ package com.majorkik.core.ui.theme
 
 import androidx.compose.ui.graphics.Color
 
-const val AlphaNearOpaque = 0.95f
-
-val primary = Color(0xff3772ff)
-val background = Color(0xff121212)
-val main = Color(0xffffffff)
+val white = Color(0xFFFFFFFF)
+val jet = Color(0xFF343434)
+val blueCrayola = Color(0xFF3772FF)
+val cornflowerBlue = Color(0xFF5F8EFF)
+val roseMadder = Color(0xFFDF2935)

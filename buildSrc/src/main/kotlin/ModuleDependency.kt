@@ -1,15 +1,18 @@
 object ModuleDependency {
 
     const val app = ":app"
+    const val navigation = ":navigation"
 
     object UI {
-        const val main = ":ui:main"
-        const val home = ":ui:home"
+        private const val directory = ":ui"
+
+        const val main = "$directory:main"
+        const val home = "$directory:home"
     }
 
     object Core {
-        const val ui = ":core:ui"
-        const val network = ":core:network"
-        const val base = ":core:base"
+        private const val directory = ":core"
+
+        const val ui = "$directory:ui"
     }
 }

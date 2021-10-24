@@ -1,7 +1,6 @@
 plugins {
-    id(Plugins.androidApplication)
-    kotlin(Plugins.android)
-    id(Plugins.kapt)
+    id(Plugin.androidApplication)
+    kotlin(Plugin.android)
 }
 
 android {
@@ -9,50 +8,66 @@ android {
 
     defaultConfig {
         applicationId = AndroidConfig.applicationId
+        minSdk = AndroidConfig.minSdk
+        targetSdk = AndroidConfig.targetSdk
+        versionCode = AndroidConfig.versionCode
+        versionName = AndroidConfig.versionName
 
-        vectorDrawables.useSupportLibrary = true
+        vectorDrawables {
+            useSupportLibrary = AndroidConfig.useSupportLibrary
+        }
     }
 
     buildTypes {
-        getByName(BuildType.RELEASE) {
+        release {
             isMinifyEnabled = BuildTypeRelease.isMinifyEnabled
-            isDebuggable = BuildTypeRelease.isDebuggable
-            proguardFiles("proguard-android.txt", "proguard-rules.pro")
+            proguardFiles("proguard-android-optimize.txt", "proguard-rules.pro")
         }
+    }
 
-        getByName(BuildType.DEBUG) {
-            isMinifyEnabled = BuildTypeDebug.isMinifyEnabled
-            isDebuggable = BuildTypeDebug.isMinifyEnabled
-        }
+    compileOptions {
+        sourceCompatibility = JavaVersion.VERSION_11
+        targetCompatibility = JavaVersion.VERSION_11
+    }
+
+    kotlinOptions {
+        jvmTarget = JavaVersion.VERSION_11.toString()
     }
 
     buildFeatures {
-        compose = false
-        viewBinding = false
-        dataBinding = false
-
-        // Disable unused AGP features
-        aidl = false
-        renderScript = false
-        resValues = false
-        shaders = false
+        compose = true
     }
 
     composeOptions {
-        kotlinCompilerExtensionVersion = Libs.AndroidX.Compose.version
+        kotlinCompilerExtensionVersion = Version.compose
+    }
+
+    packagingOptions {
+        resources {
+            excludes += "/META-INF/{AL2.0,LGPL2.1}"
+        }
     }
 }
 
 dependencies {
+    // Modules
     implementation(project(ModuleDependency.Core.ui))
 
-    implementation(project(ModuleDependency.UI.main))
-    implementation(project(ModuleDependency.UI.home))
+    implementation(Dependency.AndroidX.core)
+    implementation(Dependency.AndroidX.appcompat)
+    implementation(Dependency.AndroidX.material)
+    implementation(Dependency.AndroidX.activityCompose)
 
-    implementation(Libs.AndroidX.compat)
+    implementation(Dependency.AndroidX.Compose.ui)
+    implementation(Dependency.AndroidX.Compose.tooling)
+    implementation(Dependency.AndroidX.Compose.material)
 
-    implementation(Libs.Koin.android)
+    implementation(Dependency.Voyager.navigator)
+    implementation(Dependency.Voyager.tab)
 
-    implementation(Libs.Loggers.timber)
-    implementation(Libs.Loggers.prettyLogger)
+    implementation(Dependency.Koin.android)
+    implementation(Dependency.Koin.compose)
+
+    implementation(Dependency.Loggers.prettyLogger)
+    implementation(Dependency.Loggers.timber)
 }

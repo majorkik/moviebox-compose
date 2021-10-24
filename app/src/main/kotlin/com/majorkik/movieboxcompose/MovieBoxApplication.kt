@@ -1,7 +1,6 @@
 package com.majorkik.movieboxcompose
 
 import android.app.Application
-import com.majorkik.ui.main.uiMainModule
 import com.orhanobut.logger.AndroidLogAdapter
 import com.orhanobut.logger.Logger
 import org.koin.android.ext.koin.androidContext
@@ -25,7 +24,7 @@ class MovieBoxApplication : Application() {
         startKoin {
             androidLogger()
             androidContext(this@MovieBoxApplication)
-            modules(uiMainModule,)
+            modules(appModule)
         }
     }
 }

@@ -66,9 +66,7 @@ There are a few ways to open this project.
 Add parameters in the locale.properties file as shown in the example below.
 
 ```properties
-
 keyTmdb="Your TMDb Key"
-
 ```
 
 #### Where can I get a TMDb API key?

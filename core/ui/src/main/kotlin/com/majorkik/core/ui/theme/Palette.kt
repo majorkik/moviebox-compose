@@ -1,42 +1,35 @@
 package com.majorkik.core.ui.theme
 
-import androidx.compose.material.Colors
-import androidx.compose.material.MaterialTheme
 import androidx.compose.ui.graphics.Color
 
-fun lightColors() = MovieBoxColors(
-    primary = Color.Blue,
-    background = Color.Black,
-    main = Color.White,
-    isDark = false
-)
-
-fun darkColors() = MovieBoxColors(
-    primary = primary,
-    background = background,
-    main = main,
-    isDark = true
-)
-
 /**
- * A Material [Colors] implementation which sets all colors to [debugColor] to discourage usage of
- * [MaterialTheme.colors] in preference to [MovieBoxTheme.colors].
+ * Created by Rodion Belovitskiy on 16.10.2021.
  */
-fun debugColors(
-    darkTheme: Boolean,
-    debugColor: Color = Color.Magenta
-) = Colors(
-    primary = debugColor,
-    primaryVariant = debugColor,
-    secondary = debugColor,
-    secondaryVariant = debugColor,
-    background = debugColor,
-    surface = debugColor,
-    error = debugColor,
-    onPrimary = debugColor,
-    onSecondary = debugColor,
-    onBackground = debugColor,
-    onSurface = debugColor,
-    onError = debugColor,
-    isLight = !darkTheme
+
+fun lightColors(
+    primary: Color = blueCrayola,
+    primaryLight: Color = cornflowerBlue,
+    secondary: Color = roseMadder,
+    background: Color = white,
+    isLight: Boolean = true,
+): AppColor = AppColor(
+    primary = primary,
+    primaryLight = primaryLight,
+    secondary = secondary,
+    background = background,
+    isLight = isLight,
+)
+
+fun darkColors(
+    primary: Color = blueCrayola,
+    primaryLight: Color = cornflowerBlue,
+    secondary: Color = roseMadder,
+    background: Color = white,
+    isLight: Boolean = false,
+): AppColor = AppColor(
+    primary = primary,
+    primaryLight = primaryLight,
+    secondary = secondary,
+    background = background,
+    isLight = isLight,
 )
