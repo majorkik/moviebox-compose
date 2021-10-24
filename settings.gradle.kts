@@ -20,3 +20,9 @@ include(":core:ui")
 
 // Navigation
 include(":navigation")
+
+// UI
+include(
+    ":ui:home",
+    ":ui:movie_details"
+)

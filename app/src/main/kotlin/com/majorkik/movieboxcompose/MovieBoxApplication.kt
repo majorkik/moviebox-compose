@@ -13,13 +13,11 @@ class MovieBoxApplication : Application() {
         super.onCreate()
 
         Logger.addLogAdapter(AndroidLogAdapter())
-        Timber.plant(
-            object : Timber.DebugTree() {
-                override fun log(priority: Int, tag: String?, message: String, t: Throwable?) {
-                    Logger.log(priority, tag, message, t)
-                }
+        Timber.plant(object : Timber.DebugTree() {
+            override fun log(priority: Int, tag: String?, message: String, t: Throwable?) {
+                Logger.log(priority, tag, message, t)
             }
-        )
+        })
 
         startKoin {
             androidLogger()

@@ -6,12 +6,7 @@ import androidx.compose.ui.graphics.Color
 
 @Composable
 fun HomeContainer() {
-    Scaffold(
-        backgroundColor = Color.White,
-        bottomBar = {
-
-        }
-    ) {
+    Scaffold(backgroundColor = Color.White) {
 
     }
 }
