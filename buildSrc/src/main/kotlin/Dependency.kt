@@ -14,7 +14,7 @@ object Dependency {
 
     object AndroidX {
         const val activityCompose = "androidx.activity:activity-compose:1.4.0-rc01"
-        const val core = "androidx.core:core-ktx:1.6.0"
+        const val core = "androidx.core:core-ktx:1.7.0-rc01"
         const val appcompat = "androidx.appcompat:appcompat:1.3.1"
         const val material = "com.google.android.material:material:1.4.0"
 
@@ -31,12 +31,12 @@ object Dependency {
     }
 
     object Loggers {
-        const val timber = "com.jakewharton.timber:timber:4.7.1"
+        const val timber = "com.jakewharton.timber:timber:5.0.1"
         const val prettyLogger = "com.orhanobut:logger:2.2.0"
     }
 
     object Voyager {
-        private const val version = "1.0.0-beta12"
+        private const val version = "1.0.0-beta13"
 
         const val core = "cafe.adriel.voyager:voyager-core:$version"
         const val koin = "cafe.adriel.voyager:voyager-koin:$version"

@@ -12,7 +12,7 @@ object Version {
     const val gradleVersions = "0.39.0"
 
     // Static analysis tools
-    const val spotless = "5.16.0"
+    const val spotless = "5.17.0"
     const val ktlintJLLeitschuh = "10.2.0"
     const val ktlint = "0.42.1"
     const val detekt = "1.18.1"
