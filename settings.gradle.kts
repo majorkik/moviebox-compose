@@ -26,3 +26,6 @@ include(
     ":ui:home",
     ":ui:movie_details"
 )
+
+// Features
+include(":feature:tmdb_api", ":feature:tmdb_impl")

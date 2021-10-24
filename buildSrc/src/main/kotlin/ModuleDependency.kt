@@ -10,6 +10,13 @@ object ModuleDependency {
         const val home = "$directory:home"
     }
 
+    object Feature {
+        private const val directory = ":feature"
+
+        const val tmdbApi = "$directory:tmdb_api"
+        const val tmdbImpl = "$directory:tmdb_impl"
+    }
+
     object Core {
         private const val directory = ":core"
 

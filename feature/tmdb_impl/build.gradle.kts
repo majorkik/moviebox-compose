@@ -1,6 +1,7 @@
 plugins {
     id(Plugin.androidLibrary)
     kotlin(Plugin.android)
+    kotlin(Plugin.kotlinSerialization)
 }
 
 android {
@@ -11,15 +12,20 @@ android {
         targetSdk = AndroidConfig.targetSdk
     }
 
+    buildFeatures {
+        aidl = false
+        shaders = false
+        resValues = false
+        renderScript = false
+    }
+
     compileOptions {
         sourceCompatibility = JavaVersion.VERSION_11
         targetCompatibility = JavaVersion.VERSION_11
     }
-
-    composeOptions {
-        kotlinCompilerExtensionVersion = Version.compose
-    }
 }
 
 dependencies {
+    implementation(Dependency.Kotlin.serialization)
+    implementation(Dependency.Koin.core)
 }

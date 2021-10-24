@@ -3,6 +3,12 @@ object Plugin {
     const val androidApplication = "com.android.application"
     const val androidLibrary = "com.android.library"
 
+    // Kotlin
+    const val toolsBuildGradle = "com.android.tools.build:gradle"
+    const val kotlinGradlePlugin = "org.jetbrains.kotlin:kotlin-gradle-plugin"
+    const val kotlinSerialization = "plugin.serialization"
+    const val jvm = "jvm"
+
     // Updates versions
     const val gradleVersions = "com.github.ben-manes.versions"
 

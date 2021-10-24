@@ -87,7 +87,6 @@ Here I will leave useful links to utilities, projects or articles that may come 
 -   [Gradle plugins](https://plugins.gradle.org/plugin/com.diffplug.spotless) - Plugin search
 -   [GitIgnore.io](https://www.toptal.com/developers/gitignore) - .gitignore builder
 
-
 #### Useful articles:
 
 -   [Make your Android code healthier: Static code analysis tools for Kotlin](https://www.rockandnull.com/static-code-analysis-android/)

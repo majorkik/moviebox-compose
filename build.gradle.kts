@@ -9,9 +9,8 @@ buildscript {
     }
 
     dependencies {
-        classpath("com.android.tools.build:gradle:${Version.androidGradle}")
-        classpath("org.jetbrains.kotlin:kotlin-gradle-plugin:${Version.kotlin}")
-        classpath("com.diffplug.spotless:spotless-plugin-gradle:${Version.spotless}")
+        classpath("${Plugin.toolsBuildGradle}:${Version.androidGradle}")
+        classpath("${Plugin.kotlinGradlePlugin}:${Version.kotlin}")
     }
 }
 
@@ -20,6 +19,8 @@ plugins {
     id(Plugin.detekt) version Version.detekt
     id(Plugin.spotless) version Version.spotless
     id(Plugin.gradleVersions) version Version.gradleVersions
+    kotlin(Plugin.jvm) version Version.kotlin
+    kotlin(Plugin.kotlinSerialization) version Version.kotlin
 }
 
 subprojects {
@@ -46,7 +47,7 @@ fun Project.configDetekt() {
         parallel = true
 
         // By default detekt does not check test source set and gradle specific files, so hey have to be added manually
-        input = files(
+        source = files(
             "$rootDir/buildSrc",
             "$rootDir/build.gradle.kts",
             "$rootDir/settings.gradle.kts",

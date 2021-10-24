@@ -2,6 +2,8 @@ object Dependency {
     object Kotlin {
         const val stdlib = "org.jetbrains.kotlin:kotlin-stdlib-jdk8:${Version.kotlin}"
         const val extensions = "org.jetbrains.kotlin:kotlin-android-extensions:${Version.kotlin}"
+
+        const val serialization = "org.jetbrains.kotlinx:kotlinx-serialization-json:1.3.0"
     }
 
     object Coroutines {
@@ -22,7 +24,9 @@ object Dependency {
             const val ui = "androidx.compose.ui:ui:${Version.compose}"
             const val material = "androidx.compose.material:material:${Version.compose}"
             const val toolingPreview = "androidx.compose.ui:ui-tooling-preview:${Version.compose}"
-            const val tooling = "androidx.compose.ui:ui-tooling:1.0.4"
+            const val tooling = "androidx.compose.ui:ui-tooling:${Version.compose}"
+            const val foundation = "androidx.compose.foundation:foundation:${Version.compose}"
+            const val runtime = "androidx.compose.runtime:runtime:${Version.compose}"
         }
 
         object Lifecycle {
@@ -47,6 +51,7 @@ object Dependency {
     object Koin {
         private const val version = "3.1.2"
 
+        const val core = "io.insert-koin:koin-core:$version"
         const val android = "io.insert-koin:koin-android:$version"
         const val compose = "io.insert-koin:koin-androidx-compose:$version"
     }

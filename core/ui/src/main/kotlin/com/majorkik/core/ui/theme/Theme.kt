@@ -15,6 +15,7 @@ data class AppColor(
     val primaryLight: Color,
     val secondary: Color,
     val background: Color,
+    val secondaryBackground: Color,
     val isLight: Boolean = true
 )
 

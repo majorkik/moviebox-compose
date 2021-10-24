@@ -52,6 +52,7 @@ android {
 dependencies {
     // Modules
     implementation(project(ModuleDependency.Core.ui))
+    implementation(project(ModuleDependency.Feature.tmdbImpl))
 
     implementation(Dependency.AndroidX.core)
     implementation(Dependency.AndroidX.appcompat)

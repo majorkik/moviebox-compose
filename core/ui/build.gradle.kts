@@ -30,7 +30,11 @@ android {
 }
 
 dependencies {
-    implementation(Dependency.AndroidX.Compose.ui)
-    implementation(Dependency.AndroidX.Compose.toolingPreview)
-    implementation(Dependency.AndroidX.Compose.tooling)
+    api(Dependency.AndroidX.appcompat)
+    api(Dependency.AndroidX.Compose.ui)
+    api(Dependency.AndroidX.Compose.tooling)
+    api(Dependency.AndroidX.Compose.toolingPreview)
+    api(Dependency.AndroidX.Compose.runtime)
+    api(Dependency.AndroidX.Compose.foundation)
+    api(Dependency.AndroidX.Compose.material)
 }

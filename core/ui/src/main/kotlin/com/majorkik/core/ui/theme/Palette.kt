@@ -1,3 +1,5 @@
+@file:Suppress("Detekt.LongParameterList")
+
 package com.majorkik.core.ui.theme
 
 import androidx.compose.ui.graphics.Color
@@ -11,12 +13,14 @@ fun lightColors(
     primaryLight: Color = cornflowerBlue,
     secondary: Color = roseMadder,
     background: Color = white,
+    secondaryBackground: Color = alabaster,
     isLight: Boolean = true,
 ): AppColor = AppColor(
     primary = primary,
     primaryLight = primaryLight,
     secondary = secondary,
     background = background,
+    secondaryBackground = secondaryBackground,
     isLight = isLight,
 )
 
@@ -25,11 +29,13 @@ fun darkColors(
     primaryLight: Color = cornflowerBlue,
     secondary: Color = roseMadder,
     background: Color = white,
+    secondaryBackground: Color = alabaster,
     isLight: Boolean = false,
 ): AppColor = AppColor(
     primary = primary,
     primaryLight = primaryLight,
     secondary = secondary,
     background = background,
+    secondaryBackground = secondaryBackground,
     isLight = isLight,
 )
