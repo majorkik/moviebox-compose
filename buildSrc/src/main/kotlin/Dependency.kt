@@ -48,6 +48,21 @@ object Dependency {
         const val tab = "cafe.adriel.voyager:voyager-tab-navigator:$version"
     }
 
+    object Network {
+        const val retrofit = "com.squareup.retrofit2:retrofit:2.9.0"
+        const val okhttp = "com.squareup.okhttp3:okhttp:4.9.2"
+        const val serializationConverter = "com.jakewharton.retrofit:retrofit2-kotlinx-serialization-converter:0.8.0"
+
+        object OkHTTP{
+            private const val version = "4.9.2"
+
+            // Must be implemented with implementation (platform (..))
+            const val bom = "com.squareup.okhttp3:okhttp-bom:4.9.2"
+            const val core = "com.squareup.okhttp3:okhttp"
+            const val loggingInterceptor = "com.squareup.okhttp3:logging-interceptor"
+        }
+    }
+
     object Koin {
         private const val version = "3.1.2"
 

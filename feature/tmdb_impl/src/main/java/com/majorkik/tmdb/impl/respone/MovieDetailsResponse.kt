@@ -1,4 +1,4 @@
-package com.majorkik.tmdb.impl
+package com.majorkik.tmdb.impl.respone
 
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable

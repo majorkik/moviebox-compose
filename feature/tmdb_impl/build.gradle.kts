@@ -26,6 +26,16 @@ android {
 }
 
 dependencies {
+    implementation(project(ModuleDependency.Feature.tmdbApi))
+
     implementation(Dependency.Kotlin.serialization)
     implementation(Dependency.Koin.core)
+
+    // Network
+    implementation(platform(Dependency.Network.OkHTTP.bom))
+
+    implementation(Dependency.Network.OkHTTP.core)
+    implementation(Dependency.Network.OkHTTP.loggingInterceptor)
+
+    implementation(Dependency.Network.serializationConverter)
 }
