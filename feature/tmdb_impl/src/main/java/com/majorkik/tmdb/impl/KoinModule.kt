@@ -10,5 +10,5 @@ val tmdbApiModule = module {
     single { createApiService() }
 
     // Repositories
-    single<MovieDetailsRepository> { MovieDetailsRepositoryImpl() }
+    single<MovieDetailsRepository> { MovieDetailsRepositoryImpl(get()) }
 }

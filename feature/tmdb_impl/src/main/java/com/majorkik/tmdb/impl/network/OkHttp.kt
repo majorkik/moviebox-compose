@@ -2,6 +2,7 @@ package com.majorkik.tmdb.impl.network
 
 import com.jakewharton.retrofit2.converter.kotlinx.serialization.asConverterFactory
 import com.majorkik.tmdb.impl.APIConstants
+import com.skydoves.sandwich.coroutines.CoroutinesResponseCallAdapterFactory
 import kotlinx.serialization.json.Json
 import okhttp3.Interceptor
 import okhttp3.MediaType.Companion.toMediaType
@@ -41,6 +42,7 @@ internal fun createRetrofit(okHttpClient: OkHttpClient): Retrofit {
     return Retrofit.Builder()
         .client(okHttpClient)
         .baseUrl(APIConstants.baseUrl)
+        .addCallAdapterFactory(CoroutinesResponseCallAdapterFactory.create())
         .addConverterFactory(Json.asConverterFactory(mediaType))
         .build()
 }

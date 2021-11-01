@@ -1,36 +1,17 @@
 package com.majorkik.tmdb.impl.repository
 
+import com.majorkik.tmdb.api.network.NetworkResult
 import com.majorkik.tmdb.api.model.MovieDetails
 import com.majorkik.tmdb.api.repository.MovieDetailsRepository
+import com.majorkik.tmdb.impl.network.ApiService
+import com.majorkik.tmdb.impl.network.safeRequest
+import com.majorkik.tmdb.impl.respone.toDomainModel
 
-internal class MovieDetailsRepositoryImpl : MovieDetailsRepository {
-    override suspend fun fetchMovieDetails(id: Long): MovieDetails {
-        return MovieDetails(
-            adult = true,
-            backdropPath = "",
-            belongsToCollection = "",
-            budget = 1_000_000,
-            genres = emptyList(),
-            homepage = "",
-            id = 1,
-            imdbId = "1",
-            originalLanguage = "",
-            originalTitle = "",
-            overview = "",
-            popularity = 9.1,
-            posterPath = "",
-            productionCompanies = emptyList(),
-            productionCountries = emptyList(),
-            releaseDate = null,
-            revenue = null,
-            runtime = null,
-            spokenLanguages = emptyList(),
-            status = "",
-            tagline = "",
-            title = "",
-            video = null,
-            voteAverage = 2.32,
-            voteCount = 213
+internal class MovieDetailsRepositoryImpl(private val api: ApiService) : MovieDetailsRepository {
+    override suspend fun fetchMovieDetails(id: Long): NetworkResult<MovieDetails, String> {
+        return api.getMovieById(id = id).safeRequest(
+            onSuccess = { it?.toDomainModel() },
+            onError = { "Error" }
         )
     }
 }

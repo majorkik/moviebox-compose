@@ -29,7 +29,11 @@ dependencies {
     implementation(project(ModuleDependency.Feature.tmdbApi))
 
     implementation(Dependency.Kotlin.serialization)
+    implementation(Dependency.Coroutines.core)
+
     implementation(Dependency.Koin.core)
+
+    implementation(Dependency.Loggers.prettyLogger)
 
     // Network
     implementation(platform(Dependency.Network.OkHTTP.bom))
@@ -38,4 +42,6 @@ dependencies {
     implementation(Dependency.Network.OkHTTP.loggingInterceptor)
 
     implementation(Dependency.Network.serializationConverter)
+
+    implementation(Dependency.Other.sandwich)
 }

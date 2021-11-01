@@ -70,4 +70,8 @@ object Dependency {
         const val android = "io.insert-koin:koin-android:$version"
         const val compose = "io.insert-koin:koin-androidx-compose:$version"
     }
+
+    object Other {
+        const val sandwich = "com.github.skydoves:sandwich:1.2.1"
+    }
 }
