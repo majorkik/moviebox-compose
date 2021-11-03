@@ -71,4 +71,6 @@ dependencies {
 
     implementation(Dependency.Loggers.prettyLogger)
     implementation(Dependency.Loggers.timber)
+
+    testImplementation(Dependency.Koin.tests)
 }
