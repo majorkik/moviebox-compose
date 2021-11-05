@@ -27,4 +27,8 @@ android {
 
 dependencies {
     implementation(project(ModuleDependency.Core.ui))
+    implementation(project(ModuleDependency.Feature.tmdbApi))
+
+    implementation(Dependency.Koin.compose)
+    implementation(Dependency.Other.mviOrbit)
 }

@@ -3,7 +3,7 @@ package com.majorkik.tmdb.api.model
 data class MovieDetails(
     val adult: Boolean,
     val backdropPath: String?,
-    val belongsToCollection: String?,
+    val belongsToCollection: BelongsToCollection?,
     val budget: Long,
     val genres: List<Genre>,
     val homepage: String?,
@@ -30,6 +30,13 @@ data class MovieDetails(
     data class Genre(
         val id: Long,
         val name: String
+    )
+
+    data class BelongsToCollection(
+        val id: Long,
+        val name: String,
+        val posterPath: String?,
+        val backdropPath: String?
     )
 
     data class ProductionCompany(

@@ -1,6 +1,7 @@
 package com.majorkik.movieboxcompose
 
 import android.app.Application
+import com.majorkik.movie.details.movieDetailsModule
 import com.majorkik.tmdb.impl.tmdbApiModule
 import com.orhanobut.logger.AndroidLogAdapter
 import com.orhanobut.logger.Logger
@@ -23,7 +24,7 @@ class MovieBoxApplication : Application() {
         startKoin {
             androidLogger()
             androidContext(this@MovieBoxApplication)
-            modules(appModule, tmdbApiModule)
+            modules(appModule, tmdbApiModule, movieDetailsModule)
         }
     }
 }

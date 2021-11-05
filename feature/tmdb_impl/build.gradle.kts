@@ -1,3 +1,5 @@
+import com.android.build.gradle.internal.cxx.configure.gradleLocalProperties
+
 plugins {
     id(Plugin.androidLibrary)
     kotlin(Plugin.android)
@@ -5,6 +7,8 @@ plugins {
 }
 
 android {
+    val key: String = gradleLocalProperties(rootDir).getProperty("tmdb_key")
+
     compileSdk = AndroidConfig.compileSdk
 
     defaultConfig {
@@ -22,6 +26,16 @@ android {
     compileOptions {
         sourceCompatibility = JavaVersion.VERSION_11
         targetCompatibility = JavaVersion.VERSION_11
+    }
+
+    buildTypes {
+        debug {
+            buildConfigField("String", "TMDB_API_KEY", key)
+        }
+
+        release {
+            buildConfigField("String", "TMDB_API_KEY", key)
+        }
     }
 }
 

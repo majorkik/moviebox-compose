@@ -1,5 +1,6 @@
 package com.majorkik.movieboxcompose.koin
 
+import com.majorkik.movie.details.movieDetailsModule
 import com.majorkik.movieboxcompose.appModule
 import com.majorkik.tmdb.impl.tmdbApiModule
 import org.junit.Test
@@ -10,7 +11,7 @@ class CheckModulesTest: KoinTest {
     @Test
     fun verifyKoinApp() {
         checkModules {
-            modules(appModule, tmdbApiModule)
+            modules(appModule, tmdbApiModule, movieDetailsModule)
         }
     }
 }

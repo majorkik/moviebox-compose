@@ -53,6 +53,7 @@ dependencies {
     // Modules
     implementation(project(ModuleDependency.Core.ui))
     implementation(project(ModuleDependency.Feature.tmdbImpl))
+    implementation(project(ModuleDependency.UI.movieDetails))
 
     implementation(Dependency.AndroidX.core)
     implementation(Dependency.AndroidX.appcompat)

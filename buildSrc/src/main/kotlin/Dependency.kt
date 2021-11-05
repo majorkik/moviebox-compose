@@ -74,5 +74,6 @@ object Dependency {
 
     object Other {
         const val sandwich = "com.github.skydoves:sandwich:1.2.1"
+        const val mviOrbit = "org.orbit-mvi:orbit-viewmodel:4.2.0"
     }
 }

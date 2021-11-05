@@ -8,6 +8,7 @@ object ModuleDependency {
 
         const val main = "$directory:main"
         const val home = "$directory:home"
+        const val movieDetails = "$directory:movie_details"
     }
 
     object Feature {

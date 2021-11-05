@@ -1,4 +1,4 @@
-package com.majorkik.movie.details
+package com.majorkik.movie.details.ui
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
@@ -14,17 +14,31 @@ import androidx.compose.material.Icon
 import androidx.compose.material.IconButton
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.collectAsState
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.text.capitalize
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.majorkik.core.ui.theme.MovieBoxTheme
+import com.majorkik.tmdb.api.model.MovieDetails
+import org.koin.androidx.compose.get
+import java.util.*
 import com.majorkik.core.ui.R as CoreRes
 
 @Composable
-fun MovieDetailsScreen() {
+fun MovieDetailsScreen(viewModel: MovieDetailsViewModel = get()) {
+    val state = viewModel.container.stateFlow.collectAsState()
+
+    if (state.value.movieDetails != null) {
+        ContentDetails(state.value.movieDetails!!)
+    }
+}
+
+@Composable
+private fun ContentDetails(details: MovieDetails) {
     Column {
         Row {
             IconButton(onClick = {}) {
@@ -45,9 +59,9 @@ fun MovieDetailsScreen() {
                     .padding(horizontal = 16.dp, vertical = 8.dp),
                 horizontalArrangement = Arrangement.SpaceBetween
             ) {
-                Text(text = "John Wick 3: Parabellum", style = MovieBoxTheme.typography.h4)
+                Text(text = details.title, style = MovieBoxTheme.typography.h4)
 
-                Text(text = "2021", style = MovieBoxTheme.typography.h4)
+                Text(text = details.releaseDate, style = MovieBoxTheme.typography.h4)
             }
 
             Box(
@@ -58,7 +72,7 @@ fun MovieDetailsScreen() {
             )
 
             Text(
-                text = "The Movie Database\n78% of 283,324 ratings",
+                text = "The Movie Database\n${details.voteAverage * 100}% of ${details.voteCount} ratings",
                 modifier = Modifier
                     .fillMaxWidth()
                     .padding(16.dp),
@@ -74,11 +88,15 @@ fun MovieDetailsScreen() {
                 .padding(16.dp),
             horizontalArrangement = Arrangement.SpaceBetween
         ) {
-            Text(modifier = Modifier.weight(weight = 1f), text = "Year: 2021")
+            Text(modifier = Modifier.weight(weight = 1f), text = "Year: ${details.releaseDate}")
 
             Spacer(modifier = Modifier.size(16.dp))
 
-            Text(text = "Genres: Action, Fantasy")
+            Text(text = details.genres.joinToString(", ") { it.name.replaceFirstChar {
+                if (it.isLowerCase()) it.titlecase(
+                    Locale.getDefault()
+                ) else it.toString()
+            } })
         }
     }
 }

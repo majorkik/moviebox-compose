@@ -17,17 +17,19 @@ import retrofit2.Response
  * @param onError - a lambda in which the error can be converted to another model
  */
 @Suppress("detekt.TooGenericExceptionCaught", "detekt.SwallowedException")
-internal suspend fun <T, M, E> Response<T>.safeRequest(
+internal suspend fun <T, M, E> safeRequest(
+    call: suspend () -> Response<T>,
     onSuccess: suspend (T?) -> M?,
     onError: suspend (ResponseBody?) -> E,
     ioDispatcher: CoroutineDispatcher = Dispatchers.IO
 ): NetworkResult<M, E> = try {
     withContext(ioDispatcher) {
-        val body = onSuccess(body())
-        val code = code()
-        val errorBody = errorBody()
+        val response = call()
+        val body = onSuccess(response.body())
+        val code = response.code()
+        val errorBody = response.errorBody()
 
-        if (isSuccessful) {
+        if (response.isSuccessful) {
             if (body != null) {
                 NetworkResult.Success(data = body, code = code)
             } else {

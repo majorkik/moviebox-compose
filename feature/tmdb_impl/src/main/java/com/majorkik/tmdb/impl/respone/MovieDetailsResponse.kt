@@ -8,7 +8,7 @@ import kotlinx.serialization.Serializable
 data class MovieDetailsResponse(
     @SerialName("adult") val adult: Boolean,
     @SerialName("backdrop_path") val backdropPath: String?,
-    @SerialName("belongs_to_collection") val belongsToCollection: String?,
+    @SerialName("belongs_to_collection") val belongsToCollection: BelongsToCollection?,
     @SerialName("budget") val budget: Long,
     @SerialName("genres") val genres: List<Genre>,
     @SerialName("homepage") val homepage: String?,
@@ -39,6 +39,14 @@ data class MovieDetailsResponse(
     )
 
     @Serializable
+    data class BelongsToCollection(
+        @SerialName("id") val id: Long,
+        @SerialName("name") val name: String,
+        @SerialName("poster_path") val posterPath: String?,
+        @SerialName("backdrop_path") val backdropPath: String?
+    )
+
+    @Serializable
     data class ProductionCompany(
         @SerialName("id") val id: Long,
         @SerialName("logo_path") val logoPath: String?,
@@ -62,7 +70,7 @@ data class MovieDetailsResponse(
 fun MovieDetailsResponse.toDomainModel() = MovieDetails(
     adult = adult,
     backdropPath = backdropPath,
-    belongsToCollection = belongsToCollection,
+    belongsToCollection = belongsToCollection?.toDomainModel(),
     budget = budget,
     genres = genres.map { it.toDomainModel() },
     homepage = homepage,
@@ -90,6 +98,13 @@ fun MovieDetailsResponse.toDomainModel() = MovieDetails(
 fun MovieDetailsResponse.Genre.toDomainModel() = MovieDetails.Genre(
     id = id,
     name = name
+)
+
+fun MovieDetailsResponse.BelongsToCollection.toDomainModel() = MovieDetails.BelongsToCollection(
+    id = id,
+    name = name,
+    posterPath = posterPath,
+    backdropPath = backdropPath
 )
 
 fun MovieDetailsResponse.ProductionCompany.toDomainModel() = MovieDetails.ProductionCompany(
