@@ -3,7 +3,7 @@ object Version {
     const val kotlin = "1.5.31"
 
     // Android
-    const val compose = "1.1.0-alpha06"
+    const val compose = "1.1.0-beta02"
 
     // Gradle
     const val androidGradle = "7.0.3"
@@ -12,7 +12,7 @@ object Version {
     const val gradleVersions = "0.39.0"
 
     // Static analysis tools
-    const val spotless = "5.17.0"
+    const val spotless = "5.17.1"
     const val ktlintJLLeitschuh = "10.2.0"
     const val ktlint = "0.42.1"
     const val detekt = "1.18.1"

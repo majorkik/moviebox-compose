@@ -7,7 +7,7 @@ object Dependency {
     }
 
     object Coroutines {
-        private const val version = "1.5.1"
+        private const val version = "1.5.2"
 
         const val core = "org.jetbrains.kotlinx:kotlinx-coroutines-core:$version"
         const val android = "org.jetbrains.kotlinx:kotlinx-coroutines-android:$version"
@@ -15,8 +15,8 @@ object Dependency {
     }
 
     object AndroidX {
-        const val activityCompose = "androidx.activity:activity-compose:1.4.0-rc01"
-        const val core = "androidx.core:core-ktx:1.7.0-rc01"
+        const val activityCompose = "androidx.activity:activity-compose:1.4.0"
+        const val core = "androidx.core:core-ktx:1.7.0"
         const val appcompat = "androidx.appcompat:appcompat:1.3.1"
         const val material = "com.google.android.material:material:1.4.0"
 
@@ -64,7 +64,7 @@ object Dependency {
     }
 
     object Koin {
-        private const val version = "3.1.2"
+        private const val version = "3.1.3"
 
         const val core = "io.insert-koin:koin-core:$version"
         const val android = "io.insert-koin:koin-android:$version"
@@ -75,5 +75,6 @@ object Dependency {
     object Other {
         const val sandwich = "com.github.skydoves:sandwich:1.2.1"
         const val mviOrbit = "org.orbit-mvi:orbit-viewmodel:4.2.0"
+        const val coil = "io.coil-kt:coil-compose:1.4.0"
     }
 }

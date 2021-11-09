@@ -31,4 +31,6 @@ dependencies {
 
     implementation(Dependency.Koin.compose)
     implementation(Dependency.Other.mviOrbit)
+
+    implementation(Dependency.Other.coil)
 }
