@@ -13,16 +13,22 @@ fun lightColors(
     primaryLight: Color = cornflowerBlue,
     secondary: Color = roseMadder,
     background: Color = white,
+    backgroundReverse: Color = charade,
     secondaryBackground: Color = alabaster,
-    darkBackground: Color = jet,
+    textPrimary: Color = charade,
+    textSecondary: Color = charade.copy(alpha = 0.33f),
     isLight: Boolean = true,
 ): AppColor = AppColor(
     primary = primary,
     primaryLight = primaryLight,
     secondary = secondary,
     background = background,
+    backgroundReverse = backgroundReverse,
     secondaryBackground = secondaryBackground,
-    darkBackground = darkBackground,
+    text = AppColor.Text(
+        primary = textPrimary,
+        secondary = textSecondary
+    ),
     isLight = isLight,
 )
 
@@ -30,16 +36,22 @@ fun darkColors(
     primary: Color = blueCrayola,
     primaryLight: Color = cornflowerBlue,
     secondary: Color = roseMadder,
-    background: Color = white,
-    secondaryBackground: Color = alabaster,
-    darkBackground: Color = jet,
+    background: Color = charade,
+    backgroundReverse: Color = white,
+    secondaryBackground: Color = mineShaft,
+    textPrimary: Color = white,
+    textSecondary: Color = white.copy(alpha = 0.33f),
     isLight: Boolean = false,
 ): AppColor = AppColor(
     primary = primary,
     primaryLight = primaryLight,
     secondary = secondary,
     background = background,
+    backgroundReverse = backgroundReverse,
     secondaryBackground = secondaryBackground,
-    darkBackground = darkBackground,
+    text = AppColor.Text(
+        primary = textPrimary,
+        secondary = textSecondary
+    ),
     isLight = isLight,
 )

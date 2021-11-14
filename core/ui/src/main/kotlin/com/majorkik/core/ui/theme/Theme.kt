@@ -15,10 +15,18 @@ data class AppColor(
     val primaryLight: Color,
     val secondary: Color,
     val background: Color,
+    val backgroundReverse: Color,
     val secondaryBackground: Color,
-    val darkBackground:Color,
+    // Text
+    val text: Text,
+    // Theme
     val isLight: Boolean = true
-)
+) {
+    data class Text(
+        val primary: Color,
+        val secondary: Color
+    )
+}
 
 @Immutable
 data class AppTypography(
@@ -29,9 +37,10 @@ data class AppTypography(
     val h4: TextStyle = TextStyle(fontFamily = rubikFamily, fontSize = 16.sp, fontWeight = FontWeight.Bold),
     val body1: TextStyle = TextStyle(fontFamily = montserratFamily, fontSize = 16.sp, fontWeight = FontWeight.Medium),
     val body2: TextStyle = TextStyle(fontFamily = montserratFamily, fontSize = 14.sp, fontWeight = FontWeight.Normal),
+    val smallBold: TextStyle = TextStyle(fontFamily = montserratFamily, fontSize = 12.sp, fontWeight = FontWeight.Bold),
 )
 
-internal val LocalCustomColors = staticCompositionLocalOf { lightColors() }
+internal val LocalCustomColors = staticCompositionLocalOf { darkColors() }
 
 internal val LocalCustomTypography = staticCompositionLocalOf { AppTypography() }
 
@@ -39,7 +48,7 @@ internal val LocalCustomTypography = staticCompositionLocalOf { AppTypography() 
 fun MovieBoxTheme(
     content: @Composable () -> Unit
 ) {
-    val customColors = lightColors()
+    val customColors = darkColors()
     val customTypography = AppTypography()
 
     CompositionLocalProvider(

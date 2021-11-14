@@ -1,6 +1,6 @@
 package com.majorkik.tmdb.api.model
 
-import com.majorkik.tmdb.api.APIConstants
+import com.soywiz.klock.Date
 
 data class MovieDetails(
     val adult: Boolean,
@@ -18,7 +18,7 @@ data class MovieDetails(
     val posterPath: String?,
     val productionCompanies: List<ProductionCompany>,
     val productionCountries: List<ProductionCountry>,
-    val releaseDate: String,
+    val releaseDate: Date?,
     val revenue: Long,
     val runtime: Int?,
     val spokenLanguages: List<SpokenLanguage>,
@@ -28,7 +28,10 @@ data class MovieDetails(
     val video: Boolean,
     val voteAverage: Double,
     val voteCount: Int,
-    val images: Images
+    val posterLinks: List<String>,
+    val postersCount: Int,
+    val backdropLinks: List<String>,
+    val backdropsCount: Int,
 ) {
     data class Genre(
         val id: Long,
@@ -58,17 +61,4 @@ data class MovieDetails(
         val iso: String,
         val name: String
     )
-
-    data class Images(
-        val backdrops: List<Image>,
-        val posters: List<Image>
-    ) {
-        data class Image(
-            val aspectRatio: Double,
-            val filePath: String,
-        ) {
-            val fullUrl: String
-                get() = "${APIConstants.buildImageUrl()}$filePath"
-        }
-    }
 }

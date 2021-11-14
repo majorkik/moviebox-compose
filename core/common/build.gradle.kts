@@ -11,14 +11,22 @@ android {
         targetSdk = AndroidConfig.targetSdk
     }
 
+    buildFeatures {
+        compose = false
+    }
+
     compileOptions {
         sourceCompatibility = JavaVersion.VERSION_11
         targetCompatibility = JavaVersion.VERSION_11
     }
+
+    composeOptions {
+        kotlinCompilerExtensionVersion = Version.compose
+    }
 }
 
 dependencies {
-    implementation(project(ModuleDependency.Core.common))
     implementation(Dependency.Loggers.prettyLogger)
-    implementation(Dependency.Other.klock)
+
+    api(Dependency.Other.klock)
 }

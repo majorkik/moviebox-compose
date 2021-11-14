@@ -16,7 +16,7 @@ rootProject.name = "moviebox-compose"
 include(":app")
 
 // Core modules
-include(":core:ui")
+include(":core:ui", ":core:common")
 
 // Navigation
 include(":navigation")

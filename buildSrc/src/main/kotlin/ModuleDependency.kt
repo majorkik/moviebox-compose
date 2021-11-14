@@ -22,5 +22,6 @@ object ModuleDependency {
         private const val directory = ":core"
 
         const val ui = "$directory:ui"
+        const val common = "$directory:common"
     }
 }

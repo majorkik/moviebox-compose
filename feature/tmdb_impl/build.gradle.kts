@@ -58,4 +58,5 @@ dependencies {
     implementation(Dependency.Network.serializationConverter)
 
     implementation(Dependency.Other.sandwich)
+    implementation(Dependency.Other.klock)
 }

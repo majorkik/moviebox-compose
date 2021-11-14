@@ -84,5 +84,6 @@ object Dependency {
         const val sandwich = "com.github.skydoves:sandwich:1.2.1"
         const val mviOrbit = "org.orbit-mvi:orbit-viewmodel:4.2.0"
         const val coil = "io.coil-kt:coil-compose:1.4.0"
+        const val klock = "com.soywiz.korlibs.klock:klock:2.4.8"
     }
 }

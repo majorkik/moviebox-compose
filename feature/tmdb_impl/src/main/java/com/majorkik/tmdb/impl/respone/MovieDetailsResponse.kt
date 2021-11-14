@@ -1,6 +1,8 @@
 package com.majorkik.tmdb.impl.respone
 
+import com.majorkik.tmdb.api.APIConstants
 import com.majorkik.tmdb.api.model.MovieDetails
+import com.majorkik.tmdb.api.util.DateUtil
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
 
@@ -96,7 +98,7 @@ internal fun MovieDetailsResponse.toDomainModel() = MovieDetails(
     posterPath = posterPath,
     productionCompanies = productionCompanies.map { it.toDomainModel() },
     productionCountries = productionCountries.map { it.toDomainModel() },
-    releaseDate = releaseDate,
+    releaseDate = DateUtil.tryParse(date = releaseDate),
     revenue = revenue,
     runtime = runtime,
     spokenLanguages = spokenLanguages.map { it.toDomainModel() },
@@ -106,7 +108,10 @@ internal fun MovieDetailsResponse.toDomainModel() = MovieDetails(
     video = video,
     voteAverage = voteAverage,
     voteCount = voteCount,
-    images = images.toDomainModel()
+    posterLinks = images.posters.map { image -> "${APIConstants.buildImageUrl()}${image.filePath}" },
+    postersCount = images.posters.count(),
+    backdropLinks = images.backdrops.map { image -> "${APIConstants.buildImageUrl()}${image.filePath}" },
+    backdropsCount = images.backdrops.count()
 )
 
 internal fun MovieDetailsResponse.Genre.toDomainModel() = MovieDetails.Genre(
@@ -137,15 +142,3 @@ internal fun MovieDetailsResponse.SpokenLanguage.toDomainModel() = MovieDetails.
     iso = iso6391,
     name = name
 )
-
-internal fun MovieDetailsResponse.Images.toDomainModel() = MovieDetails.Images(
-    backdrops = backdrops.mapNotNull { it.toDomainModel() },
-    posters = posters.mapNotNull { it.toDomainModel() }
-)
-
-internal fun MovieDetailsResponse.Images.Image.toDomainModel(): MovieDetails.Images.Image? {
-    return MovieDetails.Images.Image(
-        aspectRatio = aspectRatio ?: return null,
-        filePath = filePath ?: return null,
-    )
-}

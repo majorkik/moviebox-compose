@@ -16,7 +16,7 @@ internal class MovieDetailsViewModel(
     // Initialization container
     override val container: Container<MovieDetailsViewState, MovieDetailsSideEffect> =
         container(MovieDetailsViewState()) { state ->
-            if (state.screen !is State.MovieDetailsState) { actionFetchMovieDetails(id = 245_891) }
+            if (state.screen !is State.MovieDetailsState) { actionFetchMovieDetails(id = 438_631) }
         }
 
     private fun actionFetchMovieDetails(id: Long) = intent {

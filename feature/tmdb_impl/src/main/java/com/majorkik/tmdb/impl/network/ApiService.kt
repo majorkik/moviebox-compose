@@ -8,5 +8,9 @@ import retrofit2.http.Query
 
 internal interface ApiService {
     @GET("movie/{movie_id}")
-    suspend fun getMovieById(@Path("movie_id") id: Long, @Query("append_to_response") appendToResponse: String?): Response<MovieDetailsResponse>
+    suspend fun getMovieById(
+        @Path("movie_id") id: Long,
+        @Query("append_to_response") appendToResponse: String?,
+        @Query("language") language: String = "en"
+    ): Response<MovieDetailsResponse>
 }

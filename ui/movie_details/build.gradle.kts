@@ -38,4 +38,6 @@ dependencies {
     implementation(Dependency.Accompanist.pager_indicators)
 
     implementation(Dependency.Loggers.prettyLogger)
+
+    implementation(Dependency.Other.klock)
 }
