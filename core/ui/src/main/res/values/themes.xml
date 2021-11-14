@@ -1,0 +1,11 @@
+<resources>
+
+    <style name="Theme.MovieBoxCompose" parent="Theme.AppCompat.NoActionBar">
+        <item name="android:colorPrimary">@color/accent</item>
+        <item name="android:colorPrimaryDark">@color/accent</item>
+        <item name="android:windowBackground">@drawable/image_splash_screen</item>
+        <item name="android:windowNoTitle">true</item>
+        <item name="android:windowTranslucentStatus">true</item>
+        <item name="android:windowTranslucentNavigation">true</item>
+    </style>
+</resources>

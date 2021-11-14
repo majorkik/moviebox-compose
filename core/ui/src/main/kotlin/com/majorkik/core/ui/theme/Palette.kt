@@ -14,6 +14,7 @@ fun lightColors(
     secondary: Color = roseMadder,
     background: Color = white,
     secondaryBackground: Color = alabaster,
+    darkBackground: Color = jet,
     isLight: Boolean = true,
 ): AppColor = AppColor(
     primary = primary,
@@ -21,6 +22,7 @@ fun lightColors(
     secondary = secondary,
     background = background,
     secondaryBackground = secondaryBackground,
+    darkBackground = darkBackground,
     isLight = isLight,
 )
 
@@ -30,6 +32,7 @@ fun darkColors(
     secondary: Color = roseMadder,
     background: Color = white,
     secondaryBackground: Color = alabaster,
+    darkBackground: Color = jet,
     isLight: Boolean = false,
 ): AppColor = AppColor(
     primary = primary,
@@ -37,5 +40,6 @@ fun darkColors(
     secondary = secondary,
     background = background,
     secondaryBackground = secondaryBackground,
+    darkBackground = darkBackground,
     isLight = isLight,
 )

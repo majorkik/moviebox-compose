@@ -10,7 +10,7 @@ import com.majorkik.tmdb.impl.respone.toDomainModel
 internal class MovieDetailsRepositoryImpl(private val api: ApiService) : MovieDetailsRepository {
     override suspend fun fetchMovieDetails(id: Long): NetworkResult<MovieDetails, String> {
         return safeRequest(
-            call = { api.getMovieById(id = id) },
+            call = { api.getMovieById(id = id, appendToResponse = "images") },
             onSuccess = { it?.toDomainModel() },
             onError = { "Error" }
         )

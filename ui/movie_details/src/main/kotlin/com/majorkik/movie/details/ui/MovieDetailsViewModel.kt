@@ -10,47 +10,34 @@ import org.orbitmvi.orbit.syntax.simple.intent
 import org.orbitmvi.orbit.syntax.simple.reduce
 import org.orbitmvi.orbit.viewmodel.container
 
-class MovieDetailsViewModel(private val repository: MovieDetailsRepository) : ViewModel(),
-    ContainerHost<MovieDetailsViewState, MovieDetailsSideEffect> {
+internal class MovieDetailsViewModel(
+    private val repository: MovieDetailsRepository
+    ) : ViewModel(), ContainerHost<MovieDetailsViewState, MovieDetailsSideEffect> {
+    // Initialization container
     override val container: Container<MovieDetailsViewState, MovieDetailsSideEffect> =
         container(MovieDetailsViewState()) { state ->
-            if (state.movieDetails == null) {
-                actionFetchMovieDetails(id = 245_891)
-            }
+            if (state.screen !is State.MovieDetailsState) { actionFetchMovieDetails(id = 245_891) }
         }
 
     private fun actionFetchMovieDetails(id: Long) = intent {
-        actionStartLoading()
-
         when (val result = repository.fetchMovieDetails(id = id)) {
-            is NetworkResult.Success -> reduce {
-                state.copy(isLoading = false, movieDetails = result.data)
-            }
+            is NetworkResult.Success -> reduce { state.copy(screen = State.MovieDetailsState(data = result.data)) }
 
-            is NetworkResult.Error -> {
+            is NetworkResult.Error ->  reduce { state.copy(screen = State.ErrorState) }
 
-            }
-
-            is NetworkResult.Exception -> {
-
-            }
+            is NetworkResult.Exception ->  reduce { state.copy(screen = State.ErrorState) }
         }
-
-        actionStopLoading()
-    }
-
-    private fun actionStartLoading() = intent {
-        reduce { state.copy(isLoading = true) }
-    }
-
-    private fun actionStopLoading() = intent {
-        reduce { state.copy(isLoading = false) }
     }
 }
 
-data class MovieDetailsViewState(
-    val isLoading: Boolean = true,
-    val movieDetails: MovieDetails? = null
+internal sealed class State {
+    object LoadingState : State()
+    object ErrorState : State()
+    data class MovieDetailsState(val data: MovieDetails) : State()
+}
+
+internal data class MovieDetailsViewState(
+    val screen: State = State.LoadingState
 )
 
-sealed class MovieDetailsSideEffect
+internal sealed class MovieDetailsSideEffect

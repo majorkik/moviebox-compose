@@ -53,7 +53,7 @@ object Dependency {
         const val okhttp = "com.squareup.okhttp3:okhttp:4.9.2"
         const val serializationConverter = "com.jakewharton.retrofit:retrofit2-kotlinx-serialization-converter:0.8.0"
 
-        object OkHTTP{
+        object OkHTTP {
             private const val version = "4.9.2"
 
             // Must be implemented with implementation (platform (..))
@@ -70,6 +70,14 @@ object Dependency {
         const val android = "io.insert-koin:koin-android:$version"
         const val compose = "io.insert-koin:koin-androidx-compose:$version"
         const val tests = "io.insert-koin:koin-test:$version"
+    }
+
+    object Accompanist {
+        private const val version = "0.21.2-beta"
+
+        const val pager = "com.google.accompanist:accompanist-pager:$version"
+        const val pager_indicators = "com.google.accompanist:accompanist-pager-indicators:$version"
+        const val insets = "com.google.accompanist:accompanist-insets:$version"
     }
 
     object Other {

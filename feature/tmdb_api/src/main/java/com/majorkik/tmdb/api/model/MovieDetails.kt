@@ -1,5 +1,7 @@
 package com.majorkik.tmdb.api.model
 
+import com.majorkik.tmdb.api.APIConstants
+
 data class MovieDetails(
     val adult: Boolean,
     val backdropPath: String?,
@@ -25,7 +27,8 @@ data class MovieDetails(
     val title: String,
     val video: Boolean,
     val voteAverage: Double,
-    val voteCount: Int
+    val voteCount: Int,
+    val images: Images
 ) {
     data class Genre(
         val id: Long,
@@ -55,4 +58,17 @@ data class MovieDetails(
         val iso: String,
         val name: String
     )
+
+    data class Images(
+        val backdrops: List<Image>,
+        val posters: List<Image>
+    ) {
+        data class Image(
+            val aspectRatio: Double,
+            val filePath: String,
+        ) {
+            val fullUrl: String
+                get() = "${APIConstants.buildImageUrl()}$filePath"
+        }
+    }
 }

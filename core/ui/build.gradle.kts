@@ -37,4 +37,6 @@ dependencies {
     api(Dependency.AndroidX.Compose.runtime)
     api(Dependency.AndroidX.Compose.foundation)
     api(Dependency.AndroidX.Compose.material)
+
+    api(Dependency.Accompanist.insets)
 }

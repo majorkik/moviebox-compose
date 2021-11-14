@@ -1,7 +1,7 @@
 package com.majorkik.tmdb.impl.network
 
 import com.jakewharton.retrofit2.converter.kotlinx.serialization.asConverterFactory
-import com.majorkik.tmdb.impl.APIConstants
+import com.majorkik.tmdb.api.APIConstants
 import com.majorkik.tmdb_impl.BuildConfig
 import com.skydoves.sandwich.coroutines.CoroutinesResponseCallAdapterFactory
 import kotlinx.serialization.ExperimentalSerializationApi

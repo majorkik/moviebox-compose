@@ -33,4 +33,9 @@ dependencies {
     implementation(Dependency.Other.mviOrbit)
 
     implementation(Dependency.Other.coil)
+
+    implementation(Dependency.Accompanist.pager)
+    implementation(Dependency.Accompanist.pager_indicators)
+
+    implementation(Dependency.Loggers.prettyLogger)
 }
