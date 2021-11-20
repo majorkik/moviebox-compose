@@ -28,4 +28,4 @@ include(
 )
 
 // Features
-include(":feature:tmdb_api", ":feature:tmdb_impl")
+include(":feature:tmdb:api", ":feature:tmdb:impl")

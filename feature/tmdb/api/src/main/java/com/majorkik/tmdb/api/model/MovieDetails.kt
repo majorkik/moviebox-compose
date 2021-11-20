@@ -61,4 +61,38 @@ data class MovieDetails(
         val iso: String,
         val name: String
     )
+
+    companion object {
+        fun mock() = MovieDetails(
+            adult = false,
+            backdropPath = null,
+            belongsToCollection = null,
+            budget = 0,
+            genres = listOf(),
+            homepage = null,
+            id = 0,
+            imdbId = null,
+            originalLanguage = "",
+            originalTitle = "",
+            overview = null,
+            popularity = 0.0,
+            posterPath = null,
+            productionCompanies = listOf(),
+            productionCountries = listOf(),
+            releaseDate = null,
+            revenue = 0,
+            runtime = null,
+            spokenLanguages = listOf(),
+            status = "",
+            tagline = null,
+            title = "",
+            video = false,
+            voteAverage = 0.0,
+            voteCount = 0,
+            posterLinks = listOf(),
+            postersCount = 0,
+            backdropLinks = listOf(),
+            backdropsCount = 0
+        )
+    }
 }

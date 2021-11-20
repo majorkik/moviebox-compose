@@ -137,5 +137,5 @@ internal fun Details(details: MovieDetails) {
 @Preview(showBackground = true, widthDp = 375, heightDp = 812)
 @Composable
 fun MovieDetailsScreenPreview() {
-
+    Details(details = MovieDetails.mock())
 }
