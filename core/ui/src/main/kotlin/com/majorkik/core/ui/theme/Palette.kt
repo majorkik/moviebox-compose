@@ -9,14 +9,14 @@ import androidx.compose.ui.graphics.Color
  */
 
 fun lightColors(
-    primary: Color = blueCrayola,
-    primaryLight: Color = cornflowerBlue,
-    secondary: Color = roseMadder,
-    background: Color = white,
-    backgroundReverse: Color = charade,
-    secondaryBackground: Color = alabaster,
-    textPrimary: Color = charade,
-    textSecondary: Color = charade.copy(alpha = 0.33f),
+    primary: Color = BlueCrayola,
+    primaryLight: Color = CornflowerBlue,
+    secondary: Color = RoseMadder,
+    background: Color = White,
+    backgroundReverse: Color = Charade,
+    secondaryBackground: Color = Alabaster,
+    textPrimary: Color = Charade,
+    textSecondary: Color = Charade.copy(alpha = 0.33f),
     isLight: Boolean = true,
 ): AppColor = AppColor(
     primary = primary,
@@ -33,14 +33,14 @@ fun lightColors(
 )
 
 fun darkColors(
-    primary: Color = blueCrayola,
-    primaryLight: Color = cornflowerBlue,
-    secondary: Color = roseMadder,
-    background: Color = charade,
-    backgroundReverse: Color = white,
-    secondaryBackground: Color = mineShaft,
-    textPrimary: Color = white,
-    textSecondary: Color = white.copy(alpha = 0.33f),
+    primary: Color = BlueCrayola,
+    primaryLight: Color = CornflowerBlue,
+    secondary: Color = RoseMadder,
+    background: Color = Charade,
+    backgroundReverse: Color = White,
+    secondaryBackground: Color = MineShaft,
+    textPrimary: Color = White,
+    textSecondary: Color = White.copy(alpha = 0.33f),
     isLight: Boolean = false,
 ): AppColor = AppColor(
     primary = primary,
