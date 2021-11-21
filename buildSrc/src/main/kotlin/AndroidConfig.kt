@@ -1,13 +1,15 @@
 object AndroidConfig {
-    const val compileSdk = 30
+    const val compileSdk = 31
     const val minSdk = 23
-    const val targetSdk = 30
+    const val targetSdk = 31
     const val buildTools = "30.0.2"
 
-    const val versionCode = 40
-    const val versionName = "0.5.2"
+    const val versionCode = 49
+    const val versionName = "0.7.1"
 
     const val applicationId = "com.majorkik.movieboxcompose"
+
+    const val useSupportLibrary = true
 }
 
 interface BuildType {

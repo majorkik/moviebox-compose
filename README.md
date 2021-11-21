@@ -28,6 +28,52 @@
 -   **Gradle**: [Gradle Kotlin DSL](https://docs.gradle.org/current/userguide/kotlin_dsl.html) + Custom tasks
 -   **Loggers**: [Timber](https://github.com/JakeWharton/timber) + [Pretty Logger](https://github.com/orhanobut/logger) - simple, pretty and powerful logger for android
 
+## Architecture
+
+### Multi-module architecture
+
+![Multi-module architecture](docs/image/multimodule-arch-future-core-modules.svg?raw=true)
+
+- **App module**: the entry point to the application, contains almost no code, depends on the feature-modules.
+- **Feature module**: contain specific functionality. By structure, these modules can contain all the layers of your architecture, but they can also just contain some feature without any layers. A feature module can have dependencies on other feature modules **only** through an API module or on the main module, if we are talking about an feature UI module.
+  Feature modules can be divided into three types:
+  - **Feature UI module**: contains a screen, a group of screens, views, resources, and other code to implement a specific UI. Feature UI modules are independent of other feature UI modules. For interconnection between feature UI modules, a helper module is usually used that contains specific code for their interaction (for example, a module that contains code for navigating between screens).
+  - **Feature module of implementation**: contains implementations of interfaces from the API module, contains classes for working with the database and server, data models with JSON annotations for *serializing/deserializing* data. It resembles a **data layer** from a Clean architecture;
+  - **Feature API module**: contains interfaces for working with data, data models without JSON annotations, business logic and usecases.
+- **Core module**: contains helper code that can be used in more than one module. These can be abstract classes, utilities, providing libraries through transitive dependencies, and so on. Core modules do not depend on any other modules.
+- **BuildSrc**: can contain application configuration, dependency versions and custom gradle tasks.
+
+### Future modules
+
+![Future modules](docs/image/future-modules.svg?raw=true)
+
+## Getting started
+
+There are a few ways to open this project.
+
+### Android Studio
+
+1. `Android Studio` -> `File` -> `New` -> `From Version control` -> `Git`
+2. Enter `https://github.com/majorkik/MovieBox-Compose.git` into URL field an press `Clone` button
+
+### Command-line + Android Studio
+
+1. Run `git clone https://github.com/majorkik/MovieBox-Compose.git` command to clone project
+2. Open `Android Studio` and select `File | Open...` from the menu. Select cloned directory and press `Open` button
+
+### Project configuration
+
+Add parameters in the locale.properties file as shown in the example below.
+
+```properties
+keyTmdb="Your TMDb Key"
+```
+
+#### Where can I get a TMDb API key?
+
+1. Open [TheMovieDatabase](https://www.themoviedb.org/) -> `Login/Join TMDb` -> `Profile` -> `Settings` -> `API` -> Copy `API Key (v3 auth)`
+2. Paste copied key into `local.properties` file (`keyTmdb`)
+
 ## Links
 
 Here I will leave useful links to utilities, projects or articles that may come in handy when developing mobile applications.
@@ -40,7 +86,6 @@ Here I will leave useful links to utilities, projects or articles that may come 
 
 -   [Gradle plugins](https://plugins.gradle.org/plugin/com.diffplug.spotless) - Plugin search
 -   [GitIgnore.io](https://www.toptal.com/developers/gitignore) - .gitignore builder
-
 
 #### Useful articles:
 

@@ -1,31 +1,42 @@
 plugins {
-    id(Plugins.androidLibrary)
-    kotlin(Plugins.android)
+    id(Plugin.androidLibrary)
+    kotlin(Plugin.android)
 }
 
 android {
-    buildFeatures {
-        buildConfig = false // Disable generation of BuildConfig files in modules where they are not needed
+    compileSdk = AndroidConfig.compileSdk
 
+    defaultConfig {
+        minSdk = AndroidConfig.minSdk
+        targetSdk = AndroidConfig.targetSdk
+    }
+
+    buildFeatures {
         compose = true
     }
 
+    kotlinOptions {
+        jvmTarget = JavaVersion.VERSION_11.toString()
+    }
+
+    compileOptions {
+        sourceCompatibility = JavaVersion.VERSION_11
+        targetCompatibility = JavaVersion.VERSION_11
+    }
+
     composeOptions {
-        kotlinCompilerExtensionVersion = Libs.AndroidX.Compose.version
+        kotlinCompilerExtensionVersion = Version.compose
     }
 }
 
 dependencies {
-    api(Libs.Koin.android)
-    api(Libs.Koin.compose)
+    api(Dependency.AndroidX.appcompat)
+    api(Dependency.AndroidX.Compose.ui)
+    api(Dependency.AndroidX.Compose.tooling)
+    api(Dependency.AndroidX.Compose.toolingPreview)
+    api(Dependency.AndroidX.Compose.runtime)
+    api(Dependency.AndroidX.Compose.foundation)
+    api(Dependency.AndroidX.Compose.material)
 
-    api(Libs.AndroidX.annotation)
-
-    api(Libs.AndroidX.Compose.layout)
-    api(Libs.AndroidX.Compose.material)
-    api(Libs.AndroidX.Compose.tooling)
-    api(Libs.AndroidX.Compose.uiUtil)
-    api(Libs.AndroidX.Compose.runtime)
-    api(Libs.AndroidX.Compose.runtimeLivedata)
-    api(Libs.AndroidX.Compose.viewBinding)
+    api(Dependency.Accompanist.insets)
 }

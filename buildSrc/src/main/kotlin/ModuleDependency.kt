@@ -1,8 +1,27 @@
 object ModuleDependency {
 
     const val app = ":app"
+    const val navigation = ":navigation"
 
-    const val coreUi = ":core:ui"
-    const val coreNetwork = ":core:network"
-    const val coreBase = ":core:base"
+    object UI {
+        private const val directory = ":ui"
+
+        const val main = "$directory:main"
+        const val home = "$directory:home"
+        const val movieDetails = "$directory:movie_details"
+    }
+
+    object Feature {
+        private const val directory = ":feature"
+
+        const val tmdbApi = "$directory:tmdb:api"
+        const val tmdbImpl = "$directory:tmdb:impl"
+    }
+
+    object Core {
+        private const val directory = ":core"
+
+        const val ui = "$directory:ui"
+        const val common = "$directory:common"
+    }
 }
