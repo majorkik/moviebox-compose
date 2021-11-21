@@ -39,7 +39,6 @@ fun MovieDetailsScreen() {
     MovieBoxContent()
 }
 
-
 @ExperimentalPagerApi
 @Composable
 internal fun MovieBoxContent(viewModel: MovieDetailsViewModel = get()) {
