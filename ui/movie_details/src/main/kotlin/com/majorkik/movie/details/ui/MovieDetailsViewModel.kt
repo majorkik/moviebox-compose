@@ -12,20 +12,22 @@ import org.orbitmvi.orbit.viewmodel.container
 
 internal class MovieDetailsViewModel(
     private val repository: MovieDetailsRepository
-    ) : ViewModel(), ContainerHost<MovieDetailsViewState, MovieDetailsSideEffect> {
+) : ViewModel(), ContainerHost<MovieDetailsViewState, MovieDetailsSideEffect> {
     // Initialization container
     override val container: Container<MovieDetailsViewState, MovieDetailsSideEffect> =
         container(MovieDetailsViewState()) { state ->
-            if (state.screen !is State.MovieDetailsState) { actionFetchMovieDetails(id = 438_631) }
+            if (state.screen !is State.MovieDetailsState) {
+                actionFetchMovieDetails(id = 438_631)
+            }
         }
 
     private fun actionFetchMovieDetails(id: Long) = intent {
         when (val result = repository.fetchMovieDetails(id = id)) {
             is NetworkResult.Success -> reduce { state.copy(screen = State.MovieDetailsState(data = result.data)) }
 
-            is NetworkResult.Error ->  reduce { state.copy(screen = State.ErrorState) }
+            is NetworkResult.Error -> reduce { state.copy(screen = State.ErrorState) }
 
-            is NetworkResult.Exception ->  reduce { state.copy(screen = State.ErrorState) }
+            is NetworkResult.Exception -> reduce { state.copy(screen = State.ErrorState) }
         }
     }
 }

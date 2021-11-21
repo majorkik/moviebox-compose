@@ -50,7 +50,6 @@ internal suspend fun <T, M, E> safeRequest(
         }
     }
 } catch (e: Exception) {
-    e.printStackTrace()
     Logger.e(e.localizedMessage ?: "[SafeRequest.Exception] Something went wrong")
     NetworkResult.Exception(e)
 }
