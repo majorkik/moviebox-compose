@@ -1,3 +1,5 @@
+
+
 plugins {
     id(Plugin.androidLibrary)
     kotlin(Plugin.android)
@@ -12,32 +14,22 @@ android {
     }
 
     buildFeatures {
-        compose = true
+        aidl = false
+        shaders = false
+        resValues = false
+        renderScript = false
     }
 
     compileOptions {
         sourceCompatibility = JavaVersion.VERSION_11
         targetCompatibility = JavaVersion.VERSION_11
     }
-
-    composeOptions {
-        kotlinCompilerExtensionVersion = Version.compose
-    }
 }
 
 dependencies {
-    implementation(project(ModuleDependency.Core.ui))
     implementation(project(ModuleDependency.Feature.Tmdb.api))
 
-    implementation(Dependency.Koin.compose)
-    implementation(Dependency.Other.mviOrbit)
-
-    implementation(Dependency.Other.coil)
-
-    implementation(Dependency.Accompanist.pager)
-    implementation(Dependency.Accompanist.pager_indicators)
+    implementation(Dependency.Koin.core)
 
     implementation(Dependency.Loggers.prettyLogger)
-
-    implementation(Dependency.Other.klock)
 }

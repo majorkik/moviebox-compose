@@ -40,7 +40,7 @@ android {
 }
 
 dependencies {
-    implementation(project(ModuleDependency.Feature.tmdbApi))
+    implementation(project(ModuleDependency.Feature.Tmdb.api))
 
     implementation(Dependency.Kotlin.serialization)
     implementation(Dependency.Coroutines.core)

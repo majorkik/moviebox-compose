@@ -28,4 +28,9 @@ include(
 )
 
 // Features
-include(":feature:tmdb:api", ":feature:tmdb:impl")
+include(
+    ":feature:tmdb:api",
+    ":feature:tmdb:impl",
+    ":feature:app-preferences:api",
+    ":feature:app-preferences:impl",
+)

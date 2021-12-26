@@ -17,6 +17,7 @@ fun lightColors(
     secondaryBackground: Color = Alabaster,
     textPrimary: Color = Charade,
     textSecondary: Color = Charade.copy(alpha = 0.33f),
+    themeColor: Color = Color.Black,
     isLight: Boolean = true,
 ): AppColor = AppColor(
     primary = primary,
@@ -25,6 +26,7 @@ fun lightColors(
     background = background,
     backgroundReverse = backgroundReverse,
     secondaryBackground = secondaryBackground,
+    themeColor = themeColor,
     text = AppColor.Text(
         primary = textPrimary,
         secondary = textSecondary
@@ -41,6 +43,7 @@ fun darkColors(
     secondaryBackground: Color = MineShaft,
     textPrimary: Color = White,
     textSecondary: Color = White.copy(alpha = 0.33f),
+    themeColor: Color = White,
     isLight: Boolean = false,
 ): AppColor = AppColor(
     primary = primary,
@@ -49,6 +52,7 @@ fun darkColors(
     background = background,
     backgroundReverse = backgroundReverse,
     secondaryBackground = secondaryBackground,
+    themeColor = themeColor,
     text = AppColor.Text(
         primary = textPrimary,
         secondary = textSecondary

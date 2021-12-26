@@ -52,9 +52,13 @@ android {
 dependencies {
     // Modules
     implementation(project(ModuleDependency.Core.ui))
-    implementation(project(ModuleDependency.Feature.tmdbImpl))
+
     implementation(project(ModuleDependency.UI.movieDetails))
 
+    implementation(project(ModuleDependency.Feature.Tmdb.impl))
+    implementation(project(ModuleDependency.Feature.AppPrefenrences.impl))
+
+    // Libraries
     implementation(Dependency.AndroidX.core)
     implementation(Dependency.AndroidX.appcompat)
     implementation(Dependency.AndroidX.material)

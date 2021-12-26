@@ -1,5 +1,6 @@
 package com.majorkik.core.ui.theme
 
+import androidx.compose.foundation.isSystemInDarkTheme
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.CompositionLocalProvider
 import androidx.compose.runtime.Immutable
@@ -17,6 +18,9 @@ data class AppColor(
     val background: Color,
     val backgroundReverse: Color,
     val secondaryBackground: Color,
+
+    val themeColor: Color,
+
     // Text
     val text: Text,
     // Theme
@@ -46,9 +50,10 @@ internal val LocalCustomTypography = staticCompositionLocalOf { AppTypography() 
 
 @Composable
 fun MovieBoxTheme(
-    content: @Composable () -> Unit
+    isDark: Boolean = isSystemInDarkTheme(),
+    content: @Composable () -> Unit,
 ) {
-    val customColors = darkColors()
+    val customColors = if (isDark) darkColors() else lightColors()
     val customTypography = AppTypography()
 
     CompositionLocalProvider(
