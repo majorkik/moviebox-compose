@@ -18,5 +18,9 @@ android {
 }
 
 dependencies {
+    implementation(Dependency.AndroidX.DataStore.preferences)
+
+    implementation(Dependency.Coroutines.core)
+
     implementation(Dependency.Loggers.prettyLogger)
 }

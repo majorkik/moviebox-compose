@@ -29,4 +29,11 @@ android {
 
 dependencies {
     implementation(project(ModuleDependency.Core.ui))
+
+    implementation(project(ModuleDependency.Feature.AppPrefenrences.api))
+
+    implementation(Dependency.Koin.compose)
+    implementation(Dependency.Other.mviOrbit)
+
+    implementation(Dependency.Loggers.prettyLogger)
 }

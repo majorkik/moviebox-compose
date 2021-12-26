@@ -25,9 +25,9 @@ android {
 }
 
 dependencies {
-    implementation(project(ModuleDependency.Feature.Tmdb.api))
+    implementation(project(ModuleDependency.Feature.AppPrefenrences.api))
 
-    implementation(Dependency.Koin.core)
+    implementation(Dependency.Koin.android)
 
     implementation(Dependency.AndroidX.DataStore.preferences)
 

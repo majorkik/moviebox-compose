@@ -1,16 +1,22 @@
-package com.majorkik.home
+package com.majorkik.home.ui
 
 import androidx.compose.foundation.background
+import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.padding
 import androidx.compose.material.Icon
-import androidx.compose.material.IconButton
+import androidx.compose.material.IconToggleButton
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.tooling.preview.Preview
+import androidx.compose.ui.unit.dp
+import com.google.accompanist.insets.statusBarsPadding
 import com.majorkik.core.ui.theme.MovieBoxTheme
+import org.koin.androidx.compose.get
 import com.majorkik.core.ui.R as CoreRes
 
 @Composable
@@ -19,15 +25,21 @@ fun HomeScreen() {
 }
 
 @Composable
-internal fun HomeContent() {
+internal fun HomeContent(viewModel: HomeViewModel = get()) {
     Box(
         modifier = Modifier
             .fillMaxSize()
             .background(MovieBoxTheme.colors.background)
+            .statusBarsPadding()
     ) {
-        Row {
-            ThemeButton(MovieBoxTheme.colors.isLight) { isLight ->
-
+        Row(
+            modifier = Modifier
+                .fillMaxWidth()
+                .padding(16.dp),
+            horizontalArrangement = Arrangement.End
+        ) {
+            ThemeButton(MovieBoxTheme.colors.isLight.not()) { isDark ->
+                viewModel.actionSaveTheme(isDark)
             }
         }
     }
@@ -35,19 +47,22 @@ internal fun HomeContent() {
 
 @Composable
 internal fun ThemeButton(
-    isLight: Boolean,
+    isDark: Boolean,
     onChangeTheme: (Boolean) -> Unit = {}
 ) {
-    IconButton(onClick = { onChangeTheme(isLight) }) {
-        if (isLight) {
+    IconToggleButton(
+        checked = isDark,
+        onCheckedChange = onChangeTheme
+    ) {
+        if (isDark) {
             Icon(
-                painter = painterResource(id = CoreRes.drawable.ic_light_mode_black_24dp),
+                painter = painterResource(id = CoreRes.drawable.ic_dark_mode_black_24),
                 contentDescription = null,
                 tint = MovieBoxTheme.colors.themeColor
             )
         } else {
             Icon(
-                painter = painterResource(id = CoreRes.drawable.ic_dark_mode_black_24),
+                painter = painterResource(id = CoreRes.drawable.ic_light_mode_black_24dp),
                 contentDescription = null,
                 tint = MovieBoxTheme.colors.themeColor
             )

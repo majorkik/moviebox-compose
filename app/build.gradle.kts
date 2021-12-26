@@ -56,8 +56,10 @@ dependencies {
     implementation(project(ModuleDependency.Core.ui))
 
     implementation(project(ModuleDependency.UI.movieDetails))
+    implementation(project(ModuleDependency.UI.home))
 
     implementation(project(ModuleDependency.Feature.Tmdb.impl))
+    implementation(project(ModuleDependency.Feature.AppPrefenrences.api))
     implementation(project(ModuleDependency.Feature.AppPrefenrences.impl))
 
     // Libraries
@@ -66,9 +68,13 @@ dependencies {
     implementation(Dependency.AndroidX.material)
     implementation(Dependency.AndroidX.activityCompose)
 
-    implementation(Dependency.AndroidX.Compose.ui)
-    implementation(Dependency.AndroidX.Compose.tooling)
-    implementation(Dependency.AndroidX.Compose.material)
+    api(Dependency.AndroidX.Compose.compiler)
+    api(Dependency.AndroidX.Compose.ui)
+    api(Dependency.AndroidX.Compose.tooling)
+    api(Dependency.AndroidX.Compose.toolingPreview)
+    api(Dependency.AndroidX.Compose.runtime)
+    api(Dependency.AndroidX.Compose.foundation)
+    api(Dependency.AndroidX.Compose.material)
 
     implementation(Dependency.Koin.android)
     implementation(Dependency.Koin.compose)
