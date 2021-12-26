@@ -1,3 +1,5 @@
+import Version.composeCompiler
+
 plugins {
     id(Plugin.androidApplication)
     kotlin(Plugin.android)
@@ -39,7 +41,7 @@ android {
     }
 
     composeOptions {
-        kotlinCompilerExtensionVersion = Version.compose
+        kotlinCompilerExtensionVersion = composeCompiler
     }
 
     packagingOptions {
@@ -67,9 +69,6 @@ dependencies {
     implementation(Dependency.AndroidX.Compose.ui)
     implementation(Dependency.AndroidX.Compose.tooling)
     implementation(Dependency.AndroidX.Compose.material)
-
-    implementation(Dependency.Voyager.navigator)
-    implementation(Dependency.Voyager.tab)
 
     implementation(Dependency.Koin.android)
     implementation(Dependency.Koin.compose)

@@ -2,10 +2,10 @@ object AndroidConfig {
     const val compileSdk = 31
     const val minSdk = 23
     const val targetSdk = 31
-    const val buildTools = "30.0.2"
+    const val buildTools = "32.0.0"
 
-    const val versionCode = 49
-    const val versionName = "0.7.1"
+    const val versionCode = 50
+    const val versionName = "0.8.1"
 
     const val applicationId = "com.majorkik.movieboxcompose"
 

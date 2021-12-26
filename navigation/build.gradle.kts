@@ -18,6 +18,4 @@ android {
 }
 
 dependencies {
-    implementation(Dependency.Voyager.core)
-    implementation(Dependency.Voyager.koin)
 }

@@ -1,5 +1,3 @@
-
-
 plugins {
     id(Plugin.androidLibrary)
     kotlin(Plugin.android)
@@ -30,6 +28,8 @@ dependencies {
     implementation(project(ModuleDependency.Feature.Tmdb.api))
 
     implementation(Dependency.Koin.core)
+
+    implementation(Dependency.AndroidX.DataStore.preferences)
 
     implementation(Dependency.Loggers.prettyLogger)
 }

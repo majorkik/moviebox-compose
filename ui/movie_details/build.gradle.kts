@@ -1,3 +1,5 @@
+import Version.composeCompiler
+
 plugins {
     id(Plugin.androidLibrary)
     kotlin(Plugin.android)
@@ -21,7 +23,7 @@ android {
     }
 
     composeOptions {
-        kotlinCompilerExtensionVersion = Version.compose
+        kotlinCompilerExtensionVersion = composeCompiler
     }
 }
 
