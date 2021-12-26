@@ -5,7 +5,7 @@ import com.majorkik.tmdb.impl.network.createApiService
 import com.majorkik.tmdb.impl.repository.MovieDetailsRepositoryImpl
 import org.koin.dsl.module
 
-val tmdbApiModule = module {
+val tmdbImplModule = module {
     // API service
     single { createApiService() }
 

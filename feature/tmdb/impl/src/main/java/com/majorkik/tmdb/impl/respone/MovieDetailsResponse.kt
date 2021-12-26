@@ -77,7 +77,7 @@ internal data class MovieDetailsResponse(
         @Serializable
         data class Image(
             @SerialName("aspect_ratio") val aspectRatio: Double?,
-            @SerialName("file_path") val filePath: String?,
+            @SerialName("file_path") val filePath: String?
         )
     }
 }
