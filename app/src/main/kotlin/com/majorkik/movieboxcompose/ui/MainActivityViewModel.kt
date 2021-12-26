@@ -8,6 +8,6 @@ import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
 
-class MainActivityViewModel(appPreferences: MovieBoxPreferences) : ViewModel() {
+internal class MainActivityViewModel(appPreferences: MovieBoxPreferences) : ViewModel() {
     val shouldUseDarkTheme: Flow<Boolean> = appPreferences.shouldUseDarkTheme
 }

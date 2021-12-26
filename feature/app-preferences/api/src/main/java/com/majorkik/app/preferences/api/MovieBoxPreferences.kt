@@ -6,5 +6,4 @@ interface MovieBoxPreferences {
     val shouldUseDarkTheme: Flow<Boolean>
 
     suspend fun setThemeMode(isDark: Boolean)
-    suspend fun isDarkMode(): Boolean?
 }

@@ -38,9 +38,7 @@ internal fun HomeContent(viewModel: HomeViewModel = get()) {
                 .padding(16.dp),
             horizontalArrangement = Arrangement.End
         ) {
-            ThemeButton(MovieBoxTheme.colors.isLight.not()) { isDark ->
-                viewModel.actionSaveTheme(isDark)
-            }
+            ThemeButton(MovieBoxTheme.colors.isLight.not(), onChangeTheme = viewModel::actionSaveTheme)
         }
     }
 }
@@ -56,13 +54,13 @@ internal fun ThemeButton(
     ) {
         if (isDark) {
             Icon(
-                painter = painterResource(id = CoreRes.drawable.ic_dark_mode_black_24),
+                painter = painterResource(id = CoreRes.drawable.ic_light_mode_black_24dp),
                 contentDescription = null,
                 tint = MovieBoxTheme.colors.themeColor
             )
         } else {
             Icon(
-                painter = painterResource(id = CoreRes.drawable.ic_light_mode_black_24dp),
+                painter = painterResource(id = CoreRes.drawable.ic_dark_mode_black_24),
                 contentDescription = null,
                 tint = MovieBoxTheme.colors.themeColor
             )
