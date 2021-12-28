@@ -15,7 +15,7 @@ sealed class NetworkResult<out T, out E> {
      */
     data class Error<out E>(
         val data: E?,
-        val code: Int,
+        val code: Int
     ) : NetworkResult<Nothing, E>()
 
     /**

@@ -1,3 +1,5 @@
+import Version.composeCompiler
+
 plugins {
     id(Plugin.androidApplication)
     kotlin(Plugin.android)
@@ -39,7 +41,7 @@ android {
     }
 
     composeOptions {
-        kotlinCompilerExtensionVersion = Version.compose
+        kotlinCompilerExtensionVersion = composeCompiler
     }
 
     packagingOptions {
@@ -52,20 +54,27 @@ android {
 dependencies {
     // Modules
     implementation(project(ModuleDependency.Core.ui))
-    implementation(project(ModuleDependency.Feature.tmdbImpl))
-    implementation(project(ModuleDependency.UI.movieDetails))
 
+    implementation(project(ModuleDependency.UI.movieDetails))
+    implementation(project(ModuleDependency.UI.home))
+
+    implementation(project(ModuleDependency.Feature.Tmdb.impl))
+    implementation(project(ModuleDependency.Feature.AppPrefenrences.api))
+    implementation(project(ModuleDependency.Feature.AppPrefenrences.impl))
+
+    // Libraries
     implementation(Dependency.AndroidX.core)
     implementation(Dependency.AndroidX.appcompat)
     implementation(Dependency.AndroidX.material)
     implementation(Dependency.AndroidX.activityCompose)
 
-    implementation(Dependency.AndroidX.Compose.ui)
-    implementation(Dependency.AndroidX.Compose.tooling)
-    implementation(Dependency.AndroidX.Compose.material)
-
-    implementation(Dependency.Voyager.navigator)
-    implementation(Dependency.Voyager.tab)
+    api(Dependency.AndroidX.Compose.compiler)
+    api(Dependency.AndroidX.Compose.ui)
+    api(Dependency.AndroidX.Compose.tooling)
+    api(Dependency.AndroidX.Compose.toolingPreview)
+    api(Dependency.AndroidX.Compose.runtime)
+    api(Dependency.AndroidX.Compose.foundation)
+    api(Dependency.AndroidX.Compose.material)
 
     implementation(Dependency.Koin.android)
     implementation(Dependency.Koin.compose)

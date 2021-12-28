@@ -31,7 +31,7 @@ data class MovieDetails(
     val posterLinks: List<String>,
     val postersCount: Int,
     val backdropLinks: List<String>,
-    val backdropsCount: Int,
+    val backdropsCount: Int
 ) {
     data class Genre(
         val id: Long,

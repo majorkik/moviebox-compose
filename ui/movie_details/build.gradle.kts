@@ -1,3 +1,5 @@
+import Version.composeCompiler
+
 plugins {
     id(Plugin.androidLibrary)
     kotlin(Plugin.android)
@@ -21,13 +23,13 @@ android {
     }
 
     composeOptions {
-        kotlinCompilerExtensionVersion = Version.compose
+        kotlinCompilerExtensionVersion = composeCompiler
     }
 }
 
 dependencies {
     implementation(project(ModuleDependency.Core.ui))
-    implementation(project(ModuleDependency.Feature.tmdbApi))
+    implementation(project(ModuleDependency.Feature.Tmdb.api))
 
     implementation(Dependency.Koin.compose)
     implementation(Dependency.Other.mviOrbit)

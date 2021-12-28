@@ -1,5 +1,8 @@
 package com.majorkik.core.ui.theme
 
+import androidx.compose.foundation.isSystemInDarkTheme
+import androidx.compose.material.ripple.LocalRippleTheme
+import androidx.compose.material.ripple.RippleTheme
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.CompositionLocalProvider
 import androidx.compose.runtime.Immutable
@@ -17,6 +20,11 @@ data class AppColor(
     val background: Color,
     val backgroundReverse: Color,
     val secondaryBackground: Color,
+
+    val themeColor: Color,
+
+    val ripple: Color,
+
     // Text
     val text: Text,
     // Theme
@@ -40,20 +48,37 @@ data class AppTypography(
     val smallBold: TextStyle = TextStyle(fontFamily = montserratFamily, fontSize = 12.sp, fontWeight = FontWeight.Bold),
 )
 
+@Immutable
+private object SecondaryRippleTheme : RippleTheme {
+    @Composable
+    override fun defaultColor() = RippleTheme.defaultRippleColor(
+        contentColor = MovieBoxTheme.colors.ripple,
+        lightTheme = MovieBoxTheme.colors.isLight
+    )
+
+    @Composable
+    override fun rippleAlpha() = RippleTheme.defaultRippleAlpha(
+        contentColor = MovieBoxTheme.colors.ripple,
+        lightTheme = MovieBoxTheme.colors.isLight
+    )
+}
+
 internal val LocalCustomColors = staticCompositionLocalOf { darkColors() }
 
 internal val LocalCustomTypography = staticCompositionLocalOf { AppTypography() }
 
 @Composable
 fun MovieBoxTheme(
-    content: @Composable () -> Unit
+    isDark: Boolean = isSystemInDarkTheme(),
+    content: @Composable () -> Unit,
 ) {
-    val customColors = darkColors()
+    val customColors = if (isDark) darkColors() else lightColors()
     val customTypography = AppTypography()
 
     CompositionLocalProvider(
         LocalCustomColors provides customColors,
         LocalCustomTypography provides customTypography,
+        LocalRippleTheme provides SecondaryRippleTheme,
         content = content
     )
 }
