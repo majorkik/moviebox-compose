@@ -1,6 +1,6 @@
 package com.majorkik.movieboxcompose.koin
 
-import com.majorkik.movie.details.movieDetailsModule
+import com.majorkik.ui.movie.details.movieDetailsModule
 import com.majorkik.movieboxcompose.appModule
 import com.majorkik.tmdb.impl.tmdbImplModule
 import org.junit.Test

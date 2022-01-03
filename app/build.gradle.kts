@@ -55,12 +55,18 @@ dependencies {
     // Modules
     implementation(project(ModuleDependency.Core.ui))
 
+    implementation(project(ModuleDependency.navigation))
+
     implementation(project(ModuleDependency.UI.movieDetails))
     implementation(project(ModuleDependency.UI.home))
 
+    implementation(project(ModuleDependency.UI.navHome))
+    implementation(project(ModuleDependency.UI.navSearch))
+    implementation(project(ModuleDependency.UI.navProfile))
+
     implementation(project(ModuleDependency.Feature.Tmdb.impl))
-    implementation(project(ModuleDependency.Feature.AppPrefenrences.api))
-    implementation(project(ModuleDependency.Feature.AppPrefenrences.impl))
+    implementation(project(ModuleDependency.Feature.AppPreferences.api))
+    implementation(project(ModuleDependency.Feature.AppPreferences.impl))
 
     // Libraries
     implementation(Dependency.AndroidX.core)
@@ -68,19 +74,25 @@ dependencies {
     implementation(Dependency.AndroidX.material)
     implementation(Dependency.AndroidX.activityCompose)
 
-    api(Dependency.AndroidX.Compose.compiler)
-    api(Dependency.AndroidX.Compose.ui)
-    api(Dependency.AndroidX.Compose.tooling)
-    api(Dependency.AndroidX.Compose.toolingPreview)
-    api(Dependency.AndroidX.Compose.runtime)
-    api(Dependency.AndroidX.Compose.foundation)
-    api(Dependency.AndroidX.Compose.material)
+    implementation(Dependency.AndroidX.Compose.compiler)
+    implementation(Dependency.AndroidX.Compose.ui)
+    implementation(Dependency.AndroidX.Compose.tooling)
+    implementation(Dependency.AndroidX.Compose.toolingPreview)
+    implementation(Dependency.AndroidX.Compose.runtime)
+    implementation(Dependency.AndroidX.Compose.foundation)
+    implementation(Dependency.AndroidX.Compose.material)
 
     implementation(Dependency.Koin.android)
     implementation(Dependency.Koin.compose)
 
     implementation(Dependency.Loggers.prettyLogger)
     implementation(Dependency.Loggers.timber)
+
+    implementation(Dependency.AndroidX.navigationCompose)
+
+    implementation(Dependency.Accompanist.navigationMaterial)
+    implementation(Dependency.Accompanist.navigationAnimation)
+    implementation(Dependency.Accompanist.insets)
 
     testImplementation(Dependency.Koin.tests)
 }

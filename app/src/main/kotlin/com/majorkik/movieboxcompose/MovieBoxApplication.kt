@@ -2,8 +2,8 @@ package com.majorkik.movieboxcompose
 
 import android.app.Application
 import com.majorkik.app.preferences.impl.appPreferencesImplModule
-import com.majorkik.home.uiHomeModule
-import com.majorkik.movie.details.movieDetailsModule
+import com.majorkik.ui.uiHomeModule
+import com.majorkik.ui.movie.details.movieDetailsModule
 import com.majorkik.tmdb.impl.tmdbImplModule
 import com.orhanobut.logger.AndroidLogAdapter
 import com.orhanobut.logger.Logger

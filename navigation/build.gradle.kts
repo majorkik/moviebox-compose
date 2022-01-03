@@ -18,4 +18,5 @@ android {
 }
 
 dependencies {
+    implementation(Dependency.AndroidX.navigationCompose)
 }

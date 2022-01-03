@@ -29,19 +29,17 @@ android {
 
 dependencies {
     implementation(project(ModuleDependency.Core.ui))
-
-    implementation(project(ModuleDependency.navigation))
-
-    implementation(project(ModuleDependency.Feature.AppPreferences.api))
-
-    implementation(Dependency.AndroidX.navigationCompose)
-
-    implementation(Dependency.Accompanist.navigationMaterial)
-    implementation(Dependency.Accompanist.navigationAnimation)
-    implementation(Dependency.Accompanist.insets)
+    implementation(project(ModuleDependency.Feature.Tmdb.api))
 
     implementation(Dependency.Koin.compose)
     implementation(Dependency.Other.mviOrbit)
 
+    implementation(Dependency.Other.coil)
+
+    implementation(Dependency.Accompanist.pager)
+    implementation(Dependency.Accompanist.pager_indicators)
+
     implementation(Dependency.Loggers.prettyLogger)
+
+    implementation(Dependency.Other.klock)
 }

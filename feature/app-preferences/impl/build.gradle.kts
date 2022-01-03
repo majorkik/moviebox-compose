@@ -25,7 +25,7 @@ android {
 }
 
 dependencies {
-    implementation(project(ModuleDependency.Feature.AppPrefenrences.api))
+    implementation(project(ModuleDependency.Feature.AppPreferences.api))
 
     implementation(Dependency.Koin.android)
 
