@@ -19,6 +19,7 @@ object Dependency {
         const val core = "androidx.core:core-ktx:1.7.0"
         const val appcompat = "androidx.appcompat:appcompat:1.4.0"
         const val material = "com.google.android.material:material:1.6.0-alpha01"
+        const val navigationCompose = "androidx.navigation:navigation-compose:2.4.0-rc01"
 
         object Compose {
             private const val version = "1.1.0-rc01"
@@ -78,6 +79,9 @@ object Dependency {
         const val pager = "com.google.accompanist:accompanist-pager:$version"
         const val pager_indicators = "com.google.accompanist:accompanist-pager-indicators:$version"
         const val insets = "com.google.accompanist:accompanist-insets:$version"
+        const val navigationMaterial = "com.google.accompanist:accompanist-navigation-animation:$version"
+        const val navigationAnimation = "com.google.accompanist:accompanist-navigation-animation:$version"
+        const val systemUIController = "com.google.accompanist:accompanist-systemuicontroller:$version"
     }
 
     object Other {

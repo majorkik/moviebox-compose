@@ -6,9 +6,11 @@ object ModuleDependency {
     object UI {
         private const val directory = ":ui"
 
-        const val main = "$directory:main"
-        const val home = "$directory:home"
-        const val movieDetails = "$directory:movie_details"
+        const val movieDetails = "$directory:movie-details"
+
+        const val navHome = "$directory:nav-home"
+        const val navSearch = "$directory:nav-search"
+        const val navProfile = "$directory:nav-profile"
     }
 
     object Feature {
@@ -19,7 +21,7 @@ object ModuleDependency {
             const val impl = "$directory:tmdb:impl"
         }
 
-        object AppPrefenrences {
+        object AppPreferences {
             const val api = "$directory:app-preferences:api"
             const val impl = "$directory:app-preferences:impl"
         }
