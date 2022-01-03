@@ -1,4 +1,4 @@
-package com.majorkik.ui.home.ui
+package com.majorkik.ui.nav.profile.ui
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
@@ -8,7 +8,7 @@ import org.orbitmvi.orbit.Container
 import org.orbitmvi.orbit.ContainerHost
 import org.orbitmvi.orbit.viewmodel.container
 
-internal class HomeViewModel(
+internal class NavProfileViewModel(
     private val appPreferences: MovieBoxPreferences
 ) : ViewModel(), ContainerHost<HomeState, HomeSideEffect> {
     override val container: Container<HomeState, HomeSideEffect> = container(initialState = HomeState())

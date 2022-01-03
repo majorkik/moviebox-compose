@@ -58,7 +58,6 @@ dependencies {
     implementation(project(ModuleDependency.navigation))
 
     implementation(project(ModuleDependency.UI.movieDetails))
-    implementation(project(ModuleDependency.UI.home))
 
     implementation(project(ModuleDependency.UI.navHome))
     implementation(project(ModuleDependency.UI.navSearch))
@@ -93,6 +92,7 @@ dependencies {
     implementation(Dependency.Accompanist.navigationMaterial)
     implementation(Dependency.Accompanist.navigationAnimation)
     implementation(Dependency.Accompanist.insets)
+    implementation(Dependency.Accompanist.systemUIController)
 
     testImplementation(Dependency.Koin.tests)
 }

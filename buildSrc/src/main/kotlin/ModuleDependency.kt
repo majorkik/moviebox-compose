@@ -6,8 +6,6 @@ object ModuleDependency {
     object UI {
         private const val directory = ":ui"
 
-        const val main = "$directory:main"
-        const val home = "$directory:home"
         const val movieDetails = "$directory:movie-details"
 
         const val navHome = "$directory:nav-home"

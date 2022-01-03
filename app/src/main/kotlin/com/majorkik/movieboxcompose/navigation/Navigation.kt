@@ -1,4 +1,4 @@
-package com.majorkik.movieboxcompose
+package com.majorkik.movieboxcompose.navigation
 
 import androidx.compose.animation.ExperimentalAnimationApi
 import androidx.compose.runtime.Composable
@@ -16,9 +16,9 @@ import com.google.accompanist.navigation.animation.composable
 import com.google.accompanist.navigation.animation.navigation
 import com.majorkik.navigation.Screen
 import com.majorkik.navigation.StackScreen
-import com.majorkik.ui.nav.home.NavHomeScreen
-import com.majorkik.ui.nav.profile.NavProfileScreen
-import com.majorkik.ui.nav.search.NavSearchScreen
+import com.majorkik.ui.nav.home.ui.NavHomeScreen
+import com.majorkik.ui.nav.profile.ui.NavProfileScreen
+import com.majorkik.ui.nav.search.ui.NavSearchScreen
 
 @ExperimentalAnimationApi
 @Composable

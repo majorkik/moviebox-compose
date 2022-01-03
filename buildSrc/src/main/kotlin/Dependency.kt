@@ -81,6 +81,7 @@ object Dependency {
         const val insets = "com.google.accompanist:accompanist-insets:$version"
         const val navigationMaterial = "com.google.accompanist:accompanist-navigation-animation:$version"
         const val navigationAnimation = "com.google.accompanist:accompanist-navigation-animation:$version"
+        const val systemUIController = "com.google.accompanist:accompanist-systemuicontroller:$version"
     }
 
     object Other {

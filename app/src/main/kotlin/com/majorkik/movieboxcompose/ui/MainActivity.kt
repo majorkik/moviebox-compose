@@ -5,10 +5,12 @@ import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.compose.foundation.isSystemInDarkTheme
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.SideEffect
 import androidx.compose.runtime.collectAsState
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.core.view.WindowCompat
 import com.google.accompanist.insets.ProvideWindowInsets
+import com.google.accompanist.systemuicontroller.rememberSystemUiController
 import com.majorkik.core.ui.theme.MovieBoxTheme
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
@@ -24,8 +26,13 @@ class MainActivity : ComponentActivity() {
 
         setContent {
             val shouldUseDarkTheme = viewModel.shouldUseDarkTheme.collectAsState(initial = isSystemInDarkTheme())
+            val systemUiController = rememberSystemUiController()
 
             MovieBoxTheme(isDark = shouldUseDarkTheme.value) {
+                val color = MovieBoxTheme.colors.background
+
+                SideEffect { systemUiController.setStatusBarColor(color = color) }
+
                 ProvideWindowInsets {
                     MainContainer()
                 }

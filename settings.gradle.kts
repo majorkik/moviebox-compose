@@ -23,7 +23,6 @@ include(":navigation")
 
 // UI
 include(
-    ":ui:home",
     ":ui:nav-home",
     ":ui:nav-search",
     ":ui:nav-profile",
