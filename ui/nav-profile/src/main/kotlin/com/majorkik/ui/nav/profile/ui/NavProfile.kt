@@ -35,7 +35,7 @@ internal fun NavProfileContent(viewModel: NavProfileViewModel) {
         Row(
             modifier = Modifier
                 .fillMaxWidth()
-                .padding(16.dp),
+                .padding(8.dp),
             horizontalArrangement = Arrangement.End
         ) {
             ThemeButton(

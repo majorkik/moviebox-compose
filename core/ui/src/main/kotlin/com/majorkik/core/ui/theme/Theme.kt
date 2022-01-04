@@ -17,6 +17,7 @@ data class AppColor(
     val primary: Color,
     val primaryLight: Color,
     val secondary: Color,
+    val accent: Color,
     val background: Color,
     val backgroundReverse: Color,
     val secondaryBackground: Color,

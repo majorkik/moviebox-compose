@@ -29,7 +29,6 @@ class MovieBoxApplication : Application() {
             androidContext(this@MovieBoxApplication)
             modules(
                 appModule,
-                uiHomeModule,
                 tmdbImplModule,
                 movieDetailsModule,
                 appPreferencesImplModule,
