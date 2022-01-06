@@ -3,7 +3,6 @@ import com.android.build.gradle.internal.cxx.configure.gradleLocalProperties
 plugins {
     id(Plugin.androidLibrary)
     kotlin(Plugin.android)
-    kotlin(Plugin.kotlinSerialization)
 }
 
 android {
