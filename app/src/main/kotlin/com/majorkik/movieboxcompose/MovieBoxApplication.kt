@@ -4,6 +4,7 @@ import android.app.Application
 import com.majorkik.app.preferences.impl.appPreferencesImplModule
 import com.majorkik.ui.movie.details.movieDetailsModule
 import com.majorkik.tmdb.impl.tmdbImplModule
+import com.majorkik.ui.nav.home.uiNavHome
 import com.majorkik.ui.nav.profile.uiNavProfile
 import com.orhanobut.logger.AndroidLogAdapter
 import com.orhanobut.logger.Logger
@@ -33,6 +34,7 @@ class MovieBoxApplication : Application() {
                 movieDetailsModule,
                 appPreferencesImplModule,
                 uiNavProfile,
+                uiNavHome
             )
         }
     }

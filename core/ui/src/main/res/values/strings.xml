@@ -1,4 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+    <string name="tv">TV</string>
+    <string name="movie">Movie</string>
+    <string name="genres">Genres</string>
+
     <string name="nav_home_screen_login_button">Log in or register</string>
 </resources>

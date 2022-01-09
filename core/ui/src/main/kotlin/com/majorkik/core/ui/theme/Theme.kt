@@ -47,6 +47,8 @@ data class AppTypography(
     val body1: TextStyle = TextStyle(fontFamily = montserratFamily, fontSize = 16.sp, fontWeight = FontWeight.Medium),
     val body2: TextStyle = TextStyle(fontFamily = montserratFamily, fontSize = 14.sp, fontWeight = FontWeight.Normal),
     val smallBold: TextStyle = TextStyle(fontFamily = montserratFamily, fontSize = 12.sp, fontWeight = FontWeight.Bold),
+    val bodySmall: TextStyle = TextStyle(fontFamily = rubikFamily, fontSize = 12.sp, fontWeight = FontWeight.Medium),
+    val titleSmall: TextStyle = TextStyle(fontFamily = rubikFamily, fontSize = 12.sp, fontWeight = FontWeight.Bold),
 )
 
 @Immutable
