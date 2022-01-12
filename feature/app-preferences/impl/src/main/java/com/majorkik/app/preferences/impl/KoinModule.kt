@@ -6,5 +6,5 @@ import org.koin.android.ext.koin.androidContext
 import org.koin.dsl.module
 
 val appPreferencesImplModule = module {
-    single<MovieBoxPreferences> { MovieBoxPreferencesImpl(androidContext().dataStore) }
+    single<MovieBoxPreferences> { MovieBoxPreferencesImpl(dataStore = androidContext().dataStore) }
 }
