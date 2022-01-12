@@ -31,6 +31,8 @@ dependencies {
     implementation(project(ModuleDependency.Core.ui))
     implementation(project(ModuleDependency.Feature.Tmdb.api))
 
+    implementation(Dependency.Coroutines.android)
+
     implementation(Dependency.Koin.compose)
     implementation(Dependency.Other.mviOrbit)
 

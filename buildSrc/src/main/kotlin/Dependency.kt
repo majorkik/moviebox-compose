@@ -3,7 +3,7 @@ object Dependency {
         const val stdlib = "org.jetbrains.kotlin:kotlin-stdlib-jdk8:${Version.kotlin}"
         const val extensions = "org.jetbrains.kotlin:kotlin-android-extensions:${Version.kotlin}"
 
-        const val serialization = "org.jetbrains.kotlinx:kotlinx-serialization-json:1.3.2"
+        const val serializationJson = "org.jetbrains.kotlinx:kotlinx-serialization-json:1.3.2"
     }
 
     object Coroutines {

@@ -1,9 +1,8 @@
 package com.majorkik.ui.nav.home.ui
 
+import android.content.Context
+import android.widget.Toast
 import androidx.annotation.StringRes
-import androidx.compose.foundation.background
-import androidx.compose.foundation.clickable
-import androidx.compose.foundation.interaction.MutableInteractionSource
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.PaddingValues
@@ -13,29 +12,35 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyRow
 import androidx.compose.foundation.lazy.items
-import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.material.Icon
 import androidx.compose.material.IconButton
 import androidx.compose.material.Surface
 import androidx.compose.material.Text
-import androidx.compose.material.ripple.rememberRipple
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.collectAsState
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
-import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.google.accompanist.insets.systemBarsPadding
-import com.majorkik.core.ui.R as CoreRes
+import com.majorkik.core.ui.extension.clickableWithSimpleRipple
+import com.majorkik.core.ui.extension.showToast
 import com.majorkik.core.ui.theme.MovieBoxTheme
 import com.majorkik.tmdb.api.model.Genre
-import com.majorkik.ui.nav.home.component.CustomSwitch
+import com.majorkik.ui.nav.home.component.AppStaticSwitch
+import com.majorkik.ui.nav.home.component.LoginButton
+import com.majorkik.ui.nav.home.component.RoundedButton
+import kotlinx.coroutines.flow.collectLatest
+import kotlinx.coroutines.launch
 import org.koin.androidx.compose.getViewModel
+import com.majorkik.core.ui.R as CoreRes
 
 @Composable
 fun NavHomeScreen() {
@@ -44,7 +49,16 @@ fun NavHomeScreen() {
 
 @Composable
 internal fun NavHomeContent(viewModel: NavHomeViewModelViewModel) {
+    val context = LocalContext.current
     val state = viewModel.container.stateFlow.collectAsState()
+
+    LaunchedEffect(viewModel) {
+        launch {
+            viewModel.container.sideEffectFlow.collectLatest { sideEffect ->
+                handleSideEffect(sideEffect = sideEffect, context = context)
+            }
+        }
+    }
 
     Column(
         modifier = Modifier
@@ -54,10 +68,23 @@ internal fun NavHomeContent(viewModel: NavHomeViewModelViewModel) {
         Toolbar()
 
         GenresBlock(
-            genres = if (state.value.isMovieGenresSelected) state.value.movieGenres else state.value.tvGenres,
-            isMovieGenresSelected = state.value.isMovieGenresSelected
-        ) { isMovieGenresSelected ->
-            viewModel.changeMovieGenres(isMovieGenresSelected)
+            genres = state.value.genres,
+            isMovieGenresSelected = state.value.isMovieGenresSelected,
+            onToggleSwitch = (viewModel::toggleGenresMode),
+            onGenreClick = { genreId ->
+                // Navigate to search with selected genre
+            })
+    }
+}
+
+private fun handleSideEffect(sideEffect: NavHomeViewModelSideEffect, context: Context) {
+    when (sideEffect) {
+        is NavHomeViewModelSideEffect.ShowErrorToast -> {
+            if (sideEffect.message == null) {
+                context.showToast(CoreRes.string.error_something_went_wrong)
+            } else {
+                context.showToast(message = sideEffect.message)
+            }
         }
     }
 }
@@ -71,7 +98,7 @@ internal fun Toolbar() {
         verticalAlignment = Alignment.CenterVertically,
         horizontalArrangement = Arrangement.SpaceBetween
     ) {
-        LoginButton(textResId = CoreRes.string.nav_home_screen_login_button) {}
+        LoginButton {}
 
         IconButton(onClick = {}) {
             Icon(
@@ -85,40 +112,11 @@ internal fun Toolbar() {
 }
 
 @Composable
-internal fun LoginButton(@StringRes textResId: Int, modifier: Modifier = Modifier, onClick: () -> Unit) {
-    Surface(
-        modifier = modifier
-            .clip(RoundedCornerShape(percent = 100))
-            .clickable(
-                interactionSource = MutableInteractionSource(),
-                indication = rememberRipple(),
-                onClick = onClick
-            ),
-        elevation = 0.dp,
-        color = Color.Transparent
-    ) {
-        Row(modifier = Modifier.padding(8.dp), verticalAlignment = Alignment.CenterVertically) {
-            Icon(
-                painter = painterResource(id = CoreRes.drawable.ic_round_arrow_right_black_24),
-                contentDescription = null,
-                tint = MovieBoxTheme.colors.accent
-            )
-
-            Text(
-                stringResource(id = textResId),
-                modifier = Modifier,
-                style = MovieBoxTheme.typography.h4,
-                color = MovieBoxTheme.colors.accent
-            )
-        }
-    }
-}
-
-@Composable
 fun GenresBlock(
     genres: List<Genre>,
     isMovieGenresSelected: Boolean,
-    onGenresModeChanged: (isMovieGenresSelected: Boolean) -> Unit
+    onToggleSwitch: () -> Unit,
+    onGenreClick: (Int) -> Unit
 ) {
     Column {
         Row(
@@ -130,48 +128,11 @@ fun GenresBlock(
         ) {
             Text(
                 text = stringResource(id = CoreRes.string.genres),
-                style = MovieBoxTheme.typography.h4,
+                style = MovieBoxTheme.typography.h3,
                 color = MovieBoxTheme.colors.backgroundReverse
             )
 
-            Row(
-                verticalAlignment = Alignment.CenterVertically,
-                horizontalArrangement = Arrangement.spacedBy(space = 8.dp)
-            ) {
-                Text(
-                    text = stringResource(id = CoreRes.string.movie),
-                    style = MovieBoxTheme.typography.titleSmall,
-                    color = if (isMovieGenresSelected) {
-                        MovieBoxTheme.colors.backgroundReverse
-                    } else {
-                        MovieBoxTheme.colors.secondaryBackground
-                    }
-                )
-
-                CustomSwitch(
-                    checked = isMovieGenresSelected.not(),
-                    trackWidth = 24.dp,
-                    trackHeight = 12.dp,
-                    thumbSize = 8.dp,
-                    gap = 2.dp,
-                    checkedThumbColor = MovieBoxTheme.colors.backgroundReverse,
-                    uncheckedThumbColor = MovieBoxTheme.colors.backgroundReverse,
-                    checkedTrackColor = MovieBoxTheme.colors.secondaryBackground,
-                    uncheckedTrackColor = MovieBoxTheme.colors.secondaryBackground
-                ) { checked ->
-                    onGenresModeChanged(checked.not())
-                }
-
-                Text(
-                    text = stringResource(id = CoreRes.string.tv),
-                    style = MovieBoxTheme.typography.titleSmall,
-                    color = if (isMovieGenresSelected.not()) {
-                        MovieBoxTheme.colors.backgroundReverse
-                    } else {
-                        MovieBoxTheme.colors.secondaryBackground
-                    }
-                )
-            }
+            GenresSwitchBox(isMovieGenresSelected = isMovieGenresSelected, onToggleSwitch = onToggleSwitch)
         }
 
         LazyRow(
@@ -179,30 +140,43 @@ fun GenresBlock(
             horizontalArrangement = Arrangement.spacedBy(8.dp)
         ) {
             items(genres) { genre ->
-                RoundedButton(text = genre.name) {
-
-                }
+                RoundedButton(text = genre.name) { onGenreClick(genre.id) }
             }
         }
     }
 }
 
 @Composable
-fun RoundedButton(text: String, modifier: Modifier = Modifier, onClick: () -> Unit) {
-    Text(
-        text = text, textAlign = TextAlign.Center,
-        modifier = modifier
-            .clip(RoundedCornerShape(percent = 100))
-            .background(MovieBoxTheme.colors.backgroundReverse)
-            .padding(horizontal = 12.dp, vertical = 8.dp)
-            .clickable(
-                interactionSource = MutableInteractionSource(),
-                indication = rememberRipple(),
-                onClick = onClick
-            ),
-        style = MovieBoxTheme.typography.bodySmall,
-        color = MovieBoxTheme.colors.background
-    )
+internal fun GenresSwitchBox(isMovieGenresSelected: Boolean, onToggleSwitch: () -> Unit) {
+    Row(
+        verticalAlignment = Alignment.CenterVertically,
+        horizontalArrangement = Arrangement.spacedBy(space = 8.dp),
+        modifier = Modifier
+            .clip(CircleShape)
+            .clickableWithSimpleRipple(onToggleSwitch)
+    ) {
+        Text(
+            text = stringResource(id = CoreRes.string.movie),
+            style = MovieBoxTheme.typography.titleMedium,
+            color = if (isMovieGenresSelected) {
+                MovieBoxTheme.colors.backgroundReverse
+            } else {
+                MovieBoxTheme.colors.secondaryBackground
+            }
+        )
+
+        AppStaticSwitch(checked = isMovieGenresSelected.not())
+
+        Text(
+            text = stringResource(id = CoreRes.string.tv),
+            style = MovieBoxTheme.typography.titleMedium,
+            color = if (isMovieGenresSelected.not()) {
+                MovieBoxTheme.colors.backgroundReverse
+            } else {
+                MovieBoxTheme.colors.secondaryBackground
+            }
+        )
+    }
 }
 
 @Preview(showBackground = true)
@@ -219,10 +193,10 @@ private fun Preview() {
                     Genre(id = 2, name = "Adventure"),
                     Genre(id = 3, name = "Science Fiction")
                 ),
-                isMovieGenresSelected = true
-            ) {
-
-            }
+                isMovieGenresSelected = true,
+                onToggleSwitch = {},
+                onGenreClick = {}
+            )
         }
     }
 }

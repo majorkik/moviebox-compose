@@ -4,5 +4,7 @@
     <string name="movie">Movie</string>
     <string name="genres">Genres</string>
 
+    <string name="error_something_went_wrong">Something went wrong, try again</string>
+
     <string name="nav_home_screen_login_button">Log in or register</string>
 </resources>

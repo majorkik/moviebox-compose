@@ -1,14 +1,15 @@
 package com.majorkik.tmdb.impl.respone
 
 import com.majorkik.tmdb.api.model.Genre
+import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
 
 @Serializable
 internal data class GenresResponse(
-    val genres: List<GenreResponse>
+    @SerialName("genres") val genres: List<GenreResponse>
 ) {
     @Serializable
-    data class GenreResponse(val id: Int, val name: String)
+    data class GenreResponse(@SerialName("id") val id: Int, @SerialName("name") val name: String)
 }
 
 internal fun GenresResponse.toDomainModel(): List<Genre> {
