@@ -29,10 +29,11 @@ fun AppStaticSwitch(checked: Boolean) {
     val uncheckedTrackColor = MovieBoxTheme.colors.secondaryBackground
 
     val animatePosition = animateFloatAsState(
-        targetValue = if (checked)
+        targetValue = if (checked) {
             with(LocalDensity.current) { (trackWidth - (thumbSize / 2) - gap).toPx() }
-        else
+        }else {
             with(LocalDensity.current) { ((thumbSize / 2) + gap).toPx() }
+        }
     )
 
     Canvas(
