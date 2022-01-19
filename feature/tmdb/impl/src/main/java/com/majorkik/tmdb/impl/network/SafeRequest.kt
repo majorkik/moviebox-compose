@@ -7,6 +7,8 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 import okhttp3.ResponseBody
 import retrofit2.Response
+import kotlin.coroutines.resume
+import kotlin.coroutines.suspendCoroutine
 
 /**
  * Executes the request safely, handling error cases and other possible exceptions
@@ -52,4 +54,11 @@ internal suspend fun <T, M, E> safeRequest(
 } catch (e: Exception) {
     Logger.e(e.localizedMessage ?: "[SafeRequest.Exception] Something went wrong")
     NetworkResult.Exception(e)
+}
+
+@Suppress("BlockingMethodInNonBlockingContext")
+suspend fun ResponseBody.suspendString(): String? {
+    return suspendCoroutine { continuation ->
+        continuation.resume(string())
+    }
 }
