@@ -2,7 +2,7 @@ package com.majorkik.tmdb.impl.network
 
 import com.majorkik.tmdb.impl.respone.GenresResponse
 import com.majorkik.tmdb.impl.respone.MovieDetailsResponse
-import com.majorkik.tmdb.impl.respone.MoviesPagedResponse
+import com.majorkik.tmdb.impl.respone.PagedMoviesResponse
 import retrofit2.Response
 import retrofit2.http.GET
 import retrofit2.http.Path
@@ -25,7 +25,7 @@ internal interface ApiService {
         @Query("page") page: Int,
         @Query("language") language: String = "en",
         @Query("region") region: String? = null
-    ): Response<MoviesPagedResponse>
+    ): Response<PagedMoviesResponse>
 
     /**
      * Genres

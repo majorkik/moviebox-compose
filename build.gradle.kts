@@ -125,6 +125,10 @@ fun Project.configureKtlint() {
     }
 }
 
+tasks.withType<Test> {
+    useJUnitPlatform()
+}
+
 // #Remove if swears when using the 'spotless' plugin
 // tasks.register("clean", Delete::class) {
 //    delete(rootProject.buildDir)

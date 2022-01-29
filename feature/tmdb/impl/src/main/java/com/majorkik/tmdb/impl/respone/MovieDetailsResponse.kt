@@ -108,9 +108,9 @@ internal fun MovieDetailsResponse.toDomainModel() = MovieDetails(
     video = video,
     voteAverage = voteAverage,
     voteCount = voteCount,
-    posterLinks = images.posters.map { image -> "${APIConstants.buildImageUrl()}${image.filePath}" },
+    posterLinks = images.posters.map { image -> APIConstants.buildImageUrl(path = image.filePath) },
     postersCount = images.posters.count(),
-    backdropLinks = images.backdrops.map { image -> "${APIConstants.buildImageUrl()}${image.filePath}" },
+    backdropLinks = images.backdrops.map { image -> APIConstants.buildImageUrl(path = image.filePath) },
     backdropsCount = images.backdrops.count()
 )
 

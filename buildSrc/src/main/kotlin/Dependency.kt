@@ -73,6 +73,12 @@ object Dependency {
         const val tests = "io.insert-koin:koin-test:$version"
     }
 
+    object Tests {
+        object Kotest {
+            const val assertions = "io.kotest:kotest-assertions-core:5.1.0"
+        }
+    }
+
     object Accompanist {
         private const val version = "0.22.0-rc"
 
@@ -87,7 +93,7 @@ object Dependency {
     object Other {
         const val sandwich = "com.github.skydoves:sandwich:1.2.2"
         const val mviOrbit = "org.orbit-mvi:orbit-viewmodel:4.3.0"
-        const val coil = "io.coil-kt:coil-compose:2.0.0-alpha06"
+        const val coil = "io.coil-kt:coil-compose:1.4.0"
         const val klock = "com.soywiz.korlibs.klock:klock:2.4.8"
     }
 }

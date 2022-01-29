@@ -21,6 +21,7 @@ import androidx.compose.runtime.collectAsState
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
+import androidx.compose.ui.draw.clipToBounds
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
@@ -33,6 +34,7 @@ import com.majorkik.core.ui.theme.MovieBoxTheme
 import com.majorkik.tmdb.api.model.Genre
 import com.majorkik.ui.nav.home.component.AppStaticSwitch
 import com.majorkik.ui.nav.home.component.LoginButton
+import com.majorkik.ui.nav.home.component.PopularMovieCard
 import com.majorkik.ui.nav.home.component.RoundedButton
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
@@ -71,6 +73,23 @@ internal fun NavHomeContent(viewModel: NavHomeViewModelViewModel) {
             onGenreClick = { genreId ->
                 // Navigate to search with selected genre
             })
+
+        LazyRow(
+            contentPadding = PaddingValues(horizontal = 16.dp, vertical = 16.dp),
+            horizontalArrangement = Arrangement.spacedBy(8.dp)
+        ) {
+            items(state.value.popularMoviesState.movies) { movie ->
+                PopularMovieCard(
+                    id = movie.id,
+                    name = movie.title,
+                    date = movie.releaseDate,
+                    voteAverage = movie.voteAverage,
+                    backdropPath = movie.backdropPath
+                ) {
+
+                }
+            }
+        }
     }
 }
 
@@ -121,7 +140,7 @@ fun GenresBlock(
             verticalAlignment = Alignment.CenterVertically,
             modifier = Modifier
                 .fillMaxWidth()
-                .padding(horizontal = 24.dp)
+                .padding(start = 24.dp, end = 8.dp)
         ) {
             Text(
                 text = stringResource(id = CoreRes.string.genres),
@@ -151,6 +170,8 @@ internal fun GenresSwitchBox(isMovieGenresSelected: Boolean, onToggleSwitch: () 
         modifier = Modifier
             .clip(CircleShape)
             .clickableWithSimpleRipple(onToggleSwitch)
+            .padding(horizontal = 16.dp, vertical = 8.dp)
+            .clipToBounds()
     ) {
         Text(
             text = stringResource(id = CoreRes.string.movie),

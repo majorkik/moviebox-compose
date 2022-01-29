@@ -8,5 +8,7 @@ object APIConstants {
         Original("original")
     }
 
-    fun buildImageUrl(imageSize: ImageSize = ImageSize.Original) = imageUrl + imageSize.path
+    fun buildImageUrl(path: String?, imageSize: ImageSize = ImageSize.Original): String {
+        return imageUrl + imageSize.path + (path ?: "")
+    }
 }

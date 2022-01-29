@@ -28,7 +28,10 @@ android {
 }
 
 dependencies {
+    api(Dependency.Other.klock)
+
     implementation(Dependency.Loggers.prettyLogger)
 
-    api(Dependency.Other.klock)
+    testImplementation(Dependency.Tests.Kotest.assertions)
+    testImplementation("io.kotest:kotest-runner-junit5:5.1.0")
 }

@@ -1,5 +1,6 @@
 package com.majorkik.tmdb.impl.respone
 
+import com.majorkik.tmdb.api.APIConstants.buildImageUrl
 import com.majorkik.tmdb.api.model.Movie
 import com.majorkik.tmdb.api.model.PagedMovieResult
 import com.majorkik.tmdb.impl.tryParseToDate
@@ -7,7 +8,7 @@ import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
 
 @Serializable
-internal data class MoviesPagedResponse(
+internal data class PagedMoviesResponse(
     @SerialName("page") val page: Int,
     @SerialName("results") val data: List<Movie>,
     @SerialName("total_pages") val totalPages: Int,
@@ -32,24 +33,24 @@ internal data class MoviesPagedResponse(
     )
 }
 
-internal fun MoviesPagedResponse.toDomainModel() = PagedMovieResult(
-    data = data.map { it.toDomainModel() },
+internal fun PagedMoviesResponse.toDomainModel() = PagedMovieResult(
+    movies = data.map { it.toDomainModel() },
     page = page,
     totalPages = totalPages,
     totalItems = totalResults
 )
 
-internal fun MoviesPagedResponse.Movie.toDomainModel() = Movie(
+internal fun PagedMoviesResponse.Movie.toDomainModel() = Movie(
     id = id,
     title = title,
     overview = overview,
     originalLanguage = originalLanguage,
     originalTitle = originalTitle,
     popularity = popularity,
-    posterPath = posterPath,
+    posterPath = buildImageUrl(backdropPath),
     releaseDate = tryParseToDate(date = releaseDate),
     video = video,
-    backdropPath = backdropPath,
+    backdropPath = buildImageUrl(backdropPath),
     voteAverage = voteAverage,
     voteCount = voteCount,
     genreIds = genreIds,
