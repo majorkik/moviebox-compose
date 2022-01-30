@@ -24,7 +24,7 @@ import com.majorkik.core.ui.theme.MovieBoxTheme
 import com.majorkik.tmdb.api.model.Movie
 
 @Composable
-fun PopularMovieCard(
+internal fun PopularMovieCard(
     movie: Movie,
     onClick: (Int) -> Unit
 ) {
@@ -34,16 +34,11 @@ fun PopularMovieCard(
             .clip(RoundedCornerShape(12.dp))
             .clickableWithSimpleRipple { onClick(movie.id) }, contentAlignment = Alignment.BottomStart
     ) {
+        // Image
         Image(
-            painter = rememberImagePainter(
-                data = movie.backdropPath,
-                builder = {
-                    crossfade(true)
-                }
-            ),
+            painter = rememberImagePainter(data = movie.backdropPath, builder = { crossfade(true) }),
             contentDescription = null,
-            modifier = Modifier
-                .fillMaxSize(),
+            modifier = Modifier.fillMaxSize(),
             contentScale = ContentScale.Crop
         )
 
@@ -53,6 +48,7 @@ fun PopularMovieCard(
                 .background(Color.Black.copy(alpha = 0.2f))
         )
 
+        // Rating as a percentage
         Text(
             "${movie.voteAverage.percentOf(from = 10)}%",
             style = MovieBoxTheme.typography.titleSmall,
@@ -65,6 +61,7 @@ fun PopularMovieCard(
                 .padding(vertical = 4.dp, horizontal = 8.dp)
         )
 
+        // Title and year of release
         Column(modifier = Modifier.padding(16.dp)) {
             Text(
                 movie.title,

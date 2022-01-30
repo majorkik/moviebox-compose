@@ -16,7 +16,7 @@ import com.majorkik.core.ui.theme.MovieBoxTheme
 
 
 @Composable
-fun AppStaticSwitch(checked: Boolean) {
+fun GenresSwitch(checked: Boolean) {
     // Sizes
     val trackWidth = 24.dp
     val trackHeight = 12.dp

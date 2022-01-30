@@ -34,29 +34,3 @@ internal fun RoundedButton(text: String, modifier: Modifier = Modifier, onClick:
         color = MovieBoxTheme.colors.background
     )
 }
-
-@Composable
-internal fun LoginButton(modifier: Modifier = Modifier, onClick: () -> Unit) {
-    Surface(
-        modifier = modifier
-            .clip(CircleShape)
-            .clickableWithSimpleRipple(onClick),
-        elevation = 0.dp,
-        color = Color.Transparent
-    ) {
-        Row(modifier = Modifier.padding(8.dp), verticalAlignment = Alignment.CenterVertically) {
-            Icon(
-                painter = painterResource(id = R.drawable.ic_round_arrow_right_black_24),
-                contentDescription = null,
-                tint = MovieBoxTheme.colors.accent
-            )
-
-            Text(
-                stringResource(id = R.string.nav_home_screen_login_button),
-                modifier = Modifier,
-                style = MovieBoxTheme.typography.h4,
-                color = MovieBoxTheme.colors.accent
-            )
-        }
-    }
-}

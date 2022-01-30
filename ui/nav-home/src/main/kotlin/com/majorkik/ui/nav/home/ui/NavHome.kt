@@ -11,8 +11,6 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyRow
 import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.shape.CircleShape
-import androidx.compose.material.Icon
-import androidx.compose.material.IconButton
 import androidx.compose.material.Surface
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
@@ -23,7 +21,6 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.draw.clipToBounds
 import androidx.compose.ui.platform.LocalContext
-import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
@@ -32,10 +29,11 @@ import com.majorkik.core.ui.extension.clickableWithSimpleRipple
 import com.majorkik.core.ui.extension.showToast
 import com.majorkik.core.ui.theme.MovieBoxTheme
 import com.majorkik.tmdb.api.model.Genre
-import com.majorkik.ui.nav.home.component.AppStaticSwitch
-import com.majorkik.ui.nav.home.component.LoginButton
+import com.majorkik.tmdb.api.model.Movie
+import com.majorkik.ui.nav.home.component.GenresSwitch
 import com.majorkik.ui.nav.home.component.PopularMovieCard
 import com.majorkik.ui.nav.home.component.RoundedButton
+import com.majorkik.ui.nav.home.component.Toolbar
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
 import org.koin.androidx.compose.getViewModel
@@ -64,7 +62,7 @@ internal fun NavHomeContent(viewModel: NavHomeViewModelViewModel) {
             .fillMaxSize()
             .systemBarsPadding()
     ) {
-        Toolbar()
+        Toolbar(onLoginClick = {}, onOpenSettings = {})
 
         GenresBlock(
             genres = state.value.genres,
@@ -74,53 +72,13 @@ internal fun NavHomeContent(viewModel: NavHomeViewModelViewModel) {
                 // Navigate to search with selected genre
             })
 
-        LazyRow(
-            contentPadding = PaddingValues(horizontal = 16.dp, vertical = 16.dp),
-            horizontalArrangement = Arrangement.spacedBy(8.dp)
-        ) {
-            items(state.value.popularMoviesState.movies) { movie ->
-                PopularMovieCard(movie) {
+        PopularMoviesBlock(movies = state.value.popularMoviesState.movies) {
 
-                }
-            }
         }
     }
 }
 
-private fun handleSideEffect(sideEffect: NavHomeViewModelSideEffect, context: Context) {
-    when (sideEffect) {
-        is NavHomeViewModelSideEffect.ShowErrorToast -> {
-            if (sideEffect.message == null) {
-                context.showToast(CoreRes.string.error_something_went_wrong)
-            } else {
-                context.showToast(message = sideEffect.message)
-            }
-        }
-    }
-}
-
-@Composable
-internal fun Toolbar() {
-    Row(
-        modifier = Modifier
-            .fillMaxWidth()
-            .padding(8.dp),
-        verticalAlignment = Alignment.CenterVertically,
-        horizontalArrangement = Arrangement.SpaceBetween
-    ) {
-        LoginButton {}
-
-        IconButton(onClick = {}) {
-            Icon(
-                painter = painterResource(id = CoreRes.drawable.ic_nut_bolt_black_24),
-                contentDescription = null,
-                tint = MovieBoxTheme.colors.backgroundReverse
-            )
-        }
-    }
-
-}
-
+// Genres
 @Composable
 fun GenresBlock(
     genres: List<Genre>,
@@ -177,7 +135,7 @@ internal fun GenresSwitchBox(isMovieGenresSelected: Boolean, onToggleSwitch: () 
             }
         )
 
-        AppStaticSwitch(checked = isMovieGenresSelected.not())
+        GenresSwitch(checked = isMovieGenresSelected.not())
 
         Text(
             text = stringResource(id = CoreRes.string.tv),
@@ -188,6 +146,45 @@ internal fun GenresSwitchBox(isMovieGenresSelected: Boolean, onToggleSwitch: () 
                 MovieBoxTheme.colors.secondaryBackground
             }
         )
+    }
+}
+
+
+//Popular Movies
+@Composable
+internal fun PopularMoviesBlock(movies: List<Movie>, onClick: (Int) -> Unit) {
+    Column {
+        Text(
+            text = stringResource(id = CoreRes.string.popular_movies),
+            style = MovieBoxTheme.typography.h3,
+            color = MovieBoxTheme.colors.backgroundReverse,
+            maxLines = 1,
+            modifier = Modifier
+                .fillMaxWidth()
+                .padding(horizontal = 24.dp)
+        )
+
+        LazyRow(
+            contentPadding = PaddingValues(horizontal = 16.dp, vertical = 16.dp),
+            horizontalArrangement = Arrangement.spacedBy(8.dp)
+        ) {
+            items(movies) { movie ->
+                PopularMovieCard(movie = movie, onClick = onClick)
+            }
+        }
+    }
+}
+
+// Side effects
+private fun handleSideEffect(sideEffect: NavHomeViewModelSideEffect, context: Context) {
+    when (sideEffect) {
+        is NavHomeViewModelSideEffect.ShowErrorToast -> {
+            if (sideEffect.message == null) {
+                context.showToast(CoreRes.string.error_something_went_wrong)
+            } else {
+                context.showToast(message = sideEffect.message)
+            }
+        }
     }
 }
 

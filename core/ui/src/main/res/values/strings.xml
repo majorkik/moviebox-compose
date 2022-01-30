@@ -3,6 +3,7 @@
     <string name="tv">TV</string>
     <string name="movie">Movie</string>
     <string name="genres">Genres</string>
+    <string name="popular_movies">Popular movies</string>
 
     <string name="error_something_went_wrong">Something went wrong, try again</string>
 
