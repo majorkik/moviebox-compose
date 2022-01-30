@@ -2,6 +2,7 @@ object Dependency {
     object Kotlin {
         const val stdlib = "org.jetbrains.kotlin:kotlin-stdlib-jdk8:${Version.kotlin}"
         const val extensions = "org.jetbrains.kotlin:kotlin-android-extensions:${Version.kotlin}"
+        const val reflect = "org.jetbrains.kotlin:kotlin-reflect:${Version.kotlin}"
 
         const val serializationJson = "org.jetbrains.kotlinx:kotlinx-serialization-json:1.3.2"
     }
@@ -75,7 +76,10 @@ object Dependency {
 
     object Tests {
         object Kotest {
-            const val assertions = "io.kotest:kotest-assertions-core:5.1.0"
+            private const val version = "5.1.0"
+
+            const val assertions = "io.kotest:kotest-assertions-core:$version"
+            const val junitRunner = "io.kotest:kotest-runner-junit5:$version"
         }
     }
 

@@ -9,7 +9,6 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
-import androidx.compose.material.Surface
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
@@ -17,37 +16,27 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
-import androidx.compose.ui.layout.Layout
-import androidx.compose.ui.res.colorResource
-import androidx.compose.ui.text.SpanStyle
-import androidx.compose.ui.text.buildAnnotatedString
-import androidx.compose.ui.text.withStyle
 import androidx.compose.ui.unit.dp
 import coil.compose.rememberImagePainter
+import com.majorkik.common.percentOf
 import com.majorkik.core.ui.extension.clickableWithSimpleRipple
 import com.majorkik.core.ui.theme.MovieBoxTheme
 import com.majorkik.tmdb.api.model.Movie
-import com.soywiz.klock.Date
-import kotlin.math.roundToInt
 
 @Composable
 fun PopularMovieCard(
-    id: Int,
-    name: String,
-    date: Date?,
-    voteAverage: Double,
-    backdropPath: String?,
+    movie: Movie,
     onClick: (Int) -> Unit
 ) {
     Box(
         modifier = Modifier
             .size(width = 300.dp, height = 150.dp)
             .clip(RoundedCornerShape(12.dp))
-            .clickableWithSimpleRipple { onClick(id) }, contentAlignment = Alignment.BottomStart
+            .clickableWithSimpleRipple { onClick(movie.id) }, contentAlignment = Alignment.BottomStart
     ) {
         Image(
             painter = rememberImagePainter(
-                data = backdropPath,
+                data = movie.backdropPath,
                 builder = {
                     crossfade(true)
                 }
@@ -65,7 +54,7 @@ fun PopularMovieCard(
         )
 
         Text(
-            "${(voteAverage * 10).roundToInt()}%",
+            "${movie.voteAverage.percentOf(from = 10)}%",
             style = MovieBoxTheme.typography.titleSmall,
             color = MovieBoxTheme.colors.text.white,
             modifier = Modifier
@@ -78,15 +67,15 @@ fun PopularMovieCard(
 
         Column(modifier = Modifier.padding(16.dp)) {
             Text(
-                name,
+                movie.title,
                 style = MovieBoxTheme.typography.h4,
                 color = MovieBoxTheme.colors.text.white,
                 maxLines = 1
             )
 
-            if (date != null) {
+            if (movie.releaseDate != null) {
                 Text(
-                    date.year.toString(),
+                    movie.releaseDate!!.year.toString(),
                     style = MovieBoxTheme.typography.titleMedium,
                     color = MovieBoxTheme.colors.text.white
                 )

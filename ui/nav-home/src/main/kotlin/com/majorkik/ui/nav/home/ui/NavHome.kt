@@ -79,13 +79,7 @@ internal fun NavHomeContent(viewModel: NavHomeViewModelViewModel) {
             horizontalArrangement = Arrangement.spacedBy(8.dp)
         ) {
             items(state.value.popularMoviesState.movies) { movie ->
-                PopularMovieCard(
-                    id = movie.id,
-                    name = movie.title,
-                    date = movie.releaseDate,
-                    voteAverage = movie.voteAverage,
-                    backdropPath = movie.backdropPath
-                ) {
+                PopularMovieCard(movie) {
 
                 }
             }

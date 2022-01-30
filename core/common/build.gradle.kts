@@ -32,6 +32,12 @@ dependencies {
 
     implementation(Dependency.Loggers.prettyLogger)
 
+    testImplementation(Dependency.Kotlin.reflect)
+
     testImplementation(Dependency.Tests.Kotest.assertions)
-    testImplementation("io.kotest:kotest-runner-junit5:5.1.0")
+    testImplementation(Dependency.Tests.Kotest.junitRunner)
+}
+
+tasks.withType<Test> {
+    useJUnitPlatform()
 }

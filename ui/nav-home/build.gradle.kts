@@ -28,6 +28,7 @@ android {
 }
 
 dependencies {
+    implementation(project(ModuleDependency.Core.common))
     implementation(project(ModuleDependency.Core.ui))
     implementation(project(ModuleDependency.Feature.Tmdb.api))
 
