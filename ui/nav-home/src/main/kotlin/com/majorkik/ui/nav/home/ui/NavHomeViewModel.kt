@@ -59,7 +59,7 @@ internal class NavHomeViewModelViewModel(
         }
     }
 
-    private fun fetchPopularMovies() = intent {
+    fun fetchPopularMovies() = intent {
         val currentPage: Int = state.popularMoviesState.currentPage
         val totalPages: Int? = state.popularMoviesState.totalPages
 
@@ -69,10 +69,12 @@ internal class NavHomeViewModelViewModel(
 
         when (val result = moviesRepository.getPopularMovies(nextPage)) {
             is NetworkResult.Success -> reduce {
+                val moviesState = state.popularMoviesState
+
                 state.copy(
-                    popularMoviesState = state.popularMoviesState.copy(
+                    popularMoviesState = moviesState.copy(
                         currentPage = result.data.page,
-                        movies = result.data.movies,
+                        movies = moviesState.movies + result.data.movies,
                         totalPages = result.data.totalPages
                     )
                 )

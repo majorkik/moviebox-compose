@@ -45,6 +45,7 @@ internal fun createRetrofit(okHttpClient: OkHttpClient): Retrofit {
     val mediaType = "application/json".toMediaType()
 
     val json = Json {
+        explicitNulls = false
         ignoreUnknownKeys = true
         isLenient = true
     }

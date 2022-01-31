@@ -8,8 +8,10 @@ import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.lazy.LazyListState
 import androidx.compose.foundation.lazy.LazyRow
 import androidx.compose.foundation.lazy.items
+import androidx.compose.foundation.lazy.rememberLazyListState
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.material.Surface
 import androidx.compose.material.Text
@@ -25,6 +27,7 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.google.accompanist.insets.systemBarsPadding
+import com.majorkik.core.ui.components.InfiniteListHandler
 import com.majorkik.core.ui.extension.clickableWithSimpleRipple
 import com.majorkik.core.ui.extension.showToast
 import com.majorkik.core.ui.theme.MovieBoxTheme
@@ -48,6 +51,7 @@ fun NavHomeScreen() {
 internal fun NavHomeContent(viewModel: NavHomeViewModelViewModel) {
     val context = LocalContext.current
     val state = viewModel.container.stateFlow.collectAsState()
+    val popularMoviesListState: LazyListState = rememberLazyListState()
 
     LaunchedEffect(viewModel) {
         launch {
@@ -72,9 +76,14 @@ internal fun NavHomeContent(viewModel: NavHomeViewModelViewModel) {
                 // Navigate to search with selected genre
             })
 
-        PopularMoviesBlock(movies = state.value.popularMoviesState.movies) {
+        PopularMoviesBlock(
+            listState = popularMoviesListState,
+            movies = state.value.popularMoviesState.movies,
+            onClick = {
 
-        }
+            }, onLoadMore = {
+                viewModel.fetchPopularMovies()
+            })
     }
 }
 
@@ -152,7 +161,12 @@ internal fun GenresSwitchBox(isMovieGenresSelected: Boolean, onToggleSwitch: () 
 
 //Popular Movies
 @Composable
-internal fun PopularMoviesBlock(movies: List<Movie>, onClick: (Int) -> Unit) {
+internal fun PopularMoviesBlock(
+    listState: LazyListState,
+    movies: List<Movie>,
+    onClick: (Int) -> Unit,
+    onLoadMore: () -> Unit
+) {
     Column {
         Text(
             text = stringResource(id = CoreRes.string.popular_movies),
@@ -165,6 +179,7 @@ internal fun PopularMoviesBlock(movies: List<Movie>, onClick: (Int) -> Unit) {
         )
 
         LazyRow(
+            state = listState,
             contentPadding = PaddingValues(horizontal = 16.dp, vertical = 16.dp),
             horizontalArrangement = Arrangement.spacedBy(8.dp)
         ) {
@@ -172,6 +187,8 @@ internal fun PopularMoviesBlock(movies: List<Movie>, onClick: (Int) -> Unit) {
                 PopularMovieCard(movie = movie, onClick = onClick)
             }
         }
+
+        InfiniteListHandler(listState = listState, buffer = 5, onLoadMore = onLoadMore)
     }
 }
 
