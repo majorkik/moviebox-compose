@@ -72,7 +72,7 @@ internal fun NavHomeContent(viewModel: NavHomeViewModelViewModel) {
             genres = state.value.genres,
             isMovieGenresSelected = state.value.isMovieGenresSelected,
             onToggleSwitch = (viewModel::toggleGenresMode),
-            onGenreClick = { genreId ->
+            onGenreClick = {
                 // Navigate to search with selected genre
             })
 
