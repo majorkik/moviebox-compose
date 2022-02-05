@@ -33,10 +33,12 @@ import com.majorkik.core.ui.extension.showToast
 import com.majorkik.core.ui.theme.MovieBoxTheme
 import com.majorkik.tmdb.api.model.Genre
 import com.majorkik.tmdb.api.model.Movie
+import com.majorkik.tmdb.api.model.TV
 import com.majorkik.ui.nav.home.component.GenresSwitch
 import com.majorkik.ui.nav.home.component.PopularMovieCard
 import com.majorkik.ui.nav.home.component.RoundedButton
 import com.majorkik.ui.nav.home.component.Toolbar
+import com.majorkik.ui.nav.home.component.VerticalMovieCard
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
 import org.koin.androidx.compose.getViewModel
@@ -52,6 +54,7 @@ internal fun NavHomeContent(viewModel: NavHomeViewModelViewModel) {
     val context = LocalContext.current
     val state = viewModel.container.stateFlow.collectAsState()
     val popularMoviesListState: LazyListState = rememberLazyListState()
+    val trendingTVsListState: LazyListState = rememberLazyListState()
 
     LaunchedEffect(viewModel) {
         launch {
@@ -83,6 +86,15 @@ internal fun NavHomeContent(viewModel: NavHomeViewModelViewModel) {
 
             }, onLoadMore = {
                 viewModel.fetchPopularMovies()
+            })
+
+        TrendingTVsBlock(
+            listState = trendingTVsListState,
+            tvs = state.value.trendingTVsState.tvs,
+            onClick = {
+
+            }, onLoadMore = {
+                viewModel.fetchTrendingTVs()
             })
     }
 }
@@ -185,6 +197,45 @@ internal fun PopularMoviesBlock(
         ) {
             items(movies) { movie ->
                 PopularMovieCard(movie = movie, onClick = onClick)
+            }
+        }
+
+        InfiniteListHandler(listState = listState, buffer = 5, onLoadMore = onLoadMore)
+    }
+}
+
+//Popular Movies
+@Composable
+internal fun TrendingTVsBlock(
+    listState: LazyListState,
+    tvs: List<TV>,
+    onClick: (Int) -> Unit,
+    onLoadMore: () -> Unit
+) {
+    Column {
+        Text(
+            text = stringResource(id = CoreRes.string.trending_tv_shows),
+            style = MovieBoxTheme.typography.h3,
+            color = MovieBoxTheme.colors.backgroundReverse,
+            maxLines = 1,
+            modifier = Modifier
+                .fillMaxWidth()
+                .padding(horizontal = 24.dp)
+        )
+
+        LazyRow(
+            state = listState,
+            contentPadding = PaddingValues(horizontal = 16.dp, vertical = 16.dp),
+            horizontalArrangement = Arrangement.spacedBy(8.dp)
+        ) {
+            items(tvs) { tv ->
+                VerticalMovieCard(
+                    posterPath = tv.posterPath,
+                    title = tv.title,
+                    voteAverage = tv.voteAverage,
+                    releaseDate = tv.releaseDate,
+                    onClick = { onClick(tv.id) }
+                )
             }
         }
 

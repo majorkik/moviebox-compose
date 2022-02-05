@@ -2,9 +2,12 @@ package com.majorkik.tmdb.impl.respone
 
 import com.majorkik.tmdb.api.model.PagedTVsResult
 import com.majorkik.tmdb.api.model.TV
+import com.majorkik.tmdb.api.model.toBackdropPath
+import com.majorkik.tmdb.api.model.toPosterPath
 import com.majorkik.tmdb.impl.tryParseToDate
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
+import kotlinx.serialization.json.JsonNames
 
 @Serializable
 data class PagedTVsResponse(
@@ -15,50 +18,45 @@ data class PagedTVsResponse(
 ) {
     @Serializable
     data class TV(
-        @SerialName("adult") val adult: Boolean,
+        @SerialName("adult") val adult: Boolean?,
         @SerialName("backdrop_path") val backdropPath: String?,
-        @SerialName("first_air_date") val firstAirDate: String,
+        @JsonNames("first_air_date", "release_date") val releaseDate: String?,
         @SerialName("genre_ids") val genreIds: List<Int>,
         @SerialName("id") val id: Int,
-        @SerialName("name") val name: String,
+        @JsonNames("name", "title") val title: String,
         @SerialName("origin_country") val originCountry: List<String>,
         @SerialName("original_language") val originalLanguage: String,
-        @SerialName("original_name") val originalName: String?,
-        @SerialName("original_title") val originalTitle: String?,
+        @JsonNames("original_title", "original_name") val originalTitle: String?,
         @SerialName("overview") val overview: String,
         @SerialName("popularity") val popularity: Double,
         @SerialName("poster_path") val posterPath: String?,
-        @SerialName("release_date") val releaseDate: String,
-        @SerialName("title") val title: String,
-        @SerialName("video") val video: Boolean,
+        @SerialName("video") val video: Boolean?,
         @SerialName("vote_average") val voteAverage: Double,
         @SerialName("vote_count") val voteCount: Int
     )
 }
 
 internal fun PagedTVsResponse.toDomainModel() = PagedTVsResult(
-    movies = data.map { it.toDomainModel() },
+    tvs = data.map { it.toDomainModel() },
     page = page,
     totalPages = totalPages,
     totalItems = totalResults
 )
 
 internal fun PagedTVsResponse.TV.toDomainModel() = TV(
-    adult = adult,
-    backdropPath = backdropPath,
-    firstAirDate = tryParseToDate(date = firstAirDate),
+    adult = adult ?: false,
+    backdropPath = backdropPath?.toBackdropPath(),
     genreIds = genreIds,
     id = id,
-    name = name,
     originCountry = originCountry,
     originalLanguage = originalLanguage,
-    originalTitle = originalTitle ?: originalName ?: name,
+    originalTitle = originalTitle ?: title,
     overview = overview,
     popularity = popularity,
-    posterPath = posterPath,
-    releaseDate = tryParseToDate(date = releaseDate),
+    posterPath = posterPath?.toPosterPath(),
+    releaseDate = releaseDate?.let(::tryParseToDate),
     title = title,
-    video = video,
+    video = video ?: false,
     voteAverage = voteAverage,
     voteCount = voteCount
 )

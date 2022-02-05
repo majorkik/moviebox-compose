@@ -1,8 +1,9 @@
 package com.majorkik.tmdb.impl.respone
 
-import com.majorkik.tmdb.api.APIConstants.buildImageUrl
 import com.majorkik.tmdb.api.model.Movie
 import com.majorkik.tmdb.api.model.PagedMovieResult
+import com.majorkik.tmdb.api.model.toBackdropPath
+import com.majorkik.tmdb.api.model.toPosterPath
 import com.majorkik.tmdb.impl.tryParseToDate
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
@@ -47,10 +48,10 @@ internal fun PagedMoviesResponse.Movie.toDomainModel() = Movie(
     originalLanguage = originalLanguage,
     originalTitle = originalTitle,
     popularity = popularity,
-    posterPath = buildImageUrl(backdropPath),
+    posterPath = backdropPath?.toPosterPath(),
     releaseDate = releaseDate?.let { date -> tryParseToDate(date = date) },
     video = video,
-    backdropPath = buildImageUrl(backdropPath),
+    backdropPath = backdropPath?.toBackdropPath(),
     voteAverage = voteAverage,
     voteCount = voteCount,
     genreIds = genreIds,

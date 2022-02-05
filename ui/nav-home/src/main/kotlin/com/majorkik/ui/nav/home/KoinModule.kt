@@ -5,5 +5,11 @@ import org.koin.androidx.viewmodel.dsl.viewModel
 import org.koin.dsl.module
 
 val uiNavHome = module {
-    viewModel { NavHomeViewModelViewModel(genresRepository = get(), moviesRepository = get()) }
+    viewModel {
+        NavHomeViewModelViewModel(
+            genresRepository = get(),
+            moviesRepository = get(),
+            tvsRepository = get()
+        )
+    }
 }

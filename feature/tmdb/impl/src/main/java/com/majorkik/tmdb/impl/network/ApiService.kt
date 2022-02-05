@@ -33,7 +33,7 @@ internal interface ApiService {
      */
 
     @GET("trending/tv/week")
-    suspend fun getTrendingTVs(): Response<PagedTVsResponse>
+    suspend fun getTrendingTVs(@Query("page") page: Int): Response<PagedTVsResponse>
 
     /**
      * Genres

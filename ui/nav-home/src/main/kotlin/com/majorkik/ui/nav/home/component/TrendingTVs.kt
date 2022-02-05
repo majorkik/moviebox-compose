@@ -25,11 +25,12 @@ import coil.compose.rememberImagePainter
 import com.majorkik.common.percentOf
 import com.majorkik.core.ui.extension.clickableWithSimpleRipple
 import com.majorkik.core.ui.theme.MovieBoxTheme
+import com.majorkik.tmdb.api.model.PosterPath
 import com.soywiz.klock.Date
 
 @Composable
 fun VerticalMovieCard(
-    posterPath: String?,
+    posterPath: PosterPath?,
     title: String,
     voteAverage: Double,
     releaseDate: Date?,
@@ -45,7 +46,10 @@ fun VerticalMovieCard(
                 .clickableWithSimpleRipple(onClick),
         ) {
             Image(
-                painter = rememberImagePainter(data = posterPath, builder = { crossfade(true) }),
+                painter = rememberImagePainter(
+                    data = posterPath?.build(size = PosterPath.Size.Width342),
+                    builder = { crossfade(true) }
+                ),
                 contentDescription = null,
                 modifier = Modifier.fillMaxSize(),
                 contentScale = ContentScale.Crop
@@ -71,7 +75,7 @@ fun VerticalMovieCard(
         Text(
             text = title,
             style = MovieBoxTheme.typography.h4,
-            color = MovieBoxTheme.colors.text.white,
+            color = MovieBoxTheme.colors.text.primary,
             maxLines = 1,
             overflow = TextOverflow.Ellipsis,
         )

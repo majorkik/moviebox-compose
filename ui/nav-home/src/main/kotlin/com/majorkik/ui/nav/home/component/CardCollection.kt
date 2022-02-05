@@ -21,6 +21,7 @@ import coil.compose.rememberImagePainter
 import com.majorkik.common.percentOf
 import com.majorkik.core.ui.extension.clickableWithSimpleRipple
 import com.majorkik.core.ui.theme.MovieBoxTheme
+import com.majorkik.tmdb.api.model.BackdropPath
 import com.majorkik.tmdb.api.model.Movie
 
 @Composable
@@ -36,7 +37,9 @@ internal fun PopularMovieCard(
     ) {
         // Image
         Image(
-            painter = rememberImagePainter(data = movie.backdropPath, builder = { crossfade(true) }),
+            painter = rememberImagePainter(
+                data = movie.backdropPath?.build(size = BackdropPath.Size.Width300),
+                builder = { crossfade(true) }),
             contentDescription = null,
             modifier = Modifier.fillMaxSize(),
             contentScale = ContentScale.Crop

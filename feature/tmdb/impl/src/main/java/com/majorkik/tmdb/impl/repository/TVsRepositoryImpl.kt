@@ -11,7 +11,7 @@ import com.majorkik.tmdb.impl.respone.toDomainModel
 internal class TVsRepositoryImpl(private val api: ApiService) : TVsRepository {
     override suspend fun getTrendingTVs(page: Int): NetworkResult<PagedTVsResult, String> {
         return safeRequest(
-            call = { api.getTrendingTVs() },
+            call = { api.getTrendingTVs(page = page) },
             onSuccess = { it?.toDomainModel() },
             onError = { it?.suspendString() ?: "Error when getting a list of trending TV shows" }
         )
