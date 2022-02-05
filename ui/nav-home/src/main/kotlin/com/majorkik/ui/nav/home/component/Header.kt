@@ -15,7 +15,7 @@ fun Header(@StringRes titleResId: Int) {
     Text(
         text = stringResource(id = titleResId),
         style = MovieBoxTheme.typography.h3,
-        color = MovieBoxTheme.colors.backgroundReverse,
+        color = MovieBoxTheme.colors.text.primary,
         maxLines = 1,
         modifier = Modifier
             .fillMaxWidth()

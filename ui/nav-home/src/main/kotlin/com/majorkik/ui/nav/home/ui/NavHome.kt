@@ -1,8 +1,6 @@
 package com.majorkik.ui.nav.home.ui
 
 import android.content.Context
-import androidx.compose.foundation.gestures.Orientation
-import androidx.compose.foundation.gestures.scrollable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.PaddingValues
@@ -10,7 +8,6 @@ import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.lazy.LazyListState
 import androidx.compose.foundation.lazy.LazyRow
 import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.lazy.rememberLazyListState
@@ -30,7 +27,6 @@ import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import com.google.accompanist.insets.systemBarsPadding
 import com.majorkik.core.ui.components.InfiniteListHandler
 import com.majorkik.core.ui.extension.clickableWithSimpleRipple
 import com.majorkik.core.ui.extension.showToast
@@ -71,33 +67,34 @@ internal fun NavHomeContent(viewModel: NavHomeViewModelViewModel) {
         modifier = Modifier
             .verticalScroll(state = scrollState)
             .fillMaxSize()
-            .systemBarsPadding()
     ) {
         Toolbar(onLoginClick = {}, onOpenSettings = {})
 
-        GenresBlock(
-            genres = state.value.genres,
-            isMovieGenresSelected = state.value.isMovieGenresSelected,
-            onToggleSwitch = (viewModel::toggleGenresMode),
-            onGenreClick = {
-                // Navigate to search with selected genre
+        Column(verticalArrangement = Arrangement.spacedBy(16.dp)) {
+            GenresBlock(
+                genres = state.value.genres,
+                isMovieGenresSelected = state.value.isMovieGenresSelected,
+                onToggleSwitch = (viewModel::toggleGenresMode),
+                onGenreClick = {
+                    // Navigate to search with selected genre
+                })
+
+            TrendingTVs(tvs = state.value.trendingTVsState.tvs, onItemClick = {}, onLoadMore = {
+                viewModel.fetchTrendingTVs()
             })
 
-        TrendingTVs(tvs = state.value.trendingTVsState.tvs, onItemClick = {}, onLoadMore = {
-            viewModel.fetchTrendingTVs()
-        })
+            PopularTVs(tvs = state.value.popularTVsState.tvs, onItemClick = {}, onLoadMore = {
+                viewModel.fetchPopularTVs()
+            })
 
-        PopularTVs(tvs = state.value.popularTVsState.tvs, onItemClick = {}, onLoadMore = {
-            viewModel.fetchPopularTVs()
-        })
+            TrendingMovies(movies = state.value.trendingMoviesState.movies, onItemClick = {}, onLoadMore = {
+                viewModel.fetchTrendingMovies()
+            })
 
-        TrendingMovies(movies = state.value.trendingMoviesState.movies, onItemClick = {}, onLoadMore = {
-            viewModel.fetchTrendingMovies()
-        })
-
-        PopularMovies(movies = state.value.popularMoviesState.movies, onItemClick = {}, onLoadMore = {
-            viewModel.fetchPopularMovies()
-        })
+            PopularMovies(movies = state.value.popularMoviesState.movies, onItemClick = {}, onLoadMore = {
+                viewModel.fetchPopularMovies()
+            })
+        }
     }
 }
 
