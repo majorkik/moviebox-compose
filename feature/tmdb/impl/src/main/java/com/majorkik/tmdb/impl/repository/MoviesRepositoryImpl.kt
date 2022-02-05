@@ -13,6 +13,14 @@ internal class MoviesRepositoryImpl(private val api: ApiService) : MoviesReposit
         return safeRequest(
             call = { api.getPopularMovies(page = page) },
             onSuccess = { it?.toDomainModel() },
+            onError = { it?.suspendString() ?: "Error when getting a list of popular movies" }
+        )
+    }
+
+    override suspend fun getTrendingMovies(page: Int): NetworkResult<PagedMovieResult, String> {
+        return safeRequest(
+            call = { api.getTrendingMovies(page = page) },
+            onSuccess = { it?.toDomainModel() },
             onError = { it?.suspendString() ?: "Error when getting a list of trending movies" }
         )
     }

@@ -28,9 +28,18 @@ internal interface ApiService {
         @Query("region") region: String? = null
     ): Response<PagedMoviesResponse>
 
+    @GET("trending/movie/week")
+    suspend fun getTrendingMovies(@Query("page") page: Int): Response<PagedMoviesResponse>
+
     /**
      * TVs
      */
+
+    @GET("movie/popular")
+    suspend fun getPopularTVs(
+        @Query("page") page: Int,
+        @Query("language") language: String = "en"
+    ): Response<PagedTVsResponse>
 
     @GET("trending/tv/week")
     suspend fun getTrendingTVs(@Query("page") page: Int): Response<PagedTVsResponse>

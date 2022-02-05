@@ -9,6 +9,14 @@ import com.majorkik.tmdb.impl.network.suspendString
 import com.majorkik.tmdb.impl.respone.toDomainModel
 
 internal class TVsRepositoryImpl(private val api: ApiService) : TVsRepository {
+    override suspend fun getPopularTVs(page: Int): NetworkResult<PagedTVsResult, String> {
+        return safeRequest(
+            call = { api.getPopularTVs(page = page) },
+            onSuccess = { it?.toDomainModel() },
+            onError = { it?.suspendString() ?: "Error when getting a list of popular TV shows" }
+        )
+    }
+
     override suspend fun getTrendingTVs(page: Int): NetworkResult<PagedTVsResult, String> {
         return safeRequest(
             call = { api.getTrendingTVs(page = page) },
