@@ -4,5 +4,5 @@ import com.majorkik.tmdb.api.model.PagedMovieResult
 import com.majorkik.tmdb.api.network.NetworkResult
 
 interface MoviesRepository {
-    suspend fun getPopularMovies(page: Int): NetworkResult<PagedMovieResult, String?>
+    suspend fun getPopularMovies(page: Int): NetworkResult<PagedMovieResult, String>
 }

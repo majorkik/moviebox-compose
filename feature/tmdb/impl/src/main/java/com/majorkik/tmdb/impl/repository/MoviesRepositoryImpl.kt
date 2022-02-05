@@ -9,11 +9,11 @@ import com.majorkik.tmdb.impl.network.suspendString
 import com.majorkik.tmdb.impl.respone.toDomainModel
 
 internal class MoviesRepositoryImpl(private val api: ApiService) : MoviesRepository {
-    override suspend fun getPopularMovies(page: Int): NetworkResult<PagedMovieResult, String?> {
+    override suspend fun getPopularMovies(page: Int): NetworkResult<PagedMovieResult, String> {
         return safeRequest(
             call = { api.getPopularMovies(page = page) },
             onSuccess = { it?.toDomainModel() },
-            onError = { it?.suspendString() }
+            onError = { it?.suspendString() ?: "Error when getting a list of trending movies" }
         )
     }
 }
