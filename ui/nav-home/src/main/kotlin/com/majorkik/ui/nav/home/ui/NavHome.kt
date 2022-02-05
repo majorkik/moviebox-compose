@@ -1,6 +1,8 @@
 package com.majorkik.ui.nav.home.ui
 
 import android.content.Context
+import androidx.compose.foundation.gestures.Orientation
+import androidx.compose.foundation.gestures.scrollable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.PaddingValues
@@ -12,7 +14,9 @@ import androidx.compose.foundation.lazy.LazyListState
 import androidx.compose.foundation.lazy.LazyRow
 import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.lazy.rememberLazyListState
+import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.shape.CircleShape
+import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.Surface
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
@@ -35,7 +39,7 @@ import com.majorkik.tmdb.api.model.Genre
 import com.majorkik.tmdb.api.model.Movie
 import com.majorkik.tmdb.api.model.TV
 import com.majorkik.ui.nav.home.component.GenresSwitch
-import com.majorkik.ui.nav.home.component.PopularMovieCard
+import com.majorkik.ui.nav.home.component.HorizontalMovieCard
 import com.majorkik.ui.nav.home.component.RoundedButton
 import com.majorkik.ui.nav.home.component.Toolbar
 import com.majorkik.ui.nav.home.component.VerticalMovieCard
@@ -53,8 +57,7 @@ fun NavHomeScreen() {
 internal fun NavHomeContent(viewModel: NavHomeViewModelViewModel) {
     val context = LocalContext.current
     val state = viewModel.container.stateFlow.collectAsState()
-    val popularMoviesListState: LazyListState = rememberLazyListState()
-    val trendingTVsListState: LazyListState = rememberLazyListState()
+    val scrollState = rememberScrollState()
 
     LaunchedEffect(viewModel) {
         launch {
@@ -66,6 +69,7 @@ internal fun NavHomeContent(viewModel: NavHomeViewModelViewModel) {
 
     Column(
         modifier = Modifier
+            .verticalScroll(state = scrollState)
             .fillMaxSize()
             .systemBarsPadding()
     ) {
@@ -79,23 +83,21 @@ internal fun NavHomeContent(viewModel: NavHomeViewModelViewModel) {
                 // Navigate to search with selected genre
             })
 
-        PopularMoviesBlock(
-            listState = popularMoviesListState,
-            movies = state.value.popularMoviesState.movies,
-            onClick = {
+        TrendingTVs(tvs = state.value.trendingTVsState.tvs, onItemClick = {}, onLoadMore = {
+            viewModel.fetchTrendingTVs()
+        })
 
-            }, onLoadMore = {
-                viewModel.fetchPopularMovies()
-            })
+        PopularTVs(tvs = state.value.popularTVsState.tvs, onItemClick = {}, onLoadMore = {
+            viewModel.fetchPopularTVs()
+        })
 
-        TrendingTVsBlock(
-            listState = trendingTVsListState,
-            tvs = state.value.trendingTVsState.tvs,
-            onClick = {
+        TrendingMovies(movies = state.value.trendingMoviesState.movies, onItemClick = {}, onLoadMore = {
+            viewModel.fetchTrendingMovies()
+        })
 
-            }, onLoadMore = {
-                viewModel.fetchTrendingTVs()
-            })
+        PopularMovies(movies = state.value.popularMoviesState.movies, onItemClick = {}, onLoadMore = {
+            viewModel.fetchPopularMovies()
+        })
     }
 }
 
@@ -170,79 +172,6 @@ internal fun GenresSwitchBox(isMovieGenresSelected: Boolean, onToggleSwitch: () 
     }
 }
 
-
-//Popular Movies
-@Composable
-internal fun PopularMoviesBlock(
-    listState: LazyListState,
-    movies: List<Movie>,
-    onClick: (Int) -> Unit,
-    onLoadMore: () -> Unit
-) {
-    Column {
-        Text(
-            text = stringResource(id = CoreRes.string.popular_movies),
-            style = MovieBoxTheme.typography.h3,
-            color = MovieBoxTheme.colors.backgroundReverse,
-            maxLines = 1,
-            modifier = Modifier
-                .fillMaxWidth()
-                .padding(horizontal = 24.dp)
-        )
-
-        LazyRow(
-            state = listState,
-            contentPadding = PaddingValues(horizontal = 16.dp, vertical = 16.dp),
-            horizontalArrangement = Arrangement.spacedBy(8.dp)
-        ) {
-            items(movies) { movie ->
-                PopularMovieCard(movie = movie, onClick = onClick)
-            }
-        }
-
-        InfiniteListHandler(listState = listState, buffer = 5, onLoadMore = onLoadMore)
-    }
-}
-
-//Popular Movies
-@Composable
-internal fun TrendingTVsBlock(
-    listState: LazyListState,
-    tvs: List<TV>,
-    onClick: (Int) -> Unit,
-    onLoadMore: () -> Unit
-) {
-    Column {
-        Text(
-            text = stringResource(id = CoreRes.string.trending_tv_shows),
-            style = MovieBoxTheme.typography.h3,
-            color = MovieBoxTheme.colors.backgroundReverse,
-            maxLines = 1,
-            modifier = Modifier
-                .fillMaxWidth()
-                .padding(horizontal = 24.dp)
-        )
-
-        LazyRow(
-            state = listState,
-            contentPadding = PaddingValues(horizontal = 16.dp, vertical = 16.dp),
-            horizontalArrangement = Arrangement.spacedBy(8.dp)
-        ) {
-            items(tvs) { tv ->
-                VerticalMovieCard(
-                    posterPath = tv.posterPath,
-                    title = tv.title,
-                    voteAverage = tv.voteAverage,
-                    releaseDate = tv.releaseDate,
-                    onClick = { onClick(tv.id) }
-                )
-            }
-        }
-
-        InfiniteListHandler(listState = listState, buffer = 5, onLoadMore = onLoadMore)
-    }
-}
-
 // Side effects
 private fun handleSideEffect(sideEffect: NavHomeViewModelSideEffect, context: Context) {
     when (sideEffect) {
@@ -275,5 +204,149 @@ private fun Preview() {
                 onGenreClick = {}
             )
         }
+    }
+}
+
+@Composable
+fun TrendingMovies(movies: List<Movie>, onItemClick: (Int) -> Unit, onLoadMore: () -> Unit) {
+    val listState = rememberLazyListState()
+
+    Column {
+        Text(
+            text = stringResource(id = CoreRes.string.trending_movies),
+            style = MovieBoxTheme.typography.h3,
+            color = MovieBoxTheme.colors.backgroundReverse,
+            maxLines = 1,
+            modifier = Modifier
+                .fillMaxWidth()
+                .padding(horizontal = 24.dp)
+        )
+
+        LazyRow(
+            state = listState,
+            contentPadding = PaddingValues(horizontal = 16.dp, vertical = 16.dp),
+            horizontalArrangement = Arrangement.spacedBy(8.dp)
+        ) {
+            items(movies) { movie ->
+                VerticalMovieCard(
+                    posterPath = movie.posterPath,
+                    title = movie.title,
+                    voteAverage = movie.voteAverage,
+                    releaseDate = movie.releaseDate,
+                    onClick = { onItemClick(movie.id) }
+                )
+            }
+        }
+
+        InfiniteListHandler(listState = listState, buffer = 5, onLoadMore = onLoadMore)
+    }
+}
+
+@Composable
+fun TrendingTVs(tvs: List<TV>, onItemClick: (Int) -> Unit, onLoadMore: () -> Unit) {
+    val listState = rememberLazyListState()
+
+    Column {
+        Text(
+            text = stringResource(id = CoreRes.string.trending_tv_shows),
+            style = MovieBoxTheme.typography.h3,
+            color = MovieBoxTheme.colors.backgroundReverse,
+            maxLines = 1,
+            modifier = Modifier
+                .fillMaxWidth()
+                .padding(horizontal = 24.dp)
+        )
+
+        LazyRow(
+            state = listState,
+            contentPadding = PaddingValues(horizontal = 16.dp, vertical = 16.dp),
+            horizontalArrangement = Arrangement.spacedBy(8.dp)
+        ) {
+            items(tvs) { tv ->
+                VerticalMovieCard(
+                    posterPath = tv.posterPath,
+                    title = tv.title,
+                    voteAverage = tv.voteAverage,
+                    releaseDate = tv.releaseDate,
+                    onClick = { onItemClick(tv.id) }
+                )
+            }
+        }
+
+        InfiniteListHandler(listState = listState, buffer = 5, onLoadMore = onLoadMore)
+    }
+}
+
+
+@Composable
+fun PopularMovies(movies: List<Movie>, onItemClick: (Int) -> Unit, onLoadMore: () -> Unit) {
+    val listState = rememberLazyListState()
+
+    Column {
+        Text(
+            text = stringResource(id = CoreRes.string.popular_movies),
+            style = MovieBoxTheme.typography.h3,
+            color = MovieBoxTheme.colors.backgroundReverse,
+            maxLines = 1,
+            modifier = Modifier
+                .fillMaxWidth()
+                .padding(horizontal = 24.dp)
+        )
+
+        LazyRow(
+            state = listState,
+            contentPadding = PaddingValues(horizontal = 16.dp, vertical = 16.dp),
+            horizontalArrangement = Arrangement.spacedBy(8.dp)
+        ) {
+            items(movies) { movie ->
+                HorizontalMovieCard(
+                    backdropPath = movie.backdropPath,
+                    title = movie.title,
+                    voteAverage = movie.voteAverage,
+                    releaseDate = movie.releaseDate,
+                ) {
+                    onItemClick(movie.id)
+                }
+            }
+        }
+
+        InfiniteListHandler(listState = listState, buffer = 5, onLoadMore = onLoadMore)
+    }
+}
+
+
+@Composable
+fun PopularTVs(tvs: List<TV>, onItemClick: (Int) -> Unit, onLoadMore: () -> Unit) {
+    val listState = rememberLazyListState()
+
+    Column {
+        Text(
+            text = stringResource(id = CoreRes.string.popular_tvs),
+            style = MovieBoxTheme.typography.h3,
+            color = MovieBoxTheme.colors.backgroundReverse,
+            maxLines = 1,
+            modifier = Modifier
+                .fillMaxWidth()
+                .padding(horizontal = 24.dp)
+        )
+
+        LazyRow(
+            state = listState,
+            contentPadding = PaddingValues(horizontal = 16.dp, vertical = 16.dp),
+            horizontalArrangement = Arrangement.spacedBy(8.dp)
+        ) {
+            items(tvs) { tv ->
+                HorizontalMovieCard(
+                    backdropPath = tv.backdropPath,
+                    title = tv.title,
+                    voteAverage = tv.voteAverage,
+                    releaseDate = tv.releaseDate,
+                ) {
+                    onItemClick(tv.id)
+                }
+            }
+        }
+
+        InfiniteListHandler(listState = listState, buffer = 5, onLoadMore = onLoadMore)
     }
 }

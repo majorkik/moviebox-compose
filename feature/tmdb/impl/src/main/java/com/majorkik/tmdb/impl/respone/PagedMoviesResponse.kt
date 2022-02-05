@@ -48,7 +48,7 @@ internal fun PagedMoviesResponse.Movie.toDomainModel() = Movie(
     originalLanguage = originalLanguage,
     originalTitle = originalTitle,
     popularity = popularity,
-    posterPath = backdropPath?.toPosterPath(),
+    posterPath = posterPath?.toPosterPath(),
     releaseDate = releaseDate?.let { date -> tryParseToDate(date = date) },
     video = video,
     backdropPath = backdropPath?.toBackdropPath(),

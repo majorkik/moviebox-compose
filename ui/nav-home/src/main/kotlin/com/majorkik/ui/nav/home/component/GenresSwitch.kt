@@ -2,7 +2,6 @@ package com.majorkik.ui.nav.home.component
 
 import androidx.compose.animation.core.animateFloatAsState
 import androidx.compose.foundation.Canvas
-import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.runtime.Composable
@@ -32,7 +31,7 @@ fun GenresSwitch(checked: Boolean) {
     val animatePosition = animateFloatAsState(
         targetValue = if (checked) {
             with(LocalDensity.current) { (trackWidth - (thumbSize / 2) - gap).toPx() }
-        }else {
+        } else {
             with(LocalDensity.current) { ((thumbSize / 2) + gap).toPx() }
         }
     )

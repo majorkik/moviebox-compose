@@ -113,6 +113,56 @@ internal class NavHomeViewModelViewModel(
             else -> postSideEffect(NavHomeViewModelSideEffect.ShowErrorToast())
         }
     }
+
+    fun fetchPopularTVs() = intent {
+        val currentPage: Int = state.trendingTVsState.currentPage
+        val totalPages: Int? = state.trendingTVsState.totalPages
+
+        if (totalPages != null && currentPage >= totalPages) return@intent
+
+        val nextPage: Int = if (totalPages == null) 1 else currentPage.plus(1)
+
+        when (val result = tvsRepository.getPopularTVs(nextPage)) {
+            is NetworkResult.Success -> reduce {
+                val tvsState = state.popularTVsState
+
+                state.copy(
+                    popularTVsState = tvsState.copy(
+                        currentPage = result.data.page,
+                        tvs = tvsState.tvs + result.data.tvs,
+                        totalPages = result.data.totalPages
+                    )
+                )
+            }
+
+            else -> postSideEffect(NavHomeViewModelSideEffect.ShowErrorToast())
+        }
+    }
+
+    fun fetchTrendingMovies() = intent {
+        val currentPage: Int = state.trendingTVsState.currentPage
+        val totalPages: Int? = state.trendingTVsState.totalPages
+
+        if (totalPages != null && currentPage >= totalPages) return@intent
+
+        val nextPage: Int = if (totalPages == null) 1 else currentPage.plus(1)
+
+        when (val result = moviesRepository.getTrendingMovies(nextPage)) {
+            is NetworkResult.Success -> reduce {
+                val moviesState = state.trendingMoviesState
+
+                state.copy(
+                    trendingMoviesState = moviesState.copy(
+                        currentPage = result.data.page,
+                        movies = moviesState.movies + result.data.movies,
+                        totalPages = result.data.totalPages
+                    )
+                )
+            }
+
+            else -> postSideEffect(NavHomeViewModelSideEffect.ShowErrorToast())
+        }
+    }
 }
 
 internal data class NavHomeViewModelViewState(
@@ -121,6 +171,8 @@ internal data class NavHomeViewModelViewState(
     val movieGenres: List<Genre> = emptyList(),
     val tvGenres: List<Genre> = emptyList(),
     val popularMoviesState: MovieCollectionState = MovieCollectionState(),
+    val popularTVsState: TVCollectionState = TVCollectionState(),
+    val trendingMoviesState: MovieCollectionState = MovieCollectionState(),
     val trendingTVsState: TVCollectionState = TVCollectionState(),
 ) {
     val genres: List<Genre>

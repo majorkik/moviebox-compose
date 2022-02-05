@@ -35,7 +35,7 @@ internal interface ApiService {
      * TVs
      */
 
-    @GET("movie/popular")
+    @GET("tv/popular")
     suspend fun getPopularTVs(
         @Query("page") page: Int,
         @Query("language") language: String = "en"

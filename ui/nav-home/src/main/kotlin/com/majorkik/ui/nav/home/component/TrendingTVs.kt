@@ -47,7 +47,7 @@ fun VerticalMovieCard(
         ) {
             Image(
                 painter = rememberImagePainter(
-                    data = posterPath?.build(size = PosterPath.Size.Width342),
+                    data = posterPath?.build(size = PosterPath.Size.Width500),
                     builder = { crossfade(true) }
                 ),
                 contentDescription = null,

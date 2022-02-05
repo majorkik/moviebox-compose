@@ -4,7 +4,9 @@
     <string name="movie">Movie</string>
     <string name="genres">Genres</string>
     <string name="popular_movies">Popular movies</string>
+    <string name="popular_tvs">Popular TV shows</string>
     <string name="trending_tv_shows">Trending TV shows</string>
+    <string name="trending_movies">Trending movies</string>
 
     <string name="error_something_went_wrong">Something went wrong, try again</string>
 

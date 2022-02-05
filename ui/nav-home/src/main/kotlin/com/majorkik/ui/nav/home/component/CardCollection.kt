@@ -14,7 +14,6 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
-import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.unit.dp
 import coil.compose.rememberImagePainter
@@ -22,38 +21,36 @@ import com.majorkik.common.percentOf
 import com.majorkik.core.ui.extension.clickableWithSimpleRipple
 import com.majorkik.core.ui.theme.MovieBoxTheme
 import com.majorkik.tmdb.api.model.BackdropPath
-import com.majorkik.tmdb.api.model.Movie
+import com.soywiz.klock.Date
 
 @Composable
-internal fun PopularMovieCard(
-    movie: Movie,
-    onClick: (Int) -> Unit
+internal fun HorizontalMovieCard(
+    backdropPath: BackdropPath?,
+    title: String,
+    voteAverage: Double,
+    releaseDate: Date?,
+    onClick: () -> Unit
 ) {
     Box(
         modifier = Modifier
             .size(width = 300.dp, height = 150.dp)
             .clip(RoundedCornerShape(12.dp))
-            .clickableWithSimpleRipple { onClick(movie.id) }, contentAlignment = Alignment.BottomStart
+            .clickableWithSimpleRipple(onClick),
+        contentAlignment = Alignment.BottomStart
     ) {
         // Image
         Image(
             painter = rememberImagePainter(
-                data = movie.backdropPath?.build(size = BackdropPath.Size.Width300),
+                data = backdropPath?.build(size = BackdropPath.Size.Width1280),
                 builder = { crossfade(true) }),
             contentDescription = null,
             modifier = Modifier.fillMaxSize(),
             contentScale = ContentScale.Crop
         )
 
-        Box(
-            modifier = Modifier
-                .fillMaxSize()
-                .background(Color.Black.copy(alpha = 0.2f))
-        )
-
         // Rating as a percentage
         Text(
-            "${movie.voteAverage.percentOf(from = 10)}%",
+            "${voteAverage.percentOf(from = 10)}%",
             style = MovieBoxTheme.typography.titleSmall,
             color = MovieBoxTheme.colors.text.white,
             modifier = Modifier
@@ -67,15 +64,15 @@ internal fun PopularMovieCard(
         // Title and year of release
         Column(modifier = Modifier.padding(16.dp)) {
             Text(
-                movie.title,
+                title,
                 style = MovieBoxTheme.typography.h4,
                 color = MovieBoxTheme.colors.text.white,
                 maxLines = 1
             )
 
-            if (movie.releaseDate != null) {
+            if (releaseDate != null) {
                 Text(
-                    movie.releaseDate!!.year.toString(),
+                    releaseDate.year.toString(),
                     style = MovieBoxTheme.typography.titleMedium,
                     color = MovieBoxTheme.colors.text.white
                 )
