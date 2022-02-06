@@ -27,8 +27,9 @@ data class AppColor(
 
     val ripple: Color,
 
-    // Text
+    // Groups
     val text: Text,
+    val placeholder: Placeholder,
     // Theme
     val isLight: Boolean = true
 ) {
@@ -37,6 +38,11 @@ data class AppColor(
         val secondary: Color,
         val white: Color,
         val success: Color
+    )
+
+    data class Placeholder(
+        val background: Color,
+        val backgroundDark: Color
     )
 }
 

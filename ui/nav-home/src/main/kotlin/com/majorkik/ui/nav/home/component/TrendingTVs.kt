@@ -23,6 +23,7 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import coil.compose.rememberImagePainter
 import com.majorkik.common.percentOf
+import com.majorkik.core.ui.components.getPopcornPlaceholderResId
 import com.majorkik.core.ui.extension.clickableWithSimpleRipple
 import com.majorkik.core.ui.theme.MovieBoxTheme
 import com.majorkik.tmdb.api.model.PosterPath
@@ -42,13 +43,18 @@ fun VerticalMovieCard(
                 .fillMaxWidth()
                 .height(310.dp)
                 .clip(RoundedCornerShape(12.dp))
-                .background(MovieBoxTheme.colors.primary.copy(alpha = 0.2f))
+                .background(MovieBoxTheme.colors.placeholder.background)
                 .clickableWithSimpleRipple(onClick),
         ) {
             Image(
                 painter = rememberImagePainter(
                     data = posterPath?.build(size = PosterPath.Size.Width500),
-                    builder = { crossfade(true) }
+                    builder = {
+                        crossfade(true)
+                        placeholder(getPopcornPlaceholderResId(MovieBoxTheme.colors.isLight))
+                        error(getPopcornPlaceholderResId(MovieBoxTheme.colors.isLight))
+                        fallback(getPopcornPlaceholderResId(MovieBoxTheme.colors.isLight))
+                    }
                 ),
                 contentDescription = null,
                 modifier = Modifier.fillMaxSize(),

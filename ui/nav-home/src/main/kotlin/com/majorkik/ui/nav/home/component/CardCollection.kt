@@ -18,6 +18,7 @@ import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.unit.dp
 import coil.compose.rememberImagePainter
 import com.majorkik.common.percentOf
+import com.majorkik.core.ui.components.getPopcornPlaceholderResId
 import com.majorkik.core.ui.extension.clickableWithSimpleRipple
 import com.majorkik.core.ui.theme.MovieBoxTheme
 import com.majorkik.tmdb.api.model.BackdropPath
@@ -35,6 +36,7 @@ internal fun HorizontalMovieCard(
         modifier = Modifier
             .size(width = 300.dp, height = 150.dp)
             .clip(RoundedCornerShape(12.dp))
+            .background(MovieBoxTheme.colors.placeholder.backgroundDark)
             .clickableWithSimpleRipple(onClick),
         contentAlignment = Alignment.BottomStart
     ) {
@@ -42,7 +44,13 @@ internal fun HorizontalMovieCard(
         Image(
             painter = rememberImagePainter(
                 data = backdropPath?.build(size = BackdropPath.Size.Width1280),
-                builder = { crossfade(true) }),
+                builder = {
+                    crossfade(true)
+                    placeholder(getPopcornPlaceholderResId(MovieBoxTheme.colors.isLight))
+                    error(getPopcornPlaceholderResId(MovieBoxTheme.colors.isLight))
+                    fallback(getPopcornPlaceholderResId(MovieBoxTheme.colors.isLight))
+                }
+            ),
             contentDescription = null,
             modifier = Modifier.fillMaxSize(),
             contentScale = ContentScale.Crop

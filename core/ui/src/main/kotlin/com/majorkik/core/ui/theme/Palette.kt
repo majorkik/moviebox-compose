@@ -25,6 +25,10 @@ fun lightColors(): AppColor = AppColor(
         white = White,
         success = VistaBlue,
     ),
+    placeholder = AppColor.Placeholder(
+        background = Alabaster,
+        backgroundDark = Gallery
+    ),
     isLight = true,
 )
 
@@ -44,6 +48,10 @@ fun darkColors(): AppColor = AppColor(
         secondary = White.copy(alpha = 0.33f),
         white = White,
         success = VistaBlue,
+    ),
+    placeholder = AppColor.Placeholder(
+        background = MineShaftLight,
+        backgroundDark = MineShaftLight
     ),
     isLight = false,
 )
