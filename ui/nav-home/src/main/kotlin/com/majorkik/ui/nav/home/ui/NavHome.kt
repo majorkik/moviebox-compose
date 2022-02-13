@@ -1,6 +1,7 @@
 package com.majorkik.ui.nav.home.ui
 
 import android.content.Context
+import androidx.annotation.StringRes
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.PaddingValues
@@ -74,26 +75,34 @@ internal fun NavHomeContent(viewModel: NavHomeViewModelViewModel) {
             GenresBlock(
                 genres = state.value.genres,
                 isMovieGenresSelected = state.value.isMovieGenresSelected,
-                onToggleSwitch = (viewModel::toggleGenresMode),
+                onToggleSwitch = viewModel::toggleGenresMode,
                 onGenreClick = {
                     // Navigate to search with selected genre
                 })
 
-            TrendingTVs(tvs = state.value.trendingTVsState.tvs, onItemClick = {}, onLoadMore = {
-                viewModel.fetchTrendingTVs()
-            })
+            TrendingTVs(
+                tvs = state.value.trendingTVsState.tvs,
+                onItemClick = {},
+                onLoadMore = viewModel::fetchTrendingTVs
+            )
 
-            PopularTVs(tvs = state.value.popularTVsState.tvs, onItemClick = {}, onLoadMore = {
-                viewModel.fetchPopularTVs()
-            })
+            PopularTVs(
+                tvs = state.value.popularTVsState.tvs,
+                onItemClick = {},
+                onLoadMore = viewModel::fetchPopularTVs
+            )
 
-            TrendingMovies(movies = state.value.trendingMoviesState.movies, onItemClick = {}, onLoadMore = {
-                viewModel.fetchTrendingMovies()
-            })
+            TrendingMovies(
+                movies = state.value.trendingMoviesState.movies,
+                onItemClick = {},
+                onLoadMore = viewModel::fetchTrendingMovies
+            )
 
-            PopularMovies(movies = state.value.popularMoviesState.movies, onItemClick = {}, onLoadMore = {
-                viewModel.fetchPopularMovies()
-            })
+            PopularMovies(
+                movies = state.value.popularMoviesState.movies,
+                onItemClick = {},
+                onLoadMore = viewModel::fetchPopularMovies
+            )
         }
     }
 }
@@ -209,15 +218,7 @@ fun TrendingMovies(movies: List<Movie>, onItemClick: (Int) -> Unit, onLoadMore: 
     val listState = rememberLazyListState()
 
     Column {
-        Text(
-            text = stringResource(id = CoreRes.string.trending_movies),
-            style = MovieBoxTheme.typography.h3,
-            color = MovieBoxTheme.colors.backgroundReverse,
-            maxLines = 1,
-            modifier = Modifier
-                .fillMaxWidth()
-                .padding(horizontal = 24.dp)
-        )
+        TitleText(text = CoreRes.string.trending_movies)
 
         LazyRow(
             state = listState,
@@ -244,15 +245,7 @@ fun TrendingTVs(tvs: List<TV>, onItemClick: (Int) -> Unit, onLoadMore: () -> Uni
     val listState = rememberLazyListState()
 
     Column {
-        Text(
-            text = stringResource(id = CoreRes.string.trending_tv_shows),
-            style = MovieBoxTheme.typography.h3,
-            color = MovieBoxTheme.colors.backgroundReverse,
-            maxLines = 1,
-            modifier = Modifier
-                .fillMaxWidth()
-                .padding(horizontal = 24.dp)
-        )
+        TitleText(text = CoreRes.string.trending_tv_shows)
 
         LazyRow(
             state = listState,
@@ -280,15 +273,7 @@ fun PopularMovies(movies: List<Movie>, onItemClick: (Int) -> Unit, onLoadMore: (
     val listState = rememberLazyListState()
 
     Column {
-        Text(
-            text = stringResource(id = CoreRes.string.popular_movies),
-            style = MovieBoxTheme.typography.h3,
-            color = MovieBoxTheme.colors.backgroundReverse,
-            maxLines = 1,
-            modifier = Modifier
-                .fillMaxWidth()
-                .padding(horizontal = 24.dp)
-        )
+        TitleText(text = CoreRes.string.popular_movies)
 
         LazyRow(
             state = listState,
@@ -317,15 +302,7 @@ fun PopularTVs(tvs: List<TV>, onItemClick: (Int) -> Unit, onLoadMore: () -> Unit
     val listState = rememberLazyListState()
 
     Column {
-        Text(
-            text = stringResource(id = CoreRes.string.popular_tvs),
-            style = MovieBoxTheme.typography.h3,
-            color = MovieBoxTheme.colors.backgroundReverse,
-            maxLines = 1,
-            modifier = Modifier
-                .fillMaxWidth()
-                .padding(horizontal = 24.dp)
-        )
+        TitleText(text = CoreRes.string.popular_tvs)
 
         LazyRow(
             state = listState,
@@ -346,4 +323,17 @@ fun PopularTVs(tvs: List<TV>, onItemClick: (Int) -> Unit, onLoadMore: () -> Unit
 
         InfiniteListHandler(listState = listState, buffer = 5, onLoadMore = onLoadMore)
     }
+}
+
+@Composable
+fun TitleText(@StringRes text: Int) {
+    Text(
+        text = stringResource(id = text),
+        style = MovieBoxTheme.typography.h3,
+        color = MovieBoxTheme.colors.backgroundReverse,
+        maxLines = 1,
+        modifier = Modifier
+            .fillMaxWidth()
+            .padding(horizontal = 24.dp)
+    )
 }
