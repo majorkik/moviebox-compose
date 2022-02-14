@@ -221,7 +221,7 @@ internal fun <T> InfinityCollection(
     val listState = rememberLazyListState()
 
     Column {
-        TitleText(text = CoreRes.string.popular_tvs)
+        TitleText(text = title)
 
         LazyRow(
             state = listState,
