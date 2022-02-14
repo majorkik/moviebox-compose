@@ -29,6 +29,7 @@ fun lightColors(): AppColor = AppColor(
         background = Alabaster,
         backgroundDark = Gallery
     ),
+    white = Color.White,
     isLight = true,
 )
 
@@ -53,5 +54,6 @@ fun darkColors(): AppColor = AppColor(
         background = MineShaftLight,
         backgroundDark = MineShaftLight
     ),
+    white = Color.White,
     isLight = false,
 )

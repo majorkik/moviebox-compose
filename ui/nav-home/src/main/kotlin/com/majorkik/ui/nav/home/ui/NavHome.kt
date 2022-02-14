@@ -2,20 +2,26 @@ package com.majorkik.ui.nav.home.ui
 
 import android.content.Context
 import androidx.annotation.StringRes
+import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.lazy.LazyItemScope
 import androidx.compose.foundation.lazy.LazyRow
 import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.lazy.rememberLazyListState
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.shape.CircleShape
+import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.verticalScroll
+import androidx.compose.material.Icon
 import androidx.compose.material.Surface
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
@@ -26,7 +32,9 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.draw.clipToBounds
 import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.majorkik.core.ui.components.InfiniteListHandler
@@ -34,8 +42,6 @@ import com.majorkik.core.ui.extension.clickableWithSimpleRipple
 import com.majorkik.core.ui.extension.showToast
 import com.majorkik.core.ui.theme.MovieBoxTheme
 import com.majorkik.tmdb.api.model.Genre
-import com.majorkik.tmdb.api.model.Movie
-import com.majorkik.tmdb.api.model.TV
 import com.majorkik.ui.nav.home.component.GenresSwitch
 import com.majorkik.ui.nav.home.component.HorizontalMovieCard
 import com.majorkik.ui.nav.home.component.RoundedButton
@@ -52,6 +58,7 @@ fun NavHomeScreen() {
     NavHomeContent(viewModel = getViewModel())
 }
 
+@Suppress("Detekt.LongMethod")
 @Composable
 internal fun NavHomeContent(viewModel: NavHomeViewModelViewModel) {
     val context = LocalContext.current
@@ -72,6 +79,60 @@ internal fun NavHomeContent(viewModel: NavHomeViewModelViewModel) {
             .fillMaxSize()
     ) {
         Toolbar(onLoginClick = {}, onOpenSettings = {})
+
+        Text(
+            stringResource(id = CoreRes.string.nav_home_screen_search_desc),
+            style = MovieBoxTheme.typography.bodyMedium,
+            color = MovieBoxTheme.colors.text.primary,
+            textAlign = TextAlign.Center,
+            modifier = Modifier.fillMaxWidth()
+        )
+
+        Box(
+            modifier = Modifier
+                .padding(vertical = 16.dp)
+                .padding(horizontal = 16.dp)
+                .fillMaxWidth()
+                .height(48.dp)
+                .clip(RoundedCornerShape(12.dp))
+                .background(MovieBoxTheme.colors.placeholder.backgroundDark)
+                .clickableWithSimpleRipple { }
+        ) {
+            Row(
+                modifier = Modifier
+                    .padding(horizontal = 16.dp)
+                    .align(Alignment.Center),
+                verticalAlignment = Alignment.CenterVertically
+            ) {
+                Icon(
+                    painter = painterResource(id = CoreRes.drawable.ic_search_black_24),
+                    contentDescription = null,
+                    tint = MovieBoxTheme.colors.text.primary,
+                )
+
+                Text(
+                    stringResource(CoreRes.string.search),
+                    style = MovieBoxTheme.typography.bodyMedium,
+                    color = MovieBoxTheme.colors.text.primary
+                )
+            }
+
+            Box(
+                modifier = Modifier
+                    .size(48.dp)
+                    .clip(RoundedCornerShape(12.dp))
+                    .background(MovieBoxTheme.colors.primary)
+                    .clickableWithSimpleRipple { }
+                    .align(Alignment.CenterEnd)
+            ) {
+                Icon(
+                    painter = painterResource(id = CoreRes.drawable.ic_tune_white_24),
+                    contentDescription = null,
+                    tint = MovieBoxTheme.colors.white,
+                    modifier = Modifier.align(Alignment.Center)
+                )
+            }
+        }
 
         Column(verticalArrangement = Arrangement.spacedBy(16.dp)) {
             GenresBlock(

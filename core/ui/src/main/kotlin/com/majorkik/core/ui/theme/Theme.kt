@@ -30,6 +30,7 @@ data class AppColor(
     // Groups
     val text: Text,
     val placeholder: Placeholder,
+    val white: Color,
     // Theme
     val isLight: Boolean = true
 ) {
