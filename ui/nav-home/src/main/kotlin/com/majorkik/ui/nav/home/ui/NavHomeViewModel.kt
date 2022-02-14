@@ -37,8 +37,6 @@ internal class NavHomeViewModelViewModel(
         reduce { state.copy(isGenresLoading = true) }
 
         fetchGenresIfNeed()
-//        fetchPopularMovies()
-//        fetchTrendingTVs()
     }
 
     private fun fetchGenresIfNeed() {

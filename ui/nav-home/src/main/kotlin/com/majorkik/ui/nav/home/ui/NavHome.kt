@@ -38,6 +38,7 @@ import com.majorkik.tmdb.api.model.TV
 import com.majorkik.ui.nav.home.component.GenresSwitch
 import com.majorkik.ui.nav.home.component.HorizontalMovieCard
 import com.majorkik.ui.nav.home.component.RoundedButton
+import com.majorkik.ui.nav.home.component.TitleText
 import com.majorkik.ui.nav.home.component.Toolbar
 import com.majorkik.ui.nav.home.component.VerticalMovieCard
 import kotlinx.coroutines.flow.collectLatest
@@ -323,17 +324,4 @@ fun PopularTVs(tvs: List<TV>, onItemClick: (Int) -> Unit, onLoadMore: () -> Unit
 
         InfiniteListHandler(listState = listState, buffer = 5, onLoadMore = onLoadMore)
     }
-}
-
-@Composable
-fun TitleText(@StringRes text: Int) {
-    Text(
-        text = stringResource(id = text),
-        style = MovieBoxTheme.typography.h3,
-        color = MovieBoxTheme.colors.backgroundReverse,
-        maxLines = 1,
-        modifier = Modifier
-            .fillMaxWidth()
-            .padding(horizontal = 24.dp)
-    )
 }

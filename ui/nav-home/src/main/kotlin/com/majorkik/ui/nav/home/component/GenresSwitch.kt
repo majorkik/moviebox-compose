@@ -13,9 +13,8 @@ import androidx.compose.ui.platform.LocalDensity
 import androidx.compose.ui.unit.dp
 import com.majorkik.core.ui.theme.MovieBoxTheme
 
-
 @Composable
-fun GenresSwitch(checked: Boolean) {
+internal fun GenresSwitch(checked: Boolean) {
     // Sizes
     val trackWidth = 24.dp
     val trackHeight = 12.dp
