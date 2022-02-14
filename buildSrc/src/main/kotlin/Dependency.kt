@@ -18,12 +18,12 @@ object Dependency {
     object AndroidX {
         const val activityCompose = "androidx.activity:activity-compose:1.4.0"
         const val core = "androidx.core:core-ktx:1.7.0"
-        const val appcompat = "androidx.appcompat:appcompat:1.4.0"
+        const val appcompat = "androidx.appcompat:appcompat:1.4.1"
         const val material = "com.google.android.material:material:1.6.0-alpha01"
-        const val navigationCompose = "androidx.navigation:navigation-compose:2.4.0-rc01"
+        const val navigationCompose = "androidx.navigation:navigation-compose:2.5.0-alpha02"
 
         object Compose {
-            private const val version = "1.1.0-rc01"
+            private const val version = "1.2.0-alpha03"
 
             const val compiler = "androidx.compose.compiler:compiler:${Version.composeCompiler}"
             const val ui = "androidx.compose.ui:ui:${version}"
@@ -56,7 +56,7 @@ object Dependency {
         const val serializationConverter = "com.jakewharton.retrofit:retrofit2-kotlinx-serialization-converter:0.8.0"
 
         object OkHTTP {
-            private const val version = "5.0.0-alpha.3"
+            private const val version = "5.0.0-alpha.4"
 
             // Must be implemented with implementation (platform (..))
             const val bom = "com.squareup.okhttp3:okhttp-bom:$version"
@@ -66,7 +66,7 @@ object Dependency {
     }
 
     object Koin {
-        private const val version = "3.1.4"
+        private const val version = "3.2.0-beta-1"
 
         const val core = "io.insert-koin:koin-core:$version"
         const val android = "io.insert-koin:koin-android:$version"
@@ -95,9 +95,9 @@ object Dependency {
     }
 
     object Other {
-        const val sandwich = "com.github.skydoves:sandwich:1.2.2"
-        const val mviOrbit = "org.orbit-mvi:orbit-viewmodel:4.3.0"
+        const val sandwich = "com.github.skydoves:sandwich:1.2.3"
+        const val mviOrbit = "org.orbit-mvi:orbit-viewmodel:4.3.2"
         const val coil = "io.coil-kt:coil-compose:1.4.0"
-        const val klock = "com.soywiz.korlibs.klock:klock:2.4.8"
+        const val klock = "com.soywiz.korlibs.klock:klock:2.4.13"
     }
 }
