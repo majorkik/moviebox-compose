@@ -113,8 +113,8 @@ internal class NavHomeViewModelViewModel(
     }
 
     fun fetchPopularTVs() = intent {
-        val currentPage: Int = state.trendingTVsState.currentPage
-        val totalPages: Int? = state.trendingTVsState.totalPages
+        val currentPage: Int = state.popularTVsState.currentPage
+        val totalPages: Int? = state.popularTVsState.totalPages
 
         if (totalPages != null && currentPage >= totalPages) return@intent
 
@@ -138,8 +138,8 @@ internal class NavHomeViewModelViewModel(
     }
 
     fun fetchTrendingMovies() = intent {
-        val currentPage: Int = state.trendingTVsState.currentPage
-        val totalPages: Int? = state.trendingTVsState.totalPages
+        val currentPage: Int = state.trendingMoviesState.currentPage
+        val totalPages: Int? = state.trendingMoviesState.totalPages
 
         if (totalPages != null && currentPage >= totalPages) return@intent
 
