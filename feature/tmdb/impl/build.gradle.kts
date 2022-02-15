@@ -42,7 +42,7 @@ android {
 dependencies {
     implementation(project(ModuleDependency.Feature.Tmdb.api))
 
-    implementation(Dependency.Kotlin.serialization)
+    implementation(Dependency.Kotlin.serializationJson)
     implementation(Dependency.Coroutines.core)
 
     implementation(Dependency.Koin.core)

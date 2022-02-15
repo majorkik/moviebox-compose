@@ -1,6 +1,7 @@
 package com.majorkik.movieboxcompose.navigation
 
 import androidx.compose.animation.ExperimentalAnimationApi
+import androidx.compose.foundation.layout.padding
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.DisposableEffect
 import androidx.compose.runtime.Stable
@@ -11,6 +12,7 @@ import androidx.compose.ui.Modifier
 import androidx.navigation.NavController
 import androidx.navigation.NavDestination.Companion.hierarchy
 import androidx.navigation.NavHostController
+import com.google.accompanist.insets.navigationBarsPadding
 import com.google.accompanist.navigation.animation.AnimatedNavHost
 import com.google.accompanist.navigation.animation.composable
 import com.google.accompanist.navigation.animation.navigation
@@ -23,7 +25,11 @@ import com.majorkik.ui.nav.search.ui.NavSearchScreen
 @ExperimentalAnimationApi
 @Composable
 fun Navigation(navController: NavHostController, modifier: Modifier = Modifier) {
-    AnimatedNavHost(navController = navController, startDestination = StackScreen.Home.route, modifier = modifier) {
+    AnimatedNavHost(
+        navController = navController,
+        startDestination = StackScreen.Home.route,
+        modifier = modifier
+    ) {
         navigation(
             route = StackScreen.Home.route,
             startDestination = Screen.Home.createRoute(StackScreen.Home)
@@ -47,7 +53,7 @@ fun Navigation(navController: NavHostController, modifier: Modifier = Modifier) 
             startDestination = Screen.Profile.createRoute(StackScreen.Profile)
         ) {
             composable(route = Screen.Profile.createRoute(StackScreen.Profile)) {
-               NavProfileScreen()
+                NavProfileScreen()
             }
         }
     }

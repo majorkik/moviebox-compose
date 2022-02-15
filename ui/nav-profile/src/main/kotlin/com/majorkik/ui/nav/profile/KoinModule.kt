@@ -5,5 +5,5 @@ import org.koin.androidx.viewmodel.dsl.viewModel
 import org.koin.dsl.module
 
 val uiNavProfile = module {
-    viewModel { NavProfileViewModel(get()) }
+    viewModel { NavProfileViewModel(appPreferences = get()) }
 }

@@ -1,6 +1,5 @@
 package com.majorkik.tmdb.impl.respone
 
-import com.majorkik.tmdb.api.APIConstants
 import com.majorkik.tmdb.api.model.MovieDetails
 import com.majorkik.tmdb.api.util.DateUtil
 import kotlinx.serialization.SerialName
@@ -108,9 +107,9 @@ internal fun MovieDetailsResponse.toDomainModel() = MovieDetails(
     video = video,
     voteAverage = voteAverage,
     voteCount = voteCount,
-    posterLinks = images.posters.map { image -> "${APIConstants.buildImageUrl()}${image.filePath}" },
+    posterLinks = images.posters.mapNotNull { it.filePath },
     postersCount = images.posters.count(),
-    backdropLinks = images.backdrops.map { image -> "${APIConstants.buildImageUrl()}${image.filePath}" },
+    backdropLinks = images.backdrops.mapNotNull { it.filePath },
     backdropsCount = images.backdrops.count()
 )
 

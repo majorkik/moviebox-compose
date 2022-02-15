@@ -30,12 +30,11 @@ internal fun NavProfileContent(viewModel: NavProfileViewModel) {
         modifier = Modifier
             .fillMaxSize()
             .background(MovieBoxTheme.colors.background)
-            .statusBarsPadding()
     ) {
         Row(
             modifier = Modifier
                 .fillMaxWidth()
-                .padding(16.dp),
+                .padding(8.dp),
             horizontalArrangement = Arrangement.End
         ) {
             ThemeButton(

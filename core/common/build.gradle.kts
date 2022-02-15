@@ -28,7 +28,16 @@ android {
 }
 
 dependencies {
+    api(Dependency.Other.klock)
+
     implementation(Dependency.Loggers.prettyLogger)
 
-    api(Dependency.Other.klock)
+    testImplementation(Dependency.Kotlin.reflect)
+
+    testImplementation(Dependency.Tests.Kotest.assertions)
+    testImplementation(Dependency.Tests.Kotest.junitRunner)
+}
+
+tasks.withType<Test> {
+    useJUnitPlatform()
 }

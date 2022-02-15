@@ -8,58 +8,52 @@ import androidx.compose.ui.graphics.Color
  * Created by Rodion Belovitskiy on 16.10.2021.
  */
 
-fun lightColors(
-    primary: Color = BlueCrayola,
-    primaryLight: Color = CornflowerBlue,
-    secondary: Color = RoseMadder,
-    background: Color = White,
-    backgroundReverse: Color = Charade,
-    secondaryBackground: Color = Alabaster,
-    textPrimary: Color = Charade,
-    textSecondary: Color = Charade.copy(alpha = 0.33f),
-    themeColor: Color = Color.Black,
-    ripple: Color = Color.Black,
-    isLight: Boolean = true,
-): AppColor = AppColor(
-    primary = primary,
-    primaryLight = primaryLight,
-    secondary = secondary,
-    background = background,
-    backgroundReverse = backgroundReverse,
-    secondaryBackground = secondaryBackground,
-    themeColor = themeColor,
-    ripple = ripple,
+fun lightColors(): AppColor = AppColor(
+    primary = BlueCrayola,
+    primaryLight = CornflowerBlue,
+    secondary = RoseMadder,
+    accent = VistaBlue,
+    background = White,
+    backgroundDark50 = Color.Black.copy(alpha = 0.5f),
+    backgroundReverse = Charade,
+    secondaryBackground = Alabaster,
+    themeColor = Color.Black,
+    ripple = Color.Black,
     text = AppColor.Text(
-        primary = textPrimary,
-        secondary = textSecondary
+        primary = Charade,
+        secondary = Charade.copy(alpha = 0.33f),
+        white = White,
+        success = VistaBlue,
     ),
-    isLight = isLight,
+    placeholder = AppColor.Placeholder(
+        background = Alabaster,
+        backgroundDark = Gallery
+    ),
+    white = Color.White,
+    isLight = true,
 )
 
-fun darkColors(
-    primary: Color = BlueCrayola,
-    primaryLight: Color = CornflowerBlue,
-    secondary: Color = RoseMadder,
-    background: Color = Charade,
-    backgroundReverse: Color = White,
-    secondaryBackground: Color = MineShaft,
-    textPrimary: Color = White,
-    textSecondary: Color = White.copy(alpha = 0.33f),
-    themeColor: Color = White,
-    ripple: Color = Color.Black,
-    isLight: Boolean = false,
-): AppColor = AppColor(
-    primary = primary,
-    primaryLight = primaryLight,
-    secondary = secondary,
-    background = background,
-    backgroundReverse = backgroundReverse,
-    secondaryBackground = secondaryBackground,
-    themeColor = themeColor,
-    ripple = ripple,
+fun darkColors(): AppColor = AppColor(
+    primary = BlueCrayola,
+    primaryLight = CornflowerBlue,
+    secondary = RoseMadder,
+    accent = VistaBlue,
+    background = Charade,
+    backgroundDark50 = Color.Black.copy(alpha = 0.5f),
+    backgroundReverse = White,
+    secondaryBackground = MineShaft,
+    themeColor = White,
+    ripple = Color.Black,
     text = AppColor.Text(
-        primary = textPrimary,
-        secondary = textSecondary
+        primary = White,
+        secondary = White.copy(alpha = 0.33f),
+        white = White,
+        success = VistaBlue,
     ),
-    isLight = isLight,
+    placeholder = AppColor.Placeholder(
+        background = MineShaftLight,
+        backgroundDark = MineShaftLight
+    ),
+    white = Color.White,
+    isLight = false,
 )

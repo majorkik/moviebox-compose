@@ -17,22 +17,33 @@ data class AppColor(
     val primary: Color,
     val primaryLight: Color,
     val secondary: Color,
+    val accent: Color,
     val background: Color,
     val backgroundReverse: Color,
+    val backgroundDark50: Color,
     val secondaryBackground: Color,
 
     val themeColor: Color,
 
     val ripple: Color,
 
-    // Text
+    // Groups
     val text: Text,
+    val placeholder: Placeholder,
+    val white: Color,
     // Theme
     val isLight: Boolean = true
 ) {
     data class Text(
         val primary: Color,
-        val secondary: Color
+        val secondary: Color,
+        val white: Color,
+        val success: Color
+    )
+
+    data class Placeholder(
+        val background: Color,
+        val backgroundDark: Color
     )
 }
 
@@ -46,6 +57,9 @@ data class AppTypography(
     val body1: TextStyle = TextStyle(fontFamily = montserratFamily, fontSize = 16.sp, fontWeight = FontWeight.Medium),
     val body2: TextStyle = TextStyle(fontFamily = montserratFamily, fontSize = 14.sp, fontWeight = FontWeight.Normal),
     val smallBold: TextStyle = TextStyle(fontFamily = montserratFamily, fontSize = 12.sp, fontWeight = FontWeight.Bold),
+    val bodyMedium: TextStyle = TextStyle(fontFamily = rubikFamily, fontSize = 14.sp, fontWeight = FontWeight.Medium),
+    val titleMedium: TextStyle = TextStyle(fontFamily = rubikFamily, fontSize = 14.sp, fontWeight = FontWeight.Bold),
+    val titleSmall: TextStyle = TextStyle(fontFamily = rubikFamily, fontSize = 12.sp, fontWeight = FontWeight.Bold),
 )
 
 @Immutable

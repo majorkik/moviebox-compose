@@ -3,17 +3,19 @@ package com.majorkik.movieboxcompose.ui
 import androidx.compose.animation.ExperimentalAnimationApi
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.padding
 import androidx.compose.material.Scaffold
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
 import androidx.navigation.NavGraph.Companion.findStartDestination
 import com.google.accompanist.insets.navigationBarsWithImePadding
+import com.google.accompanist.insets.statusBarsPadding
 import com.google.accompanist.navigation.animation.rememberAnimatedNavController
 import com.majorkik.core.ui.theme.MovieBoxTheme
+import com.majorkik.movieboxcompose.navigation.BottomNavigationBar
 import com.majorkik.movieboxcompose.navigation.Navigation
 import com.majorkik.movieboxcompose.navigation.currentScreenAsState
-import com.majorkik.movieboxcompose.navigation.BottomNavigationBar
 
 @OptIn(ExperimentalAnimationApi::class)
 @Composable
@@ -44,7 +46,10 @@ fun MainContainer() {
             )
         },
         modifier = Modifier.fillMaxSize()
-    ) {
-        Navigation(navController = navController)
+    ) { innerPadding ->
+        Navigation(
+            navController = navController,
+            modifier = Modifier.padding(bottom = innerPadding.calculateBottomPadding()).statusBarsPadding()
+        )
     }
 }
