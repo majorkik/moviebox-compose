@@ -9,11 +9,11 @@ object Version {
     const val androidGradle = "7.0.4"
 
     // Versions
-    const val gradleVersions = "0.39.0"
+    const val gradleVersions = "0.42.0"
 
     // Static analysis tools
-    const val spotless = "6.1.0"
+    const val spotless = "6.3.0"
     const val ktlintJLLeitschuh = "10.2.0"
-    const val ktlint = "0.43.2"
+    const val ktlint = "0.45.0"
     const val detekt = "1.19.0"
 }

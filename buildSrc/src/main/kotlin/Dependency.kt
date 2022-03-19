@@ -76,7 +76,7 @@ object Dependency {
 
     object Tests {
         object Kotest {
-            private const val version = "5.1.0"
+            private const val version = "5.2.1"
 
             const val assertions = "io.kotest:kotest-assertions-core:$version"
             const val junitRunner = "io.kotest:kotest-runner-junit5:$version"
@@ -98,6 +98,6 @@ object Dependency {
         const val sandwich = "com.github.skydoves:sandwich:1.2.3"
         const val mviOrbit = "org.orbit-mvi:orbit-viewmodel:4.3.2"
         const val coil = "io.coil-kt:coil-compose:1.4.0"
-        const val klock = "com.soywiz.korlibs.klock:klock:2.4.13"
+        const val klock = "com.soywiz.korlibs.klock:klock:2.6.3"
     }
 }
