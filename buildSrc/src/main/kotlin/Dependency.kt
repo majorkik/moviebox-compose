@@ -1,3 +1,5 @@
+@file:Suppress("unused")
+
 object Dependency {
     object Kotlin {
         const val stdlib = "org.jetbrains.kotlin:kotlin-stdlib-jdk8:${Version.kotlin}"
@@ -98,6 +100,6 @@ object Dependency {
         const val sandwich = "com.github.skydoves:sandwich:1.2.3"
         const val mviOrbit = "org.orbit-mvi:orbit-viewmodel:4.3.2"
         const val coil = "io.coil-kt:coil-compose:1.4.0"
-        const val klock = "com.soywiz.korlibs.klock:klock:2.6.3"
+        const val klock = "com.soywiz.korlibs.klock:klock:2.7.0"
     }
 }

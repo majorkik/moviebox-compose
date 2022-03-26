@@ -5,6 +5,7 @@ import com.majorkik.tmdb.api.APIConstants
 data class BackdropPath(
     val value: String
 ) {
+    @Suppress("unused")
     enum class Size(val path: String) {
         Width300("w300"),
         Width780("w780"),

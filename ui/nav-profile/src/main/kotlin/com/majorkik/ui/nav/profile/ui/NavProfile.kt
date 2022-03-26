@@ -14,7 +14,6 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import com.google.accompanist.insets.statusBarsPadding
 import com.majorkik.core.ui.R
 import com.majorkik.core.ui.theme.MovieBoxTheme
 import org.koin.androidx.compose.getViewModel

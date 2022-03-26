@@ -7,7 +7,6 @@ object Plugin {
     const val toolsBuildGradle = "com.android.tools.build:gradle"
     const val gradlePlugin = "gradle-plugin"
     const val kotlinSerialization = "plugin.serialization"
-    const val serialization = "serialization"
     const val jvm = "jvm"
 
     // Updates versions

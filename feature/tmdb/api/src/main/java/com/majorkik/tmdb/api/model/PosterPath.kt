@@ -5,6 +5,7 @@ import com.majorkik.tmdb.api.APIConstants
 data class PosterPath(
     val value: String
 ) {
+    @Suppress("unused")
     enum class Size(val path: String) {
         Width92("w92"),
         Width154("w154"),

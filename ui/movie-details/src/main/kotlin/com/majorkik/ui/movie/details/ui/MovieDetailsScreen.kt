@@ -35,6 +35,7 @@ import com.majorkik.tmdb.api.util.DateUtil
 import com.soywiz.klock.Date
 import org.koin.androidx.compose.getViewModel
 
+@Suppress("unused")
 @OptIn(ExperimentalPagerApi::class)
 @Composable
 fun MovieDetailsScreen() {

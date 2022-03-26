@@ -8,7 +8,6 @@ import com.majorkik.tmdb.api.network.NetworkResult
 import com.majorkik.tmdb.api.repository.GenresRepository
 import com.majorkik.tmdb.api.repository.MoviesRepository
 import com.majorkik.tmdb.api.repository.TVsRepository
-import com.orhanobut.logger.Logger
 import org.orbitmvi.orbit.Container
 import org.orbitmvi.orbit.ContainerHost
 import org.orbitmvi.orbit.syntax.simple.intent

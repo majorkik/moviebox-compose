@@ -65,7 +65,7 @@ There are a few ways to open this project.
 
 Add parameters in the locale.properties file as shown in the example below.
 
-```properties
+```bash
 keyTmdb="Your TMDb Key"
 ```
 
