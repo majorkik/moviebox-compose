@@ -34,7 +34,7 @@ internal fun ImagePager(
         state = pagerState
     ) { page ->
         Image(
-            painter = rememberImagePainter(data = imageLinks[page]),
+            painter = rememberImagePainter(data = imageLinks.getOrNull(page)),
             contentDescription = null,
             modifier = modifier,
             contentScale = ContentScale.Crop
@@ -45,7 +45,11 @@ internal fun ImagePager(
 @Composable
 internal fun HorizontalIndicator(count: Int, modifier: Modifier = Modifier, currentIndex: Int = 0) {
     val screenWidth = LocalConfiguration.current.screenWidthDp
-    val indicatorWidth = screenWidth.minus(DimenLocal.Indicators.totalHorizontalPadding).div(count).dp
+    val indicatorWidth = if (count > 0) {
+        screenWidth.minus(DimenLocal.Indicators.totalHorizontalPadding).div(count).dp
+    } else {
+        0.dp
+    }
 
     if (count != 0 && screenWidth > 0) {
         Row(

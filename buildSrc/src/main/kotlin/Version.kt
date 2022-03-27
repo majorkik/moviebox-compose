@@ -6,7 +6,7 @@ object Version {
     const val composeCompiler = "1.1.0-rc02"
 
     // Gradle
-    const val androidGradle = "7.0.4"
+    const val androidGradle = "7.1.2"
 
     // Versions
     const val gradleVersions = "0.42.0"
@@ -16,4 +16,6 @@ object Version {
     const val ktlintJLLeitschuh = "10.2.1"
     const val ktlint = "0.45.1"
     const val detekt = "1.19.0"
+
+    const val arrowAnalysis = "2.0"
 }

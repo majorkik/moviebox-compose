@@ -1,3 +1,4 @@
+import com.android.build.gradle.BaseExtension
 import org.jlleitschuh.gradle.ktlint.reporter.ReporterType.CHECKSTYLE
 import org.jlleitschuh.gradle.ktlint.reporter.ReporterType.PLAIN
 
@@ -9,6 +10,7 @@ buildscript {
     }
 
     dependencies {
+        classpath(group = Plugin.Arrow.group, name = Plugin.Arrow.name, version = Version.arrowAnalysis)
         classpath("${Plugin.toolsBuildGradle}:${Version.androidGradle}")
         classpath(kotlin(Plugin.gradlePlugin, version = Version.kotlin))
     }
@@ -21,6 +23,18 @@ plugins {
     id(Plugin.gradleVersions) version Version.gradleVersions
     kotlin(Plugin.jvm) version Version.kotlin
     kotlin(Plugin.kotlinSerialization) version Version.kotlin
+    id(Plugin.Arrow.group) version Version.arrowAnalysis apply false
+}
+
+allprojects {
+    tasks.withType<org.jetbrains.kotlin.gradle.tasks.KotlinCompile> {
+        kotlinOptions {
+            jvmTarget = "11"
+
+            // Use experimental APIs
+            freeCompilerArgs += "-Xopt-in=kotlin.RequiresOptIn"
+        }
+    }
 }
 
 subprojects {
@@ -34,6 +48,15 @@ subprojects {
     configureKtlint()
     configureSpotless()
     configDetekt()
+
+    afterEvaluate {
+        (project.extensions.findByName("android") as? BaseExtension)?.run {
+            compileOptions {
+                sourceCompatibility = JavaVersion.VERSION_11
+                targetCompatibility = JavaVersion.VERSION_11
+            }
+        }
+    }
 }
 
 /**

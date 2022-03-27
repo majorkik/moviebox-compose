@@ -3,6 +3,7 @@ import Version.composeCompiler
 plugins {
     id(Plugin.androidLibrary)
     kotlin(Plugin.android)
+    id(Plugin.Arrow.group)
 }
 
 android {
@@ -15,11 +16,6 @@ android {
 
     buildFeatures {
         compose = true
-    }
-
-    compileOptions {
-        sourceCompatibility = JavaVersion.VERSION_11
-        targetCompatibility = JavaVersion.VERSION_11
     }
 
     composeOptions {

@@ -1,6 +1,7 @@
 plugins {
     id(Plugin.androidLibrary)
     kotlin(Plugin.android)
+    id(Plugin.Arrow.group)
 }
 
 android {
@@ -9,11 +10,6 @@ android {
     defaultConfig {
         minSdk = AndroidConfig.minSdk
         targetSdk = AndroidConfig.targetSdk
-    }
-
-    compileOptions {
-        sourceCompatibility = JavaVersion.VERSION_11
-        targetCompatibility = JavaVersion.VERSION_11
     }
 }
 

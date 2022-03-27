@@ -1,3 +1,5 @@
+import org.gradle.api.artifacts.ExternalModuleDependency
+
 object Plugin {
     const val android = "android"
     const val androidApplication = "com.android.application"
@@ -16,4 +18,9 @@ object Plugin {
     const val detekt = "io.gitlab.arturbosch.detekt"
     const val ktlint = "org.jlleitschuh.gradle.ktlint"
     const val spotless = "com.diffplug.spotless"
+
+    object Arrow {
+        const val group = "io.arrow-kt.analysis.kotlin"
+        const val name = "io.arrow-kt.analysis.kotlin.gradle.plugin"
+    }
 }

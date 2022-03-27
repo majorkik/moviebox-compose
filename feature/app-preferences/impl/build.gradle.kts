@@ -1,6 +1,7 @@
 plugins {
     id(Plugin.androidLibrary)
     kotlin(Plugin.android)
+    id(Plugin.Arrow.group)
 }
 
 android {
@@ -16,11 +17,6 @@ android {
         shaders = false
         resValues = false
         renderScript = false
-    }
-
-    compileOptions {
-        sourceCompatibility = JavaVersion.VERSION_11
-        targetCompatibility = JavaVersion.VERSION_11
     }
 }
 

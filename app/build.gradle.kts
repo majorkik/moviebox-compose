@@ -3,6 +3,7 @@ import Version.composeCompiler
 plugins {
     id(Plugin.androidApplication)
     kotlin(Plugin.android)
+    id(Plugin.Arrow.group)
 }
 
 android {
@@ -25,15 +26,6 @@ android {
             isMinifyEnabled = BuildTypeRelease.isMinifyEnabled
             proguardFiles("proguard-android-optimize.txt", "proguard-rules.pro")
         }
-    }
-
-    compileOptions {
-        sourceCompatibility = JavaVersion.VERSION_11
-        targetCompatibility = JavaVersion.VERSION_11
-    }
-
-    kotlinOptions {
-        jvmTarget = JavaVersion.VERSION_11.toString()
     }
 
     buildFeatures {
