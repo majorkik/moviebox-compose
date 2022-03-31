@@ -9,21 +9,24 @@ buildscript {
         mavenCentral()
     }
 
+    val kotlinVersion = libs.versions.kotlin.get()
+    val androidGradle = libs.versions.android.gradle.get()
+
     dependencies {
-        classpath(group = Plugin.Arrow.group, name = Plugin.Arrow.name, version = Version.arrowAnalysis)
-        classpath("${Plugin.toolsBuildGradle}:${Version.androidGradle}")
-        classpath(kotlin(Plugin.gradlePlugin, version = Version.kotlin))
+        classpath(group = "com.android.tools.build", name = "gradle", version = androidGradle)
+        classpath(kotlin("gradle-plugin", version = kotlinVersion))
     }
 }
 
+@Suppress("DSL_SCOPE_VIOLATION")
 plugins {
-    id(Plugin.ktlint) version Version.ktlintJLLeitschuh
-    id(Plugin.detekt) version Version.detekt
-    id(Plugin.spotless) version Version.spotless
-    id(Plugin.gradleVersions) version Version.gradleVersions
-    kotlin(Plugin.jvm) version Version.kotlin
-    kotlin(Plugin.kotlinSerialization) version Version.kotlin
-    id(Plugin.Arrow.group) version Version.arrowAnalysis apply false
+    alias(libs.plugins.ktlint)
+    alias(libs.plugins.detekt)
+    alias(libs.plugins.spotless)
+    alias(libs.plugins.gradle.versions)
+//    alias(libs.plugins.arrow.analysis.group)
+    alias(libs.plugins.kotlin.serialization)
+    alias(libs.plugins.jvm)
 }
 
 allprojects {
@@ -40,9 +43,9 @@ allprojects {
 subprojects {
     apply {
         // We want to apply ktlint at all project level because it also checks Gradle config files (*.kts)
-        plugin(Plugin.ktlint)
-        plugin(Plugin.spotless)
-        plugin(Plugin.detekt)
+        plugin(rootProject.libs.plugins.ktlint.get().pluginId)
+        plugin(rootProject.libs.plugins.detekt.get().pluginId)
+        plugin(rootProject.libs.plugins.spotless.get().pluginId)
     }
 
     configureKtlint()
@@ -124,7 +127,6 @@ fun Project.configureKtlint() {
     // Ktlint configuration for sub-projects
     ktlint {
         // Version of ktlint cmd tool (Ktlint Gradle plugin is just a wrapper for this tool)
-        version.set(Version.ktlint)
         debug.set(true)
         verbose.set(true)
         android.set(true)

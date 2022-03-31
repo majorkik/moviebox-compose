@@ -1,7 +1,8 @@
+@Suppress("DSL_SCOPE_VIOLATION")
 plugins {
-    id(Plugin.androidLibrary)
-    kotlin(Plugin.android)
-    id(Plugin.Arrow.group)
+    id("com.android.library")
+    kotlin("android")
+    alias(libs.plugins.arrow.analysis.group)
 }
 
 android {
@@ -14,5 +15,5 @@ android {
 }
 
 dependencies {
-    implementation(Dependency.AndroidX.navigationCompose)
+    implementation(libs.androidx.navigation.compose)
 }

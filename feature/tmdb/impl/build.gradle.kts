@@ -1,10 +1,10 @@
 import com.android.build.gradle.internal.cxx.configure.gradleLocalProperties
 
+@Suppress("DSL_SCOPE_VIOLATION")
 plugins {
-    id(Plugin.androidLibrary)
-    kotlin(Plugin.android)
-    kotlin(Plugin.kotlinSerialization)
-//    id(Plugin.Arrow.group)
+    id("com.android.library")
+    kotlin("android")
+    kotlin("plugin.serialization")
 }
 
 android {
@@ -36,23 +36,22 @@ android {
 }
 
 dependencies {
-    implementation(project(ModuleDependency.Feature.Tmdb.api))
+    implementation(projects.feature.tmdb.api)
 
-    implementation(Dependency.Kotlin.serializationJson)
-    implementation(Dependency.Coroutines.core)
+    implementation(libs.kotlinx.serialization.json)
+    implementation(libs.coroutines.core)
 
-    implementation(Dependency.Koin.core)
+    implementation(libs.koin.core)
 
-    implementation(Dependency.Loggers.prettyLogger)
+    implementation(libs.prettyLogger)
 
     // Network
-    implementation(platform(Dependency.Network.OkHTTP.bom))
+    implementation(platform(libs.okhttp.bom))
+    implementation(libs.okhttp.bom.core)
+    implementation(libs.okhttp.bom.interceptor)
 
-    implementation(Dependency.Network.OkHTTP.core)
-    implementation(Dependency.Network.OkHTTP.loggingInterceptor)
+    implementation(libs.serialization.converter)
 
-    implementation(Dependency.Network.serializationConverter)
-
-    implementation(Dependency.Other.sandwich)
-    implementation(Dependency.Other.klock)
+    implementation(libs.sandwich)
+    implementation(libs.klock)
 }

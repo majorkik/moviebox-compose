@@ -1,9 +1,8 @@
-import Version.composeCompiler
-
+@Suppress("DSL_SCOPE_VIOLATION")
 plugins {
-    id(Plugin.androidApplication)
-    kotlin(Plugin.android)
-    id(Plugin.Arrow.group)
+    id("com.android.application")
+    kotlin("android")
+    alias(libs.plugins.arrow.analysis.group)
 }
 
 android {
@@ -33,7 +32,7 @@ android {
     }
 
     composeOptions {
-        kotlinCompilerExtensionVersion = composeCompiler
+        kotlinCompilerExtensionVersion = libs.versions.compose.compiler.get()
     }
 
     packagingOptions {
@@ -44,47 +43,30 @@ android {
 }
 
 dependencies {
-    // Modules
-    implementation(project(ModuleDependency.Core.ui))
+    implementation(projects.core.ui)
+    implementation(projects.navigation)
+    implementation(projects.ui.movieDetails)
+    implementation(projects.ui.navHome)
+    implementation(projects.ui.navProfile)
+    implementation(projects.ui.navSearch)
+    implementation(projects.feature.tmdb.impl)
+    implementation(projects.feature.appPreferences.api)
+    implementation(projects.feature.appPreferences.impl)
 
-    implementation(project(ModuleDependency.navigation))
+    implementation(libs.bundles.androidx.ui)
+    implementation(libs.bundles.compose)
+    implementation(libs.bundles.loggers)
 
-    implementation(project(ModuleDependency.UI.movieDetails))
+    implementation(libs.koin.android)
+    implementation(libs.koin.compose)
 
-    implementation(project(ModuleDependency.UI.navHome))
-    implementation(project(ModuleDependency.UI.navSearch))
-    implementation(project(ModuleDependency.UI.navProfile))
+//    implementation(libs.androidx.)
 
-    implementation(project(ModuleDependency.Feature.Tmdb.impl))
-    implementation(project(ModuleDependency.Feature.AppPreferences.api))
-    implementation(project(ModuleDependency.Feature.AppPreferences.impl))
+    implementation(libs.accompanist.navigation.animation)
+    implementation(libs.accompanist.navigation.material)
+    implementation(libs.accompanist.insets)
+    implementation(libs.accompanist.pager)
+    implementation(libs.accompanist.ui.controller)
 
-    // Libraries
-    implementation(Dependency.AndroidX.core)
-    implementation(Dependency.AndroidX.appcompat)
-    implementation(Dependency.AndroidX.material)
-    implementation(Dependency.AndroidX.activityCompose)
-
-    implementation(Dependency.AndroidX.Compose.compiler)
-    implementation(Dependency.AndroidX.Compose.ui)
-    implementation(Dependency.AndroidX.Compose.tooling)
-    implementation(Dependency.AndroidX.Compose.toolingPreview)
-    implementation(Dependency.AndroidX.Compose.runtime)
-    implementation(Dependency.AndroidX.Compose.foundation)
-    implementation(Dependency.AndroidX.Compose.material)
-
-    implementation(Dependency.Koin.android)
-    implementation(Dependency.Koin.compose)
-
-    implementation(Dependency.Loggers.prettyLogger)
-    implementation(Dependency.Loggers.timber)
-
-    implementation(Dependency.AndroidX.navigationCompose)
-
-    implementation(Dependency.Accompanist.navigationMaterial)
-    implementation(Dependency.Accompanist.navigationAnimation)
-    implementation(Dependency.Accompanist.insets)
-    implementation(Dependency.Accompanist.systemUIController)
-
-    testImplementation(Dependency.Koin.tests)
+    testImplementation(libs.koin.test)
 }
