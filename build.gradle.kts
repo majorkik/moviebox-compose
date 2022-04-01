@@ -9,12 +9,9 @@ buildscript {
         mavenCentral()
     }
 
-    val kotlinVersion = libs.versions.kotlin.get()
-    val androidGradle = libs.versions.android.gradle.get()
-
     dependencies {
-        classpath(group = "com.android.tools.build", name = "gradle", version = androidGradle)
-        classpath(kotlin("gradle-plugin", version = kotlinVersion))
+        classpath(libs.gradle.build)
+        classpath(libs.kotlin.gradle.plugin)
     }
 }
 
