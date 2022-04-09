@@ -1,9 +1,0 @@
-android_binary(
-    name = "moviebox-compose",
-    custom_package = "com.majorkik.movieboxcompose",
-    manifest = "AndroidManifest.xml",
-    srcs = ["java/com/majorkik/movieboxcompose/MainActivity.kt"],
-    resource_files = glob(["res/**"]),
-    enable_viewbinding = True,
-    
-)
