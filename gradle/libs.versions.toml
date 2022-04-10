@@ -50,8 +50,8 @@ compose_tooling = { module = "androidx.compose.ui:ui-tooling", version.ref = "co
 compose_foundation = { module = "androidx.compose.foundation:foundation", version.ref = "compose" }
 compose_runtime = { module = "androidx.compose.runtime:runtime", version.ref = "compose" }
 # Loggers
-timber = "com.jakewharton.timber:timber:5.0.1"
-prettyLogger = "com.orhanobut:logger:2.2.0"
+kotlin_logging = "io.github.microutils:kotlin-logging-jvm:2.1.20"
+slf4j = "org.slf4j:slf4j-simple:1.7.36"
 # Network
 retrofit = "com.squareup.retrofit2:retrofit:2.9.0"
 serialization_converter = "com.jakewharton.retrofit:retrofit2-kotlinx-serialization-converter:0.8.0"
@@ -80,7 +80,6 @@ coil = "io.coil-kt:coil-compose:1.4.0"
 klock = "com.soywiz.korlibs.klock:klock:2.7.0"
 
 [bundles]
-loggers = ["timber", "prettyLogger"]
 androidx_ui = [
     "androidx_activity_compose",
     "androidx_core_ktx",
@@ -105,6 +104,7 @@ compose = [
 network = ["retrofit", "serialization_converter", "okhttp_bom", "okhttp_bom_core", "okhttp_bom_interceptor"]
 okhttp = ["okhttp_bom", "okhttp_bom_core", "okhttp_bom_interceptor"]
 kotest = ["kotest_assertions", "kotest_junit"]
+logging = [ "slf4j", "kotlin_logging"]
 
 [plugins]
 jvm = { id = "org.jetbrains.kotlin.jvm", version.ref = "kotlin" }

@@ -15,7 +15,8 @@ android {
 }
 
 dependencies {
+    implementation(libs.bundles.logging)
+
     implementation(libs.androidx.datastore.preferences)
     implementation(libs.coroutines.core)
-    implementation(libs.prettyLogger)
 }

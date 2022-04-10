@@ -27,6 +27,8 @@ dependencies {
     implementation(projects.feature.tmdb.api)
     implementation(projects.feature.appPreferences.api)
 
+    implementation(libs.bundles.logging)
+
     implementation(libs.koin.compose)
     implementation(libs.mvi.orbit)
 
@@ -34,8 +36,6 @@ dependencies {
 
     implementation(libs.accompanist.pager)
     implementation(libs.accompanist.pager.indicators)
-
-    implementation(libs.prettyLogger)
 
     implementation(libs.klock)
 }

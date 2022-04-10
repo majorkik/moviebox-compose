@@ -21,7 +21,7 @@ android {
 dependencies {
     api(libs.klock)
 
-    implementation(libs.prettyLogger)
+    implementation(libs.bundles.logging)
 
     testImplementation(libs.kotlin.reflect)
 

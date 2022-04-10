@@ -1,7 +1,7 @@
 package com.majorkik.tmdb.impl.network
 
 import com.majorkik.tmdb.api.network.NetworkResult
-import com.orhanobut.logger.Logger
+import com.majorkik.tmdb.impl.logger
 import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
@@ -35,7 +35,7 @@ internal suspend fun <T, M, E> safeRequest(
             if (body != null) {
                 NetworkResult.Success(data = body, code = code)
             } else {
-                Logger.e("[SafeRequest.Error] Body is null")
+                logger.error { "[SafeRequest.Error] Body is null" }
 
                 NetworkResult.Error(
                     data = null,
@@ -43,7 +43,7 @@ internal suspend fun <T, M, E> safeRequest(
                 )
             }
         } else {
-            Logger.e("[SafeRequest.Error] Response not successful")
+            logger.error { "[SafeRequest.Error] Response not successful" }
 
             NetworkResult.Error(
                 data = onError(errorBody),
@@ -52,7 +52,7 @@ internal suspend fun <T, M, E> safeRequest(
         }
     }
 } catch (e: Exception) {
-    Logger.e(e.localizedMessage ?: "[SafeRequest.Exception] Something went wrong")
+    logger.error { e.localizedMessage ?: "[SafeRequest.Exception] Something went wrong" }
     NetworkResult.Exception(e)
 }
 

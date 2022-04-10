@@ -20,10 +20,6 @@ class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         setTheme(com.majorkik.core.ui.R.style.Theme_MovieBoxCompose)
         super.onCreate(savedInstanceState)
-//
-//        val wrong = emptyList<Int>().get(2)
-//
-//        println(wrong)
 
         // This app draws behind the system bars, so we want to handle fitting system windows
         WindowCompat.setDecorFitsSystemWindows(window, true)

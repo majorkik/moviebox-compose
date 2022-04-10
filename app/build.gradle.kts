@@ -55,12 +55,10 @@ dependencies {
 
     implementation(libs.bundles.androidx.ui)
     implementation(libs.bundles.compose)
-    implementation(libs.bundles.loggers)
+    implementation(libs.bundles.logging)
 
     implementation(libs.koin.android)
     implementation(libs.koin.compose)
-
-//    implementation(libs.androidx.)
 
     implementation(libs.accompanist.navigation.animation)
     implementation(libs.accompanist.navigation.material)

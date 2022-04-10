@@ -16,6 +16,8 @@ android {
 
 dependencies {
     implementation(projects.core.common)
-    implementation(libs.prettyLogger)
+
+    implementation(libs.bundles.logging)
+
     implementation(libs.klock)
 }
