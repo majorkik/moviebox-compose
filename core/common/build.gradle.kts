@@ -1,8 +1,8 @@
-import Version.composeCompiler
-
+@Suppress("DSL_SCOPE_VIOLATION")
 plugins {
-    id(Plugin.androidLibrary)
-    kotlin(Plugin.android)
+    id("com.android.library")
+    kotlin("android")
+    alias(libs.plugins.arrow.analysis.group)
 }
 
 android {
@@ -16,26 +16,16 @@ android {
     buildFeatures {
         compose = false
     }
-
-    compileOptions {
-        sourceCompatibility = JavaVersion.VERSION_11
-        targetCompatibility = JavaVersion.VERSION_11
-    }
-
-    composeOptions {
-        kotlinCompilerExtensionVersion = composeCompiler
-    }
 }
 
 dependencies {
-    api(Dependency.Other.klock)
+    api(libs.klock)
 
-    implementation(Dependency.Loggers.prettyLogger)
+    implementation(libs.bundles.logging)
 
-    testImplementation(Dependency.Kotlin.reflect)
+    testImplementation(libs.kotlin.reflect)
 
-    testImplementation(Dependency.Tests.Kotest.assertions)
-    testImplementation(Dependency.Tests.Kotest.junitRunner)
+    testImplementation(libs.bundles.kotest)
 }
 
 tasks.withType<Test> {

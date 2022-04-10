@@ -1,8 +1,8 @@
-import Version.composeCompiler
-
+@Suppress("DSL_SCOPE_VIOLATION")
 plugins {
-    id(Plugin.androidLibrary)
-    kotlin(Plugin.android)
+    id("com.android.library")
+    kotlin("android")
+    alias(libs.plugins.arrow.analysis.group)
 }
 
 android {
@@ -17,29 +17,24 @@ android {
         compose = true
     }
 
-    compileOptions {
-        sourceCompatibility = JavaVersion.VERSION_11
-        targetCompatibility = JavaVersion.VERSION_11
-    }
-
     composeOptions {
-        kotlinCompilerExtensionVersion = composeCompiler
+        kotlinCompilerExtensionVersion = libs.versions.compose.compiler.get()
     }
 }
 
 dependencies {
-    implementation(project(ModuleDependency.Core.ui))
-    implementation(project(ModuleDependency.Feature.Tmdb.api))
+    implementation(projects.core.ui)
+    implementation(projects.feature.tmdb.api)
 
-    implementation(Dependency.Koin.compose)
-    implementation(Dependency.Other.mviOrbit)
+    implementation(libs.bundles.logging)
 
-    implementation(Dependency.Other.coil)
+    implementation(libs.koin.compose)
+    implementation(libs.mvi.orbit)
 
-    implementation(Dependency.Accompanist.pager)
-    implementation(Dependency.Accompanist.pager_indicators)
+    implementation(libs.coil)
 
-    implementation(Dependency.Loggers.prettyLogger)
+    implementation(libs.accompanist.pager)
+    implementation(libs.accompanist.pager.indicators)
 
-    implementation(Dependency.Other.klock)
+    implementation(libs.klock)
 }

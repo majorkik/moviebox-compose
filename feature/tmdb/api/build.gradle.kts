@@ -1,6 +1,8 @@
+@Suppress("DSL_SCOPE_VIOLATION")
 plugins {
-    id(Plugin.androidLibrary)
-    kotlin(Plugin.android)
+    id("com.android.library")
+    kotlin("android")
+    alias(libs.plugins.arrow.analysis.group)
 }
 
 android {
@@ -10,15 +12,12 @@ android {
         minSdk = AndroidConfig.minSdk
         targetSdk = AndroidConfig.targetSdk
     }
-
-    compileOptions {
-        sourceCompatibility = JavaVersion.VERSION_11
-        targetCompatibility = JavaVersion.VERSION_11
-    }
 }
 
 dependencies {
-    implementation(project(ModuleDependency.Core.common))
-    implementation(Dependency.Loggers.prettyLogger)
-    implementation(Dependency.Other.klock)
+    implementation(projects.core.common)
+
+    implementation(libs.bundles.logging)
+
+    implementation(libs.klock)
 }

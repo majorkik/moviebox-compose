@@ -1,9 +1,10 @@
 import com.android.build.gradle.internal.cxx.configure.gradleLocalProperties
 
+@Suppress("DSL_SCOPE_VIOLATION")
 plugins {
-    id(Plugin.androidLibrary)
-    kotlin(Plugin.android)
-    kotlin(Plugin.kotlinSerialization)
+    id("com.android.library")
+    kotlin("android")
+    kotlin("plugin.serialization")
 }
 
 android {
@@ -23,11 +24,6 @@ android {
         renderScript = false
     }
 
-    compileOptions {
-        sourceCompatibility = JavaVersion.VERSION_11
-        targetCompatibility = JavaVersion.VERSION_11
-    }
-
     buildTypes {
         debug {
             buildConfigField("String", "TMDB_API_KEY", key)
@@ -40,23 +36,21 @@ android {
 }
 
 dependencies {
-    implementation(project(ModuleDependency.Feature.Tmdb.api))
+    implementation(projects.feature.tmdb.api)
 
-    implementation(Dependency.Kotlin.serializationJson)
-    implementation(Dependency.Coroutines.core)
+    implementation(libs.bundles.logging)
 
-    implementation(Dependency.Koin.core)
+    implementation(libs.kotlinx.serialization.json)
+    implementation(libs.coroutines.core)
 
-    implementation(Dependency.Loggers.prettyLogger)
+    implementation(libs.koin.core)
 
-    // Network
-    implementation(platform(Dependency.Network.OkHTTP.bom))
+    implementation(platform(libs.okhttp.bom))
+    implementation(libs.okhttp.bom.core)
+    implementation(libs.okhttp.bom.interceptor)
 
-    implementation(Dependency.Network.OkHTTP.core)
-    implementation(Dependency.Network.OkHTTP.loggingInterceptor)
+    implementation(libs.serialization.converter)
 
-    implementation(Dependency.Network.serializationConverter)
-
-    implementation(Dependency.Other.sandwich)
-    implementation(Dependency.Other.klock)
+    implementation(libs.sandwich)
+    implementation(libs.klock)
 }

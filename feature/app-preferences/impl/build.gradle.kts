@@ -1,6 +1,8 @@
+@Suppress("DSL_SCOPE_VIOLATION")
 plugins {
-    id(Plugin.androidLibrary)
-    kotlin(Plugin.android)
+    id("com.android.library")
+    kotlin("android")
+    alias(libs.plugins.arrow.analysis.group)
 }
 
 android {
@@ -17,19 +19,13 @@ android {
         resValues = false
         renderScript = false
     }
-
-    compileOptions {
-        sourceCompatibility = JavaVersion.VERSION_11
-        targetCompatibility = JavaVersion.VERSION_11
-    }
 }
 
 dependencies {
-    implementation(project(ModuleDependency.Feature.AppPreferences.api))
+    implementation(projects.feature.appPreferences.api)
 
-    implementation(Dependency.Koin.android)
+    implementation(libs.bundles.logging)
 
-    implementation(Dependency.AndroidX.DataStore.preferences)
-
-    implementation(Dependency.Loggers.prettyLogger)
+    implementation(libs.koin.android)
+    implementation(libs.androidx.datastore.preferences)
 }

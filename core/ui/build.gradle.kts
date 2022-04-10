@@ -1,8 +1,8 @@
-import Version.composeCompiler
-
+@Suppress("DSL_SCOPE_VIOLATION")
 plugins {
-    id(Plugin.androidLibrary)
-    kotlin(Plugin.android)
+    id("com.android.library")
+    kotlin("android")
+    alias(libs.plugins.arrow.analysis.group)
 }
 
 android {
@@ -17,30 +17,13 @@ android {
         compose = true
     }
 
-    kotlinOptions {
-        jvmTarget = JavaVersion.VERSION_11.toString()
-    }
-
-    compileOptions {
-        sourceCompatibility = JavaVersion.VERSION_11
-        targetCompatibility = JavaVersion.VERSION_11
-    }
-
     composeOptions {
-        kotlinCompilerExtensionVersion = composeCompiler
+        kotlinCompilerExtensionVersion = libs.versions.compose.compiler.get()
     }
 }
 
 dependencies {
-    api(Dependency.AndroidX.appcompat)
-
-    api(Dependency.AndroidX.Compose.compiler)
-    api(Dependency.AndroidX.Compose.ui)
-    api(Dependency.AndroidX.Compose.tooling)
-    api(Dependency.AndroidX.Compose.toolingPreview)
-    api(Dependency.AndroidX.Compose.runtime)
-    api(Dependency.AndroidX.Compose.foundation)
-    api(Dependency.AndroidX.Compose.material)
-
-    api(Dependency.Accompanist.insets)
+    api(libs.androidx.appcompat)
+    api(libs.bundles.compose)
+    api(libs.accompanist.insets)
 }

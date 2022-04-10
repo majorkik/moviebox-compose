@@ -1,3 +1,4 @@
+import com.android.build.gradle.BaseExtension
 import org.jlleitschuh.gradle.ktlint.reporter.ReporterType.CHECKSTYLE
 import org.jlleitschuh.gradle.ktlint.reporter.ReporterType.PLAIN
 
@@ -9,31 +10,53 @@ buildscript {
     }
 
     dependencies {
-        classpath("${Plugin.toolsBuildGradle}:${Version.androidGradle}")
-        classpath(kotlin(Plugin.gradlePlugin, version = Version.kotlin))
+        classpath(libs.gradle.build)
+        classpath(libs.kotlin.gradle.plugin)
     }
 }
 
+@Suppress("DSL_SCOPE_VIOLATION")
 plugins {
-    id(Plugin.ktlint) version Version.ktlintJLLeitschuh
-    id(Plugin.detekt) version Version.detekt
-    id(Plugin.spotless) version Version.spotless
-    id(Plugin.gradleVersions) version Version.gradleVersions
-    kotlin(Plugin.jvm) version Version.kotlin
-    kotlin(Plugin.kotlinSerialization) version Version.kotlin
+    alias(libs.plugins.ktlint)
+    alias(libs.plugins.detekt)
+    alias(libs.plugins.spotless)
+    alias(libs.plugins.gradle.versions)
+//    alias(libs.plugins.arrow.analysis.group)
+    alias(libs.plugins.kotlin.serialization)
+    alias(libs.plugins.jvm)
+}
+
+allprojects {
+    tasks.withType<org.jetbrains.kotlin.gradle.tasks.KotlinCompile> {
+        kotlinOptions {
+            jvmTarget = "11"
+
+            // Use experimental APIs
+            freeCompilerArgs += "-Xopt-in=kotlin.RequiresOptIn"
+        }
+    }
 }
 
 subprojects {
     apply {
         // We want to apply ktlint at all project level because it also checks Gradle config files (*.kts)
-        plugin(Plugin.ktlint)
-        plugin(Plugin.spotless)
-        plugin(Plugin.detekt)
+        plugin(rootProject.libs.plugins.ktlint.get().pluginId)
+        plugin(rootProject.libs.plugins.detekt.get().pluginId)
+        plugin(rootProject.libs.plugins.spotless.get().pluginId)
     }
 
     configureKtlint()
     configureSpotless()
     configDetekt()
+
+    afterEvaluate {
+        (project.extensions.findByName("android") as? BaseExtension)?.run {
+            compileOptions {
+                sourceCompatibility = JavaVersion.VERSION_11
+                targetCompatibility = JavaVersion.VERSION_11
+            }
+        }
+    }
 }
 
 /**
@@ -101,7 +124,6 @@ fun Project.configureKtlint() {
     // Ktlint configuration for sub-projects
     ktlint {
         // Version of ktlint cmd tool (Ktlint Gradle plugin is just a wrapper for this tool)
-        version.set(Version.ktlint)
         debug.set(true)
         verbose.set(true)
         android.set(true)
