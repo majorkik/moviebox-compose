@@ -1,6 +1,6 @@
 # MovieBox Compose [ [Backend](https://github.com/majorkik/moviebox-backend) ]
 
-[![Android Studio Arctic Fox](https://img.shields.io/badge/AS%20Dolphin-Canary%209-9cf)](https://developer.android.com/studio/preview) [![Kotlin Version](https://img.shields.io/badge/Kotlin-1.6.10-brightgreen)](https://kotlinlang.org)  [![AGP](https://img.shields.io/badge/AGP-7.1.2-blue)](https://developer.android.com/studio/releases/gradle-plugin)  [![Gradle](https://img.shields.io/badge/Gradle-7.4.1-blue)](https://gradle.org)  [![Jetpack Compose](https://img.shields.io/badge/Jetpack%20Compose-1.2.0--alpha06-blueviolet)](https://developer.android.com/jetpack/androidx/releases/compose) [![CodeFactor](https://www.codefactor.io/repository/github/majorkik/moviebox-compose/badge)](https://www.codefactor.io/repository/github/majorkik/moviebox-compose) [![codebeat badge](https://codebeat.co/badges/80853a65-81dc-46c1-8b63-7f4ee5c72bab)](https://codebeat.co/a/rodion/projects/github-com-majorkik-moviebox_compose-master)
+[![Android Studio Arctic Fox](https://img.shields.io/badge/AS%20Dolphin-Canary%209-9cf)](https://developer.android.com/studio/preview) [![Kotlin Version](https://img.shields.io/badge/Kotlin-1.6.10-brightgreen)](https://kotlinlang.org)  [![AGP](https://img.shields.io/badge/AGP-7.1.2-blue)](https://developer.android.com/studio/releases/gradle-plugin)  [![Gradle](https://img.shields.io/badge/Gradle-7.4.2-blue)](https://gradle.org)  [![Jetpack Compose](https://img.shields.io/badge/Jetpack%20Compose-1.2.0--alpha06-blueviolet)](https://developer.android.com/jetpack/androidx/releases/compose) [![CodeFactor](https://www.codefactor.io/repository/github/majorkik/moviebox-compose/badge)](https://www.codefactor.io/repository/github/majorkik/moviebox-compose) [![codebeat badge](https://codebeat.co/badges/80853a65-81dc-46c1-8b63-7f4ee5c72bab)](https://codebeat.co/a/rodion/projects/github-com-majorkik-moviebox_compose-master)
 
 #### Status 🚧 [Work in progress] 🚧
 
@@ -35,9 +35,8 @@
     - [Spotless](https://github.com/diffplug/spotless) - keep your code spotless
 - **Gradle**: [Gradle Kotlin DSL](https://docs.gradle.org/current/userguide/kotlin_dsl.html) +
   Custom tasks
-- **Loggers**: [Timber](https://github.com/JakeWharton/timber)
-  + [Pretty Logger](https://github.com/orhanobut/logger) - simple, pretty and powerful logger for
-  android
+- **Loggers**: [Kotlin Logging](https://github.com/MicroUtils/kotlin-logging)
+- **Dependency versions**: [Version catalog TOML file format](https://docs.gradle.org/current/userguide/platforms.html)
 
 ## Architecture
 
