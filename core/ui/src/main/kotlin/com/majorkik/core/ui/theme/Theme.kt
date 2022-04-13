@@ -77,15 +77,51 @@ private object SecondaryRippleTheme : RippleTheme {
     )
 }
 
-internal val LocalCustomColors = staticCompositionLocalOf { darkColors() }
+internal val LocalCustomColors = staticCompositionLocalOf {
+    AppColor(
+        primary = Color.Unspecified,
+        primaryLight = Color.Unspecified,
+        secondary = Color.Unspecified,
+        accent = Color.Unspecified,
+        background = Color.Unspecified,
+        backgroundReverse = Color.Unspecified,
+        backgroundDark50 = Color.Unspecified,
+        secondaryBackground = Color.Unspecified,
+        themeColor = Color.Unspecified,
+        ripple = Color.Unspecified,
+        text = AppColor.Text(
+            primary = Color.Unspecified,
+            secondary = Color.Unspecified,
+            white = Color.Unspecified,
+            success = Color.Unspecified
+        ),
+        placeholder = AppColor.Placeholder(
+            background = Color.Unspecified,
+            backgroundDark = Color.Unspecified
+        ),
+        white = Color.Unspecified,
+        isLight = false
+    )
+}
 
-internal val LocalCustomTypography = staticCompositionLocalOf { AppTypography() }
+internal val LocalCustomTypography = staticCompositionLocalOf {
+    AppTypography(
+        title = TextStyle.Default,
+        h1 = TextStyle.Default,
+        h2 = TextStyle.Default,
+        h3 = TextStyle.Default,
+        h4 = TextStyle.Default,
+        body1 = TextStyle.Default,
+        body2 = TextStyle.Default,
+        smallBold = TextStyle.Default,
+        bodyMedium = TextStyle.Default,
+        titleMedium = TextStyle.Default,
+        titleSmall = TextStyle.Default
+    )
+}
 
 @Composable
-fun MovieBoxTheme(
-    isDark: Boolean = isSystemInDarkTheme(),
-    content: @Composable () -> Unit,
-) {
+fun MovieBoxTheme(isDark: Boolean = isSystemInDarkTheme(), content: @Composable () -> Unit) {
     val customColors = if (isDark) darkColors() else lightColors()
     val customTypography = AppTypography()
 

@@ -1,5 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+    <string name="app_name">MovieBox Compose</string>
+
+    <!--    Base-->
     <string name="tv">TV</string>
     <string name="movie">Movie</string>
     <string name="genres">Genres</string>
@@ -7,10 +10,12 @@
     <string name="popular_tvs">Popular TV shows</string>
     <string name="trending_tv_shows">Trending TV shows</string>
     <string name="trending_movies">Trending movies</string>
+    <string name="search">Search</string>
 
+    <!--    Errors-->
     <string name="error_something_went_wrong">Something went wrong, try again</string>
 
+    <!--    Screens-->
     <string name="nav_home_screen_login_button">Log in or register</string>
     <string name="nav_home_screen_search_desc">"Find and save your favorite movies"</string>
-    <string name="search">Search</string>
 </resources>
