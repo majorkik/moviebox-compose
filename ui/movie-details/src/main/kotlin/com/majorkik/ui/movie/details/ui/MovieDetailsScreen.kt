@@ -51,6 +51,7 @@ internal fun MovieBoxContent(viewModel: MovieDetailsViewModel) {
         is State.MovieDetailsState -> {
             Details(screenState.data)
         }
+        else -> {}
     }
 }
 

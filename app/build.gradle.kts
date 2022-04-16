@@ -2,42 +2,25 @@
 plugins {
     id("com.android.application")
     kotlin("android")
-    alias(libs.plugins.arrow.analysis.group)
+//    alias(libs.plugins.arrow.analysis.group)
 }
 
-android {
-    compileSdk = AndroidConfig.compileSdk
-
+composeConfig {
     defaultConfig {
         applicationId = AndroidConfig.applicationId
-        minSdk = AndroidConfig.minSdk
-        targetSdk = AndroidConfig.targetSdk
-        versionCode = AndroidConfig.versionCode
-        versionName = AndroidConfig.versionName
-
-        vectorDrawables {
-            useSupportLibrary = AndroidConfig.useSupportLibrary
-        }
     }
 
     buildTypes {
-        release {
+        getByName(BuildType.RELEASE) {
             isMinifyEnabled = BuildTypeRelease.isMinifyEnabled
+            isDebuggable = BuildTypeRelease.isDebuggable
+
             proguardFiles("proguard-android-optimize.txt", "proguard-rules.pro")
         }
-    }
 
-    buildFeatures {
-        compose = true
-    }
-
-    composeOptions {
-        kotlinCompilerExtensionVersion = libs.versions.compose.compiler.get()
-    }
-
-    packagingOptions {
-        resources {
-            excludes += "/META-INF/{AL2.0,LGPL2.1}"
+        getByName(BuildType.DEBUG) {
+            isMinifyEnabled = BuildTypeDebug.isMinifyEnabled
+            isDebuggable = BuildTypeDebug.isDebuggable
         }
     }
 }
