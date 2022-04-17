@@ -1,11 +1,8 @@
-@Suppress("DSL_SCOPE_VIOLATION")
 plugins {
     id("com.android.library")
-    kotlin("android")
-//    alias(libs.plugins.arrow.analysis.group)
 }
 
-composeConfig()
+apply<configuration.AndroidComposePlugin>()
 
 dependencies {
     implementation(projects.core.ui)

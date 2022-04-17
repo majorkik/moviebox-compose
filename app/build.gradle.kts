@@ -1,29 +1,8 @@
-@Suppress("DSL_SCOPE_VIOLATION")
 plugins {
     id("com.android.application")
-    kotlin("android")
-//    alias(libs.plugins.arrow.analysis.group)
 }
 
-composeConfig {
-    defaultConfig {
-        applicationId = AndroidConfig.applicationId
-    }
-
-    buildTypes {
-        getByName(BuildType.RELEASE) {
-            isMinifyEnabled = BuildTypeRelease.isMinifyEnabled
-            isDebuggable = BuildTypeRelease.isDebuggable
-
-            proguardFiles("proguard-android-optimize.txt", "proguard-rules.pro")
-        }
-
-        getByName(BuildType.DEBUG) {
-            isMinifyEnabled = BuildTypeDebug.isMinifyEnabled
-            isDebuggable = BuildTypeDebug.isDebuggable
-        }
-    }
-}
+apply<configuration.AndroidApplicationPlugin>()
 
 dependencies {
     implementation(projects.core.ui)

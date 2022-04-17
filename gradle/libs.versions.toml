@@ -18,7 +18,7 @@ gradle_versions = "0.42.0"
 ktlint = "0.45.1"
 ktlint_jlleitschuh = "10.2.1"
 detekt = "1.19.0"
-spotless = "6.3.0"
+spotless = "6.4.2"
 arrow_analysis = "2.0"
 
 [libraries]
@@ -55,7 +55,7 @@ slf4j = "org.slf4j:slf4j-simple:1.7.36"
 # Network
 retrofit = "com.squareup.retrofit2:retrofit:2.9.0"
 serialization_converter = "com.jakewharton.retrofit:retrofit2-kotlinx-serialization-converter:0.8.0"
-okhttp_bom = "com.squareup.okhttp3:okhttp-bom:5.0.0-alpha.4"
+okhttp_bom = "com.squareup.okhttp3:okhttp-bom:5.0.0-alpha.1"
 okhttp_bom_core = { module = "com.squareup.okhttp3:okhttp" }
 okhttp_bom_interceptor = { module = "com.squareup.okhttp3:logging-interceptor" }
 # Dependency Injection

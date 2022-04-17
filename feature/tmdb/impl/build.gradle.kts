@@ -1,7 +1,5 @@
-@Suppress("DSL_SCOPE_VIOLATION")
 plugins {
     kotlin("jvm")
-//    alias(libs.plugins.arrow.analysis.group)
 }
 
 java {
