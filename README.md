@@ -34,7 +34,7 @@
       code smell
     - [Spotless](https://github.com/diffplug/spotless) - keep your code spotless
 - **Gradle**: [Gradle Kotlin DSL](https://docs.gradle.org/current/userguide/kotlin_dsl.html) +
-  Custom tasks
+  Custom tasks and plugins
 - **Loggers**: [Kotlin Logging](https://github.com/MicroUtils/kotlin-logging)
 - **Dependency versions**: [Version catalog TOML file format](https://docs.gradle.org/current/userguide/platforms.html)
 
