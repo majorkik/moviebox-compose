@@ -23,11 +23,10 @@ class AndroidApplicationPlugin : Plugin<Project> {
         val composeVersion = catalogs.getVersion("compose_compiler")
 
         android {
-            defaultConfig {
-                applicationId = AndroidConfig.applicationId
-            }
+            defaultConfig.applicationId = AndroidConfig.applicationId
 
             projectDefaultConfig()
+            configCompose(composeVersion = composeVersion)
 
             buildTypes {
                 getByName(BuildType.RELEASE) {
@@ -42,8 +41,6 @@ class AndroidApplicationPlugin : Plugin<Project> {
                     isDebuggable = BuildTypeDebug.isDebuggable
                 }
             }
-
-            configCompose(composeVersion = composeVersion)
         }
 
         configCompileOptions()
@@ -55,7 +52,12 @@ class AndroidComposePlugin : Plugin<Project> {
         apply(plugin = "kotlin-android")
         apply<CodeQualityPlugin>()
 
-        android { projectDefaultConfig() }
+        val composeVersion = catalogs.getVersion("compose_compiler")
+
+        android {
+            projectDefaultConfig()
+            configCompose(composeVersion = composeVersion)
+        }
 
         configCompileOptions()
     }
