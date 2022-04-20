@@ -1,7 +1,7 @@
 package com.majorkik.tmdb.impl.repository
 
-import com.majorkik.tmdb.api.network.NetworkResult
 import com.majorkik.tmdb.api.model.MovieDetails
+import com.majorkik.tmdb.api.network.NetworkResult
 import com.majorkik.tmdb.api.repository.MovieDetailsRepository
 import com.majorkik.tmdb.impl.network.ApiService
 import com.majorkik.tmdb.impl.network.safeRequest

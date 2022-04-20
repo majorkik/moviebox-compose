@@ -12,12 +12,11 @@ class AppKtlintPlugin : Plugin<Project> {
         apply<KtlintPlugin>()
 
         configure<KtlintExtension> {
-            debug.set(true)
+            debug.set(false)
             verbose.set(true)
             android.set(true)
             outputToConsole.set(true)
-            outputColorName.set("BLUE")
-            ignoreFailures.set(true)
+            ignoreFailures.set(false)
             enableExperimentalRules.set(true)
 
             filter {

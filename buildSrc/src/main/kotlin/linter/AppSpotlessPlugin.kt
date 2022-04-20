@@ -12,21 +12,18 @@ class AppSpotlessPlugin : Plugin<Project> {
         apply<SpotlessPlugin>()
 
         configure<SpotlessExtension> {
-            java {
-                target("**/*.java")
-                googleJavaFormat().aosp()
-                removeUnusedImports()
+            kotlin {
+                ktlint()
+
                 trimTrailingWhitespace()
                 indentWithSpaces()
                 endWithNewline()
             }
 
-            kotlin {
-                target("**/*.kt")
-                // ktlint()
-                trimTrailingWhitespace()
-                indentWithSpaces()
-                endWithNewline()
+            java {
+                importOrder()
+                removeUnusedImports()
+                googleJavaFormat()
             }
 
             format("misc") {
