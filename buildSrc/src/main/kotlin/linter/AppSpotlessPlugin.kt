@@ -25,6 +25,8 @@ class AppSpotlessPlugin : Plugin<Project> {
                 importOrder()
                 removeUnusedImports()
                 googleJavaFormat()
+
+                endWithNewline()
             }
 
             format("misc") {
@@ -40,6 +42,8 @@ class AppSpotlessPlugin : Plugin<Project> {
 
                 ktlint()
                 ktfmt()
+
+                endWithNewline()
             }
 
             format("xml") {
@@ -48,6 +52,10 @@ class AppSpotlessPlugin : Plugin<Project> {
                 indentWithSpaces()
                 trimTrailingWhitespace()
                 endWithNewline()
+            }
+
+            freshmark {
+                target("**/*.md")
             }
         }
     }

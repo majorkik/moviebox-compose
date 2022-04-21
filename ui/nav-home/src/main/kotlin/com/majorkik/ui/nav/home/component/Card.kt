@@ -97,7 +97,6 @@ internal fun HorizontalMovieCard(
     }
 }
 
-
 @Composable
 internal fun VerticalMovieCard(
     posterPath: PosterPath?,
