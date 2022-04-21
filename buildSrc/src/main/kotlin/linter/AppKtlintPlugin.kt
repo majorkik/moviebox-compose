@@ -20,7 +20,8 @@ class AppKtlintPlugin : Plugin<Project> {
             enableExperimentalRules.set(true)
 
             filter {
-                exclude("**/generated/**")
+                // exclude("**/generated/**")
+                exclude { projectDir.toURI().relativize(it.file.toURI()).path.contains("/generated/") }
                 include("**/kotlin/**")
             }
         }
