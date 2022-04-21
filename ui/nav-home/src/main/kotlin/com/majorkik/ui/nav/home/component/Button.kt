@@ -69,11 +69,11 @@ fun ButtonPreview() {
     MovieBoxTheme {
         Column {
             RoundedButton(text = "Button") {
-
+                /* no-op */
             }
 
             LoginButton {
-
+                /* no-op */
             }
         }
     }

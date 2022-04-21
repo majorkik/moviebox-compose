@@ -49,6 +49,10 @@ class AppSpotlessPlugin : Plugin<Project> {
                 trimTrailingWhitespace()
                 endWithNewline()
             }
+
+            freshmark {
+                target("**/*.md")
+            }
         }
     }
 }
