@@ -1,7 +1,7 @@
 package com.majorkik.tmdb.impl.network
 
 import com.jakewharton.retrofit2.converter.kotlinx.serialization.asConverterFactory
-import com.majorkik.tmdb.api.APIConstants
+import com.majorkik.tmdb.api.UrlConstants
 import kotlinx.serialization.ExperimentalSerializationApi
 import kotlinx.serialization.json.Json
 import okhttp3.Interceptor
@@ -12,27 +12,21 @@ import retrofit2.Retrofit
 
 internal val okHttpClient = OkHttpClient()
 
-internal fun getLoggingInterceptorBodyLevel() = HttpLoggingInterceptor().apply {
-    level = HttpLoggingInterceptor.Level.BODY
-}
+internal fun getLoggingInterceptorBodyLevel() =
+    HttpLoggingInterceptor().apply { level = HttpLoggingInterceptor.Level.BODY }
 
-internal fun getInterceptor() = Interceptor.invoke { chain ->
-    val url = chain.request()
-        .url
-        .newBuilder()
-        .addQueryParameter("api_key", "das")
-        .build()
+internal fun getInterceptor() =
+    Interceptor.invoke { chain ->
+        val url = chain.request().url.newBuilder().addQueryParameter("api_key", "das").build()
 
-    val request = chain.request()
-        .newBuilder()
-        .url(url)
-        .build()
+        val request = chain.request().newBuilder().url(url).build()
 
-    return@invoke chain.proceed(request)
-}
+        return@invoke chain.proceed(request)
+    }
 
 internal fun createHttpClient(): OkHttpClient {
-    return okHttpClient.newBuilder()
+    return okHttpClient
+        .newBuilder()
         .addInterceptor(getLoggingInterceptorBodyLevel())
         .addNetworkInterceptor(getInterceptor())
         .build()
@@ -50,7 +44,7 @@ internal fun createRetrofit(okHttpClient: OkHttpClient): Retrofit {
 
     return Retrofit.Builder()
         .client(okHttpClient)
-        .baseUrl(APIConstants.baseUrl)
+        .baseUrl(UrlConstants.BASE_URL)
         .addConverterFactory(json.asConverterFactory(mediaType))
         .build()
 }

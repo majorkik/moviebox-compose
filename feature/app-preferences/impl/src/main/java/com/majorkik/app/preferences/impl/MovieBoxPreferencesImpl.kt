@@ -10,7 +10,9 @@ import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.catch
 import kotlinx.coroutines.flow.map
 
-internal class MovieBoxPreferencesImpl(private val dataStore: DataStore<Preferences>) : MovieBoxPreferences {
+internal class MovieBoxPreferencesImpl(
+    private val dataStore: DataStore<Preferences>
+) : MovieBoxPreferences {
     override val shouldUseDarkTheme: Flow<Boolean> = dataStore.data
         .catch { exception ->
             logger.error(exception) { "Error inside [darkModeStateFlow]" }

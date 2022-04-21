@@ -33,10 +33,7 @@ data class MovieDetails(
     val backdropLinks: List<String>,
     val backdropsCount: Int
 ) {
-    data class Genre(
-        val id: Long,
-        val name: String
-    )
+    data class Genre(val id: Long, val name: String)
 
     data class BelongsToCollection(
         val id: Long,
@@ -52,47 +49,42 @@ data class MovieDetails(
         val originCountry: String
     )
 
-    data class ProductionCountry(
-        val iso: String,
-        val name: String
-    )
+    data class ProductionCountry(val iso: String, val name: String)
 
-    data class SpokenLanguage(
-        val iso: String,
-        val name: String
-    )
+    data class SpokenLanguage(val iso: String, val name: String)
 
     companion object {
-        fun mock() = MovieDetails(
-            adult = false,
-            backdropPath = null,
-            belongsToCollection = null,
-            budget = 0,
-            genres = listOf(),
-            homepage = null,
-            id = 0,
-            imdbId = null,
-            originalLanguage = "",
-            originalTitle = "",
-            overview = null,
-            popularity = 0.0,
-            posterPath = null,
-            productionCompanies = listOf(),
-            productionCountries = listOf(),
-            releaseDate = null,
-            revenue = 0,
-            runtime = null,
-            spokenLanguages = listOf(),
-            status = "",
-            tagline = null,
-            title = "",
-            video = false,
-            voteAverage = 0.0,
-            voteCount = 0,
-            posterLinks = listOf(),
-            postersCount = 0,
-            backdropLinks = listOf(),
-            backdropsCount = 0
-        )
+        fun mock() =
+            MovieDetails(
+                adult = false,
+                backdropPath = null,
+                belongsToCollection = null,
+                budget = 0,
+                genres = listOf(),
+                homepage = null,
+                id = 0,
+                imdbId = null,
+                originalLanguage = "",
+                originalTitle = "",
+                overview = null,
+                popularity = 0.0,
+                posterPath = null,
+                productionCompanies = listOf(),
+                productionCountries = listOf(),
+                releaseDate = null,
+                revenue = 0,
+                runtime = null,
+                spokenLanguages = listOf(),
+                status = "",
+                tagline = null,
+                title = "",
+                video = false,
+                voteAverage = 0.0,
+                voteCount = 0,
+                posterLinks = listOf(),
+                postersCount = 0,
+                backdropLinks = listOf(),
+                backdropsCount = 0
+            )
     }
 }

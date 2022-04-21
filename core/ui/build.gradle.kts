@@ -1,6 +1,4 @@
-plugins {
-    id("com.android.library")
-}
+plugins { id("com.android.library") }
 
 apply<configuration.AndroidComposePlugin>()
 

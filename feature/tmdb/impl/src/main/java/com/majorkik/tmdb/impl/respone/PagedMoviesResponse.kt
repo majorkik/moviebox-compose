@@ -34,26 +34,28 @@ internal data class PagedMoviesResponse(
     )
 }
 
-internal fun PagedMoviesResponse.toDomainModel() = PagedMovieResult(
-    movies = data.map { it.toDomainModel() },
-    page = page,
-    totalPages = totalPages,
-    totalItems = totalResults
-)
+internal fun PagedMoviesResponse.toDomainModel() =
+    PagedMovieResult(
+        movies = data.map { it.toDomainModel() },
+        page = page,
+        totalPages = totalPages,
+        totalItems = totalResults
+    )
 
-internal fun PagedMoviesResponse.Movie.toDomainModel() = Movie(
-    id = id,
-    title = title,
-    overview = overview,
-    originalLanguage = originalLanguage,
-    originalTitle = originalTitle,
-    popularity = popularity,
-    posterPath = posterPath?.toPosterPath(),
-    releaseDate = releaseDate?.let { date -> tryParseToDate(date = date) },
-    video = video,
-    backdropPath = backdropPath?.toBackdropPath(),
-    voteAverage = voteAverage,
-    voteCount = voteCount,
-    genreIds = genreIds,
-    adult = adult
-)
+internal fun PagedMoviesResponse.Movie.toDomainModel() =
+    Movie(
+        id = id,
+        title = title,
+        overview = overview,
+        originalLanguage = originalLanguage,
+        originalTitle = originalTitle,
+        popularity = popularity,
+        posterPath = posterPath?.toPosterPath(),
+        releaseDate = releaseDate?.let { date -> tryParseToDate(date = date) },
+        video = video,
+        backdropPath = backdropPath?.toBackdropPath(),
+        voteAverage = voteAverage,
+        voteCount = voteCount,
+        genreIds = genreIds,
+        adult = adult
+    )

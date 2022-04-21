@@ -1,6 +1,4 @@
-plugins {
-    id("com.android.application")
-}
+plugins { id("com.android.application") }
 
 apply<configuration.AndroidApplicationPlugin>()
 

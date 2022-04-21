@@ -1,6 +1,4 @@
-plugins {
-    kotlin("jvm")
-}
+plugins { kotlin("jvm") }
 
 apply<linter.CodeQualityPlugin>()
 
@@ -19,6 +17,4 @@ dependencies {
     testImplementation(libs.bundles.kotest)
 }
 
-tasks.withType<Test> {
-    useJUnitPlatform()
-}
+tasks.withType<Test> { useJUnitPlatform() }

@@ -1,6 +1,4 @@
-plugins {
-    kotlin("jvm")
-}
+plugins { kotlin("jvm") }
 
 apply<linter.CodeQualityPlugin>()
 

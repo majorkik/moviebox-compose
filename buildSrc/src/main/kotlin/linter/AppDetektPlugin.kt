@@ -16,7 +16,6 @@ class AppDetektPlugin : Plugin<Project> {
 
             autoCorrect = true
             parallel = true
-            buildUponDefaultConfig = true
 
             // By default detekt does not check test source set and gradle specific files,
             // so hey have to be added manually

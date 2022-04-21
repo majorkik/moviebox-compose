@@ -14,6 +14,7 @@ class AppSpotlessPlugin : Plugin<Project> {
         configure<SpotlessExtension> {
             kotlin {
                 ktlint()
+                ktfmt()
 
                 trimTrailingWhitespace()
                 indentWithSpaces()
@@ -28,6 +29,7 @@ class AppSpotlessPlugin : Plugin<Project> {
 
             format("misc") {
                 target("**/*.gradle", "**/*.md", "**/.gitignore")
+
                 indentWithSpaces()
                 trimTrailingWhitespace()
                 endWithNewline()
@@ -35,11 +37,14 @@ class AppSpotlessPlugin : Plugin<Project> {
 
             kotlinGradle {
                 target("*.gradle.kts")
+
                 ktlint()
+                ktfmt()
             }
 
             format("xml") {
                 target("**/*.xml")
+
                 indentWithSpaces()
                 trimTrailingWhitespace()
                 endWithNewline()

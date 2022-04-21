@@ -12,7 +12,7 @@ class AppKtlintPlugin : Plugin<Project> {
         apply<KtlintPlugin>()
 
         configure<KtlintExtension> {
-            debug.set(false)
+            debug.set(true)
             verbose.set(true)
             android.set(true)
             outputToConsole.set(true)

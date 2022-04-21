@@ -1,10 +1,8 @@
 package com.majorkik.tmdb.api.model
 
-import com.majorkik.tmdb.api.APIConstants
+import com.majorkik.tmdb.api.UrlConstants
 
-data class PosterPath(
-    val value: String
-) {
+data class PosterPath(val value: String) {
     @Suppress("unused")
     enum class Size(val path: String) {
         Width92("w92"),
@@ -17,7 +15,7 @@ data class PosterPath(
     }
 
     fun build(size: Size = Size.Original): String {
-        return APIConstants.imageUrl + size.path + value
+        return UrlConstants.IMAGE_URL + size.path + value
     }
 }
 
