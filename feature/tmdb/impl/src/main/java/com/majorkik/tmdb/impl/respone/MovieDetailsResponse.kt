@@ -35,10 +35,7 @@ internal data class MovieDetailsResponse(
     @SerialName("images") val images: Images
 ) {
     @Serializable
-    data class Genre(
-        @SerialName("id") val id: Long,
-        @SerialName("name") val name: String
-    )
+    data class Genre(@SerialName("id") val id: Long, @SerialName("name") val name: String)
 
     @Serializable
     data class BelongsToCollection(
@@ -81,63 +78,59 @@ internal data class MovieDetailsResponse(
     }
 }
 
-internal fun MovieDetailsResponse.toDomainModel() = MovieDetails(
-    adult = adult,
-    backdropPath = backdropPath,
-    belongsToCollection = belongsToCollection?.toDomainModel(),
-    budget = budget,
-    genres = genres.map { it.toDomainModel() },
-    homepage = homepage,
-    id = id,
-    imdbId = imdbId,
-    originalLanguage = originalLanguage,
-    originalTitle = originalTitle,
-    overview = overview,
-    popularity = popularity,
-    posterPath = posterPath,
-    productionCompanies = productionCompanies.map { it.toDomainModel() },
-    productionCountries = productionCountries.map { it.toDomainModel() },
-    releaseDate = DateUtil.tryParse(date = releaseDate),
-    revenue = revenue,
-    runtime = runtime,
-    spokenLanguages = spokenLanguages.map { it.toDomainModel() },
-    status = status,
-    tagline = tagline,
-    title = title,
-    video = video,
-    voteAverage = voteAverage,
-    voteCount = voteCount,
-    posterLinks = images.posters.mapNotNull { it.filePath },
-    postersCount = images.posters.count(),
-    backdropLinks = images.backdrops.mapNotNull { it.filePath },
-    backdropsCount = images.backdrops.count()
-)
+internal fun MovieDetailsResponse.toDomainModel() =
+    MovieDetails(
+        adult = adult,
+        backdropPath = backdropPath,
+        belongsToCollection = belongsToCollection?.toDomainModel(),
+        budget = budget,
+        genres = genres.map { it.toDomainModel() },
+        homepage = homepage,
+        id = id,
+        imdbId = imdbId,
+        originalLanguage = originalLanguage,
+        originalTitle = originalTitle,
+        overview = overview,
+        popularity = popularity,
+        posterPath = posterPath,
+        productionCompanies = productionCompanies.map { it.toDomainModel() },
+        productionCountries = productionCountries.map { it.toDomainModel() },
+        releaseDate = DateUtil.tryParse(date = releaseDate),
+        revenue = revenue,
+        runtime = runtime,
+        spokenLanguages = spokenLanguages.map { it.toDomainModel() },
+        status = status,
+        tagline = tagline,
+        title = title,
+        video = video,
+        voteAverage = voteAverage,
+        voteCount = voteCount,
+        posterLinks = images.posters.mapNotNull { it.filePath },
+        postersCount = images.posters.count(),
+        backdropLinks = images.backdrops.mapNotNull { it.filePath },
+        backdropsCount = images.backdrops.count()
+    )
 
-internal fun MovieDetailsResponse.Genre.toDomainModel() = MovieDetails.Genre(
-    id = id,
-    name = name
-)
+internal fun MovieDetailsResponse.Genre.toDomainModel() = MovieDetails.Genre(id = id, name = name)
 
-internal fun MovieDetailsResponse.BelongsToCollection.toDomainModel() = MovieDetails.BelongsToCollection(
-    id = id,
-    name = name,
-    posterPath = posterPath,
-    backdropPath = backdropPath
-)
+internal fun MovieDetailsResponse.BelongsToCollection.toDomainModel() =
+    MovieDetails.BelongsToCollection(
+        id = id,
+        name = name,
+        posterPath = posterPath,
+        backdropPath = backdropPath
+    )
 
-internal fun MovieDetailsResponse.ProductionCompany.toDomainModel() = MovieDetails.ProductionCompany(
-    id = id,
-    logoPath = logoPath,
-    name = name,
-    originCountry = originCountry
-)
+internal fun MovieDetailsResponse.ProductionCompany.toDomainModel() =
+    MovieDetails.ProductionCompany(
+        id = id,
+        logoPath = logoPath,
+        name = name,
+        originCountry = originCountry
+    )
 
-internal fun MovieDetailsResponse.ProductionCountry.toDomainModel() = MovieDetails.ProductionCountry(
-    iso = iso31661,
-    name = name
-)
+internal fun MovieDetailsResponse.ProductionCountry.toDomainModel() =
+    MovieDetails.ProductionCountry(iso = iso31661, name = name)
 
-internal fun MovieDetailsResponse.SpokenLanguage.toDomainModel() = MovieDetails.SpokenLanguage(
-    iso = iso6391,
-    name = name
-)
+internal fun MovieDetailsResponse.SpokenLanguage.toDomainModel() =
+    MovieDetails.SpokenLanguage(iso = iso6391, name = name)

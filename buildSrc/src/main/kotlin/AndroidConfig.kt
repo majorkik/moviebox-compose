@@ -12,7 +12,6 @@ object AndroidConfig {
     const val useSupportLibrary = true
 }
 
-@Suppress("unused")
 interface BuildType {
     companion object {
         const val RELEASE = "release"
@@ -23,7 +22,6 @@ interface BuildType {
     val isDebuggable: Boolean
 }
 
-@Suppress("unused")
 object BuildTypeDebug : BuildType {
     override val isMinifyEnabled = false
     override val isDebuggable = true

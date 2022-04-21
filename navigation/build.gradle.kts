@@ -1,19 +1,5 @@
-@Suppress("DSL_SCOPE_VIOLATION")
-plugins {
-    id("com.android.library")
-    kotlin("android")
-    alias(libs.plugins.arrow.analysis.group)
-}
+plugins { id("com.android.library") }
 
-android {
-    compileSdk = AndroidConfig.compileSdk
+apply<configuration.AndroidComposePlugin>()
 
-    defaultConfig {
-        minSdk = AndroidConfig.minSdk
-        targetSdk = AndroidConfig.targetSdk
-    }
-}
-
-dependencies {
-    implementation(libs.androidx.navigation.compose)
-}
+dependencies { implementation(libs.androidx.navigation.compose) }

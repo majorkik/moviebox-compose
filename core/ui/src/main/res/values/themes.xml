@@ -1,5 +1,4 @@
 <resources>
-
     <style name="Theme.MovieBoxCompose" parent="Theme.AppCompat.NoActionBar">
         <item name="android:colorPrimary">@color/accent</item>
         <item name="android:colorPrimaryDark">@color/accent</item>

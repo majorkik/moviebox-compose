@@ -1,25 +1,6 @@
-@Suppress("DSL_SCOPE_VIOLATION")
-plugins {
-    id("com.android.library")
-    kotlin("android")
-    alias(libs.plugins.arrow.analysis.group)
-}
+plugins { id("com.android.library") }
 
-android {
-    compileSdk = AndroidConfig.compileSdk
-
-    defaultConfig {
-        minSdk = AndroidConfig.minSdk
-        targetSdk = AndroidConfig.targetSdk
-    }
-
-    buildFeatures {
-        aidl = false
-        shaders = false
-        resValues = false
-        renderScript = false
-    }
-}
+apply<configuration.AndroidPlugin>()
 
 dependencies {
     implementation(projects.feature.appPreferences.api)

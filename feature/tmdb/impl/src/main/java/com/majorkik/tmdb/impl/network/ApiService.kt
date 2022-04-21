@@ -10,10 +10,7 @@ import retrofit2.http.Path
 import retrofit2.http.Query
 
 internal interface ApiService {
-    /**
-     * Movie
-     */
-
+    /** Movie */
     @GET("movie/{movie_id}")
     suspend fun getMovieById(
         @Path("movie_id") id: Long,
@@ -31,10 +28,7 @@ internal interface ApiService {
     @GET("trending/movie/week")
     suspend fun getTrendingMovies(@Query("page") page: Int): Response<PagedMoviesResponse>
 
-    /**
-     * TVs
-     */
-
+    /** TVs */
     @GET("tv/popular")
     suspend fun getPopularTVs(
         @Query("page") page: Int,
@@ -44,10 +38,7 @@ internal interface ApiService {
     @GET("trending/tv/week")
     suspend fun getTrendingTVs(@Query("page") page: Int): Response<PagedTVsResponse>
 
-    /**
-     * Genres
-     */
-
+    /** Genres */
     @GET("genre/movie/list")
     suspend fun getMovieGenres(): Response<GenresResponse>
 

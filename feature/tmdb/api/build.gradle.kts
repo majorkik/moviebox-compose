@@ -1,17 +1,10 @@
-@Suppress("DSL_SCOPE_VIOLATION")
-plugins {
-    id("com.android.library")
-    kotlin("android")
-    alias(libs.plugins.arrow.analysis.group)
-}
+plugins { kotlin("jvm") }
 
-android {
-    compileSdk = AndroidConfig.compileSdk
+apply<linter.CodeQualityPlugin>()
 
-    defaultConfig {
-        minSdk = AndroidConfig.minSdk
-        targetSdk = AndroidConfig.targetSdk
-    }
+java {
+    sourceCompatibility = JavaVersion.VERSION_11
+    targetCompatibility = JavaVersion.VERSION_11
 }
 
 dependencies {

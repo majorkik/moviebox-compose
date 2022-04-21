@@ -1,10 +1,8 @@
 package com.majorkik.tmdb.api.model
 
-import com.majorkik.tmdb.api.APIConstants
+import com.majorkik.tmdb.api.UrlConstants
 
-data class BackdropPath(
-    val value: String
-) {
+data class BackdropPath(val value: String) {
     @Suppress("unused")
     enum class Size(val path: String) {
         Width300("w300"),
@@ -14,7 +12,7 @@ data class BackdropPath(
     }
 
     fun build(size: Size = Size.Original): String {
-        return APIConstants.imageUrl + size.path + value
+        return UrlConstants.IMAGE_URL + size.path + value
     }
 }
 

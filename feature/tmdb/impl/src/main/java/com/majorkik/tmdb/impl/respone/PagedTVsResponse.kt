@@ -36,27 +36,29 @@ data class PagedTVsResponse(
     )
 }
 
-internal fun PagedTVsResponse.toDomainModel() = PagedTVsResult(
-    tvs = data.map { it.toDomainModel() },
-    page = page,
-    totalPages = totalPages,
-    totalItems = totalResults
-)
+internal fun PagedTVsResponse.toDomainModel() =
+    PagedTVsResult(
+        tvs = data.map { it.toDomainModel() },
+        page = page,
+        totalPages = totalPages,
+        totalItems = totalResults
+    )
 
-internal fun PagedTVsResponse.TV.toDomainModel() = TV(
-    adult = adult ?: false,
-    backdropPath = backdropPath?.toBackdropPath(),
-    genreIds = genreIds,
-    id = id,
-    originCountry = originCountry ?: listOf(),
-    originalLanguage = originalLanguage,
-    originalTitle = originalTitle ?: title,
-    overview = overview,
-    popularity = popularity,
-    posterPath = posterPath?.toPosterPath(),
-    releaseDate = releaseDate?.let(::tryParseToDate),
-    title = title,
-    video = video ?: false,
-    voteAverage = voteAverage,
-    voteCount = voteCount
-)
+internal fun PagedTVsResponse.TV.toDomainModel() =
+    TV(
+        adult = adult ?: false,
+        backdropPath = backdropPath?.toBackdropPath(),
+        genreIds = genreIds,
+        id = id,
+        originCountry = originCountry ?: listOf(),
+        originalLanguage = originalLanguage,
+        originalTitle = originalTitle ?: title,
+        overview = overview,
+        popularity = popularity,
+        posterPath = posterPath?.toPosterPath(),
+        releaseDate = releaseDate?.let(::tryParseToDate),
+        title = title,
+        video = video ?: false,
+        voteAverage = voteAverage,
+        voteCount = voteCount
+    )
