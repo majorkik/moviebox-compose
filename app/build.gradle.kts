@@ -1,6 +1,15 @@
-plugins { id("com.android.application") }
+plugins {
+    id("com.android.application")
+    id("com.google.devtools.ksp") version "1.6.10-1.0.2"
+}
 
 apply<configuration.AndroidApplicationPlugin>()
+
+android {
+    applicationVariants.all {
+        sourceSets { getByName(name) { kotlin.srcDir("build/generated/ksp/$name/kotlin") } }
+    }
+}
 
 dependencies {
     implementation(projects.core.ui)
@@ -25,6 +34,9 @@ dependencies {
     implementation(libs.accompanist.insets)
     implementation(libs.accompanist.pager)
     implementation(libs.accompanist.ui.controller)
+
+    implementation(libs.compose.destinations.core)
+    ksp(libs.compose.destinations.ksp)
 
     testImplementation(libs.koin.test)
 }

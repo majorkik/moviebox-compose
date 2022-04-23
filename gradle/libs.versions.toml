@@ -12,6 +12,7 @@ android_gradle = "7.1.2"
 compose = "1.2.0-alpha06"
 compose_compiler = "1.2.0-alpha06"
 accompanist = "0.22.0-rc"
+compose_destinations = "1.5.1-beta"
 # Gradle Version plugin
 gradle_versions = "0.42.0"
 # Static analyze code
@@ -23,7 +24,7 @@ arrow_analysis = "2.0"
 
 [libraries]
 # Gradle
-gradle_build = { module = "com.android.tools.build:gradle", version.ref = "android_gradle"}
+gradle_build = { module = "com.android.tools.build:gradle", version.ref = "android_gradle" }
 kotlin_gradle_plugin = { module = "org.jetbrains.kotlin:kotlin-gradle-plugin", version.ref = "kotlin" }
 # Kotlin
 kotlin_stdlib = { module = "org.jetbrains.kotlin:kotlin-stdlib-jdk8", version.ref = "kotlin" }
@@ -78,6 +79,8 @@ sandwich = "com.github.skydoves:sandwich:1.2.3"
 mvi_orbit = "org.orbit-mvi:orbit-viewmodel:4.3.2"
 coil = "io.coil-kt:coil-compose:1.4.0"
 klock = "com.soywiz.korlibs.klock:klock:2.7.0"
+compose_destinations_core = { module = "io.github.raamcosta.compose-destinations:animations-core", version.ref = "compose_destinations" }
+compose_destinations_ksp = { module = "io.github.raamcosta.compose-destinations:ksp", version.ref = "compose_destinations" }
 
 [bundles]
 androidx_ui = [
@@ -104,7 +107,7 @@ compose = [
 network = ["retrofit", "serialization_converter", "okhttp_bom", "okhttp_bom_core", "okhttp_bom_interceptor"]
 okhttp = ["okhttp_bom", "okhttp_bom_core", "okhttp_bom_interceptor"]
 kotest = ["kotest_assertions", "kotest_junit"]
-logging = [ "slf4j", "kotlin_logging"]
+logging = ["slf4j", "kotlin_logging"]
 
 [plugins]
 jvm = { id = "org.jetbrains.kotlin.jvm", version.ref = "kotlin" }

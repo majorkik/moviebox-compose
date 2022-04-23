@@ -1,6 +1,15 @@
-plugins { id("com.android.library") }
+plugins {
+    id("com.android.library")
+    id("com.google.devtools.ksp") version "1.6.10-1.0.2"
+}
 
 apply<configuration.AndroidComposePlugin>()
+
+android {
+    libraryVariants.all {
+        sourceSets { getByName(name) { kotlin.srcDir("build/generated/ksp/$name/kotlin") } }
+    }
+}
 
 dependencies {
     implementation(projects.core.ui)
@@ -18,4 +27,7 @@ dependencies {
     implementation(libs.accompanist.pager.indicators)
 
     implementation(libs.klock)
+
+    implementation(libs.compose.destinations.core)
+    ksp(libs.compose.destinations.ksp)
 }
