@@ -1,7 +1,8 @@
 [versions]
 # Kotlin
-kotlin = "1.6.10"
+kotlin = "1.6.20"
 coroutines = "1.6.1"
+ksp = "1.6.10-1.0.2"
 # Dependency Injection
 koin = "3.2.0-beta-1"
 # Testing
@@ -118,3 +119,4 @@ spotless = { id = "com.diffplug.spotless", version.ref = "spotless" }
 gradle_versions = { id = "com.github.ben-manes.versions", version.ref = "gradle_versions" }
 arrow_analysis = { id = "io.arrow-kt.analysis.kotlin:io.arrow-kt.analysis.kotlin.gradle.plugin", version.ref = "arrow_analysis" }
 arrow_analysis_group = { id = "io.arrow-kt.analysis.kotlin", version.ref = "arrow_analysis" }
+ksp = { id = "com.google.devtools.ksp", version.ref = "ksp" }
