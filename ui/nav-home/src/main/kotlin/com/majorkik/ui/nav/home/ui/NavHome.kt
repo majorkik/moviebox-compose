@@ -48,11 +48,13 @@ import com.majorkik.ui.nav.home.component.RoundedButton
 import com.majorkik.ui.nav.home.component.TitleText
 import com.majorkik.ui.nav.home.component.Toolbar
 import com.majorkik.ui.nav.home.component.VerticalMovieCard
+import com.ramcosta.composedestinations.annotation.Destination
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
 import org.koin.androidx.compose.getViewModel
 import com.majorkik.core.ui.R as CoreRes
 
+@Destination
 @Composable
 fun NavHomeScreen() {
     NavHomeContent(viewModel = getViewModel())
@@ -223,7 +225,10 @@ fun GenresBlock(
                 color = MovieBoxTheme.colors.backgroundReverse
             )
 
-            GenresSwitchBox(isMovieGenresSelected = isMovieGenresSelected, onToggleSwitch = onToggle)
+            GenresSwitchBox(
+                isMovieGenresSelected = isMovieGenresSelected,
+                onToggleSwitch = onToggle
+            )
         }
 
         LazyRow(

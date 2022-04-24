@@ -9,12 +9,18 @@ android {
     libraryVariants.all {
         sourceSets { getByName(name) { kotlin.srcDir("build/generated/ksp/$name/kotlin") } }
     }
+
+    ksp {
+        arg("compose-destinations.moduleName", "home")
+        arg("compose-destinations.mode", "destinations")
+    }
 }
 
 dependencies {
     implementation(projects.core.common)
     implementation(projects.core.ui)
     implementation(projects.feature.tmdb.api)
+    implementation(projects.navigation)
 
     implementation(libs.bundles.logging)
 
