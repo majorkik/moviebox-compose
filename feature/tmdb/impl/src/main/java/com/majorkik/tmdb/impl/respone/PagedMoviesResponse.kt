@@ -4,7 +4,7 @@ import com.majorkik.tmdb.api.model.Movie
 import com.majorkik.tmdb.api.model.PagedMovieResult
 import com.majorkik.tmdb.api.model.toBackdropPath
 import com.majorkik.tmdb.api.model.toPosterPath
-import com.majorkik.tmdb.impl.tryParseToDate
+import com.majorkik.tmdb.impl.extension.tryParseToDate
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
 

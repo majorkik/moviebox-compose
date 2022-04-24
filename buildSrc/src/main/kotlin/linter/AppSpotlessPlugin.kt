@@ -14,7 +14,6 @@ class AppSpotlessPlugin : Plugin<Project> {
         configure<SpotlessExtension> {
             kotlin {
                 ktlint()
-                ktfmt()
 
                 trimTrailingWhitespace()
                 indentWithSpaces()
@@ -41,8 +40,9 @@ class AppSpotlessPlugin : Plugin<Project> {
                 target("*.gradle.kts")
 
                 ktlint()
-                ktfmt()
 
+                trimTrailingWhitespace()
+                indentWithSpaces()
                 endWithNewline()
             }
 
@@ -56,6 +56,8 @@ class AppSpotlessPlugin : Plugin<Project> {
 
             freshmark {
                 target("**/*.md")
+
+                endWithNewline()
             }
         }
     }
