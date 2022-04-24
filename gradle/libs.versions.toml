@@ -1,20 +1,20 @@
 [versions]
 # Kotlin
 kotlin = "1.6.10"
-coroutines = "1.6.0"
+coroutines = "1.6.1"
 # Dependency Injection
 koin = "3.2.0-beta-1"
 # Testing
-kotest = "5.2.1"
+kotest = "5.2.3"
 # Gradle
 android_gradle = "7.1.2"
 # Compose
 compose = "1.2.0-alpha06"
 compose_compiler = "1.2.0-alpha06"
-accompanist = "0.22.0-rc"
+accompanist = "0.23.1"
 compose_destinations = "1.5.1-beta"
 # Gradle Version plugin
-gradle_versions = "0.42.0"
+gradle_versions = "0.45.2"
 # Static analyze code
 ktlint = "0.45.1"
 ktlint_jlleitschuh = "10.2.1"
@@ -39,7 +39,7 @@ androidx_activity_compose = "androidx.activity:activity-compose:1.4.0"
 androidx_core_ktx = "androidx.core:core-ktx:1.7.0"
 androidx_appcompat = "androidx.appcompat:appcompat:1.4.1"
 androidx_material = "com.google.android.material:material:1.6.0-alpha01"
-androidx_lifecycle_ktx = "androidx.lifecycle:lifecycle-runtime-ktx:2.3.1"
+androidx_lifecycle_ktx = "androidx.lifecycle:lifecycle-runtime-ktx:2.4.1"
 androidx_navigation_compose = "androidx.navigation:navigation-compose:2.5.0-alpha02"
 androidx_datastore_preferences = "androidx.datastore:datastore-preferences:1.0.0"
 # Compose
@@ -51,7 +51,7 @@ compose_tooling = { module = "androidx.compose.ui:ui-tooling", version.ref = "co
 compose_foundation = { module = "androidx.compose.foundation:foundation", version.ref = "compose" }
 compose_runtime = { module = "androidx.compose.runtime:runtime", version.ref = "compose" }
 # Loggers
-kotlin_logging = "io.github.microutils:kotlin-logging-jvm:2.1.20"
+kotlin_logging = "io.github.microutils:kotlin-logging-jvm:2.1.21"
 slf4j = "org.slf4j:slf4j-simple:1.7.36"
 # Network
 retrofit = "com.squareup.retrofit2:retrofit:2.9.0"
