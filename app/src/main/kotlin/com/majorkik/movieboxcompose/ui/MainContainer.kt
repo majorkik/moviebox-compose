@@ -1,55 +1,49 @@
 package com.majorkik.movieboxcompose.ui
 
 import androidx.compose.animation.ExperimentalAnimationApi
-import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material.Scaffold
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
-import androidx.navigation.NavGraph.Companion.findStartDestination
-import com.google.accompanist.insets.navigationBarsWithImePadding
 import com.google.accompanist.insets.statusBarsPadding
 import com.google.accompanist.navigation.animation.rememberAnimatedNavController
+import com.google.accompanist.navigation.material.ExperimentalMaterialNavigationApi
 import com.majorkik.core.ui.theme.MovieBoxTheme
-import com.majorkik.movieboxcompose.navigation.BottomNavigationBar
-import com.majorkik.movieboxcompose.navigation.Navigation
-import com.majorkik.movieboxcompose.navigation.currentScreenAsState
+import com.majorkik.movieboxcompose.navigation.BottomNavigation
+import com.majorkik.movieboxcompose.navigation.NavGraphs
+import com.majorkik.movieboxcompose.navigation.defaultEnterTransition
+import com.majorkik.movieboxcompose.navigation.defaultExitTransition
+import com.majorkik.movieboxcompose.navigation.defaultPopEnterTransition
+import com.majorkik.movieboxcompose.navigation.defaultPopExitTransition
+import com.ramcosta.composedestinations.DestinationsNavHost
+import com.ramcosta.composedestinations.animations.defaults.RootNavGraphDefaultAnimations
+import com.ramcosta.composedestinations.animations.rememberAnimatedNavHostEngine as rememberAnimatedNavHostEngine1
 
-@OptIn(ExperimentalAnimationApi::class)
+@OptIn(ExperimentalAnimationApi::class, ExperimentalMaterialNavigationApi::class)
 @Composable
 fun MainContainer() {
     val navController = rememberAnimatedNavController()
 
     Scaffold(
         backgroundColor = MovieBoxTheme.colors.background,
-        bottomBar = {
-            val currentSelectedItem by navController.currentScreenAsState()
-
-            BottomNavigationBar(
-                selectedNavigation = currentSelectedItem,
-                onNavigationSelected = { selected ->
-                    navController.navigate(selected.route) {
-                        launchSingleTop = true
-                        restoreState = true
-
-                        popUpTo(navController.graph.findStartDestination().id) {
-                            saveState = true
-                        }
-                    }
-                },
-                modifier = Modifier
-                    .navigationBarsWithImePadding()
-                    .background(MovieBoxTheme.colors.background),
-                background = MovieBoxTheme.colors.background
-            )
-        },
+        bottomBar = { BottomNavigation(navController = navController) },
         modifier = Modifier.fillMaxSize()
     ) { innerPadding ->
-        Navigation(
+        DestinationsNavHost(
+            engine = rememberAnimatedNavHostEngine1(
+                rootDefaultAnimations = RootNavGraphDefaultAnimations(
+                    enterTransition = { defaultEnterTransition(initialState, targetState) },
+                    exitTransition = { defaultExitTransition(initialState, targetState) },
+                    popEnterTransition = { defaultPopEnterTransition() },
+                    popExitTransition = { defaultPopExitTransition() },
+                )
+            ),
             navController = navController,
-            modifier = Modifier.padding(bottom = innerPadding.calculateBottomPadding()).statusBarsPadding()
+            navGraph = NavGraphs.root,
+            modifier = Modifier
+                .padding(bottom = innerPadding.calculateBottomPadding())
+                .statusBarsPadding()
         )
     }
 }

@@ -16,8 +16,10 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.majorkik.core.ui.R
 import com.majorkik.core.ui.theme.MovieBoxTheme
+import com.ramcosta.composedestinations.annotation.Destination
 import org.koin.androidx.compose.getViewModel
 
+@Destination
 @Composable
 fun NavProfileScreen() {
     NavProfileContent(viewModel = getViewModel())

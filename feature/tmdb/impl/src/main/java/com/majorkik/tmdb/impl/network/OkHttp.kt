@@ -2,6 +2,7 @@ package com.majorkik.tmdb.impl.network
 
 import com.jakewharton.retrofit2.converter.kotlinx.serialization.asConverterFactory
 import com.majorkik.tmdb.api.UrlConstants
+import com.majorkik.tmdb.impl.Config
 import kotlinx.serialization.ExperimentalSerializationApi
 import kotlinx.serialization.json.Json
 import okhttp3.Interceptor
@@ -17,7 +18,10 @@ internal fun getLoggingInterceptorBodyLevel() =
 
 internal fun getInterceptor() =
     Interceptor.invoke { chain ->
-        val url = chain.request().url.newBuilder().addQueryParameter("api_key", "das").build()
+        val url = chain.request().url
+            .newBuilder()
+            .addQueryParameter("api_key", Config.TMDB_API_KEY)
+            .build()
 
         val request = chain.request().newBuilder().url(url).build()
 
@@ -49,6 +53,7 @@ internal fun createRetrofit(okHttpClient: OkHttpClient): Retrofit {
         .build()
 }
 
+@OptIn(ExperimentalSerializationApi::class)
 internal fun createApiService(): ApiService {
     return createRetrofit(createHttpClient()).create(ApiService::class.java)
 }

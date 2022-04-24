@@ -1,6 +1,13 @@
-plugins { kotlin("jvm") }
+plugins {
+    kotlin("jvm")
+    kotlin("plugin.serialization") version "1.6.20"
+}
 
-apply<linter.CodeQualityPlugin>()
+apply<linter.AppDetektPlugin>()
+
+apply<linter.AppKtlintPlugin>()
+
+apply<linter.AppSpotlessPlugin>()
 
 java {
     sourceCompatibility = JavaVersion.VERSION_11

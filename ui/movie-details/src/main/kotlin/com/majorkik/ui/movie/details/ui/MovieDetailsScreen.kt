@@ -90,7 +90,11 @@ private fun ImageSlider(
     pagerState: PagerState = rememberPagerState()
 ) {
     Box(contentAlignment = Alignment.TopCenter, modifier = modifier) {
-        ImagePager(modifier = Modifier.fillMaxSize(), pagerState = pagerState, imageLinks = posterLinks)
+        ImagePager(
+            modifier = Modifier.fillMaxSize(),
+            pagerState = pagerState,
+            imageLinks = posterLinks
+        )
 
         HorizontalIndicator(
             modifier = Modifier

@@ -18,4 +18,9 @@
     <!--    Screens-->
     <string name="nav_home_screen_login_button">Log in or register</string>
     <string name="nav_home_screen_search_desc">"Find and save your favorite movies"</string>
+
+    <!-- Navigation-->
+    <string name="nav_home">Home</string>
+    <string name="nav_search">Search</string>
+    <string name="nav_profile">Profile</string>
 </resources>
