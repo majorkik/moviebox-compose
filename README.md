@@ -114,7 +114,10 @@ developing mobile applications.
 ## Issues
 
 - [ ] Prior to Gradle 7.4.2, you have to write `@Suppress("DSL_SCOPE_VIOLATION")` when
-  using `alias(libs.plugins...)` in the `plugins { }` block
+  using `alias(libs.plugins...)` in the `plugins { }` block. 
+  **Updated:**
+  Чтобы убрать предупреждение, пока не выйдет _patch_ для **Gradle**, можно использовать плагин 
+**Gradle libs error suppressor**
 
 #### Useful links:
 
