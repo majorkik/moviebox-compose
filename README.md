@@ -33,6 +33,8 @@
   - [Detekt](https://github.com/arturbosch/detekt#with-gradle) - verify complexity look for and code
     smell
   - [Spotless](https://github.com/diffplug/spotless) - keep your code spotless
+  - [Arrow Analysis](https://arrow-kt.io/docs/analysis/) - Pre-, post-condition, and invariant
+    checks for your Kotlin code
 - **Gradle**: [Gradle Kotlin DSL](https://docs.gradle.org/current/userguide/kotlin_dsl.html) +
   Custom tasks and plugins
 - **Loggers**: [Kotlin Logging](https://github.com/MicroUtils/kotlin-logging)
@@ -114,10 +116,10 @@ developing mobile applications.
 ## Issues
 
 - [ ] Prior to Gradle 7.4.2, you have to write `@Suppress("DSL_SCOPE_VIOLATION")` when
-  using `alias(libs.plugins...)` in the `plugins { }` block. 
+  using `alias(libs.plugins...)` in the `plugins { }` block.
   **Updated:**
-  Чтобы убрать предупреждение, пока не выйдет _patch_ для **Gradle**, можно использовать плагин 
-**Gradle libs error suppressor**
+  Чтобы убрать предупреждение, пока не выйдет _patch_ для **Gradle**, можно использовать плагин
+  **Gradle libs error suppressor**
 
 #### Useful links:
 
