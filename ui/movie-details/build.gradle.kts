@@ -9,6 +9,11 @@ android {
     libraryVariants.all {
         sourceSets { getByName(name) { kotlin.srcDir("build/generated/ksp/$name/kotlin") } }
     }
+
+    ksp {
+        arg("compose-destinations.moduleName", "movie_details")
+        arg("compose-destinations.mode", "destinations")
+    }
 }
 
 dependencies {
