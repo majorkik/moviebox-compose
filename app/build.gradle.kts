@@ -36,7 +36,8 @@ dependencies {
     implementation(libs.accompanist.ui.controller)
 
     implementation(libs.compose.destinations.core)
-    ksp(libs.compose.destinations.ksp)
 
     testImplementation(libs.koin.test)
+
+    ksp(libs.compose.destinations.ksp)
 }

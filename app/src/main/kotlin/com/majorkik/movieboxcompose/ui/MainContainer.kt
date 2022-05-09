@@ -11,13 +11,17 @@ import com.google.accompanist.navigation.animation.rememberAnimatedNavController
 import com.google.accompanist.navigation.material.ExperimentalMaterialNavigationApi
 import com.majorkik.core.ui.theme.MovieBoxTheme
 import com.majorkik.movieboxcompose.navigation.BottomNavigation
+import com.majorkik.movieboxcompose.navigation.CommonNavigator
 import com.majorkik.movieboxcompose.navigation.NavGraphs
 import com.majorkik.movieboxcompose.navigation.defaultEnterTransition
 import com.majorkik.movieboxcompose.navigation.defaultExitTransition
 import com.majorkik.movieboxcompose.navigation.defaultPopEnterTransition
 import com.majorkik.movieboxcompose.navigation.defaultPopExitTransition
+import com.majorkik.movieboxcompose.navigation.navGraph
 import com.ramcosta.composedestinations.DestinationsNavHost
 import com.ramcosta.composedestinations.animations.defaults.RootNavGraphDefaultAnimations
+import com.ramcosta.composedestinations.navigation.dependency
+import com.ramcosta.composedestinations.scope.DestinationScope
 import com.ramcosta.composedestinations.animations.rememberAnimatedNavHostEngine as rememberAnimatedNavHostEngine1
 
 @OptIn(ExperimentalAnimationApi::class, ExperimentalMaterialNavigationApi::class)
@@ -43,7 +47,15 @@ fun MainContainer() {
             navGraph = NavGraphs.root,
             modifier = Modifier
                 .padding(bottom = innerPadding.calculateBottomPadding())
-                .statusBarsPadding()
+                .statusBarsPadding(),
+            dependenciesContainerBuilder = { dependency(currentNavigator()) }
         )
     }
+}
+
+fun DestinationScope<*>.currentNavigator(): CommonNavigator {
+    return CommonNavigator(
+        navBackStackEntry.destination.navGraph(),
+        navController
+    )
 }

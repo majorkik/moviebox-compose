@@ -17,21 +17,24 @@ android {
 }
 
 dependencies {
+    // Submodules
     implementation(projects.core.ui)
     implementation(projects.feature.tmdb.api)
 
-    implementation(libs.bundles.logging)
-
-    implementation(libs.koin.compose)
+    // Android
     implementation(libs.mvi.orbit)
-
     implementation(libs.coil)
-
     implementation(libs.accompanist.pager)
     implementation(libs.accompanist.pager.indicators)
+    implementation(libs.compose.destinations.core)
 
+    // DI
+    implementation(libs.koin.compose)
+
+    // Utils
+    implementation(libs.bundles.logging)
     implementation(libs.klock)
 
-    implementation(libs.compose.destinations.core)
+    // KSP
     ksp(libs.compose.destinations.ksp)
 }
