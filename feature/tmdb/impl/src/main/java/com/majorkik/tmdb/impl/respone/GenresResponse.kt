@@ -5,13 +5,18 @@ import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
 
 @Serializable
-internal data class GenresResponse(@SerialName("genres") val genres: List<GenreResponse>) {
+internal data class GenresResponse(
+    @SerialName("genres") val genres: List<Genre>
+) {
     @Serializable
-    data class GenreResponse(@SerialName("id") val id: Int, @SerialName("name") val name: String)
+    data class Genre(
+        @SerialName("id") val id: Int,
+        @SerialName("name") val name: String
+    )
 }
 
 internal fun GenresResponse.toDomainModel(): List<Genre> {
-    return genres.map { it.toDomainModel() }
+    return genres.map(GenresResponse.Genre::toDomainModel)
 }
 
-internal fun GenresResponse.GenreResponse.toDomainModel(): Genre = Genre(id = id, name = name)
+internal fun GenresResponse.Genre.toDomainModel(): Genre = Genre(id = id, name = name)
