@@ -13,7 +13,7 @@ internal interface ApiService {
     /** Movie */
     @GET("movie/{movie_id}")
     suspend fun getMovieById(
-        @Path("movie_id") id: Long,
+        @Path("movie_id") id: Int,
         @Query("append_to_response") appendToResponse: String?,
         @Query("language") language: String = "en"
     ): Response<MovieDetailsResponse>

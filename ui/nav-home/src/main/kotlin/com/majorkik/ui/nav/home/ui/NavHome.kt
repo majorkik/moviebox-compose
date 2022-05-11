@@ -56,13 +56,13 @@ import com.majorkik.core.ui.R as CoreRes
 
 @Destination
 @Composable
-fun NavHomeScreen() {
-    NavHomeContent(viewModel = getViewModel())
+fun NavHomeScreen(navigator: NavHomeNavigator) {
+    NavHomeContent(viewModel = getViewModel(), openMovieDetails = navigator::openMovieDetails)
 }
 
 @Suppress("Detekt.LongMethod")
 @Composable
-internal fun NavHomeContent(viewModel: NavHomeViewModelViewModel) {
+internal fun NavHomeContent(viewModel: NavHomeViewModelViewModel, openMovieDetails: (Int) -> Unit) {
     val context = LocalContext.current
     val state = viewModel.container.stateFlow.collectAsState()
     val scrollState = rememberScrollState()
@@ -183,7 +183,7 @@ internal fun NavHomeContent(viewModel: NavHomeViewModelViewModel) {
                     title = item.title,
                     voteAverage = item.voteAverage,
                     releaseDate = item.releaseDate,
-                    onClick = {}
+                    onClick = { openMovieDetails(item.id) }
                 )
             }
 
@@ -197,7 +197,7 @@ internal fun NavHomeContent(viewModel: NavHomeViewModelViewModel) {
                     title = item.title,
                     voteAverage = item.voteAverage,
                     releaseDate = item.releaseDate,
-                    onClick = {}
+                    onClick = { openMovieDetails(item.id) }
                 )
             }
         }

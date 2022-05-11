@@ -3,13 +3,15 @@ package com.majorkik.ui.movie.details.ui
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
+import androidx.navigation.NavController
 import com.ramcosta.composedestinations.annotation.Destination
 import org.koin.androidx.compose.getViewModel
+import org.koin.core.parameter.parametersOf
 
-@Destination
+@Destination(navArgsDelegate = MovieDetailsNavArgs::class)
 @Composable
-fun MovieDetailsScreen() {
-    MovieBoxContent(viewModel = getViewModel())
+fun MovieDetailsScreen(navController: NavController) {
+    MovieBoxContent(viewModel = getViewModel { parametersOf(navController.currentBackStackEntry) })
 }
 
 @Composable

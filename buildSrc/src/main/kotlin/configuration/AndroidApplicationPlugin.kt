@@ -118,6 +118,7 @@ private fun Project.configCompileOptions() {
 
             freeCompilerArgs = listOf(
                 "-Xjvm-default=all",
+                "-Xbackend-threads=4",
                 "-Xopt-in=kotlin.RequiresOptIn",
                 "-Xopt-in=kotlinx.coroutines.ExperimentalCoroutinesApi",
                 "-Xopt-in=kotlinx.coroutines.InternalCoroutinesApi",
