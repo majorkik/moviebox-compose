@@ -26,7 +26,7 @@ java {
 dependencies {
     // The version must match the version in libs.versions.toml
     implementation(kotlin("stdlib"))
-    implementation("org.jetbrains.kotlin:kotlin-gradle-plugin:1.6.20")
+    implementation("org.jetbrains.kotlin:kotlin-gradle-plugin:1.6.21")
     implementation("com.android.tools.build:gradle:7.1.2")
 
     implementation("com.github.ben-manes:gradle-versions-plugin:0.42.0")

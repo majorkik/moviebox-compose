@@ -1,8 +1,8 @@
 [versions]
 # Kotlin
-kotlin = "1.6.20"
+kotlin = "1.6.21"
 coroutines = "1.6.1"
-ksp = "1.6.20-1.0.5"
+ksp = "1.6.21-1.0.5"
 # Dependency Injection
 koin = "3.1.6"
 # Testing
@@ -10,8 +10,8 @@ kotest = "5.3.0"
 # Gradle
 android_gradle = "7.1.2"
 # Compose
-compose = "1.2.0-alpha08"
-compose_compiler = "1.2.0-alpha08"
+compose = "1.2.0-beta01"
+compose_compiler = "1.2.0-beta01"
 accompanist = "0.23.1"
 compose_destinations = "1.5.1-beta"
 # Gradle Version plugin
