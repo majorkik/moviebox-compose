@@ -28,9 +28,6 @@ include(":app")
 // Core modules
 include(":core:ui", ":core:common")
 
-// Navigation
-include(":navigation")
-
 // UI
 include(
     ":ui:nav-home",
