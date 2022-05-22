@@ -54,6 +54,9 @@ compose_runtime = { module = "androidx.compose.runtime:runtime", version.ref = "
 # Loggers
 kotlin_logging = "io.github.microutils:kotlin-logging-jvm:2.1.21"
 slf4j = "org.slf4j:slf4j-simple:1.7.36"
+# Arrow
+arrow_bom = "io.arrow-kt:arrow-stack:1.0.1"
+arrow_core = { module = "io.arrow-kt:arrow-core" }
 # Network
 retrofit = "com.squareup.retrofit2:retrofit:2.9.0"
 serialization_converter = "com.jakewharton.retrofit:retrofit2-kotlinx-serialization-converter:0.8.0"

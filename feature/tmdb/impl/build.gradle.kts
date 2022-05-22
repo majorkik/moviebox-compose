@@ -28,6 +28,9 @@ dependencies {
     implementation(libs.okhttp.bom.core)
     implementation(libs.okhttp.bom.interceptor)
 
+    implementation(platform(libs.arrow.bom))
+    implementation(libs.arrow.core)
+
     implementation(libs.serialization.converter)
 
     implementation(libs.klock)
