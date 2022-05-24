@@ -8,7 +8,7 @@ koin = "3.2.0"
 # Testing
 kotest = "5.3.0"
 # Gradle
-android_gradle = "7.1.2"
+android_gradle = "7.2.0"
 # Compose
 compose = "1.2.0-beta01"
 compose_compiler = "1.2.0-beta01"
@@ -85,6 +85,7 @@ coil = "io.coil-kt:coil-compose:2.1.0"
 klock = "com.soywiz.korlibs.klock:klock:2.7.0"
 compose_destinations_core = { module = "io.github.raamcosta.compose-destinations:animations-core", version.ref = "compose_destinations" }
 compose_destinations_ksp = { module = "io.github.raamcosta.compose-destinations:ksp", version.ref = "compose_destinations" }
+eithernet = "com.slack.eithernet:eithernet:1.2.1"
 
 [bundles]
 androidx_ui = [

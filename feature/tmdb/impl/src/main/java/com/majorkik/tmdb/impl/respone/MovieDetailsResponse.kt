@@ -32,7 +32,7 @@ internal data class MovieDetailsResponse(
     @SerialName("video") val video: Boolean,
     @SerialName("vote_average") val voteAverage: Double,
     @SerialName("vote_count") val voteCount: Int,
-    @SerialName("images") val images: Images
+    @SerialName("images") val images: Images?
 ) {
     @Serializable
     data class Genre(@SerialName("id") val id: Long, @SerialName("name") val name: String)
@@ -105,10 +105,10 @@ internal fun MovieDetailsResponse.toDomainModel() =
         video = video,
         voteAverage = voteAverage,
         voteCount = voteCount,
-        posterLinks = images.posters.mapNotNull { it.filePath },
-        postersCount = images.posters.count(),
-        backdropLinks = images.backdrops.mapNotNull { it.filePath },
-        backdropsCount = images.backdrops.count()
+        posterLinks = images?.posters?.mapNotNull { it.filePath }.orEmpty(),
+        postersCount = images?.posters?.count() ?: 0,
+        backdropLinks = images?.backdrops?.mapNotNull { it.filePath }.orEmpty(),
+        backdropsCount = images?.backdrops?.count() ?: 0
     )
 
 internal fun MovieDetailsResponse.Genre.toDomainModel() = MovieDetails.Genre(id = id, name = name)

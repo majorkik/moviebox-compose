@@ -10,6 +10,9 @@ java {
 dependencies {
     implementation(projects.core.common)
 
+    implementation(platform(libs.arrow.bom))
+    implementation(libs.arrow.core)
+
     implementation(libs.bundles.logging)
 
     implementation(libs.klock)

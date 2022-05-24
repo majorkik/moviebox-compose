@@ -31,6 +31,8 @@ dependencies {
     implementation(platform(libs.arrow.bom))
     implementation(libs.arrow.core)
 
+    implementation(libs.eithernet)
+
     implementation(libs.serialization.converter)
 
     implementation(libs.klock)

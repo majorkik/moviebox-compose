@@ -28,6 +28,10 @@ dependencies {
     implementation(libs.accompanist.pager.indicators)
     implementation(libs.compose.destinations.core)
 
+    // Functional programming in Kotlin
+    implementation(platform(libs.arrow.bom))
+    implementation(libs.arrow.core)
+
     // DI
     implementation(libs.koin.compose)
 

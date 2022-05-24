@@ -2,8 +2,8 @@ package com.majorkik.ui.movie.details.ui
 
 import androidx.lifecycle.ViewModel
 import androidx.navigation.NavBackStackEntry
+import arrow.core.Either
 import com.majorkik.tmdb.api.model.MovieDetails
-import com.majorkik.tmdb.api.network.NetworkResult
 import com.majorkik.tmdb.api.repository.MovieDetailsRepository
 import com.majorkik.ui.movie.details.ui.destinations.MovieDetailsScreenDestination
 import org.orbitmvi.orbit.Container
@@ -28,10 +28,13 @@ class MovieDetailsViewModel(
         }
 
     private fun actionFetchMovieDetails(id: Int) = intent {
-        when (val result = repository.fetchMovieDetails(id = id)) {
-            is NetworkResult.Success -> reduce { state.copy(screen = State.MovieDetailsState(data = result.data)) }
-            is NetworkResult.Error -> reduce { state.copy(screen = State.ErrorState) }
-            is NetworkResult.Exception -> reduce { state.copy(screen = State.ErrorState) }
+        when (val result = repository.getMovieDetailsById(id = id)) {
+            is Either.Left -> reduce {
+                state.copy(screen = State.ErrorState)
+            }
+            is Either.Right -> reduce {
+                state.copy(screen = State.MovieDetailsState(data = result.value))
+            }
         }
     }
 }
@@ -47,3 +50,4 @@ data class MovieDetailsViewState(
 )
 
 sealed class MovieDetailsSideEffect
+
