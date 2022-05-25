@@ -17,14 +17,7 @@ internal interface ApiService {
         @Path("movie_id") id: Int,
         @Query("append_to_response") appendToResponse: String?,
         @Query("language") language: String = "en"
-    ): Response<MovieDetailsResponse>
-
-    /** Movie */
-    @GET("movie/{movie_id}")
-    suspend fun getMovieById(
-        @Path("movie_id") id: Int,
-        @Query("language") language: String = "en"
-    ): ApiResult<MovieDetailsResponse, Error>
+    ): ApiResult<MovieDetailsResponse, Unit>
 
     @GET("movie/popular")
     suspend fun getPopularMovies(

@@ -19,7 +19,7 @@ gradle_versions = "0.45.2"
 # Static analyze code
 ktlint = "0.45.2"
 ktlint_jlleitschuh = "10.2.1"
-detekt = "1.19.0"
+detekt = "1.20.0"
 spotless = "6.4.2"
 arrow_analysis = "2.0"
 
@@ -52,10 +52,10 @@ compose_tooling = { module = "androidx.compose.ui:ui-tooling", version.ref = "co
 compose_foundation = { module = "androidx.compose.foundation:foundation", version.ref = "compose" }
 compose_runtime = { module = "androidx.compose.runtime:runtime", version.ref = "compose" }
 # Loggers
-kotlin_logging = "io.github.microutils:kotlin-logging-jvm:2.1.21"
+kotlin_logging = "io.github.microutils:kotlin-logging-jvm:2.1.23"
 slf4j = "org.slf4j:slf4j-simple:1.7.36"
 # Arrow
-arrow_bom = "io.arrow-kt:arrow-stack:1.0.1"
+arrow_bom = "io.arrow-kt:arrow-stack:1.1.2"
 arrow_core = { module = "io.arrow-kt:arrow-core" }
 # Network
 retrofit = "com.squareup.retrofit2:retrofit:2.9.0"

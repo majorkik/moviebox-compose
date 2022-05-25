@@ -17,6 +17,7 @@ dependencies {
     implementation(projects.ui.navHome)
     implementation(projects.ui.navProfile)
     implementation(projects.ui.navSearch)
+    implementation(projects.feature.tmdb.api)
     implementation(projects.feature.tmdb.impl)
     implementation(projects.feature.appPreferences.api)
     implementation(projects.feature.appPreferences.impl)
