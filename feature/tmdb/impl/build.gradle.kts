@@ -1,6 +1,6 @@
 plugins {
     kotlin("jvm")
-    kotlin("plugin.serialization") version "1.6.20"
+    kotlin("plugin.serialization") version "1.6.21"
 }
 
 apply<linter.AppDetektPlugin>()
@@ -27,6 +27,11 @@ dependencies {
     implementation(platform(libs.okhttp.bom))
     implementation(libs.okhttp.bom.core)
     implementation(libs.okhttp.bom.interceptor)
+
+    implementation(platform(libs.arrow.bom))
+    implementation(libs.arrow.core)
+
+    implementation(libs.eithernet)
 
     implementation(libs.serialization.converter)
 

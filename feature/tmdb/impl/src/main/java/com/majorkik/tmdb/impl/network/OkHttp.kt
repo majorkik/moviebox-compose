@@ -3,6 +3,8 @@ package com.majorkik.tmdb.impl.network
 import com.jakewharton.retrofit2.converter.kotlinx.serialization.asConverterFactory
 import com.majorkik.tmdb.api.UrlConstants
 import com.majorkik.tmdb.impl.Config
+import com.slack.eithernet.ApiResultCallAdapterFactory
+import com.slack.eithernet.ApiResultConverterFactory
 import kotlinx.serialization.ExperimentalSerializationApi
 import kotlinx.serialization.json.Json
 import okhttp3.Interceptor
@@ -49,6 +51,8 @@ internal fun createRetrofit(okHttpClient: OkHttpClient): Retrofit {
     return Retrofit.Builder()
         .client(okHttpClient)
         .baseUrl(UrlConstants.BASE_URL)
+        .addConverterFactory(ApiResultConverterFactory)
+        .addCallAdapterFactory(ApiResultCallAdapterFactory)
         .addConverterFactory(json.asConverterFactory(mediaType))
         .build()
 }

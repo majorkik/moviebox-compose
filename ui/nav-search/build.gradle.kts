@@ -19,7 +19,6 @@ android {
 dependencies {
     implementation(projects.core.ui)
     implementation(projects.feature.tmdb.api)
-    implementation(projects.navigation)
 
     implementation(libs.bundles.logging)
 

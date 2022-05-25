@@ -2,6 +2,7 @@ package com.majorkik.movieboxcompose
 
 import android.app.Application
 import com.majorkik.app.preferences.impl.appPreferencesImplModule
+import com.majorkik.tmdb.api.tmdbApiModule
 import com.majorkik.tmdb.impl.tmdbImplModule
 import com.majorkik.ui.movie.details.movieDetailsModule
 import com.majorkik.ui.nav.home.uiNavHome
@@ -20,6 +21,7 @@ class MovieBoxApplication : Application() {
             androidContext(this@MovieBoxApplication)
             modules(
                 appModule,
+                tmdbApiModule,
                 tmdbImplModule,
                 movieDetailsModule,
                 appPreferencesImplModule,
