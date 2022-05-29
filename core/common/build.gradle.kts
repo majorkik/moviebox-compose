@@ -1,6 +1,8 @@
-plugins { kotlin("jvm") }
+plugins {
+    kotlin("jvm")
+}
 
-apply<linter.CodeQualityPlugin>()
+//apply<linter.CodeQualityPlugin>()
 
 java {
     sourceCompatibility = JavaVersion.VERSION_11

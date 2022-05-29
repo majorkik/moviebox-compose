@@ -1,6 +1,8 @@
-plugins { id("com.android.library") }
+plugins {
+    id("moviebox.library")
+}
 
-apply<configuration.AndroidPlugin>()
+//apply<configuration.AndroidPlugin>()
 
 dependencies {
     implementation(projects.feature.appPreferences.api)

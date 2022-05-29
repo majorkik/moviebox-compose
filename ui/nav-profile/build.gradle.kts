@@ -1,9 +1,9 @@
 plugins {
-    id("com.android.library")
+    id("moviebox.library.compose")
     alias(libs.plugins.ksp)
 }
 
-apply<configuration.AndroidComposePlugin>()
+//apply<configuration.AndroidComposePlugin>()
 
 android {
     libraryVariants.all {
