@@ -1,8 +1,11 @@
 plugins {
     id("moviebox.library")
+//    id("moviebox.code.quality")
 }
 
-//apply<configuration.AndroidPlugin>()
+//linter {
+//    isArrowAnalysisEnabled = false
+//}
 
 dependencies {
     implementation(projects.feature.appPreferences.api)

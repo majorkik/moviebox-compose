@@ -1,8 +1,7 @@
 plugins {
     id("moviebox.library.compose")
+//    id("moviebox.code.quality")
 }
-
-//apply<configuration.AndroidComposePlugin>()
 
 dependencies {
     api(libs.androidx.appcompat)

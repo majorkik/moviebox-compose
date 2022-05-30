@@ -1,9 +1,8 @@
 plugins {
     id("moviebox.library.compose")
+    id("moviebox.code.quality")
     alias(libs.plugins.ksp)
 }
-
-//apply<configuration.AndroidComposePlugin>()
 
 android {
     libraryVariants.all {

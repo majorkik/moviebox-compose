@@ -1,5 +1,7 @@
 plugins {
     id("moviebox.application.compose")
+    id("moviebox.code.quality")
+    id("moviebox.gradle.versions")
     alias(libs.plugins.ksp)
 }
 

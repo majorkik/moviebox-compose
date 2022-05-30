@@ -28,6 +28,16 @@ gradlePlugin {
         id = "moviebox.library"
         implementationClass = "AndroidLibraryPlugin"
     }
+
+    plugins.register("code-quality-plugin") {
+        id = "moviebox.code.quality"
+        implementationClass = "CodeQualityPlugin"
+    }
+
+    plugins.register("gradle-versions-plguin") {
+        id = "moviebox.gradle.versions"
+        implementationClass = "GradleVersionPlugin"
+    }
 }
 
 java {
@@ -46,9 +56,8 @@ dependencies {
     implementation(libs.gradle.build)
     implementation(libs.kotlin.stdlib)
 
-//    implementation(libs.detekt.plugin)
-//    implementation(libs.spotless.plugin)
-//    implementation(libs.ktlint.jlleitschuh.plugin)
-//    implementation(libs.gradle.versions.plugin)
-//    implementation(libs.arrow.analysis.plugin)
+    implementation(libs.detekt.plugin)
+    implementation(libs.spotless.plugin)
+    implementation(libs.ktlint.jlleitschuh.plugin)
+    implementation(libs.gradle.versions.plugin)
 }

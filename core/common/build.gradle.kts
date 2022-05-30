@@ -1,8 +1,7 @@
 plugins {
     kotlin("jvm")
+//    id("moviebox.code.quality")
 }
-
-//apply<linter.CodeQualityPlugin>()
 
 java {
     sourceCompatibility = JavaVersion.VERSION_11

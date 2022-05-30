@@ -83,7 +83,6 @@ detekt_plugin = { module = "io.gitlab.arturbosch.detekt:detekt-gradle-plugin", v
 spotless_plugin = { module = "com.diffplug.spotless:spotless-plugin-gradle", version.ref = "spotless" }
 ktlint_jlleitschuh_plugin = { module = "org.jlleitschuh.gradle:ktlint-gradle", version.ref = "ktlint_jlleitschuh" }
 gradle_versions_plugin = { module = "com.github.ben-manes:gradle-versions-plugin", version.ref = "gradle_versions" }
-arrow_analysis_plugin = { module = "io.arrow-kt.analysis.kotlin:io.arrow-kt.analysis.kotlin.gradle.plugin", version.ref = "arrow_analysis"}
 # Other
 sandwich = "com.github.skydoves:sandwich:1.2.3"
 mvi_orbit = "org.orbit-mvi:orbit-viewmodel:4.3.2"
@@ -127,6 +126,4 @@ ktlint = { id = "org.jlleitschuh.gradle.ktlint", version.ref = "ktlint_jlleitsch
 detekt = { id = "io.gitlab.arturbosch.detekt", version.ref = "detekt" }
 spotless = { id = "com.diffplug.spotless", version.ref = "spotless" }
 gradle_versions = { id = "com.github.ben-manes.versions", version.ref = "gradle_versions" }
-arrow_analysis = { id = "io.arrow-kt.analysis.kotlin:io.arrow-kt.analysis.kotlin.gradle.plugin", version.ref = "arrow_analysis" }
-arrow_analysis_group = { id = "io.arrow-kt.analysis.kotlin", version.ref = "arrow_analysis" }
 ksp = { id = "com.google.devtools.ksp", version.ref = "ksp" }

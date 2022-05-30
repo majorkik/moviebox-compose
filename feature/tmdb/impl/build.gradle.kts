@@ -1,13 +1,8 @@
 plugins {
     kotlin("jvm")
     kotlin("plugin.serialization") version "1.6.21"
+    id("moviebox.code.quality")
 }
-
-//apply<linter.AppDetektPlugin>()
-//
-//apply<linter.AppKtlintPlugin>()
-//
-//apply<linter.AppSpotlessPlugin>()
 
 java {
     sourceCompatibility = JavaVersion.VERSION_11

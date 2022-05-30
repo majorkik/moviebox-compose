@@ -1,8 +1,7 @@
 plugins {
     id("moviebox.library")
+    id("moviebox.code.quality")
 }
-
-//apply<configuration.AndroidPlugin>()
 
 dependencies {
     implementation(libs.bundles.logging)
