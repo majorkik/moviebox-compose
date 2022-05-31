@@ -1,11 +1,10 @@
-enableFeaturePreview("VERSION_CATALOGS")
-enableFeaturePreview("TYPESAFE_PROJECT_ACCESSORS")
-
 pluginManagement {
+    includeBuild("composite-build")
+
     repositories {
-        gradlePluginPortal()
         google()
         mavenCentral()
+        gradlePluginPortal()
     }
 }
 
@@ -15,19 +14,17 @@ dependencyResolutionManagement {
     repositories {
         google()
         mavenCentral()
+        gradlePluginPortal()
     }
 }
 
 rootProject.buildFileName = "build.gradle.kts"
-
 rootProject.name = "moviebox-compose"
 
 // Main module
 include(":app")
-
 // Core modules
 include(":core:ui", ":core:common")
-
 // UI
 include(
     ":ui:nav-home",
@@ -35,7 +32,6 @@ include(
     ":ui:nav-profile",
     ":ui:movie-details"
 )
-
 // Features
 include(
     ":feature:tmdb:api",

@@ -15,7 +15,7 @@ compose_compiler = "1.2.0-beta01"
 accompanist = "0.23.1"
 compose_destinations = "1.5.1-beta"
 # Gradle Version plugin
-gradle_versions = "0.45.2"
+gradle_versions = "0.42.0"
 # Static analyze code
 ktlint = "0.45.2"
 ktlint_jlleitschuh = "10.2.1"
@@ -28,7 +28,7 @@ arrow_analysis = "2.0"
 gradle_build = { module = "com.android.tools.build:gradle", version.ref = "android_gradle" }
 kotlin_gradle_plugin = { module = "org.jetbrains.kotlin:kotlin-gradle-plugin", version.ref = "kotlin" }
 # Kotlin
-kotlin_stdlib = { module = "org.jetbrains.kotlin:kotlin-stdlib-jdk8", version.ref = "kotlin" }
+kotlin_stdlib = { module = "org.jetbrains.kotlin:kotlin-stdlib", version.ref = "kotlin" }
 kotlin_ext = { module = "org.jetbrains.kotlin:kotlin-android-extensions", version.ref = "kotlin" }
 kotlin_reflect = { module = "org.jetbrains.kotlin:kotlin-reflect", version.ref = "kotlin" }
 kotlinx_serialization_json = "org.jetbrains.kotlinx:kotlinx-serialization-json:1.3.3"
@@ -78,6 +78,11 @@ accompanist_insets = { module = "com.google.accompanist:accompanist-insets", ver
 accompanist_navigation_material = { module = "com.google.accompanist:accompanist-navigation-animation", version.ref = "accompanist" }
 accompanist_navigation_animation = { module = "com.google.accompanist:accompanist-navigation-animation", version.ref = "accompanist" }
 accompanist_ui_controller = { module = "com.google.accompanist:accompanist-systemuicontroller", version.ref = "accompanist" }
+# Plugins
+detekt_plugin = { module = "io.gitlab.arturbosch.detekt:detekt-gradle-plugin", version.ref = "detekt" }
+spotless_plugin = { module = "com.diffplug.spotless:spotless-plugin-gradle", version.ref = "spotless" }
+ktlint_jlleitschuh_plugin = { module = "org.jlleitschuh.gradle:ktlint-gradle", version.ref = "ktlint_jlleitschuh" }
+gradle_versions_plugin = { module = "com.github.ben-manes:gradle-versions-plugin", version.ref = "gradle_versions" }
 # Other
 sandwich = "com.github.skydoves:sandwich:1.2.3"
 mvi_orbit = "org.orbit-mvi:orbit-viewmodel:4.3.2"
@@ -121,6 +126,4 @@ ktlint = { id = "org.jlleitschuh.gradle.ktlint", version.ref = "ktlint_jlleitsch
 detekt = { id = "io.gitlab.arturbosch.detekt", version.ref = "detekt" }
 spotless = { id = "com.diffplug.spotless", version.ref = "spotless" }
 gradle_versions = { id = "com.github.ben-manes.versions", version.ref = "gradle_versions" }
-arrow_analysis = { id = "io.arrow-kt.analysis.kotlin:io.arrow-kt.analysis.kotlin.gradle.plugin", version.ref = "arrow_analysis" }
-arrow_analysis_group = { id = "io.arrow-kt.analysis.kotlin", version.ref = "arrow_analysis" }
 ksp = { id = "com.google.devtools.ksp", version.ref = "ksp" }

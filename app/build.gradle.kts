@@ -1,11 +1,21 @@
 plugins {
-    id("com.android.application")
+    id("moviebox.application.compose")
+    id("moviebox.code.quality")
+    id("moviebox.gradle.versions")
     alias(libs.plugins.ksp)
 }
 
-apply<configuration.AndroidApplicationPlugin>()
-
 android {
+    defaultConfig {
+        applicationId = "com.majorkik.movieboxcompose"
+        versionCode = 1
+        versionName = "0.0.1"
+
+        vectorDrawables {
+            useSupportLibrary = true
+        }
+    }
+
     applicationVariants.all {
         sourceSets { getByName(name) { kotlin.srcDir("build/generated/ksp/$name/kotlin") } }
     }

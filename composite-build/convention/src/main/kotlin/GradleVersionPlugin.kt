@@ -1,10 +1,9 @@
-package dependencymanagment
-
 import com.github.benmanes.gradle.versions.updates.DependencyUpdatesTask
 import org.gradle.api.Plugin
 import org.gradle.api.Project
 import java.util.Locale
 
+@Suppress("unused")
 class GradleVersionPlugin : Plugin<Project> {
     override fun apply(target: Project) = target.run {
         plugins.apply("com.github.ben-manes.versions")
