@@ -49,17 +49,66 @@ data class AppColor(
 
 @Immutable
 data class AppTypography(
-    val title: TextStyle = TextStyle(fontFamily = rubikFamily, fontSize = 24.sp, fontWeight = FontWeight.Black),
-    val h1: TextStyle = TextStyle(fontFamily = rubikFamily, fontSize = 24.sp, fontWeight = FontWeight.Bold),
-    val h2: TextStyle = TextStyle(fontFamily = rubikFamily, fontSize = 20.sp, fontWeight = FontWeight.Bold),
-    val h3: TextStyle = TextStyle(fontFamily = rubikFamily, fontSize = 18.sp, fontWeight = FontWeight.Bold),
-    val h4: TextStyle = TextStyle(fontFamily = rubikFamily, fontSize = 16.sp, fontWeight = FontWeight.Bold),
-    val body1: TextStyle = TextStyle(fontFamily = montserratFamily, fontSize = 16.sp, fontWeight = FontWeight.Medium),
-    val body2: TextStyle = TextStyle(fontFamily = montserratFamily, fontSize = 14.sp, fontWeight = FontWeight.Normal),
-    val smallBold: TextStyle = TextStyle(fontFamily = montserratFamily, fontSize = 12.sp, fontWeight = FontWeight.Bold),
-    val bodyMedium: TextStyle = TextStyle(fontFamily = rubikFamily, fontSize = 14.sp, fontWeight = FontWeight.Medium),
-    val titleMedium: TextStyle = TextStyle(fontFamily = rubikFamily, fontSize = 14.sp, fontWeight = FontWeight.Bold),
-    val titleSmall: TextStyle = TextStyle(fontFamily = rubikFamily, fontSize = 12.sp, fontWeight = FontWeight.Bold),
+    val title: TextStyle = TextStyle(
+        fontFamily = rubikFamily,
+        fontSize = 24.sp,
+        fontWeight = FontWeight.Black
+    ),
+    val h1: TextStyle = TextStyle(
+        fontFamily = rubikFamily,
+        fontSize = 24.sp,
+        fontWeight = FontWeight.Bold
+    ),
+    val h2: TextStyle = TextStyle(
+        fontFamily = rubikFamily,
+        fontSize = 20.sp,
+        fontWeight = FontWeight.Bold
+    ),
+    val h3: TextStyle = TextStyle(
+        fontFamily = rubikFamily,
+        fontSize = 18.sp,
+        fontWeight = FontWeight.Bold
+    ),
+    val h4: TextStyle = TextStyle(
+        fontFamily = rubikFamily,
+        fontSize = 16.sp,
+        fontWeight = FontWeight.Bold
+    ),
+    val body1: TextStyle = TextStyle(
+        fontFamily = montserratFamily,
+        fontSize = 16.sp,
+        fontWeight = FontWeight.Medium
+    ),
+    val body2: TextStyle = TextStyle(
+        fontFamily = montserratFamily,
+        fontSize = 14.sp,
+        fontWeight = FontWeight.Normal
+    ),
+    val smallBold: TextStyle = TextStyle(
+        fontFamily = montserratFamily,
+        fontSize = 12.sp,
+        fontWeight = FontWeight.Bold
+    ),
+    val bodyMedium: TextStyle = TextStyle(
+        fontFamily = rubikFamily,
+        fontSize = 14.sp,
+        fontWeight = FontWeight.Medium
+    ),
+    val titleMedium: TextStyle = TextStyle(
+        fontFamily = rubikFamily,
+        fontSize = 14.sp,
+        fontWeight = FontWeight.Bold
+    ),
+    val titleSmall: TextStyle = TextStyle(
+        fontFamily = rubikFamily,
+        fontSize = 12.sp,
+        fontWeight = FontWeight.Bold
+    ),
+    val text: TextStyle = TextStyle(
+        fontFamily = rubikFamily,
+        fontSize = 12.sp,
+        fontWeight = FontWeight.Normal
+    )
 )
 
 @Immutable

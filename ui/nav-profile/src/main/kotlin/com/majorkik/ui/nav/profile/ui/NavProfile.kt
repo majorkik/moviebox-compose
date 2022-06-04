@@ -14,6 +14,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import com.google.accompanist.insets.statusBarsPadding
 import com.majorkik.core.ui.R
 import com.majorkik.core.ui.theme.MovieBoxTheme
 import com.ramcosta.composedestinations.annotation.Destination
@@ -31,6 +32,7 @@ internal fun NavProfileContent(viewModel: NavProfileViewModel) {
         modifier = Modifier
             .fillMaxSize()
             .background(MovieBoxTheme.colors.background)
+            .statusBarsPadding()
     ) {
         Row(
             modifier = Modifier

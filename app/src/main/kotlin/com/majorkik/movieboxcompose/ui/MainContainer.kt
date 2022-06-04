@@ -6,7 +6,6 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.material.Scaffold
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
-import com.google.accompanist.insets.statusBarsPadding
 import com.google.accompanist.navigation.animation.rememberAnimatedNavController
 import com.google.accompanist.navigation.material.ExperimentalMaterialNavigationApi
 import com.majorkik.core.ui.theme.MovieBoxTheme
@@ -46,8 +45,7 @@ fun MainContainer() {
             navController = navController,
             navGraph = NavGraphs.root,
             modifier = Modifier
-                .padding(bottom = innerPadding.calculateBottomPadding())
-                .statusBarsPadding(),
+                .padding(bottom = innerPadding.calculateBottomPadding()),
             dependenciesContainerBuilder = { dependency(currentNavigator()) }
         )
     }

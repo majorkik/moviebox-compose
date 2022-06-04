@@ -1,6 +1,8 @@
 package com.majorkik.tmdb.impl.respone
 
 import com.majorkik.tmdb.api.model.MovieDetails
+import com.majorkik.tmdb.api.model.toBackdropPath
+import com.majorkik.tmdb.api.model.toPosterPath
 import com.majorkik.tmdb.api.util.DateUtil
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
@@ -105,10 +107,8 @@ internal fun MovieDetailsResponse.toDomainModel() =
         video = video,
         voteAverage = voteAverage,
         voteCount = voteCount,
-        posterLinks = images?.posters?.mapNotNull { it.filePath }.orEmpty(),
-        postersCount = images?.posters?.count() ?: 0,
-        backdropLinks = images?.backdrops?.mapNotNull { it.filePath }.orEmpty(),
-        backdropsCount = images?.backdrops?.count() ?: 0
+        posters = images?.posters?.mapNotNull { it.filePath?.toPosterPath() }.orEmpty(),
+        backdrops = images?.backdrops?.mapNotNull { it.filePath?.toBackdropPath() }.orEmpty(),
     )
 
 internal fun MovieDetailsResponse.Genre.toDomainModel() = MovieDetails.Genre(id = id, name = name)
