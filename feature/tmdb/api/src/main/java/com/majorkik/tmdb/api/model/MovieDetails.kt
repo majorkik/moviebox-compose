@@ -30,6 +30,8 @@ data class MovieDetails(
     val voteCount: Int,
     val posters: List<PosterPath>,
     val backdrops: List<BackdropPath>,
+    val casts: List<Cast>,
+    val crews: List<Crew>,
 ) {
     data class Genre(val id: Long, val name: String)
 
@@ -50,4 +52,29 @@ data class MovieDetails(
     data class ProductionCountry(val iso: String, val name: String)
 
     data class SpokenLanguage(val iso: String, val name: String)
+
+    data class Cast(
+        val castId: Int,
+        val character: String,
+        val creditId: String,
+        val id: Int,
+        val knownForDepartment: String,
+        val name: String,
+        val order: Int,
+        val originalName: String,
+        val popularity: Double,
+        val profilePath: ProfilePath?
+    )
+
+    data class Crew(
+        val creditId: String,
+        val department: String,
+        val id: Int,
+        val job: String,
+        val knownForDepartment: String,
+        val name: String,
+        val originalName: String,
+        val popularity: Double,
+        val profilePath: ProfilePath?
+    )
 }

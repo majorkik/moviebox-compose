@@ -2,7 +2,8 @@ package com.majorkik.tmdb.api.model
 
 import com.majorkik.tmdb.api.UrlConstants
 
-data class BackdropPath(val value: String) {
+@JvmInline
+value class BackdropPath(val value: String) {
     @Suppress("unused")
     enum class Size(val path: String) {
         Width300("w300"),
