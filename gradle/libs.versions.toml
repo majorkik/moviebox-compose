@@ -91,6 +91,7 @@ klock = "com.soywiz.korlibs.klock:klock:2.7.0"
 compose_destinations_core = { module = "io.github.raamcosta.compose-destinations:animations-core", version.ref = "compose_destinations" }
 compose_destinations_ksp = { module = "io.github.raamcosta.compose-destinations:ksp", version.ref = "compose_destinations" }
 eithernet = "com.slack.eithernet:eithernet:1.2.1"
+expandabletext = "io.github.dokar3:expandabletext:0.1.7"
 
 [bundles]
 androidx_ui = [

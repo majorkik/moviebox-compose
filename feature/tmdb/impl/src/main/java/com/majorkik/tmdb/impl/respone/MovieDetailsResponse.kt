@@ -2,8 +2,8 @@ package com.majorkik.tmdb.impl.respone
 
 import com.majorkik.tmdb.api.model.MovieDetails
 import com.majorkik.tmdb.api.model.toBackdropPath
-import com.majorkik.tmdb.api.model.toProfilePath
 import com.majorkik.tmdb.api.model.toPosterPath
+import com.majorkik.tmdb.api.model.toProfilePath
 import com.majorkik.tmdb.api.util.DateUtil
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable

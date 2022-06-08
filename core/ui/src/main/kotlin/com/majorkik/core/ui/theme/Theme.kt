@@ -31,6 +31,10 @@ data class AppColor(
     val text: Text,
     val placeholder: Placeholder,
     val white: Color,
+
+    // Screens
+    val details: DetailsScreenColors,
+
     // Theme
     val isLight: Boolean = true
 ) {
@@ -44,6 +48,18 @@ data class AppColor(
     data class Placeholder(
         val background: Color,
         val backgroundDark: Color
+    )
+
+    data class DetailsScreenColors(
+        val background: Color,
+        val backgroundSecondary: Color,
+        val placeholderBg: Color,
+        val textPrimary: Color,
+        val textSecondary: Color,
+        val textPlaceholder: Color,
+        val favoriteBtnDefault: Color,
+        val favoriteBtnSelected: Color,
+        val btnBgSecondary: Color,
     )
 }
 
@@ -108,7 +124,17 @@ data class AppTypography(
         fontFamily = rubikFamily,
         fontSize = 12.sp,
         fontWeight = FontWeight.Normal
-    )
+    ),
+    val textMedium: TextStyle = TextStyle(
+        fontFamily = rubikFamily,
+        fontSize = 12.sp,
+        fontWeight = FontWeight.Medium
+    ),
+    val captionMedium: TextStyle = TextStyle(
+        fontFamily = rubikFamily,
+        fontSize = 10.sp,
+        fontWeight = FontWeight.Medium
+    ),
 )
 
 @Immutable
@@ -149,6 +175,17 @@ internal val LocalCustomColors = staticCompositionLocalOf {
             backgroundDark = Color.Unspecified
         ),
         white = Color.Unspecified,
+        details = AppColor.DetailsScreenColors(
+            background = Color.Unspecified,
+            backgroundSecondary = Color.Unspecified,
+            placeholderBg = Color.Unspecified,
+            textPrimary = Color.Unspecified,
+            textPlaceholder = Color.Unspecified,
+            favoriteBtnSelected = Color.Unspecified,
+            favoriteBtnDefault = Color.Unspecified,
+            btnBgSecondary = Color.Unspecified,
+            textSecondary = Color.Unspecified
+        ),
         isLight = false
     )
 }
@@ -165,7 +202,8 @@ internal val LocalCustomTypography = staticCompositionLocalOf {
         smallBold = TextStyle.Default,
         bodyMedium = TextStyle.Default,
         titleMedium = TextStyle.Default,
-        titleSmall = TextStyle.Default
+        titleSmall = TextStyle.Default,
+        captionMedium = TextStyle.Default
     )
 }
 

@@ -30,6 +30,17 @@ fun lightColors(): AppColor = AppColor(
         backgroundDark = Gallery
     ),
     white = Color.White,
+    details = AppColor.DetailsScreenColors(
+        background = White,
+        backgroundSecondary = Alabaster,
+        placeholderBg = Charade,
+        textPrimary = Charade,
+        textSecondary = Silver,
+        textPlaceholder = White,
+        favoriteBtnDefault = SilverChalice,
+        favoriteBtnSelected = RedOrange,
+        btnBgSecondary = Alabaster
+    ),
     isLight = true,
 )
 
@@ -55,5 +66,16 @@ fun darkColors(): AppColor = AppColor(
         backgroundDark = MineShaftLight
     ),
     white = Color.White,
+    details = AppColor.DetailsScreenColors(
+        background = Charade,
+        backgroundSecondary = CodGray,
+        placeholderBg = White,
+        textPrimary = White,
+        textSecondary = Emperor,
+        textPlaceholder = Charade,
+        favoriteBtnDefault = DoveGray,
+        favoriteBtnSelected = RedOrange,
+        btnBgSecondary = CodGray
+    ),
     isLight = false,
 )

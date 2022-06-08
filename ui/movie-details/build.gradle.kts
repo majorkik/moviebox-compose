@@ -26,6 +26,7 @@ dependencies {
     implementation(libs.accompanist.pager)
     implementation(libs.accompanist.pager.indicators)
     implementation(libs.compose.destinations.core)
+    implementation(libs.expandabletext)
 
     // Functional programming in Kotlin
     implementation(platform(libs.arrow.bom))
