@@ -6,7 +6,7 @@ import com.majorkik.tmdb.api.UrlConstants
 value class ProfilePath(val value: String) {
     @Suppress("unused")
     enum class Size(val path: String) {
-        Width("w45"),
+        Width45("w45"),
         Width185("w185"),
         Width300("w300"),
         Original("original"),

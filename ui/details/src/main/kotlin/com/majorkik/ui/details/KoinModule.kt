@@ -1,7 +1,7 @@
-package com.majorkik.ui.movie.details
+package com.majorkik.ui.details
 
 import androidx.navigation.NavBackStackEntry
-import com.majorkik.ui.movie.details.ui.MovieDetailsViewModel
+import com.majorkik.ui.details.ui.MovieDetailsViewModel
 import org.koin.androidx.viewmodel.dsl.viewModel
 import org.koin.dsl.module
 

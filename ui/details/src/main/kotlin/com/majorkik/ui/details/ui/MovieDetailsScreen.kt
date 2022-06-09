@@ -1,9 +1,10 @@
-package com.majorkik.ui.movie.details.ui
+package com.majorkik.ui.details.ui
 
 import androidx.annotation.DrawableRes
 import androidx.compose.animation.AnimatedVisibility
 import androidx.compose.animation.animateContentSize
 import androidx.compose.foundation.background
+import androidx.compose.foundation.border
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
@@ -18,6 +19,7 @@ import androidx.compose.foundation.layout.heightIn
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.rememberScrollState
+import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.text.InlineTextContent
 import androidx.compose.foundation.text.appendInlineContent
@@ -51,8 +53,12 @@ import androidx.navigation.NavController
 import coil.compose.AsyncImage
 import com.google.accompanist.pager.ExperimentalPagerApi
 import com.google.accompanist.pager.HorizontalPager
+import com.majorkik.core.ui.components.getSmallProfilePlaceholder
+import com.majorkik.core.ui.extension.clickableWithSimpleRipple
 import com.majorkik.core.ui.theme.MovieBoxTheme
 import com.majorkik.tmdb.api.model.BackdropPath
+import com.majorkik.tmdb.api.model.MovieDetails
+import com.majorkik.tmdb.api.model.ProfilePath
 import com.ramcosta.composedestinations.annotation.Destination
 import com.soywiz.klock.Date
 import io.dokar.expandabletext.ExpandableText
@@ -130,8 +136,13 @@ internal fun MovieBoxContent(viewModel: MovieDetailsViewModel) {
                     style = MovieBoxTheme.typography.bodyMedium,
                     textAlign = TextAlign.Center,
                     modifier = Modifier
+                        .align(Alignment.CenterHorizontally)
+                        .clip(CircleShape)
+                        .clickableWithSimpleRipple {
+                            /* no-op */
+                        }
                         .padding(MovieDetailsDimens.contentHorizontalPadding)
-                        .fillMaxWidth()
+                        .padding(vertical = 2.dp)
                 )
 
                 Spacer(modifier = Modifier.size(16.dp))
@@ -222,6 +233,15 @@ internal fun MovieBoxContent(viewModel: MovieDetailsViewModel) {
 
                 // Tagline
                 Tagline(tagline = details.tagline)
+
+                Spacer(modifier = Modifier.size(16.dp))
+
+                // Credits
+                CreditsBlock(
+                    casts = details.casts,
+                    totalAmount = details.casts.count() + details.crews.count(),
+                    modifier = Modifier.padding(horizontal = 12.dp)
+                )
 
                 Spacer(modifier = Modifier.size(16.dp))
 
@@ -339,5 +359,73 @@ private fun InfoBlock(title: String, description: String, modifier: Modifier = M
             style = MovieBoxTheme.typography.captionMedium,
             color = MovieBoxTheme.colors.details.textSecondary
         )
+    }
+}
+
+@Composable
+private fun CreditsBlock(
+    casts: List<MovieDetails.Cast>,
+    totalAmount: Int,
+    modifier: Modifier = Modifier
+) {
+    Row {
+        Row(
+            modifier = modifier
+                .clip(CircleShape)
+                .clickableWithSimpleRipple { /* no-op */ }
+                .padding(4.dp),
+            horizontalArrangement = Arrangement.spacedBy((-8).dp)
+        ) {
+            casts.take(n = 5).forEach { cast ->
+                AsyncImage(
+                    model = cast.profilePath?.build(size = ProfilePath.Size.Width45),
+                    contentDescription = null,
+                    contentScale = ContentScale.Crop,
+                    modifier = Modifier
+                        .size(32.dp)
+                        .border(
+                            width = 2.dp,
+                            color = MovieBoxTheme.colors.details.background,
+                            shape = CircleShape
+                        )
+                        .padding(2.dp)
+                        .clip(CircleShape)
+                        .background(MovieBoxTheme.colors.details.placeholderBg),
+                    placeholder = getSmallProfilePlaceholder(isLight = MovieBoxTheme.colors.isLight),
+                    error = getSmallProfilePlaceholder(isLight = MovieBoxTheme.colors.isLight)
+                )
+            }
+
+            Box(
+                contentAlignment = Alignment.Center,
+                modifier = Modifier
+                    .height(32.dp)
+                    .border(
+                        width = 2.dp,
+                        color = MovieBoxTheme.colors.details.background,
+                        shape = CircleShape
+                    )
+                    .padding(2.dp)
+                    .clip(CircleShape)
+                    .background(MovieBoxTheme.colors.details.placeholderBg)
+                    .padding(horizontal = 16.dp),
+            ) {
+                Text(
+                    text = "More",
+                    style = MovieBoxTheme.typography.captionMedium,
+                    color = MovieBoxTheme.colors.details.textPlaceholder,
+                    textAlign = TextAlign.Center
+                )
+            }
+        }
+
+        if (totalAmount > 5) {
+            Text(
+                text = "+ $totalAmount Cast (including crew)",
+                modifier = Modifier.align(Alignment.CenterVertically),
+                color = MovieBoxTheme.colors.details.textPrimary,
+                style = MovieBoxTheme.typography.captionMedium
+            )
+        }
     }
 }

@@ -1,6 +1,6 @@
 package com.majorkik.movieboxcompose.navigation
 
-import com.majorkik.ui.movie.details.ui.destinations.MovieDetailsScreenDestination
+import com.majorkik.ui.details.ui.destinations.MovieDetailsScreenDestination
 import com.majorkik.ui.nav.home.ui.destinations.NavHomeScreenDestination
 import com.majorkik.ui.nav.profile.ui.destinations.NavProfileScreenDestination
 import com.majorkik.ui.nav.search.ui.destinations.NavSearchScreenDestination

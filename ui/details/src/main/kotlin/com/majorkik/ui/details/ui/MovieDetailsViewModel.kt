@@ -1,11 +1,11 @@
-package com.majorkik.ui.movie.details.ui
+package com.majorkik.ui.details.ui
 
 import androidx.lifecycle.ViewModel
 import androidx.navigation.NavBackStackEntry
 import arrow.core.Either
 import com.majorkik.tmdb.api.model.MovieDetails
 import com.majorkik.tmdb.api.repository.MovieDetailsRepository
-import com.majorkik.ui.movie.details.ui.destinations.MovieDetailsScreenDestination
+import com.majorkik.ui.details.ui.destinations.MovieDetailsScreenDestination
 import org.orbitmvi.orbit.Container
 import org.orbitmvi.orbit.ContainerHost
 import org.orbitmvi.orbit.syntax.simple.intent

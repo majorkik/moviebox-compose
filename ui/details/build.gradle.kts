@@ -10,7 +10,7 @@ android {
     }
 
     ksp {
-        arg("compose-destinations.moduleName", "movie_details")
+        arg("compose-destinations.moduleName", "details")
         arg("compose-destinations.mode", "destinations")
     }
 }
