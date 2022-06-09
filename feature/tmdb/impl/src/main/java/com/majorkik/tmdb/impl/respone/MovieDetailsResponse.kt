@@ -4,7 +4,7 @@ import com.majorkik.tmdb.api.model.MovieDetails
 import com.majorkik.tmdb.api.model.toBackdropPath
 import com.majorkik.tmdb.api.model.toPosterPath
 import com.majorkik.tmdb.api.model.toProfilePath
-import com.majorkik.tmdb.api.util.DateUtil
+import com.majorkik.tmdb.impl.util.tryParseDateFromAPI
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
 
@@ -25,7 +25,7 @@ internal data class MovieDetailsResponse(
     @SerialName("poster_path") val posterPath: String?,
     @SerialName("production_companies") val productionCompanies: List<ProductionCompany>,
     @SerialName("production_countries") val productionCountries: List<ProductionCountry>,
-    @SerialName("release_date") val releaseDate: String,
+    @SerialName("release_date") val releaseDate: String?,
     @SerialName("revenue") val revenue: Long,
     @SerialName("runtime") val runtime: Int?,
     @SerialName("spoken_languages") val spokenLanguages: List<SpokenLanguage>,
@@ -132,7 +132,7 @@ internal fun MovieDetailsResponse.toDomainModel() =
         posterPath = posterPath,
         productionCompanies = productionCompanies.map { it.toDomainModel() },
         productionCountries = productionCountries.map { it.toDomainModel() },
-        releaseDate = DateUtil.tryParse(date = releaseDate),
+        releaseDate = releaseDate?.let(::tryParseDateFromAPI),
         revenue = revenue,
         runtime = runtime,
         spokenLanguages = spokenLanguages.map { it.toDomainModel() },

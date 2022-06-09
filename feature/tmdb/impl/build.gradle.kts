@@ -10,6 +10,7 @@ java {
 }
 
 dependencies {
+    implementation(projects.core.common)
     implementation(projects.feature.tmdb.api)
 
     implementation(libs.bundles.logging)

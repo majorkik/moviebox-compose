@@ -50,9 +50,11 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
+import arrow.core.getOrElse
 import coil.compose.AsyncImage
 import com.google.accompanist.pager.ExperimentalPagerApi
 import com.google.accompanist.pager.HorizontalPager
+import com.majorkik.common.AppDateFormat
 import com.majorkik.core.ui.components.getSmallProfilePlaceholder
 import com.majorkik.core.ui.extension.clickableWithSimpleRipple
 import com.majorkik.core.ui.theme.MovieBoxTheme
@@ -166,7 +168,7 @@ internal fun MovieBoxContent(viewModel: MovieDetailsViewModel) {
                             .fillMaxWidth()
                             .weight(1f),
                         colors = ButtonDefaults.textButtonColors(
-                            backgroundColor = MovieBoxTheme.colors.primary,
+                            backgroundColor = MovieBoxTheme.colors.primary, // TODO: refactor
                             contentColor = MovieBoxTheme.colors.white,
                             disabledContentColor = MovieBoxTheme.colors.secondary
                         )
@@ -182,13 +184,13 @@ internal fun MovieBoxContent(viewModel: MovieDetailsViewModel) {
                         onClick = { },
                         modifier = Modifier
                             .clip(RoundedCornerShape(12.dp))
-                            .background(MovieBoxTheme.colors.primary)
+                            .background(MovieBoxTheme.colors.primary)// TODO: refactor
                             .size(48.dp),
                     ) {
                         Icon(
                             painter = painterResource(id = CoreRes.drawable.ic_options_black_24),
                             contentDescription = null,
-                            tint = Color.White
+                            tint = Color.White // TODO: refactor
                         )
                     }
 
@@ -217,14 +219,14 @@ internal fun MovieBoxContent(viewModel: MovieDetailsViewModel) {
                         .animateContentSize()
                         .clickable { overviewExpanded = !overviewExpanded },
                     style = MovieBoxTheme.typography.textMedium,
-                    color = MovieBoxTheme.colors.backgroundReverse,
+                    color = MovieBoxTheme.colors.backgroundReverse, // TODO: refactor
                     maxLines = 3,
                     expanded = overviewExpanded,
                     toggleContent = {
                         Text(
                             text = if (overviewExpanded) " Show less" else " Show more",
                             style = MovieBoxTheme.typography.textMedium,
-                            color = MovieBoxTheme.colors.primary
+                            color = MovieBoxTheme.colors.primary // TODO: refactor
                         )
                     }
                 )
@@ -277,7 +279,7 @@ fun ReleaseDate(releaseDate: Date?, releaseStatus: String?, modifier: Modifier =
         modifier = modifier.padding(MovieDetailsDimens.contentHorizontalPadding)
     ) {
         Text(
-            text = releaseDate?.format("dd MMMM yyyy") ?: "Unknown",
+            text = AppDateFormat.parseReadableDate(releaseDate).getOrElse { "" },
             color = MovieBoxTheme.colors.details.textPrimary,
             style = MovieBoxTheme.typography.bodyMedium
         )
