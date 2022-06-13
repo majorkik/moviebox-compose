@@ -168,7 +168,7 @@ internal fun MovieBoxContent(viewModel: MovieDetailsViewModel) {
                             .fillMaxWidth()
                             .weight(1f),
                         colors = ButtonDefaults.textButtonColors(
-                            backgroundColor = MovieBoxTheme.colors.primary, // TODO: refactor
+                            backgroundColor = MovieBoxTheme.colors.primary,
                             contentColor = MovieBoxTheme.colors.white,
                             disabledContentColor = MovieBoxTheme.colors.secondary
                         )
@@ -176,7 +176,8 @@ internal fun MovieBoxContent(viewModel: MovieDetailsViewModel) {
                         Text(
                             text = "Will watch",
                             maxLines = 1,
-                            style = MovieBoxTheme.typography.titleSmall
+                            style = MovieBoxTheme.typography.titleSmall,
+
                         )
                     }
 
@@ -184,13 +185,13 @@ internal fun MovieBoxContent(viewModel: MovieDetailsViewModel) {
                         onClick = { },
                         modifier = Modifier
                             .clip(RoundedCornerShape(12.dp))
-                            .background(MovieBoxTheme.colors.primary)// TODO: refactor
+                            .background(MovieBoxTheme.colors.details.btnBgSecondary)
                             .size(48.dp),
                     ) {
                         Icon(
                             painter = painterResource(id = CoreRes.drawable.ic_options_black_24),
                             contentDescription = null,
-                            tint = Color.White // TODO: refactor
+                            tint = MovieBoxTheme.colors.details.favoriteBtnDefault
                         )
                     }
 
@@ -219,14 +220,14 @@ internal fun MovieBoxContent(viewModel: MovieDetailsViewModel) {
                         .animateContentSize()
                         .clickable { overviewExpanded = !overviewExpanded },
                     style = MovieBoxTheme.typography.textMedium,
-                    color = MovieBoxTheme.colors.backgroundReverse, // TODO: refactor
+                    color = MovieBoxTheme.colors.details.textPrimary,
                     maxLines = 3,
                     expanded = overviewExpanded,
                     toggleContent = {
                         Text(
                             text = if (overviewExpanded) " Show less" else " Show more",
                             style = MovieBoxTheme.typography.textMedium,
-                            color = MovieBoxTheme.colors.primary // TODO: refactor
+                            color = MovieBoxTheme.colors.primary
                         )
                     }
                 )

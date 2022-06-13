@@ -60,6 +60,7 @@ data class AppColor(
         val favoriteBtnDefault: Color,
         val favoriteBtnSelected: Color,
         val btnBgSecondary: Color,
+        val btnTintSecondary: Color,
     )
 }
 
@@ -184,7 +185,8 @@ internal val LocalCustomColors = staticCompositionLocalOf {
             favoriteBtnSelected = Color.Unspecified,
             favoriteBtnDefault = Color.Unspecified,
             btnBgSecondary = Color.Unspecified,
-            textSecondary = Color.Unspecified
+            textSecondary = Color.Unspecified,
+            btnTintSecondary = Color.Unspecified
         ),
         isLight = false
     )

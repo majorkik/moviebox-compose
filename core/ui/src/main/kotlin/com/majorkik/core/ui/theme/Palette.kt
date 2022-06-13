@@ -39,7 +39,8 @@ fun lightColors(): AppColor = AppColor(
         textPlaceholder = White,
         favoriteBtnDefault = SilverChalice,
         favoriteBtnSelected = RedOrange,
-        btnBgSecondary = Alabaster
+        btnBgSecondary = Alabaster,
+        btnTintSecondary = Charade,
     ),
     isLight = true,
 )
@@ -75,7 +76,8 @@ fun darkColors(): AppColor = AppColor(
         textPlaceholder = Charade,
         favoriteBtnDefault = DoveGray,
         favoriteBtnSelected = RedOrange,
-        btnBgSecondary = CodGray
+        btnBgSecondary = CodGray,
+        btnTintSecondary = White,
     ),
     isLight = false,
 )
