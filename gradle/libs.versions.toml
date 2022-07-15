@@ -36,11 +36,11 @@ coroutines_core = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-core", ve
 coroutines_android = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-android", version.ref = "coroutines" }
 coroutines_test = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-test", version.ref = "coroutines" }
 # AndroidX
-androidx_activity_compose = "androidx.activity:activity-compose:1.4.0"
-androidx_core_ktx = "androidx.core:core-ktx:1.7.0"
-androidx_appcompat = "androidx.appcompat:appcompat:1.4.1"
-androidx_material = "com.google.android.material:material:1.6.0"
-androidx_lifecycle_ktx = "androidx.lifecycle:lifecycle-runtime-ktx:2.4.1"
+androidx_activity_compose = "androidx.activity:activity-compose:1.5.0"
+androidx_core_ktx = "androidx.core:core-ktx:1.8.0"
+androidx_appcompat = "androidx.appcompat:appcompat:1.4.2"
+androidx_material = "com.google.android.material:material:1.6.1"
+androidx_lifecycle_ktx = "androidx.lifecycle:lifecycle-runtime-ktx:2.5.0"
 androidx_navigation_compose = "androidx.navigation:navigation-compose:2.5.0-alpha02"
 androidx_datastore_preferences = "androidx.datastore:datastore-preferences:1.0.0"
 # Compose
