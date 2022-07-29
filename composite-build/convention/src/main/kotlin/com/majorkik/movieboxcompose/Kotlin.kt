@@ -12,7 +12,6 @@ fun Project.configKotlinCompileOptions() {
             allWarningsAsErrors = properties["warningsAsErrors"] as? Boolean ?: false
 
             freeCompilerArgs = freeCompilerArgs + listOf(
-                "-Xbackend-threads=4",
                 "-opt-in=kotlin.RequiresOptIn",
                 // Enable experimental coroutines APIs, including Flow
                 "-opt-in=kotlinx.coroutines.ExperimentalCoroutinesApi",
