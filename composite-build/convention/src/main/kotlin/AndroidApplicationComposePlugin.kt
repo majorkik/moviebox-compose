@@ -1,26 +1,19 @@
-import com.majorkik.movieboxcompose.android
-import com.majorkik.movieboxcompose.catalogs
-import com.majorkik.movieboxcompose.configCompose
-import com.majorkik.movieboxcompose.configKotlinAndroid
-import com.majorkik.movieboxcompose.configKotlinCompileOptions
-import com.majorkik.movieboxcompose.getVersion
+import com.android.build.gradle.internal.dsl.BaseAppModuleExtension
+import com.majorkik.movieboxcompose.configureAndroidCompose
+import com.majorkik.movieboxcompose.configureKotlinAndroid
 import org.gradle.api.Plugin
 import org.gradle.api.Project
-import org.gradle.kotlin.dsl.apply
+import org.gradle.kotlin.dsl.getByType
 
 @Suppress("unused")
 class AndroidApplicationComposePlugin : Plugin<Project> {
     override fun apply(target: Project) = target.run {
-        apply(plugin = "com.android.application")
-        apply(plugin = "kotlin-android")
+        pluginManager.apply("com.android.application")
+        pluginManager.apply("kotlin-android")
 
-        val composeVersion = catalogs.getVersion("compose_compiler")
+        val extension = extensions.getByType<BaseAppModuleExtension>()
 
-        android {
-            configKotlinAndroid()
-            configCompose(composeVersion = composeVersion)
-        }
-
-        configKotlinCompileOptions()
+        configureAndroidCompose(extension)
+        configureKotlinAndroid(extension)
     }
 }
