@@ -18,9 +18,5 @@ fun Project.configureAndroidCompose(
         composeOptions {
             kotlinCompilerExtensionVersion = libs.findVersion("compose_compiler").get().toString()
         }
-
-        kotlinOptions {
-            freeCompilerArgs = freeCompilerArgs
-        }
     }
 }
