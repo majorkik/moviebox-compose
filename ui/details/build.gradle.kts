@@ -10,7 +10,7 @@ android {
     }
 
     ksp {
-        arg("compose-destinations.moduleName", "movie_details")
+        arg("compose-destinations.moduleName", "details")
         arg("compose-destinations.mode", "destinations")
     }
 }
@@ -18,6 +18,7 @@ android {
 dependencies {
     // Submodules
     implementation(projects.core.ui)
+    implementation(projects.core.common)
     implementation(projects.feature.tmdb.api)
 
     // Android
@@ -26,6 +27,7 @@ dependencies {
     implementation(libs.accompanist.pager)
     implementation(libs.accompanist.pager.indicators)
     implementation(libs.compose.destinations.core)
+    implementation(libs.expandabletext)
 
     // Functional programming in Kotlin
     implementation(platform(libs.arrow.bom))

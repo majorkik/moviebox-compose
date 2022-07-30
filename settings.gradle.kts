@@ -18,7 +18,6 @@ dependencyResolutionManagement {
     }
 }
 
-rootProject.buildFileName = "build.gradle.kts"
 rootProject.name = "moviebox-compose"
 
 // Main module
@@ -30,7 +29,7 @@ include(
     ":ui:nav-home",
     ":ui:nav-search",
     ":ui:nav-profile",
-    ":ui:movie-details"
+    ":ui:details"
 )
 // Features
 include(

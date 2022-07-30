@@ -4,7 +4,7 @@ import com.majorkik.tmdb.api.model.PagedTVsResult
 import com.majorkik.tmdb.api.model.TV
 import com.majorkik.tmdb.api.model.toBackdropPath
 import com.majorkik.tmdb.api.model.toPosterPath
-import com.majorkik.tmdb.impl.extension.tryParseToDate
+import com.majorkik.tmdb.impl.util.tryParseDateFromAPI
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
 import kotlinx.serialization.json.JsonNames
@@ -56,7 +56,7 @@ internal fun PagedTVsResponse.TV.toDomainModel() =
         overview = overview,
         popularity = popularity,
         posterPath = posterPath?.toPosterPath(),
-        releaseDate = releaseDate?.let(::tryParseToDate),
+        releaseDate = releaseDate?.let(::tryParseDateFromAPI),
         title = title,
         video = video ?: false,
         voteAverage = voteAverage,

@@ -31,6 +31,10 @@ data class AppColor(
     val text: Text,
     val placeholder: Placeholder,
     val white: Color,
+
+    // Screens
+    val details: DetailsScreenColors,
+
     // Theme
     val isLight: Boolean = true
 ) {
@@ -45,21 +49,93 @@ data class AppColor(
         val background: Color,
         val backgroundDark: Color
     )
+
+    data class DetailsScreenColors(
+        val background: Color,
+        val backgroundSecondary: Color,
+        val placeholderBg: Color,
+        val textPrimary: Color,
+        val textSecondary: Color,
+        val textPlaceholder: Color,
+        val favoriteBtnDefault: Color,
+        val favoriteBtnSelected: Color,
+        val btnBgSecondary: Color,
+        val btnTintSecondary: Color,
+    )
 }
 
 @Immutable
 data class AppTypography(
-    val title: TextStyle = TextStyle(fontFamily = rubikFamily, fontSize = 24.sp, fontWeight = FontWeight.Black),
-    val h1: TextStyle = TextStyle(fontFamily = rubikFamily, fontSize = 24.sp, fontWeight = FontWeight.Bold),
-    val h2: TextStyle = TextStyle(fontFamily = rubikFamily, fontSize = 20.sp, fontWeight = FontWeight.Bold),
-    val h3: TextStyle = TextStyle(fontFamily = rubikFamily, fontSize = 18.sp, fontWeight = FontWeight.Bold),
-    val h4: TextStyle = TextStyle(fontFamily = rubikFamily, fontSize = 16.sp, fontWeight = FontWeight.Bold),
-    val body1: TextStyle = TextStyle(fontFamily = montserratFamily, fontSize = 16.sp, fontWeight = FontWeight.Medium),
-    val body2: TextStyle = TextStyle(fontFamily = montserratFamily, fontSize = 14.sp, fontWeight = FontWeight.Normal),
-    val smallBold: TextStyle = TextStyle(fontFamily = montserratFamily, fontSize = 12.sp, fontWeight = FontWeight.Bold),
-    val bodyMedium: TextStyle = TextStyle(fontFamily = rubikFamily, fontSize = 14.sp, fontWeight = FontWeight.Medium),
-    val titleMedium: TextStyle = TextStyle(fontFamily = rubikFamily, fontSize = 14.sp, fontWeight = FontWeight.Bold),
-    val titleSmall: TextStyle = TextStyle(fontFamily = rubikFamily, fontSize = 12.sp, fontWeight = FontWeight.Bold),
+    val title: TextStyle = TextStyle(
+        fontFamily = rubikFamily,
+        fontSize = 24.sp,
+        fontWeight = FontWeight.Black
+    ),
+    val h1: TextStyle = TextStyle(
+        fontFamily = rubikFamily,
+        fontSize = 24.sp,
+        fontWeight = FontWeight.Bold
+    ),
+    val h2: TextStyle = TextStyle(
+        fontFamily = rubikFamily,
+        fontSize = 20.sp,
+        fontWeight = FontWeight.Bold
+    ),
+    val h3: TextStyle = TextStyle(
+        fontFamily = rubikFamily,
+        fontSize = 18.sp,
+        fontWeight = FontWeight.Bold
+    ),
+    val h4: TextStyle = TextStyle(
+        fontFamily = rubikFamily,
+        fontSize = 16.sp,
+        fontWeight = FontWeight.Bold
+    ),
+    val body1: TextStyle = TextStyle(
+        fontFamily = montserratFamily,
+        fontSize = 16.sp,
+        fontWeight = FontWeight.Medium
+    ),
+    val body2: TextStyle = TextStyle(
+        fontFamily = montserratFamily,
+        fontSize = 14.sp,
+        fontWeight = FontWeight.Normal
+    ),
+    val smallBold: TextStyle = TextStyle(
+        fontFamily = montserratFamily,
+        fontSize = 12.sp,
+        fontWeight = FontWeight.Bold
+    ),
+    val bodyMedium: TextStyle = TextStyle(
+        fontFamily = rubikFamily,
+        fontSize = 14.sp,
+        fontWeight = FontWeight.Medium
+    ),
+    val titleMedium: TextStyle = TextStyle(
+        fontFamily = rubikFamily,
+        fontSize = 14.sp,
+        fontWeight = FontWeight.Bold
+    ),
+    val titleSmall: TextStyle = TextStyle(
+        fontFamily = rubikFamily,
+        fontSize = 12.sp,
+        fontWeight = FontWeight.Bold
+    ),
+    val text: TextStyle = TextStyle(
+        fontFamily = rubikFamily,
+        fontSize = 12.sp,
+        fontWeight = FontWeight.Normal
+    ),
+    val textMedium: TextStyle = TextStyle(
+        fontFamily = rubikFamily,
+        fontSize = 12.sp,
+        fontWeight = FontWeight.Medium
+    ),
+    val captionMedium: TextStyle = TextStyle(
+        fontFamily = rubikFamily,
+        fontSize = 10.sp,
+        fontWeight = FontWeight.Medium
+    ),
 )
 
 @Immutable
@@ -100,6 +176,18 @@ internal val LocalCustomColors = staticCompositionLocalOf {
             backgroundDark = Color.Unspecified
         ),
         white = Color.Unspecified,
+        details = AppColor.DetailsScreenColors(
+            background = Color.Unspecified,
+            backgroundSecondary = Color.Unspecified,
+            placeholderBg = Color.Unspecified,
+            textPrimary = Color.Unspecified,
+            textPlaceholder = Color.Unspecified,
+            favoriteBtnSelected = Color.Unspecified,
+            favoriteBtnDefault = Color.Unspecified,
+            btnBgSecondary = Color.Unspecified,
+            textSecondary = Color.Unspecified,
+            btnTintSecondary = Color.Unspecified
+        ),
         isLight = false
     )
 }
@@ -116,7 +204,8 @@ internal val LocalCustomTypography = staticCompositionLocalOf {
         smallBold = TextStyle.Default,
         bodyMedium = TextStyle.Default,
         titleMedium = TextStyle.Default,
-        titleSmall = TextStyle.Default
+        titleSmall = TextStyle.Default,
+        captionMedium = TextStyle.Default
     )
 }
 

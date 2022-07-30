@@ -7,6 +7,7 @@ import androidx.compose.foundation.isSystemInDarkTheme
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.SideEffect
 import androidx.compose.runtime.collectAsState
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.core.view.WindowCompat
 import com.google.accompanist.insets.ProvideWindowInsets
@@ -23,17 +24,21 @@ class MainActivity : ComponentActivity() {
         super.onCreate(savedInstanceState)
 
         // This app draws behind the system bars, so we want to handle fitting system windows
-        WindowCompat.setDecorFitsSystemWindows(window, true)
+        WindowCompat.setDecorFitsSystemWindows(window, false)
 
         setContent {
-            val shouldUseDarkTheme = viewModel.shouldUseDarkTheme.collectAsState(initial = isSystemInDarkTheme())
+            val shouldUseDarkTheme =
+                viewModel.shouldUseDarkTheme.collectAsState(initial = isSystemInDarkTheme())
             val systemUiController = rememberSystemUiController()
 
             MovieBoxTheme(isDark = shouldUseDarkTheme.value) {
-                val color = MovieBoxTheme.colors.background
 
-                SideEffect { systemUiController.setStatusBarColor(color = color) }
-
+                SideEffect {
+                    systemUiController.setSystemBarsColor(
+                        Color.Transparent,
+                        darkIcons = shouldUseDarkTheme.value.not()
+                    )
+                }
                 ProvideWindowInsets {
                     MainContainer()
                 }

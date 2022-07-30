@@ -28,10 +28,10 @@ data class MovieDetails(
     val video: Boolean,
     val voteAverage: Double,
     val voteCount: Int,
-    val posterLinks: List<String>,
-    val postersCount: Int,
-    val backdropLinks: List<String>,
-    val backdropsCount: Int
+    val posters: List<PosterPath>,
+    val backdrops: List<BackdropPath>,
+    val casts: List<Cast>,
+    val crews: List<Crew>,
 ) {
     data class Genre(val id: Long, val name: String)
 
@@ -53,38 +53,28 @@ data class MovieDetails(
 
     data class SpokenLanguage(val iso: String, val name: String)
 
-    companion object {
-        fun mock() =
-            MovieDetails(
-                adult = false,
-                backdropPath = null,
-                belongsToCollection = null,
-                budget = 0,
-                genres = listOf(),
-                homepage = null,
-                id = 0,
-                imdbId = null,
-                originalLanguage = "",
-                originalTitle = "",
-                overview = null,
-                popularity = 0.0,
-                posterPath = null,
-                productionCompanies = listOf(),
-                productionCountries = listOf(),
-                releaseDate = null,
-                revenue = 0,
-                runtime = null,
-                spokenLanguages = listOf(),
-                status = "",
-                tagline = null,
-                title = "",
-                video = false,
-                voteAverage = 0.0,
-                voteCount = 0,
-                posterLinks = listOf(),
-                postersCount = 0,
-                backdropLinks = listOf(),
-                backdropsCount = 0
-            )
-    }
+    data class Cast(
+        val castId: Int,
+        val character: String,
+        val creditId: String,
+        val id: Int,
+        val knownForDepartment: String,
+        val name: String,
+        val order: Int,
+        val originalName: String,
+        val popularity: Double,
+        val profilePath: ProfilePath?
+    )
+
+    data class Crew(
+        val creditId: String,
+        val department: String,
+        val id: Int,
+        val job: String,
+        val knownForDepartment: String,
+        val name: String,
+        val originalName: String,
+        val popularity: Double,
+        val profilePath: ProfilePath?
+    )
 }

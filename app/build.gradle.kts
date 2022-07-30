@@ -23,7 +23,7 @@ android {
 
 dependencies {
     implementation(projects.core.ui)
-    implementation(projects.ui.movieDetails)
+    implementation(projects.ui.details)
     implementation(projects.ui.navHome)
     implementation(projects.ui.navProfile)
     implementation(projects.ui.navSearch)

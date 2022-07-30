@@ -1,7 +1,10 @@
 package com.majorkik.tmdb.impl.respone
 
 import com.majorkik.tmdb.api.model.MovieDetails
-import com.majorkik.tmdb.api.util.DateUtil
+import com.majorkik.tmdb.api.model.toBackdropPath
+import com.majorkik.tmdb.api.model.toPosterPath
+import com.majorkik.tmdb.api.model.toProfilePath
+import com.majorkik.tmdb.impl.util.tryParseDateFromAPI
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
 
@@ -22,7 +25,7 @@ internal data class MovieDetailsResponse(
     @SerialName("poster_path") val posterPath: String?,
     @SerialName("production_companies") val productionCompanies: List<ProductionCompany>,
     @SerialName("production_countries") val productionCountries: List<ProductionCountry>,
-    @SerialName("release_date") val releaseDate: String,
+    @SerialName("release_date") val releaseDate: String?,
     @SerialName("revenue") val revenue: Long,
     @SerialName("runtime") val runtime: Int?,
     @SerialName("spoken_languages") val spokenLanguages: List<SpokenLanguage>,
@@ -32,7 +35,8 @@ internal data class MovieDetailsResponse(
     @SerialName("video") val video: Boolean,
     @SerialName("vote_average") val voteAverage: Double,
     @SerialName("vote_count") val voteCount: Int,
-    @SerialName("images") val images: Images?
+    @SerialName("images") val images: Images?,
+    @SerialName("credits") val credits: Credits?
 ) {
     @Serializable
     data class Genre(@SerialName("id") val id: Long, @SerialName("name") val name: String)
@@ -76,6 +80,39 @@ internal data class MovieDetailsResponse(
             @SerialName("file_path") val filePath: String?
         )
     }
+
+    @Serializable
+    data class Credits(
+        @SerialName("cast") val cast: List<Cast>,
+        @SerialName("crew") val crew: List<Crew>
+    ) {
+        @Serializable
+        data class Cast(
+            @SerialName("cast_id") val castId: Int,
+            @SerialName("character") val character: String,
+            @SerialName("credit_id") val creditId: String,
+            @SerialName("id") val id: Int,
+            @SerialName("known_for_department") val knownForDepartment: String,
+            @SerialName("name") val name: String,
+            @SerialName("order") val order: Int,
+            @SerialName("original_name") val originalName: String,
+            @SerialName("popularity") val popularity: Double,
+            @SerialName("profile_path") val profilePath: String?
+        )
+
+        @Serializable
+        data class Crew(
+            @SerialName("credit_id") val creditId: String,
+            @SerialName("department") val department: String,
+            @SerialName("id") val id: Int,
+            @SerialName("job") val job: String,
+            @SerialName("known_for_department") val knownForDepartment: String,
+            @SerialName("name") val name: String,
+            @SerialName("original_name") val originalName: String,
+            @SerialName("popularity") val popularity: Double,
+            @SerialName("profile_path") val profilePath: String?
+        )
+    }
 }
 
 internal fun MovieDetailsResponse.toDomainModel() =
@@ -95,7 +132,7 @@ internal fun MovieDetailsResponse.toDomainModel() =
         posterPath = posterPath,
         productionCompanies = productionCompanies.map { it.toDomainModel() },
         productionCountries = productionCountries.map { it.toDomainModel() },
-        releaseDate = DateUtil.tryParse(date = releaseDate),
+        releaseDate = releaseDate?.let(::tryParseDateFromAPI),
         revenue = revenue,
         runtime = runtime,
         spokenLanguages = spokenLanguages.map { it.toDomainModel() },
@@ -105,10 +142,10 @@ internal fun MovieDetailsResponse.toDomainModel() =
         video = video,
         voteAverage = voteAverage,
         voteCount = voteCount,
-        posterLinks = images?.posters?.mapNotNull { it.filePath }.orEmpty(),
-        postersCount = images?.posters?.count() ?: 0,
-        backdropLinks = images?.backdrops?.mapNotNull { it.filePath }.orEmpty(),
-        backdropsCount = images?.backdrops?.count() ?: 0
+        posters = images?.posters?.mapNotNull { it.filePath?.toPosterPath() }.orEmpty(),
+        backdrops = images?.backdrops?.mapNotNull { it.filePath?.toBackdropPath() }.orEmpty(),
+        casts = credits?.cast?.map { it.toDomainModel() }.orEmpty(),
+        crews = credits?.crew?.map { it.toDomainModel() }.orEmpty()
     )
 
 internal fun MovieDetailsResponse.Genre.toDomainModel() = MovieDetails.Genre(id = id, name = name)
@@ -134,3 +171,30 @@ internal fun MovieDetailsResponse.ProductionCountry.toDomainModel() =
 
 internal fun MovieDetailsResponse.SpokenLanguage.toDomainModel() =
     MovieDetails.SpokenLanguage(iso = iso6391, name = name)
+
+internal fun MovieDetailsResponse.Credits.Cast.toDomainModel() =
+    MovieDetails.Cast(
+        id = id,
+        castId = castId,
+        character = character,
+        creditId = creditId,
+        knownForDepartment = knownForDepartment,
+        name = name,
+        originalName = originalName,
+        order = order,
+        popularity = popularity,
+        profilePath = profilePath?.toProfilePath()
+    )
+
+internal fun MovieDetailsResponse.Credits.Crew.toDomainModel() =
+    MovieDetails.Crew(
+        id = id,
+        creditId = creditId,
+        department = department,
+        job = job,
+        knownForDepartment = knownForDepartment,
+        name = name,
+        originalName = originalName,
+        popularity = popularity,
+        profilePath = profilePath?.toProfilePath()
+    )

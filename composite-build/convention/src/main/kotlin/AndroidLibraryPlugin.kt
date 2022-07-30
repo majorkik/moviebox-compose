@@ -1,9 +1,9 @@
-import com.majorkik.movieboxcompose.android
-import com.majorkik.movieboxcompose.configKotlinAndroid
-import com.majorkik.movieboxcompose.configKotlinCompileOptions
+import com.android.build.gradle.LibraryExtension
+import org.gradle.kotlin.dsl.getByType
 import org.gradle.api.Plugin
 import org.gradle.api.Project
 import org.gradle.kotlin.dsl.apply
+import com.majorkik.movieboxcompose.configureKotlinAndroid
 
 @Suppress("unused")
 class AndroidLibraryPlugin : Plugin<Project> {
@@ -11,10 +11,8 @@ class AndroidLibraryPlugin : Plugin<Project> {
         apply(plugin = "com.android.library")
         apply(plugin = "kotlin-android")
 
-        android {
-            configKotlinAndroid()
-        }
+        val extension = extensions.getByType<LibraryExtension>()
 
-        configKotlinCompileOptions()
+        configureKotlinAndroid(extension)
     }
 }

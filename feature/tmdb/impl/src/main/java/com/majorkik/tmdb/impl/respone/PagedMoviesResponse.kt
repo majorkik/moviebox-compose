@@ -4,7 +4,7 @@ import com.majorkik.tmdb.api.model.Movie
 import com.majorkik.tmdb.api.model.PagedMovieResult
 import com.majorkik.tmdb.api.model.toBackdropPath
 import com.majorkik.tmdb.api.model.toPosterPath
-import com.majorkik.tmdb.impl.extension.tryParseToDate
+import com.majorkik.tmdb.impl.util.tryParseDateFromAPI
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
 
@@ -51,7 +51,7 @@ internal fun PagedMoviesResponse.Movie.toDomainModel() =
         originalTitle = originalTitle,
         popularity = popularity,
         posterPath = posterPath?.toPosterPath(),
-        releaseDate = releaseDate?.let { date -> tryParseToDate(date = date) },
+        releaseDate = releaseDate?.let(::tryParseDateFromAPI),
         video = video,
         backdropPath = backdropPath?.toBackdropPath(),
         voteAverage = voteAverage,
