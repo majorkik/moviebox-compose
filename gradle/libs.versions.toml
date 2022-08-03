@@ -6,7 +6,7 @@ ksp = "1.7.10-1.0.6"
 # Dependency Injection
 koin = "3.2.0"
 # Testing
-kotest = "5.3.0"
+kotest = "5.3.1"
 # Gradle
 android_gradle = "7.2.1"
 # Compose
