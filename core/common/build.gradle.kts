@@ -1,6 +1,6 @@
 plugins {
     kotlin("jvm")
-//    id("moviebox.code.quality")
+    id("moviebox.code.quality")
 }
 
 java {

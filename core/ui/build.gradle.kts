@@ -1,6 +1,6 @@
 plugins {
     id("moviebox.library.compose")
-//    id("moviebox.code.quality")
+    id("moviebox.code.quality")
 }
 
 dependencies {

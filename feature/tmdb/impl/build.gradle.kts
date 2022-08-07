@@ -32,4 +32,8 @@ dependencies {
     implementation(libs.serialization.converter)
 
     implementation(libs.klock)
+
+    testImplementation(libs.bundles.kotest)
 }
+
+tasks.withType<Test> { useJUnitPlatform() }
