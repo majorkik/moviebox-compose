@@ -23,7 +23,11 @@ rootProject.name = "moviebox-compose"
 // Main module
 include(":app")
 // Core modules
-include(":core:ui", ":core:common")
+include(
+    ":core:ui",
+    ":core:common",
+    ":core:test"
+)
 // UI
 include(
     ":ui:nav-home",

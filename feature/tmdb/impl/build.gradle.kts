@@ -34,6 +34,8 @@ dependencies {
     implementation(libs.klock)
 
     testImplementation(libs.bundles.kotest)
+
+    testImplementation(projects.core.test)
 }
 
 tasks.withType<Test> { useJUnitPlatform() }

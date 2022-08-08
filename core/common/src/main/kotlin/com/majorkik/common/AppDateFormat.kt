@@ -19,11 +19,4 @@ fun tryParseDate(date: String, pattern: String): Option<Date> {
     val dateFormat = DateFormat(pattern)
 
     return Option.catch { dateFormat.parseDate(date) }
-
-    /*return try {
-        dateFormat.parseDate(date)
-    } catch (exception: DateException) {
-        logger.error(exception) { "Error converting string to date" }
-        null
-    }*/
 }
