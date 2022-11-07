@@ -111,13 +111,14 @@ developing mobile applications.
 - [Jetpack compose samples](https://github.com/android/compose-samples) - official Jetpack Compose
   samples.
 
-## Issues
+## ToDo
 
-- [ ] Prior to Gradle 7.4.2, you have to write `@Suppress("DSL_SCOPE_VIOLATION")` when
-  using `alias(libs.plugins...)` in the `plugins { }` block.
-  **Updated:**
-  Чтобы убрать предупреждение, пока не выйдет _patch_ для **Gradle**, можно использовать плагин
-  **Gradle libs error suppressor**
+- [ ] Add git-hooks
+- [ ] Implement networking with Ktor
+- [ ] Try to implement a network layer in Rust (Experiment)
+- [ ] Write tests (unit/instrumental)
+- [ ] Update readme
+- [ ] Add data caching
 
 #### Useful links:
 
