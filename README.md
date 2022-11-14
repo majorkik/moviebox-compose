@@ -117,8 +117,10 @@ developing mobile applications.
 - [ ] Implement networking with Ktor
 - [ ] Try to implement a network layer in Rust (Experiment)
 - [ ] Write tests (unit/instrumental)
-- [ ] Update readme
+- [ ] Update readme (naming and code conventions)
 - [ ] Add data caching
+- [ ] Add debug menu
+- [ ] 
 
 #### Useful links:
 
