@@ -74,6 +74,13 @@
 
 ## Getting started
 
+The project has a set of githooks. In order for git to detect them, you need to add them to the config.
+
+```bash
+git config --local core.hooksPath .githooks
+```
+
+
 There are a few ways to open this project.
 
 ### Android Studio
