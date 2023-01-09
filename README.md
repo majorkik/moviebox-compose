@@ -38,6 +38,7 @@
 - **Loggers**: [Kotlin Logging](https://github.com/MicroUtils/kotlin-logging)
 - **Dependency
   versions**: [Version catalog TOML file format](https://docs.gradle.org/current/userguide/platforms.html)
+- **Git**: Specification - [Conventional Commits](https://www.conventionalcommits.org/en/v1.0.0/)
 
 ## Architecture
 
