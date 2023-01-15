@@ -38,6 +38,7 @@
 - **Loggers**: [Kotlin Logging](https://github.com/MicroUtils/kotlin-logging)
 - **Dependency
   versions**: [Version catalog TOML file format](https://docs.gradle.org/current/userguide/platforms.html)
+- **Git**: Specification - [Conventional Commits](https://www.conventionalcommits.org/en/v1.0.0/)
 
 ## Architecture
 
@@ -73,6 +74,13 @@
 ![Future modules](docs/image/future-modules.svg?raw=true)
 
 ## Getting started
+
+The project has a set of githooks. In order for git to detect them, you need to add them to the config.
+
+```bash
+git config --local core.hooksPath .githooks
+```
+
 
 There are a few ways to open this project.
 
