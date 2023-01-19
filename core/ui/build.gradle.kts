@@ -5,6 +5,8 @@ plugins {
 
 dependencies {
     api(libs.androidx.appcompat)
+
+    api(platform(libs.androidx.compose.bom))
     api(libs.bundles.compose)
     api(libs.accompanist.insets)
 }
