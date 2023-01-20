@@ -2,13 +2,13 @@ package com.majorkik.tmdb.impl.network
 
 import com.majorkik.tmdb.api.network.NetworkResult
 import com.majorkik.tmdb.impl.logger
-import kotlin.coroutines.resume
-import kotlin.coroutines.suspendCoroutine
 import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 import okhttp3.ResponseBody
 import retrofit2.Response
+import kotlin.coroutines.resume
+import kotlin.coroutines.suspendCoroutine
 
 /**
  * Executes the request safely, handling error cases and other possible exceptions

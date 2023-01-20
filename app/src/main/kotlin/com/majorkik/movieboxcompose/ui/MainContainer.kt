@@ -3,7 +3,8 @@ package com.majorkik.movieboxcompose.ui
 import androidx.compose.animation.ExperimentalAnimationApi
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
-import androidx.compose.material.Scaffold
+import androidx.compose.material3.ExperimentalMaterial3Api
+import androidx.compose.material3.Scaffold
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import com.google.accompanist.navigation.animation.rememberAnimatedNavController
@@ -23,13 +24,17 @@ import com.ramcosta.composedestinations.navigation.dependency
 import com.ramcosta.composedestinations.scope.DestinationScope
 import com.ramcosta.composedestinations.animations.rememberAnimatedNavHostEngine as rememberAnimatedNavHostEngine1
 
-@OptIn(ExperimentalAnimationApi::class, ExperimentalMaterialNavigationApi::class)
+@OptIn(
+    ExperimentalAnimationApi::class,
+    ExperimentalMaterialNavigationApi::class,
+    ExperimentalMaterial3Api::class
+)
 @Composable
 fun MainContainer() {
     val navController = rememberAnimatedNavController()
 
     Scaffold(
-        backgroundColor = MovieBoxTheme.colors.background,
+        containerColor = MovieBoxTheme.colors.background,
         bottomBar = { BottomNavigation(navController = navController) },
         modifier = Modifier.fillMaxSize()
     ) { innerPadding ->

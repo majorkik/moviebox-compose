@@ -20,7 +20,7 @@ compose_destinations = "1.8.32-beta"
 gradle_versions = "0.44.0"
 # Static analyze code
 ktlint = "0.45.2"
-ktlint_jlleitschuh = "10.2.1"
+ktlint_jlleitschuh = "11.0.0"
 detekt = "1.20.0"
 spotless = "6.4.2"
 arrow_analysis = "2.0"
@@ -55,6 +55,7 @@ androidx_compose_bom = { group = "androidx.compose", name = "compose-bom", versi
 androidx_compose_foundation = { group = "androidx.compose.foundation", name = "foundation" }
 androidx_compose_foundation_layout = { group = "androidx.compose.foundation", name = "foundation-layout" }
 androidx_compose_material_iconsExtended = { group = "androidx.compose.material", name = "material-icons-extended" }
+androidx_compose_material = { group = "androidx.compose.material", name = "material" }
 androidx_compose_material3 = { group = "androidx.compose.material3", name = "material3" }
 androidx_compose_material3_windowSizeClass = { group = "androidx.compose.material3", name = "material3-window-size-class" }
 androidx_compose_runtime = { group = "androidx.compose.runtime", name = "runtime" }

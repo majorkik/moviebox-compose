@@ -47,12 +47,6 @@ java {
     targetCompatibility = JavaVersion.VERSION_17
 }
 
-//tasks.withType<org.jetbrains.kotlin.gradle.tasks.KotlinCompile> {
-//    kotlinOptions {
-//        jvmTarget = "1.8"
-//    }
-//}
-
 dependencies {
     implementation(libs.kotlin.gradle.plugin)
     implementation(libs.gradle.build)

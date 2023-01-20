@@ -39,9 +39,8 @@ class MainActivity : ComponentActivity() {
                         darkIcons = shouldUseDarkTheme.value.not()
                     )
                 }
-                ProvideWindowInsets {
-                    MainContainer()
-                }
+
+                MainContainer()
             }
         }
     }

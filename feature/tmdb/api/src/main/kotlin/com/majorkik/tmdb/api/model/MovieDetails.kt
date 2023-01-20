@@ -31,7 +31,7 @@ data class MovieDetails(
     val posters: List<PosterPath>,
     val backdrops: List<BackdropPath>,
     val casts: List<Cast>,
-    val crews: List<Crew>,
+    val crews: List<Crew>
 ) {
     data class Genre(val id: Long, val name: String)
 

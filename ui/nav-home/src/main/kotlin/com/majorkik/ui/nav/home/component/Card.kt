@@ -19,10 +19,13 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.layout.ContentScale
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import coil.compose.rememberAsyncImagePainter
 import coil.compose.rememberImagePainter
+import coil.request.ImageRequest
 import com.majorkik.common.percentOf
 import com.majorkik.core.ui.components.getPopcornPlaceholderResId
 import com.majorkik.core.ui.extension.clickableWithSimpleRipple
@@ -50,14 +53,16 @@ internal fun HorizontalMovieCard(
     ) {
         // Image
         Image(
-            painter = rememberImagePainter(
-                data = backdropPath?.build(size = BackdropPath.Size.Width1280),
-                builder = {
-                    crossfade(true)
-                    placeholder(getPopcornPlaceholderResId(MovieBoxTheme.colors.isLight))
-                    error(getPopcornPlaceholderResId(MovieBoxTheme.colors.isLight))
-                    fallback(getPopcornPlaceholderResId(MovieBoxTheme.colors.isLight))
-                }
+            painter = rememberAsyncImagePainter(
+                ImageRequest.Builder(LocalContext.current)
+                    .data(data = backdropPath?.build(size = BackdropPath.Size.Width1280))
+                    .apply(block = {
+                        crossfade(true)
+                        placeholder(getPopcornPlaceholderResId(MovieBoxTheme.colors.isLight))
+                        error(getPopcornPlaceholderResId(MovieBoxTheme.colors.isLight))
+                        fallback(getPopcornPlaceholderResId(MovieBoxTheme.colors.isLight))
+                    })
+                    .build()
             ),
             contentDescription = null,
             modifier = Modifier.fillMaxSize(),
@@ -115,21 +120,26 @@ internal fun VerticalMovieCard(
                 .clickableWithSimpleRipple(onClick),
         ) {
             Image(
-                painter = rememberImagePainter(
-                    data = posterPath?.build(size = PosterPath.Size.Width500),
-                    builder = {
-                        crossfade(true)
-                        placeholder(getPopcornPlaceholderResId(MovieBoxTheme.colors.isLight))
-                        error(getPopcornPlaceholderResId(MovieBoxTheme.colors.isLight))
-                        fallback(getPopcornPlaceholderResId(MovieBoxTheme.colors.isLight))
-                    }
+                painter = rememberAsyncImagePainter(
+                    ImageRequest.Builder(LocalContext.current)
+                        .data(data = posterPath?.build(size = PosterPath.Size.Width500))
+                        .apply(block = {
+                            crossfade(true)
+                            placeholder(getPopcornPlaceholderResId(MovieBoxTheme.colors.isLight))
+                            error(getPopcornPlaceholderResId(MovieBoxTheme.colors.isLight))
+                            fallback(getPopcornPlaceholderResId(MovieBoxTheme.colors.isLight))
+                        })
+                        .build()
                 ),
                 contentDescription = null,
                 modifier = Modifier.fillMaxSize(),
                 contentScale = ContentScale.Crop
             )
 
-            PercentVoteAverageText(voteAverage = voteAverage, modifier = Modifier.align(Alignment.TopEnd))
+            PercentVoteAverageText(
+                voteAverage = voteAverage,
+                modifier = Modifier.align(Alignment.TopEnd)
+            )
 
             if (releaseDate != null) {
                 Text(
