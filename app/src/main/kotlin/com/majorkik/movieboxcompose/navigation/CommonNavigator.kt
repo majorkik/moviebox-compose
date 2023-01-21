@@ -5,7 +5,6 @@ import com.majorkik.ui.details.ui.destinations.MovieDetailsScreenDestination
 import com.majorkik.ui.nav.home.ui.NavHomeNavigator
 import com.ramcosta.composedestinations.dynamic.within
 import com.ramcosta.composedestinations.navigation.navigate
-import com.ramcosta.composedestinations.navigation.navigateTo
 import com.ramcosta.composedestinations.spec.NavGraphSpec
 
 class CommonNavigator(
