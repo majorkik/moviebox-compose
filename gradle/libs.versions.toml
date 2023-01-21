@@ -1,27 +1,32 @@
 [versions]
 # Kotlin
-kotlin = "1.7.10"
+kotlin = "1.8.0"
 coroutines = "1.6.3"
-ksp = "1.7.10-1.0.6"
+ksp = "1.8.0-1.0.8"
 # Dependency Injection
-koin = "3.2.0"
+koin = "3.3.2"
+koin_androidx_compose = "3.4.1"
 # Testing
 kotest = "5.3.0"
 # Gradle
-android_gradle = "7.2.1"
+android_gradle = "7.4.0"
 # Compose
-compose = "1.2.0"
-compose_compiler = "1.3.0-rc01"
-accompanist = "0.24.8-beta"
-compose_destinations = "1.6.15-beta"
+androidx_compose_bom = "2023.01.00"
+compose_compiler = "1.4.0"
+androidx_compose_runtime_tracing = "1.0.0-alpha01"
+accompanist = "0.28.0"
+compose_destinations = "1.8.32-beta"
 # Gradle Version plugin
-gradle_versions = "0.42.0"
+gradle_versions = "0.44.0"
 # Static analyze code
 ktlint = "0.45.2"
-ktlint_jlleitschuh = "10.2.1"
+ktlint_jlleitschuh = "11.0.0"
 detekt = "1.20.0"
 spotless = "6.4.2"
 arrow_analysis = "2.0"
+# Logging
+kotlin_logging = "3.0.4"
+slf4j = "2.0.6"
 
 [libraries]
 # Gradle
@@ -37,24 +42,33 @@ coroutines_core = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-core", ve
 coroutines_android = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-android", version.ref = "coroutines" }
 coroutines_test = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-test", version.ref = "coroutines" }
 # AndroidX
-androidx_activity_compose = "androidx.activity:activity-compose:1.5.0"
-androidx_core_ktx = "androidx.core:core-ktx:1.8.0"
-androidx_appcompat = "androidx.appcompat:appcompat:1.4.2"
-androidx_material = "com.google.android.material:material:1.6.1"
-androidx_lifecycle_ktx = "androidx.lifecycle:lifecycle-runtime-ktx:2.5.0"
+androidx_activity_compose = "androidx.activity:activity-compose:1.6.1"
+androidx_core_ktx = "androidx.core:core-ktx:1.9.0"
+androidx_appcompat = "androidx.appcompat:appcompat:1.6.0"
+androidx_material = "com.google.android.material:material:1.7.0"
+androidx_lifecycle_ktx = "androidx.lifecycle:lifecycle-runtime-ktx:2.5.1"
 androidx_navigation_compose = "androidx.navigation:navigation-compose:2.5.0-alpha02"
 androidx_datastore_preferences = "androidx.datastore:datastore-preferences:1.0.0"
 # Compose
 compose_compiler = { module = "androidx.compose.compiler:compiler", version.ref = "compose_compiler" }
-compose_ui = { module = "androidx.compose.ui:ui", version.ref = "compose" }
-compose_material = { module = "androidx.compose.material:material", version.ref = "compose" }
-compose_tooling_preview = { module = "androidx.compose.ui:ui-tooling-preview", version.ref = "compose" }
-compose_tooling = { module = "androidx.compose.ui:ui-tooling", version.ref = "compose" }
-compose_foundation = { module = "androidx.compose.foundation:foundation", version.ref = "compose" }
-compose_runtime = { module = "androidx.compose.runtime:runtime", version.ref = "compose" }
+androidx_compose_bom = { group = "androidx.compose", name = "compose-bom", version.ref = "androidx_compose_bom" }
+androidx_compose_foundation = { group = "androidx.compose.foundation", name = "foundation" }
+androidx_compose_foundation_layout = { group = "androidx.compose.foundation", name = "foundation-layout" }
+androidx_compose_material_iconsExtended = { group = "androidx.compose.material", name = "material-icons-extended" }
+androidx_compose_material = { group = "androidx.compose.material", name = "material" }
+androidx_compose_material3 = { group = "androidx.compose.material3", name = "material3" }
+androidx_compose_material3_windowSizeClass = { group = "androidx.compose.material3", name = "material3-window-size-class" }
+androidx_compose_runtime = { group = "androidx.compose.runtime", name = "runtime" }
+androidx_compose_runtime_livedata = { group = "androidx.compose.runtime", name = "runtime-livedata" }
+androidx_compose_runtime_tracing = { group = "androidx.compose.runtime", name = "runtime-tracing", version.ref = "androidx_compose_runtime_tracing" }
+androidx_compose_ui_test = { group = "androidx.compose.ui", name = "ui-test-junit4" }
+androidx_compose_ui_testManifest = { group = "androidx.compose.ui", name = "ui-test-manifest" }
+androidx_compose_ui_tooling = { group = "androidx.compose.ui", name = "ui-tooling" }
+androidx_compose_ui_tooling_preview = { group = "androidx.compose.ui", name = "ui-tooling-preview" }
+androidx_compose_ui_util = { group = "androidx.compose.ui", name = "ui-util" }
 # Loggers
-kotlin_logging = "io.github.microutils:kotlin-logging-jvm:2.1.23"
-slf4j = "org.slf4j:slf4j-simple:1.7.36"
+kotlin_logging = { module = "io.github.microutils:kotlin-logging-jvm", version.ref = "kotlin_logging" }
+slf4j = { module = "org.slf4j:slf4j-simple", version.ref = "slf4j" }
 # Arrow
 arrow_bom = "io.arrow-kt:arrow-stack:1.1.2"
 arrow_core = { module = "io.arrow-kt:arrow-core" }
@@ -67,7 +81,7 @@ okhttp_bom_interceptor = { module = "com.squareup.okhttp3:logging-interceptor" }
 # Dependency Injection
 koin_core = { module = "io.insert-koin:koin-core", version.ref = "koin" }
 koin_android = { module = "io.insert-koin:koin-android", version.ref = "koin" }
-koin_compose = { module = "io.insert-koin:koin-androidx-compose", version.ref = "koin" }
+koin_compose = { module = "io.insert-koin:koin-androidx-compose", version.ref = "koin_androidx_compose" }
 koin_test = { module = "io.insert-koin:koin-test", version.ref = "koin" }
 # Testing - assertation framework
 kotest_assertions = { module = "io.kotest:kotest-assertions-core", version.ref = "kotest" }
@@ -103,18 +117,18 @@ androidx_ui = [
     "androidx_lifecycle_ktx"
 ]
 compose_ui = [
-    "compose_ui",
-    "compose_material",
-    "compose_tooling_preview",
-    "compose_tooling"
+    #    "compose_ui",
+    "androidx_compose_material3",
+    "androidx_compose_ui_tooling_preview",
+    "androidx_compose_ui_tooling"
 ]
 compose = [
-    "compose_ui",
-    "compose_material",
-    "compose_tooling_preview",
-    "compose_tooling",
-    "compose_foundation",
-    "compose_runtime"
+    #    "compose_ui",
+    "androidx_compose_material3",
+    "androidx_compose_ui_tooling_preview",
+    "androidx_compose_ui_tooling",
+    "androidx_compose_foundation",
+    "androidx_compose_runtime"
 ]
 network = ["retrofit", "serialization_converter", "okhttp_bom", "okhttp_bom_core", "okhttp_bom_interceptor"]
 okhttp = ["okhttp_bom", "okhttp_bom_core", "okhttp_bom_interceptor"]

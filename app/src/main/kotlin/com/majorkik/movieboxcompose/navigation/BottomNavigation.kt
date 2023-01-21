@@ -2,6 +2,8 @@ package com.majorkik.movieboxcompose.navigation
 
 import androidx.annotation.DrawableRes
 import androidx.compose.foundation.background
+import androidx.compose.foundation.layout.imePadding
+import androidx.compose.foundation.layout.navigationBarsPadding
 import androidx.compose.material.BottomNavigation
 import androidx.compose.material.BottomNavigationItem
 import androidx.compose.material.Icon
@@ -17,7 +19,6 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
 import androidx.navigation.NavGraph.Companion.findStartDestination
-import com.google.accompanist.insets.navigationBarsWithImePadding
 import com.majorkik.core.ui.theme.MovieBoxTheme
 import com.ramcosta.composedestinations.spec.NavGraphSpec
 
@@ -28,7 +29,8 @@ fun BottomNavigation(navController: NavController) {
     BottomNavigation(
         backgroundColor = MovieBoxTheme.colors.background,
         modifier = Modifier
-            .navigationBarsWithImePadding()
+            .navigationBarsPadding()
+            .imePadding()
             .background(MovieBoxTheme.colors.background),
         elevation = 0.dp
     ) {
@@ -101,8 +103,6 @@ private fun NavController.currentScreenAsState(): State<NavGraphSpec> {
 
     DisposableEffect(this) {
         val listener = NavController.OnDestinationChangedListener { _, destination, _ ->
-            backQueue.printToLog()
-
             selectedItem.value = destination.navGraph()
         }
 

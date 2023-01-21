@@ -19,6 +19,7 @@ class AppKtlintPlugin : Plugin<Project> {
             enableExperimentalRules.set(true)
             outputToConsole.set(true)
             outputColorName.set("RED")
+            disabledRules.add("import-ordering")
 
             reporters {
                 reporter(ReporterType.PLAIN)

@@ -10,7 +10,6 @@ import androidx.compose.runtime.collectAsState
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.core.view.WindowCompat
-import com.google.accompanist.insets.ProvideWindowInsets
 import com.google.accompanist.systemuicontroller.rememberSystemUiController
 import com.majorkik.core.ui.theme.MovieBoxTheme
 import org.koin.androidx.viewmodel.ext.android.viewModel
@@ -39,9 +38,8 @@ class MainActivity : ComponentActivity() {
                         darkIcons = shouldUseDarkTheme.value.not()
                     )
                 }
-                ProvideWindowInsets {
-                    MainContainer()
-                }
+
+                MainContainer()
             }
         }
     }

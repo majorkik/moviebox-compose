@@ -1,38 +1,44 @@
 # MovieBox Compose 🚧 [Work in progress] 🚧
 
-[![Android Studio Arctic Fox](https://img.shields.io/badge/AS%20Electric-Eel%209-9cf)](https://developer.android.com/studio/preview) [![Kotlin Version](https://img.shields.io/badge/Kotlin-1.6.20-brightgreen)](https://kotlinlang.org)  [![AGP](https://img.shields.io/badge/AGP-7.2-blue)](https://developer.android.com/studio/releases/gradle-plugin)  [![Gradle](https://img.shields.io/badge/Gradle-7.5-blue)](https://gradle.org)  [![Jetpack Compose](https://img.shields.io/badge/Jetpack%20Compose-1.2.0--beta01-blueviolet)](https://developer.android.com/jetpack/androidx/releases/compose) [![CodeFactor](https://www.codefactor.io/repository/github/majorkik/moviebox-compose/badge)](https://www.codefactor.io/repository/github/majorkik/moviebox-compose) [![codebeat badge](https://codebeat.co/badges/80853a65-81dc-46c1-8b63-7f4ee5c72bab)](https://codebeat.co/a/rodion/projects/github-com-majorkik-moviebox_compose-master)
+[![Kotlin Version](https://img.shields.io/badge/Kotlin-1.8.0-brightgreen)](https://kotlinlang.org)
+[![AGP](https://img.shields.io/badge/AGP-7.4.0-blue)](https://developer.android.com/studio/releases/gradle-plugin)
+[![Gradle](https://img.shields.io/badge/Gradle-8.0-blue)](https://gradle.org)
+[![Jetpack Compose](https://img.shields.io/badge/Jetpack%20Compose-2023.01.00-blueviolet)](https://developer.android.com/jetpack/androidx/releases/compose)
+[![CodeFactor](https://www.codefactor.io/repository/github/majorkik/moviebox-compose/badge)](https://www.codefactor.io/repository/github/majorkik/moviebox-compose)
+[![codebeat badge](https://codebeat.co/badges/80853a65-81dc-46c1-8b63-7f4ee5c72bab)](https://codebeat.co/a/rodion/projects/github-com-majorkik-moviebox_compose-master)
 
 ## Project characteristics and tech-stack
 
 ### Tech-stack
 
 - [100% Kotlin](https://kotlinlang.org/)
-  + [Coroutines](https://kotlinlang.org/docs/reference/coroutines-overview.html) - perform
-    background operations
+    + [Coroutines](https://kotlinlang.org/docs/reference/coroutines-overview.html) - perform
+      background operations
 - **Networking**: [Retrofit](https://square.github.io/retrofit/)
-  + [OkHttp](https://github.com/square/okhttp)
+    + [OkHttp](https://github.com/square/okhttp)
 - [Jetpack Compose](https://developer.android.com/jetpack/compose)
 - [Accompanist](https://github.com/chrisbanes/accompanist) - collection of extension libraries for
   Jetpack Compose
 - [Coil](https://github.com/coil-kt/coil) - image loading library
 - [Jetpack](https://developer.android.com/jetpack/)
-  - [Lifecycle](https://developer.android.com/topic/libraries/architecture/lifecycle) - perform an
-    action when lifecycle state changes
-  - [ViewModel](https://developer.android.com/topic/libraries/architecture/viewmodel) - store and
-    manage UI-related data in a lifecycle conscious way
+    - [Lifecycle](https://developer.android.com/topic/libraries/architecture/lifecycle) - perform an
+      action when lifecycle state changes
+    - [ViewModel](https://developer.android.com/topic/libraries/architecture/viewmodel) - store and
+      manage UI-related data in a lifecycle conscious way
 - [Klock](https://github.com/korlibs/klock) - multiplatform Date and time library for Kotlin
 - Architecture
-  - MVVM + MVI (presentation layer)
-  - [Android Architecture components](https://developer.android.com/topic/libraries/architecture)
-  - [Android KTX](https://developer.android.com/kotlin/ktx) - Jetpack Kotlin extensions
+    - MVVM + MVI (presentation layer)
+    - [Android Architecture components](https://developer.android.com/topic/libraries/architecture)
+    - [Android KTX](https://developer.android.com/kotlin/ktx) - Jetpack Kotlin extensions
 - **Dependency Injection**: [Koin](https://github.com/InsertKoinIO/koin)
 - Static analysis tools
-  - [Ktlint](https://github.com/pinterest/ktlint) - validate code formatting
-  - [Detekt](https://github.com/arturbosch/detekt#with-gradle) - verify complexity look for and code
-    smell
-  - [Spotless](https://github.com/diffplug/spotless) - keep your code spotless
-  - [Arrow Analysis](https://arrow-kt.io/docs/analysis/) - Pre-, post-condition, and invariant
-    checks for your Kotlin code
+    - [Ktlint](https://github.com/pinterest/ktlint) - validate code formatting
+    - [Detekt](https://github.com/arturbosch/detekt#with-gradle) - verify complexity look for and
+      code
+      smell
+    - [Spotless](https://github.com/diffplug/spotless) - keep your code spotless
+    - [Arrow Analysis](https://arrow-kt.io/docs/analysis/) - Pre-, post-condition, and invariant
+      checks for your Kotlin code
 - **Gradle**: [Gradle Kotlin DSL](https://docs.gradle.org/current/userguide/kotlin_dsl.html) +
   Custom tasks and plugins
 - **Loggers**: [Kotlin Logging](https://github.com/MicroUtils/kotlin-logging)
@@ -53,17 +59,18 @@
   feature module can have dependencies on other feature modules **only** through an API module or on
   the main module, if we are talking about an feature UI module. Feature modules can be divided into
   three types:
-  - **Feature UI module**: contains a screen, a group of screens, views, resources, and other code
-    to implement a specific UI. Feature UI modules are independent of other feature UI modules. For
-    interconnection between feature UI modules, a helper module is usually used that contains
-    specific code for their interaction (for example, a module that contains code for navigating
-    between screens).
-  - **Feature module of implementation**: contains implementations of interfaces from the API
-    module, contains classes for working with the database and server, data models with JSON
-    annotations for *serializing/deserializing* data. It resembles a **data layer** from a Clean
-    architecture;
-  - **Feature API module**: contains interfaces for working with data, data models without JSON
-    annotations, business logic and usecases.
+    - **Feature UI module**: contains a screen, a group of screens, views, resources, and other code
+      to implement a specific UI. Feature UI modules are independent of other feature UI modules.
+      For
+      interconnection between feature UI modules, a helper module is usually used that contains
+      specific code for their interaction (for example, a module that contains code for navigating
+      between screens).
+    - **Feature module of implementation**: contains implementations of interfaces from the API
+      module, contains classes for working with the database and server, data models with JSON
+      annotations for *serializing/deserializing* data. It resembles a **data layer** from a Clean
+      architecture;
+    - **Feature API module**: contains interfaces for working with data, data models without JSON
+      annotations, business logic and usecases.
 - **Core module**: contains helper code that can be used in more than one module. These can be
   abstract classes, utilities, providing libraries through transitive dependencies, and so on. Core
   modules do not depend on any other modules.
@@ -128,7 +135,6 @@ developing mobile applications.
 - [ ] Update readme (naming and code conventions)
 - [ ] Add data caching
 - [ ] Add debug menu
-- [ ] 
 
 #### Useful links:
 

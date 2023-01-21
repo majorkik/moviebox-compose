@@ -1,12 +1,12 @@
 plugins {
     kotlin("jvm")
-    kotlin("plugin.serialization") version "1.7.0"
+    kotlin("plugin.serialization") version "1.8.0"
     id("moviebox.code.quality")
 }
 
 java {
-    sourceCompatibility = JavaVersion.VERSION_11
-    targetCompatibility = JavaVersion.VERSION_11
+    sourceCompatibility = JavaVersion.VERSION_17
+    targetCompatibility = JavaVersion.VERSION_17
 }
 
 dependencies {

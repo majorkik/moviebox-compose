@@ -35,6 +35,7 @@ dependencies {
     implementation(libs.bundles.androidx.ui)
     implementation(libs.bundles.compose)
     implementation(libs.bundles.logging)
+    implementation(libs.androidx.compose.material)
 
     implementation(libs.koin.android)
     implementation(libs.koin.compose)
