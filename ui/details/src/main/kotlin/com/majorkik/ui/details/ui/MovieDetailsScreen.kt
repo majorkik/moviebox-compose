@@ -38,7 +38,6 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
-import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.Placeholder
@@ -49,7 +48,6 @@ import androidx.compose.ui.text.intl.Locale
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import androidx.navigation.NavController
 import arrow.core.getOrElse
 import coil.compose.AsyncImage
 import com.google.accompanist.pager.ExperimentalPagerApi
@@ -65,7 +63,6 @@ import com.ramcosta.composedestinations.annotation.Destination
 import com.soywiz.klock.Date
 import io.dokar.expandabletext.ExpandableText
 import org.koin.androidx.compose.getViewModel
-import org.koin.core.parameter.parametersOf
 import com.majorkik.core.ui.R as CoreRes
 
 private object MovieDetailsDimens {
@@ -74,17 +71,18 @@ private object MovieDetailsDimens {
 
 @Destination(navArgsDelegate = MovieDetailsNavArgs::class)
 @Composable
-fun MovieDetailsScreen(navController: NavController) {
-    MovieBoxContent(viewModel = getViewModel { parametersOf(navController.currentBackStackEntry) })
+fun MovieDetailsRoute(viewModel: MovieDetailsViewModel = getViewModel()) {
+    val state by viewModel.container.stateFlow.collectAsState()
+
+    MovieBoxContent(state)
 }
 
 @OptIn(ExperimentalPagerApi::class)
 @Composable
-internal fun MovieBoxContent(viewModel: MovieDetailsViewModel) {
-    val state = viewModel.container.stateFlow.collectAsState()
+internal fun MovieBoxContent(state: MovieDetailsViewState) {
     var overviewExpanded by remember { mutableStateOf(false) }
 
-    when (val screenState = state.value.screen) {
+    when (val screenState = state.screen) {
         is State.MovieDetailsState -> {
             val details = screenState.data
 
@@ -178,7 +176,7 @@ internal fun MovieBoxContent(viewModel: MovieDetailsViewModel) {
                             maxLines = 1,
                             style = MovieBoxTheme.typography.titleSmall,
 
-                        )
+                            )
                     }
 
                     IconButton(
@@ -264,6 +262,7 @@ internal fun MovieBoxContent(viewModel: MovieDetailsViewModel) {
                 )
             }
         }
+
         else -> {
             Box(modifier = Modifier.fillMaxSize()) {
                 Text(text = "Error state")
@@ -273,7 +272,7 @@ internal fun MovieBoxContent(viewModel: MovieDetailsViewModel) {
 }
 
 @Composable
-fun ReleaseDate(releaseDate: Date?, releaseStatus: String?, modifier: Modifier = Modifier) {
+private fun ReleaseDate(releaseDate: Date?, releaseStatus: String?, modifier: Modifier = Modifier) {
     Row(
         horizontalArrangement = Arrangement.spacedBy(8.dp),
         verticalAlignment = Alignment.CenterVertically,

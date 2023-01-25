@@ -1,5 +1,6 @@
 package com.majorkik.ui.details.ui
 
+import androidx.lifecycle.SavedStateHandle
 import androidx.lifecycle.ViewModel
 import androidx.navigation.NavBackStackEntry
 import arrow.core.Either
@@ -13,11 +14,11 @@ import org.orbitmvi.orbit.syntax.simple.reduce
 import org.orbitmvi.orbit.viewmodel.container
 
 class MovieDetailsViewModel(
-    navBackStackEntry: NavBackStackEntry,
+    handle: SavedStateHandle,
     private val repository: MovieDetailsRepository
 ) : ViewModel(), ContainerHost<MovieDetailsViewState, MovieDetailsSideEffect> {
     // Arguments
-    private val args = MovieDetailsScreenDestination.argsFrom(navBackStackEntry)
+    private val args = MovieDetailsScreenDestination.argsFrom(handle)
 
     // Initialization container
     override val container: Container<MovieDetailsViewState, MovieDetailsSideEffect> =
