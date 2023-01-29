@@ -1,6 +1,7 @@
 package com.majorkik.ui.details.ui
 
 import androidx.annotation.DrawableRes
+import androidx.annotation.StringRes
 import androidx.compose.animation.AnimatedVisibility
 import androidx.compose.animation.animateContentSize
 import androidx.compose.foundation.background
@@ -9,9 +10,7 @@ import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.Row
-import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
@@ -27,8 +26,9 @@ import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.Button
 import androidx.compose.material.ButtonDefaults
 import androidx.compose.material.Icon
-import androidx.compose.material.IconButton
 import androidx.compose.material.Text
+import androidx.compose.material3.ExperimentalMaterial3Api
+import androidx.compose.material3.Surface
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
@@ -40,12 +40,14 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.Placeholder
 import androidx.compose.ui.text.PlaceholderVerticalAlign
 import androidx.compose.ui.text.buildAnnotatedString
 import androidx.compose.ui.text.capitalize
 import androidx.compose.ui.text.intl.Locale
 import androidx.compose.ui.text.style.TextAlign
+import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import arrow.core.getOrElse
@@ -59,215 +61,223 @@ import com.majorkik.core.ui.theme.MovieBoxTheme
 import com.majorkik.tmdb.api.model.BackdropPath
 import com.majorkik.tmdb.api.model.MovieDetails
 import com.majorkik.tmdb.api.model.ProfilePath
+import com.majorkik.tmdb.api.model.movieDetailsPreview
 import com.ramcosta.composedestinations.annotation.Destination
 import com.soywiz.klock.Date
 import io.dokar.expandabletext.ExpandableText
 import org.koin.androidx.compose.getViewModel
 import com.majorkik.core.ui.R as CoreRes
 
-private object MovieDetailsDimens {
-    val contentHorizontalPadding = PaddingValues(horizontal = 16.dp)
-}
-
 @Destination(navArgsDelegate = MovieDetailsNavArgs::class)
 @Composable
-fun MovieDetailsRoute(viewModel: MovieDetailsViewModel = getViewModel()) {
+fun MovieDetailsScreen(viewModel: MovieDetailsViewModel = getViewModel()) {
     val state by viewModel.container.stateFlow.collectAsState()
 
-    MovieBoxContent(state)
+    MovieDetailsScreen(state)
 }
 
-@OptIn(ExperimentalPagerApi::class)
 @Composable
-internal fun MovieBoxContent(state: MovieDetailsViewState) {
+internal fun MovieDetailsScreen(state: MovieDetailsViewState) {
+    when (state.screen) {
+        is State.MovieDetailsState -> MovieDetailsContent(details = state.screen.data)
+        else -> ErrorStateContent()
+    }
+}
+
+@OptIn(ExperimentalPagerApi::class, ExperimentalMaterial3Api::class)
+@Composable
+private fun MovieDetailsContent(details: MovieDetails) {
     var overviewExpanded by remember { mutableStateOf(false) }
 
-    when (val screenState = state.screen) {
-        is State.MovieDetailsState -> {
-            val details = screenState.data
-
-            Column(
+    Column(
+        modifier = Modifier
+            .fillMaxSize()
+            .verticalScroll(state = rememberScrollState()),
+        verticalArrangement = Arrangement.spacedBy(16.dp)
+    ) {
+        // Image pager
+        HorizontalPager(count = details.posters.count()) { page ->
+            AsyncImage(
+                model = details.backdrops.getOrNull(page)
+                    ?.build(size = BackdropPath.Size.Original)
+                    .orEmpty(),
+                contentDescription = null,
+                contentScale = ContentScale.Crop,
                 modifier = Modifier
-                    .fillMaxSize()
-                    .verticalScroll(state = rememberScrollState())
+                    .height(400.dp)
+                    .fillMaxWidth()
+            )
+        }
+
+        // Movie title
+        Column(
+            modifier = Modifier.fillMaxWidth(),
+            verticalArrangement = Arrangement.spacedBy(8.dp)
+        ) {
+            Text(
+                text = details.title,
+                color = MovieBoxTheme.colors.details.textPrimary,
+                style = MovieBoxTheme.typography.h2,
+                textAlign = TextAlign.Center,
+                modifier = Modifier
+                    .padding(horizontal = 16.dp)
+                    .fillMaxWidth()
+            )
+
+            // Release date + status
+            ReleaseDate(
+                releaseDate = details.releaseDate,
+                releaseStatus = details.status,
+                modifier = Modifier.align(Alignment.CenterHorizontally)
+            )
+
+            // Genres
+            Text(
+                text = details.genres.joinToString { genre -> genre.name.capitalize(Locale.current) },
+                color = MovieBoxTheme.colors.details.textPrimary,
+                style = MovieBoxTheme.typography.bodyMedium,
+                textAlign = TextAlign.Center,
+                modifier = Modifier
+                    .align(Alignment.CenterHorizontally)
+                    .clip(CircleShape)
+                    .clickableWithSimpleRipple {
+                        /* no-op */
+                    }
+                    .padding(horizontal = 16.dp)
+                    .padding(vertical = 2.dp)
+            )
+        }
+
+        // Action button
+        Row(
+            horizontalArrangement = Arrangement.spacedBy(8.dp),
+            modifier = Modifier.padding(horizontal = 16.dp)
+        ) {
+            Button(
+                onClick = { /* no-op */ },
+                elevation = ButtonDefaults.elevation(
+                    defaultElevation = 0.dp,
+                    pressedElevation = 0.dp,
+                    hoveredElevation = 0.dp,
+                    focusedElevation = 0.dp
+                ),
+                shape = RoundedCornerShape(12.dp),
+                modifier = Modifier
+                    .height(48.dp)
+                    .fillMaxWidth()
+                    .weight(1f),
+                colors = ButtonDefaults.textButtonColors(
+                    backgroundColor = MovieBoxTheme.colors.primary,
+                    contentColor = MovieBoxTheme.colors.white,
+                    disabledContentColor = MovieBoxTheme.colors.secondary
+                )
             ) {
-                // Image pager
-                HorizontalPager(count = details.posters.count()) { page ->
-                    AsyncImage(
-                        model = details.backdrops.getOrNull(page)
-                            ?.build(size = BackdropPath.Size.Original)
-                            .orEmpty(),
-                        contentDescription = null,
-                        contentScale = ContentScale.Crop,
-                        modifier = Modifier
-                            .height(400.dp)
-                            .fillMaxWidth()
-                    )
+                Text(
+                    text = stringResource(CoreRes.string.details_will_watch),
+                    maxLines = 1,
+                    style = MovieBoxTheme.typography.titleSmall,
+                )
+            }
+
+            Surface(
+                onClick = { },
+                modifier = Modifier.size(48.dp),
+                shape = RoundedCornerShape(12.dp),
+                contentColor = MovieBoxTheme.colors.details.btnBgSecondary
+            ) {
+                Icon(
+                    painter = painterResource(id = CoreRes.drawable.ic_options_black_24),
+                    contentDescription = null,
+                    tint = MovieBoxTheme.colors.details.favoriteBtnDefault,
+                    modifier = Modifier
+                        .size(48.dp)
+                        .padding(12.dp)
+                )
+            }
+
+            Surface(
+                onClick = { },
+                modifier = Modifier.size(48.dp),
+                shape = RoundedCornerShape(12.dp),
+                contentColor = MovieBoxTheme.colors.details.btnBgSecondary
+            ) {
+                Icon(
+                    painter = painterResource(id = CoreRes.drawable.ic_round_favorite_black_24),
+                    contentDescription = null,
+                    tint = MovieBoxTheme.colors.details.favoriteBtnDefault,
+                    modifier = Modifier
+                        .size(48.dp)
+                        .padding(16.dp)
+                )
+            }
+        }
+
+        // Overview
+        ExpandableText(
+            text = details.overview ?: "",
+            modifier = Modifier
+                .padding(horizontal = 16.dp)
+                .animateContentSize()
+                .clickable { overviewExpanded = !overviewExpanded },
+            style = MovieBoxTheme.typography.textMedium,
+            color = MovieBoxTheme.colors.details.textPrimary,
+            maxLines = 3,
+            expanded = overviewExpanded,
+            toggleContent = {
+                @StringRes val textRes = if (overviewExpanded) {
+                    CoreRes.string.details_show_less
+                } else {
+                    CoreRes.string.details_show_more
                 }
 
-                Spacer(modifier = Modifier.size(16.dp))
-
-                // Movie title
                 Text(
-                    text = details.title,
-                    color = MovieBoxTheme.colors.details.textPrimary,
-                    style = MovieBoxTheme.typography.h2,
-                    textAlign = TextAlign.Center,
-                    modifier = Modifier
-                        .padding(MovieDetailsDimens.contentHorizontalPadding)
-                        .fillMaxWidth()
-                )
-
-                Spacer(modifier = Modifier.size(8.dp))
-
-                // Release date + status
-                ReleaseDate(
-                    releaseDate = details.releaseDate,
-                    releaseStatus = details.status,
-                    modifier = Modifier.align(Alignment.CenterHorizontally)
-                )
-
-                Spacer(modifier = Modifier.size(8.dp))
-
-                // Genres
-                Text(
-                    text = details.genres.joinToString { genre -> genre.name.capitalize(Locale.current) },
-                    color = MovieBoxTheme.colors.details.textPrimary,
-                    style = MovieBoxTheme.typography.bodyMedium,
-                    textAlign = TextAlign.Center,
-                    modifier = Modifier
-                        .align(Alignment.CenterHorizontally)
-                        .clip(CircleShape)
-                        .clickableWithSimpleRipple {
-                            /* no-op */
-                        }
-                        .padding(MovieDetailsDimens.contentHorizontalPadding)
-                        .padding(vertical = 2.dp)
-                )
-
-                Spacer(modifier = Modifier.size(16.dp))
-
-                // Action button
-                Row(
-                    horizontalArrangement = Arrangement.spacedBy(8.dp),
-                    modifier = Modifier.padding(horizontal = 16.dp)
-                ) {
-                    Button(
-                        onClick = { /* no-op */ },
-                        elevation = ButtonDefaults.elevation(
-                            defaultElevation = 0.dp,
-                            pressedElevation = 0.dp,
-                            hoveredElevation = 0.dp,
-                            focusedElevation = 0.dp
-                        ),
-                        shape = RoundedCornerShape(12.dp),
-                        modifier = Modifier
-                            .height(48.dp)
-                            .fillMaxWidth()
-                            .weight(1f),
-                        colors = ButtonDefaults.textButtonColors(
-                            backgroundColor = MovieBoxTheme.colors.primary,
-                            contentColor = MovieBoxTheme.colors.white,
-                            disabledContentColor = MovieBoxTheme.colors.secondary
-                        )
-                    ) {
-                        Text(
-                            text = "Will watch",
-                            maxLines = 1,
-                            style = MovieBoxTheme.typography.titleSmall,
-
-                            )
-                    }
-
-                    IconButton(
-                        onClick = { },
-                        modifier = Modifier
-                            .clip(RoundedCornerShape(12.dp))
-                            .background(MovieBoxTheme.colors.details.btnBgSecondary)
-                            .size(48.dp),
-                    ) {
-                        Icon(
-                            painter = painterResource(id = CoreRes.drawable.ic_options_black_24),
-                            contentDescription = null,
-                            tint = MovieBoxTheme.colors.details.favoriteBtnDefault
-                        )
-                    }
-
-                    IconButton(
-                        onClick = { },
-                        modifier = Modifier
-                            .clip(RoundedCornerShape(12.dp))
-                            .background(MovieBoxTheme.colors.details.btnBgSecondary)
-                            .size(48.dp),
-                    ) {
-                        Icon(
-                            painter = painterResource(id = CoreRes.drawable.ic_round_favorite_black_24),
-                            contentDescription = null,
-                            tint = MovieBoxTheme.colors.details.favoriteBtnDefault,
-                        )
-                    }
-                }
-
-                Spacer(modifier = Modifier.size(16.dp))
-
-                // Overview
-                ExpandableText(
-                    text = details.overview ?: "",
-                    modifier = Modifier
-                        .padding(MovieDetailsDimens.contentHorizontalPadding)
-                        .animateContentSize()
-                        .clickable { overviewExpanded = !overviewExpanded },
+                    text = " " + stringResource(textRes),
                     style = MovieBoxTheme.typography.textMedium,
-                    color = MovieBoxTheme.colors.details.textPrimary,
-                    maxLines = 3,
-                    expanded = overviewExpanded,
-                    toggleContent = {
-                        Text(
-                            text = if (overviewExpanded) " Show less" else " Show more",
-                            style = MovieBoxTheme.typography.textMedium,
-                            color = MovieBoxTheme.colors.primary
-                        )
-                    }
-                )
-
-                Spacer(modifier = Modifier.size(16.dp))
-
-                // Tagline
-                Tagline(tagline = details.tagline)
-
-                Spacer(modifier = Modifier.size(16.dp))
-
-                // Credits
-                CreditsBlock(
-                    casts = details.casts,
-                    totalAmount = details.casts.count() + details.crews.count(),
-                    modifier = Modifier.padding(horizontal = 12.dp)
-                )
-
-                Spacer(modifier = Modifier.size(16.dp))
-
-                // Budget & Revenue
-                InfoBlock(
-                    title = "${details.revenue} / ${details.budget} $",
-                    description = "Revenue / Budget",
-                    modifier = Modifier.padding(MovieDetailsDimens.contentHorizontalPadding)
-                )
-
-                Spacer(modifier = Modifier.size(8.dp))
-
-                InfoBlock(
-                    title = details.originalTitle,
-                    description = "Original title",
-                    modifier = Modifier.padding(MovieDetailsDimens.contentHorizontalPadding)
+                    color = MovieBoxTheme.colors.primary
                 )
             }
-        }
+        )
 
-        else -> {
-            Box(modifier = Modifier.fillMaxSize()) {
-                Text(text = "Error state")
-            }
+        // Tagline
+        Tagline(tagline = details.tagline)
+
+        // Credits
+        CreditsBlock(
+            casts = details.casts,
+            totalAmount = details.casts.count() + details.crews.count(),
+            modifier = Modifier.padding(horizontal = 12.dp)
+        )
+
+        // Budget & Revenue
+        Column(
+            modifier = Modifier.fillMaxWidth(),
+            verticalArrangement = Arrangement.spacedBy(space = 8.dp)
+        ) {
+            InfoBlock(
+                title = stringResource(
+                    CoreRes.string.details_revenue_slash_budget_value,
+                    details.revenue,
+                    details.budget
+                ),
+                description = stringResource(CoreRes.string.details_revenue_slash_budget),
+                modifier = Modifier.padding(horizontal = 16.dp)
+
+            )
+
+            InfoBlock(
+                title = details.originalTitle,
+                description = stringResource(CoreRes.string.details_original_title),
+                modifier = Modifier.padding(horizontal = 16.dp)
+
+            )
         }
+    }
+}
+
+@Composable
+private fun ErrorStateContent() {
+    Box(modifier = Modifier.fillMaxSize()) {
+        Text(text = stringResource(CoreRes.string.error_state))
     }
 }
 
@@ -276,7 +286,7 @@ private fun ReleaseDate(releaseDate: Date?, releaseStatus: String?, modifier: Mo
     Row(
         horizontalArrangement = Arrangement.spacedBy(8.dp),
         verticalAlignment = Alignment.CenterVertically,
-        modifier = modifier.padding(MovieDetailsDimens.contentHorizontalPadding)
+        modifier = modifier.padding(horizontal = 16.dp)
     ) {
         Text(
             text = AppDateFormat.parseReadableDate(releaseDate).getOrElse { "" },
@@ -340,8 +350,7 @@ private fun buildQuoteInlineContent(@DrawableRes drawableRes: Int) = InlineTextC
 ) {
     Icon(
         painter = painterResource(id = drawableRes),
-        modifier = Modifier
-            .size(12.dp),
+        modifier = Modifier.size(12.dp),
         contentDescription = "",
         tint = MovieBoxTheme.colors.details.textPrimary
     )
@@ -413,7 +422,7 @@ private fun CreditsBlock(
                     .padding(horizontal = 16.dp),
             ) {
                 Text(
-                    text = "More",
+                    text = stringResource(CoreRes.string.more),
                     style = MovieBoxTheme.typography.captionMedium,
                     color = MovieBoxTheme.colors.details.textPlaceholder,
                     textAlign = TextAlign.Center
@@ -423,11 +432,23 @@ private fun CreditsBlock(
 
         if (totalAmount > 5) {
             Text(
-                text = "+ $totalAmount Cast (including crew)",
+                text = stringResource(CoreRes.string.details_casts_count_plus, totalAmount),
                 modifier = Modifier.align(Alignment.CenterVertically),
                 color = MovieBoxTheme.colors.details.textPrimary,
                 style = MovieBoxTheme.typography.captionMedium
             )
         }
     }
+}
+
+@Preview
+@Composable
+private fun MovieDetailsPreview() {
+    MovieDetailsScreen(
+        state = MovieDetailsViewState(
+            screen = State.MovieDetailsState(
+                data = movieDetailsPreview()
+            )
+        )
+    )
 }

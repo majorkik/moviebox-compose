@@ -2,10 +2,9 @@ package com.majorkik.ui.details.ui
 
 import androidx.lifecycle.SavedStateHandle
 import androidx.lifecycle.ViewModel
-import androidx.navigation.NavBackStackEntry
 import arrow.core.Either
 import com.majorkik.tmdb.api.model.MovieDetails
-import com.majorkik.tmdb.api.repository.MovieDetailsRepository
+import com.majorkik.tmdb.api.usecase.GetMovieDetailsByIdUseCase
 import com.majorkik.ui.details.ui.destinations.MovieDetailsScreenDestination
 import org.orbitmvi.orbit.Container
 import org.orbitmvi.orbit.ContainerHost
@@ -15,7 +14,7 @@ import org.orbitmvi.orbit.viewmodel.container
 
 class MovieDetailsViewModel(
     handle: SavedStateHandle,
-    private val repository: MovieDetailsRepository
+    private val getMovieDetailsByIdUseCase: GetMovieDetailsByIdUseCase,
 ) : ViewModel(), ContainerHost<MovieDetailsViewState, MovieDetailsSideEffect> {
     // Arguments
     private val args = MovieDetailsScreenDestination.argsFrom(handle)
@@ -29,14 +28,14 @@ class MovieDetailsViewModel(
         }
 
     private fun actionFetchMovieDetails(id: Int) = intent {
-        when (val result = repository.getMovieDetailsById(id = id)) {
-            is Either.Left -> reduce {
-                state.copy(screen = State.ErrorState)
-            }
-            is Either.Right -> reduce {
-                state.copy(screen = State.MovieDetailsState(data = result.value))
-            }
+        when (val result = getMovieDetailsByIdUseCase(id)) {
+            is Either.Left -> updateState(State.ErrorState)
+            is Either.Right -> updateState(State.MovieDetailsState(data = result.value))
         }
+    }
+
+    private fun updateState(state: State) = intent {
+        reduce { this.state.copy(screen = state) }
     }
 }
 

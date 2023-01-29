@@ -11,16 +11,27 @@
     <string name="trending_tv_shows">Trending TV shows</string>
     <string name="trending_movies">Trending movies</string>
     <string name="search">Search</string>
+    <string name="more">More</string>
 
     <!--    Errors-->
     <string name="error_something_went_wrong">Something went wrong, try again</string>
+    <string name="error_state">Error state</string>
 
     <!--    Screens-->
     <string name="nav_home_screen_login_button">Log in or register</string>
     <string name="nav_home_screen_search_desc">"Find and save your favorite movies"</string>
 
-    <!-- Navigation-->
+    <!--    Navigation-->
     <string name="nav_home">Home</string>
     <string name="nav_search">Search</string>
     <string name="nav_profile">Profile</string>
+
+    <!--    Item details-->
+    <string name="details_will_watch">Will watch</string>
+    <string name="details_show_less">"Show less"</string>
+    <string name="details_show_more">"Show more"</string>
+    <string name="details_revenue_slash_budget">Revenue / Budget</string>
+    <string name="details_revenue_slash_budget_value">%s / %s</string>
+    <string name="details_original_title">Original title</string>
+    <string name="details_casts_count_plus">"+ %s Cast (including crew)"</string>
 </resources>

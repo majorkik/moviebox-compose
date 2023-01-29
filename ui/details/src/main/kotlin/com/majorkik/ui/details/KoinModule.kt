@@ -5,5 +5,5 @@ import org.koin.androidx.viewmodel.dsl.viewModel
 import org.koin.dsl.module
 
 val movieDetailsModule = module {
-    viewModel { MovieDetailsViewModel(handle = get(), repository = get()) }
+    viewModel { MovieDetailsViewModel(handle = get(), getMovieDetailsByIdUseCase = get()) }
 }
