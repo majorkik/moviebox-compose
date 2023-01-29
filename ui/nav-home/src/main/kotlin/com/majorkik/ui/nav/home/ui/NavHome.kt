@@ -115,7 +115,7 @@ internal fun NavHomeContent(viewModel: NavHomeViewModelViewModel, openMovieDetai
                 )
 
                 Text(
-                    stringResource(CoreRes.string.search),
+                    stringResource(CoreRes.string.common_search),
                     style = MovieBoxTheme.typography.bodyMedium,
                     color = MovieBoxTheme.colors.text.primary
                 )
@@ -148,7 +148,7 @@ internal fun NavHomeContent(viewModel: NavHomeViewModelViewModel, openMovieDetai
                 })
 
             InfinityCollection(
-                title = CoreRes.string.trending_tv_shows,
+                title = CoreRes.string.common_trending_tv_shows,
                 items = state.value.trendingTVsState.tvs,
                 onLoadMore = viewModel::fetchTrendingTVs
             ) { item ->
@@ -162,7 +162,7 @@ internal fun NavHomeContent(viewModel: NavHomeViewModelViewModel, openMovieDetai
             }
 
             InfinityCollection(
-                title = CoreRes.string.popular_tvs,
+                title = CoreRes.string.common_popular_tvs,
                 items = state.value.popularTVsState.tvs,
                 onLoadMore = viewModel::fetchPopularTVs
             ) { item ->
@@ -176,7 +176,7 @@ internal fun NavHomeContent(viewModel: NavHomeViewModelViewModel, openMovieDetai
             }
 
             InfinityCollection(
-                title = CoreRes.string.trending_movies,
+                title = CoreRes.string.common_trending_movies,
                 items = state.value.trendingMoviesState.movies,
                 onLoadMore = viewModel::fetchTrendingMovies
             ) { item ->
@@ -190,7 +190,7 @@ internal fun NavHomeContent(viewModel: NavHomeViewModelViewModel, openMovieDetai
             }
 
             InfinityCollection(
-                title = CoreRes.string.popular_movies,
+                title = CoreRes.string.common_popular_movies,
                 items = state.value.popularMoviesState.movies,
                 onLoadMore = viewModel::fetchPopularMovies
             ) { item ->
@@ -222,7 +222,7 @@ fun GenresBlock(
                 .padding(start = 24.dp, end = 8.dp)
         ) {
             Text(
-                text = stringResource(id = CoreRes.string.genres),
+                text = stringResource(id = CoreRes.string.common_genres),
                 style = MovieBoxTheme.typography.h3,
                 color = MovieBoxTheme.colors.backgroundReverse
             )
@@ -256,7 +256,7 @@ internal fun GenresSwitchBox(isMovieGenresSelected: Boolean, onToggleSwitch: () 
             .clipToBounds()
     ) {
         Text(
-            text = stringResource(id = CoreRes.string.movie),
+            text = stringResource(id = CoreRes.string.common_movie),
             style = MovieBoxTheme.typography.titleMedium,
             color = if (isMovieGenresSelected) {
                 MovieBoxTheme.colors.backgroundReverse
@@ -268,7 +268,7 @@ internal fun GenresSwitchBox(isMovieGenresSelected: Boolean, onToggleSwitch: () 
         GenresSwitch(checked = isMovieGenresSelected.not())
 
         Text(
-            text = stringResource(id = CoreRes.string.tv),
+            text = stringResource(id = CoreRes.string.common_tv),
             style = MovieBoxTheme.typography.titleMedium,
             color = if (isMovieGenresSelected.not()) {
                 MovieBoxTheme.colors.backgroundReverse

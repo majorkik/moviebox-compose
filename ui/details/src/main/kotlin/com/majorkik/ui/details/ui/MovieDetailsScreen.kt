@@ -183,7 +183,7 @@ private fun MovieDetailsContent(details: MovieDetails) {
                 onClick = { },
                 modifier = Modifier.size(48.dp),
                 shape = RoundedCornerShape(12.dp),
-                contentColor = MovieBoxTheme.colors.details.btnBgSecondary
+                color = MovieBoxTheme.colors.details.btnBgSecondary
             ) {
                 Icon(
                     painter = painterResource(id = CoreRes.drawable.ic_options_black_24),
@@ -199,7 +199,7 @@ private fun MovieDetailsContent(details: MovieDetails) {
                 onClick = { },
                 modifier = Modifier.size(48.dp),
                 shape = RoundedCornerShape(12.dp),
-                contentColor = MovieBoxTheme.colors.details.btnBgSecondary
+                color = MovieBoxTheme.colors.details.btnBgSecondary
             ) {
                 Icon(
                     painter = painterResource(id = CoreRes.drawable.ic_round_favorite_black_24),
@@ -422,7 +422,7 @@ private fun CreditsBlock(
                     .padding(horizontal = 16.dp),
             ) {
                 Text(
-                    text = stringResource(CoreRes.string.more),
+                    text = stringResource(CoreRes.string.common_more),
                     style = MovieBoxTheme.typography.captionMedium,
                     color = MovieBoxTheme.colors.details.textPlaceholder,
                     textAlign = TextAlign.Center
@@ -441,14 +441,16 @@ private fun CreditsBlock(
     }
 }
 
-@Preview
+@Preview(showBackground = true, backgroundColor = 0xFFFFFF)
 @Composable
 private fun MovieDetailsPreview() {
-    MovieDetailsScreen(
-        state = MovieDetailsViewState(
-            screen = State.MovieDetailsState(
-                data = movieDetailsPreview()
+    MovieBoxTheme(isDark = false) {
+        MovieDetailsScreen(
+            state = MovieDetailsViewState(
+                screen = State.MovieDetailsState(
+                    data = movieDetailsPreview()
+                )
             )
         )
-    )
+    }
 }
