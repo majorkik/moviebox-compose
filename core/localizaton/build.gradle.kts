@@ -1,0 +1,3 @@
+plugins {
+    id("moviebox.library")
+}

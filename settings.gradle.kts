@@ -38,3 +38,4 @@ include(
     ":feature:app-preferences:api",
     ":feature:app-preferences:impl",
 )
+include(":core:localizaton")

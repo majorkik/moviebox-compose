@@ -20,6 +20,7 @@ dependencies {
     implementation(projects.core.ui)
     implementation(projects.core.common)
     implementation(projects.feature.tmdb.api)
+    implementation(projects.core.localizaton)
 
     // Android
     implementation(libs.mvi.orbit)

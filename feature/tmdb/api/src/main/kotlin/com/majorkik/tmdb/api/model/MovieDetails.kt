@@ -93,7 +93,7 @@ fun movieDetailsPreview() = MovieDetails(
     genres = listOf(
         MovieDetails.Genre(878, "Science Fiction"),
         MovieDetails.Genre(27, "Horror"),
-        MovieDetails.Genre(35, "Comedy"),
+        MovieDetails.Genre(35, "Comedy")
     ),
     homepage = "https://www.m3ganmovie.com",
     id = 536554,
@@ -130,12 +130,12 @@ fun movieDetailsPreview() = MovieDetails(
     posters = listOf(
         "/d9nBoowhjiiYc4FBNtQkPY7c11H.jpg".toPosterPath(),
         "/rxDPzExeovcBZY2IVWdYs87AzVE.jpg".toPosterPath(),
-        "/jTKHoMmaKHv6IlpKDcouusMZ48Z.jpg".toPosterPath(),
+        "/jTKHoMmaKHv6IlpKDcouusMZ48Z.jpg".toPosterPath()
     ),
     backdrops = listOf(
         "/q2fY4kMXKoGv4CQf310MCxpXlRI.jpg".toBackdropPath(),
         "/cEtnRjAdTXSITr33hhXSIPIIi3I.jpg".toBackdropPath(),
-        "/otOtC45BDzFW7nuxnWHMmnYsicK.jpg".toBackdropPath(),
+        "/otOtC45BDzFW7nuxnWHMmnYsicK.jpg".toBackdropPath()
     ),
     casts = listOf(
         MovieDetails.Cast(

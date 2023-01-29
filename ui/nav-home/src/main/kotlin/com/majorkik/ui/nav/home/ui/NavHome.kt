@@ -38,6 +38,8 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import com.majorkik.core.localization.StringResource
+import com.majorkik.core.ui.CoreDrawable
 import com.majorkik.core.ui.components.InfiniteListHandler
 import com.majorkik.core.ui.extension.clickableWithSimpleRipple
 import com.majorkik.core.ui.extension.showToast
@@ -53,7 +55,6 @@ import com.ramcosta.composedestinations.annotation.Destination
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
 import org.koin.androidx.compose.getViewModel
-import com.majorkik.core.ui.R as CoreRes
 
 @Destination
 @Composable
@@ -85,7 +86,7 @@ internal fun NavHomeContent(viewModel: NavHomeViewModelViewModel, openMovieDetai
         Toolbar(onLoginClick = {}, onOpenSettings = {})
 
         Text(
-            stringResource(id = CoreRes.string.nav_home_screen_search_desc),
+            stringResource(id = StringResource.nav_home_screen_search_desc),
             style = MovieBoxTheme.typography.bodyMedium,
             color = MovieBoxTheme.colors.text.primary,
             textAlign = TextAlign.Center,
@@ -109,13 +110,13 @@ internal fun NavHomeContent(viewModel: NavHomeViewModelViewModel, openMovieDetai
                 verticalAlignment = Alignment.CenterVertically
             ) {
                 Icon(
-                    painter = painterResource(id = CoreRes.drawable.ic_search_black_24),
+                    painter = painterResource(id = CoreDrawable.ic_search_black_24),
                     contentDescription = null,
                     tint = MovieBoxTheme.colors.text.primary,
                 )
 
                 Text(
-                    stringResource(CoreRes.string.common_search),
+                    stringResource(StringResource.common_search),
                     style = MovieBoxTheme.typography.bodyMedium,
                     color = MovieBoxTheme.colors.text.primary
                 )
@@ -130,7 +131,7 @@ internal fun NavHomeContent(viewModel: NavHomeViewModelViewModel, openMovieDetai
                     .align(Alignment.CenterEnd)
             ) {
                 Icon(
-                    painter = painterResource(id = CoreRes.drawable.ic_tune_white_24),
+                    painter = painterResource(id = CoreDrawable.ic_tune_white_24),
                     contentDescription = null,
                     tint = MovieBoxTheme.colors.white,
                     modifier = Modifier.align(Alignment.Center)
@@ -148,7 +149,7 @@ internal fun NavHomeContent(viewModel: NavHomeViewModelViewModel, openMovieDetai
                 })
 
             InfinityCollection(
-                title = CoreRes.string.common_trending_tv_shows,
+                title = StringResource.common_trending_tv_shows,
                 items = state.value.trendingTVsState.tvs,
                 onLoadMore = viewModel::fetchTrendingTVs
             ) { item ->
@@ -162,7 +163,7 @@ internal fun NavHomeContent(viewModel: NavHomeViewModelViewModel, openMovieDetai
             }
 
             InfinityCollection(
-                title = CoreRes.string.common_popular_tvs,
+                title = StringResource.common_popular_tvs,
                 items = state.value.popularTVsState.tvs,
                 onLoadMore = viewModel::fetchPopularTVs
             ) { item ->
@@ -176,7 +177,7 @@ internal fun NavHomeContent(viewModel: NavHomeViewModelViewModel, openMovieDetai
             }
 
             InfinityCollection(
-                title = CoreRes.string.common_trending_movies,
+                title = StringResource.common_trending_movies,
                 items = state.value.trendingMoviesState.movies,
                 onLoadMore = viewModel::fetchTrendingMovies
             ) { item ->
@@ -190,7 +191,7 @@ internal fun NavHomeContent(viewModel: NavHomeViewModelViewModel, openMovieDetai
             }
 
             InfinityCollection(
-                title = CoreRes.string.common_popular_movies,
+                title = StringResource.common_popular_movies,
                 items = state.value.popularMoviesState.movies,
                 onLoadMore = viewModel::fetchPopularMovies
             ) { item ->
@@ -222,7 +223,7 @@ fun GenresBlock(
                 .padding(start = 24.dp, end = 8.dp)
         ) {
             Text(
-                text = stringResource(id = CoreRes.string.common_genres),
+                text = stringResource(id = StringResource.common_genres),
                 style = MovieBoxTheme.typography.h3,
                 color = MovieBoxTheme.colors.backgroundReverse
             )
@@ -256,7 +257,7 @@ internal fun GenresSwitchBox(isMovieGenresSelected: Boolean, onToggleSwitch: () 
             .clipToBounds()
     ) {
         Text(
-            text = stringResource(id = CoreRes.string.common_movie),
+            text = stringResource(id = StringResource.common_movie),
             style = MovieBoxTheme.typography.titleMedium,
             color = if (isMovieGenresSelected) {
                 MovieBoxTheme.colors.backgroundReverse
@@ -268,7 +269,7 @@ internal fun GenresSwitchBox(isMovieGenresSelected: Boolean, onToggleSwitch: () 
         GenresSwitch(checked = isMovieGenresSelected.not())
 
         Text(
-            text = stringResource(id = CoreRes.string.common_tv),
+            text = stringResource(id = StringResource.common_tv),
             style = MovieBoxTheme.typography.titleMedium,
             color = if (isMovieGenresSelected.not()) {
                 MovieBoxTheme.colors.backgroundReverse
@@ -307,7 +308,7 @@ private fun handleSideEffect(sideEffect: NavHomeViewModelSideEffect, context: Co
     when (sideEffect) {
         is NavHomeViewModelSideEffect.ShowErrorToast -> {
             if (sideEffect.message == null) {
-                context.showToast(CoreRes.string.error_something_went_wrong)
+                context.showToast(StringResource.error_something_went_wrong)
             } else {
                 context.showToast(message = sideEffect.message)
             }

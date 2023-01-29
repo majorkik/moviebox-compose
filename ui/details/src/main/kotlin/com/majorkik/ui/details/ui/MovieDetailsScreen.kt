@@ -55,6 +55,8 @@ import coil.compose.AsyncImage
 import com.google.accompanist.pager.ExperimentalPagerApi
 import com.google.accompanist.pager.HorizontalPager
 import com.majorkik.common.AppDateFormat
+import com.majorkik.core.localization.StringResource
+import com.majorkik.core.ui.CoreDrawable
 import com.majorkik.core.ui.components.getSmallProfilePlaceholder
 import com.majorkik.core.ui.extension.clickableWithSimpleRipple
 import com.majorkik.core.ui.theme.MovieBoxTheme
@@ -66,7 +68,6 @@ import com.ramcosta.composedestinations.annotation.Destination
 import com.soywiz.klock.Date
 import io.dokar.expandabletext.ExpandableText
 import org.koin.androidx.compose.getViewModel
-import com.majorkik.core.ui.R as CoreRes
 
 @Destination(navArgsDelegate = MovieDetailsNavArgs::class)
 @Composable
@@ -173,7 +174,7 @@ private fun MovieDetailsContent(details: MovieDetails) {
                 )
             ) {
                 Text(
-                    text = stringResource(CoreRes.string.details_will_watch),
+                    text = stringResource(StringResource.details_will_watch),
                     maxLines = 1,
                     style = MovieBoxTheme.typography.titleSmall,
                 )
@@ -186,7 +187,7 @@ private fun MovieDetailsContent(details: MovieDetails) {
                 color = MovieBoxTheme.colors.details.btnBgSecondary
             ) {
                 Icon(
-                    painter = painterResource(id = CoreRes.drawable.ic_options_black_24),
+                    painter = painterResource(id = CoreDrawable.ic_options_black_24),
                     contentDescription = null,
                     tint = MovieBoxTheme.colors.details.favoriteBtnDefault,
                     modifier = Modifier
@@ -202,7 +203,7 @@ private fun MovieDetailsContent(details: MovieDetails) {
                 color = MovieBoxTheme.colors.details.btnBgSecondary
             ) {
                 Icon(
-                    painter = painterResource(id = CoreRes.drawable.ic_round_favorite_black_24),
+                    painter = painterResource(id = CoreDrawable.ic_round_favorite_black_24),
                     contentDescription = null,
                     tint = MovieBoxTheme.colors.details.favoriteBtnDefault,
                     modifier = Modifier
@@ -225,9 +226,9 @@ private fun MovieDetailsContent(details: MovieDetails) {
             expanded = overviewExpanded,
             toggleContent = {
                 @StringRes val textRes = if (overviewExpanded) {
-                    CoreRes.string.details_show_less
+                    StringResource.details_show_less
                 } else {
-                    CoreRes.string.details_show_more
+                    StringResource.details_show_more
                 }
 
                 Text(
@@ -255,18 +256,18 @@ private fun MovieDetailsContent(details: MovieDetails) {
         ) {
             InfoBlock(
                 title = stringResource(
-                    CoreRes.string.details_revenue_slash_budget_value,
+                    StringResource.details_revenue_slash_budget_value,
                     details.revenue,
                     details.budget
                 ),
-                description = stringResource(CoreRes.string.details_revenue_slash_budget),
+                description = stringResource(StringResource.details_revenue_slash_budget),
                 modifier = Modifier.padding(horizontal = 16.dp)
 
             )
 
             InfoBlock(
                 title = details.originalTitle,
-                description = stringResource(CoreRes.string.details_original_title),
+                description = stringResource(StringResource.details_original_title),
                 modifier = Modifier.padding(horizontal = 16.dp)
 
             )
@@ -277,7 +278,7 @@ private fun MovieDetailsContent(details: MovieDetails) {
 @Composable
 private fun ErrorStateContent() {
     Box(modifier = Modifier.fillMaxSize()) {
-        Text(text = stringResource(CoreRes.string.error_state))
+        Text(text = stringResource(StringResource.error_state))
     }
 }
 
@@ -314,8 +315,8 @@ private fun Tagline(tagline: String?) {
     val quoteTrailingId = "quote_trailing_id"
 
     val inlineContentMap = mapOf(
-        quoteLeadingId to buildQuoteInlineContent(CoreRes.drawable.ic_quote_leading_yellow_12),
-        quoteTrailingId to buildQuoteInlineContent(CoreRes.drawable.ic_quote_trailing_yellow_12),
+        quoteLeadingId to buildQuoteInlineContent(CoreDrawable.ic_quote_leading_yellow_12),
+        quoteTrailingId to buildQuoteInlineContent(CoreDrawable.ic_quote_trailing_yellow_12),
     )
 
     val annotatedString = buildAnnotatedString {
@@ -422,7 +423,7 @@ private fun CreditsBlock(
                     .padding(horizontal = 16.dp),
             ) {
                 Text(
-                    text = stringResource(CoreRes.string.common_more),
+                    text = stringResource(StringResource.common_more),
                     style = MovieBoxTheme.typography.captionMedium,
                     color = MovieBoxTheme.colors.details.textPlaceholder,
                     textAlign = TextAlign.Center
@@ -432,7 +433,7 @@ private fun CreditsBlock(
 
         if (totalAmount > 5) {
             Text(
-                text = stringResource(CoreRes.string.details_casts_count_plus, totalAmount),
+                text = stringResource(StringResource.details_casts_count_plus, totalAmount),
                 modifier = Modifier.align(Alignment.CenterVertically),
                 color = MovieBoxTheme.colors.details.textPrimary,
                 style = MovieBoxTheme.typography.captionMedium

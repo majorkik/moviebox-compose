@@ -48,7 +48,7 @@ internal fun PercentVoteAverageText(voteAverage: Double, modifier: Modifier = Mo
 fun TextPreview() {
     MovieBoxTheme {
         Column {
-            TitleText(text = com.majorkik.core.ui.R.string.common_trending_movies)
+            TitleText(text = com.majorkik.core.localization.R.string.common_trending_movies)
 
             PercentVoteAverageText(voteAverage = 7.39)
         }

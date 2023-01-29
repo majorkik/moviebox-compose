@@ -13,7 +13,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import com.majorkik.core.ui.R
+import com.majorkik.core.ui.CoreDrawable
 import com.majorkik.core.ui.theme.MovieBoxTheme
 
 @Composable
@@ -29,7 +29,7 @@ internal fun Toolbar(onLoginClick: () -> Unit, onOpenSettings: () -> Unit) {
 
         IconButton(onClick = onOpenSettings) {
             Icon(
-                painter = painterResource(id = R.drawable.ic_nut_bolt_black_24),
+                painter = painterResource(id = CoreDrawable.ic_nut_bolt_black_24),
                 contentDescription = null,
                 tint = MovieBoxTheme.colors.backgroundReverse
             )

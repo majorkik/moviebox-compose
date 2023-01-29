@@ -15,7 +15,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import com.majorkik.core.ui.R
+import com.majorkik.core.ui.CoreDrawable
 import com.majorkik.core.ui.theme.MovieBoxTheme
 import com.ramcosta.composedestinations.annotation.Destination
 import org.koin.androidx.compose.getViewModel
@@ -59,13 +59,13 @@ internal fun ThemeButton(
     ) {
         if (isDark) {
             Icon(
-                painter = painterResource(id = R.drawable.ic_light_mode_black_24dp),
+                painter = painterResource(id = CoreDrawable.ic_light_mode_black_24dp),
                 contentDescription = null,
                 tint = MovieBoxTheme.colors.themeColor
             )
         } else {
             Icon(
-                painter = painterResource(id = R.drawable.ic_dark_mode_black_24),
+                painter = painterResource(id = CoreDrawable.ic_dark_mode_black_24),
                 contentDescription = null,
                 tint = MovieBoxTheme.colors.themeColor
             )

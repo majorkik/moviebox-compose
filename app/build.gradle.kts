@@ -31,6 +31,7 @@ dependencies {
     implementation(projects.feature.tmdb.impl)
     implementation(projects.feature.appPreferences.api)
     implementation(projects.feature.appPreferences.impl)
+    implementation(projects.core.localizaton)
 
     implementation(libs.bundles.androidx.ui)
     implementation(libs.bundles.compose)

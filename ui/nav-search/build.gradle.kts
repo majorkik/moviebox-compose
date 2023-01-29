@@ -18,6 +18,7 @@ android {
 dependencies {
     implementation(projects.core.ui)
     implementation(projects.feature.tmdb.api)
+    implementation(projects.core.localizaton)
 
     implementation(libs.bundles.logging)
 

@@ -19,6 +19,7 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
 import androidx.navigation.NavGraph.Companion.findStartDestination
+import com.majorkik.core.ui.CoreDrawable
 import com.majorkik.core.ui.theme.MovieBoxTheme
 import com.ramcosta.composedestinations.spec.NavGraphSpec
 
@@ -66,20 +67,20 @@ data class BottomNavigationItem(
 val BottomNavigationItems = listOf(
     BottomNavigationItem(
         screen = NavGraphs.home,
-        iconResId = com.majorkik.core.ui.R.drawable.ic_tv_black_24,
-        selectedIconResId = com.majorkik.core.ui.R.drawable.ic_tv_black_24
+        iconResId = CoreDrawable.ic_tv_black_24,
+        selectedIconResId = CoreDrawable.ic_tv_black_24
     ),
 
     BottomNavigationItem(
         screen = NavGraphs.search,
-        iconResId = com.majorkik.core.ui.R.drawable.ic_search_black_24,
-        selectedIconResId = com.majorkik.core.ui.R.drawable.ic_search_black_24
+        iconResId = CoreDrawable.ic_search_black_24,
+        selectedIconResId = CoreDrawable.ic_search_black_24
     ),
 
     BottomNavigationItem(
         screen = NavGraphs.profile,
-        iconResId = com.majorkik.core.ui.R.drawable.ic_profile_black_24,
-        selectedIconResId = com.majorkik.core.ui.R.drawable.ic_profile_black_24
+        iconResId = CoreDrawable.ic_profile_black_24,
+        selectedIconResId = CoreDrawable.ic_profile_black_24
     ),
 )
 
