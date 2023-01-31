@@ -12,6 +12,35 @@ import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.sp
 
+data class AppColorV2(
+    val background: Background,
+    val foreground: Foreground,
+    val text: Text,
+    val isLight: Boolean,
+) {
+    data class Background(
+        val base: Color,
+        val opposite: Color,
+        val primary: Color,
+        val accent: Color,
+    )
+
+    data class Foreground(
+        val accent: Color,
+    )
+
+    data class Text(
+        val primary: Color,
+        val primaryOnLight: Color,
+        val primaryOnDark: Color,
+        val secondary: Color,
+        val tertiary: Color,
+        val accent: Color,
+        val positive: Color,
+        val negative: Color,
+    )
+}
+
 @Immutable
 data class AppColor(
     val primary: Color,
@@ -51,7 +80,7 @@ data class AppColor(
     )
 
     data class DetailsScreenColors(
-        val background: Color,
+        val background: Color, // base
         val backgroundSecondary: Color,
         val placeholderBg: Color,
         val textPrimary: Color,
