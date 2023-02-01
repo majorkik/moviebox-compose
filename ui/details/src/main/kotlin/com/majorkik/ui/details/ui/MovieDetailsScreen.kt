@@ -117,7 +117,7 @@ private fun MovieDetailsContent(details: MovieDetails) {
         ) {
             Text(
                 text = details.title,
-                color = MovieBoxTheme.colors.details.textPrimary,
+                color = MovieBoxTheme.colorsV2.text.primary,
                 style = MovieBoxTheme.typography.h2,
                 textAlign = TextAlign.Center,
                 modifier = Modifier
@@ -135,7 +135,7 @@ private fun MovieDetailsContent(details: MovieDetails) {
             // Genres
             Text(
                 text = details.genres.joinToString { genre -> genre.name.capitalize(Locale.current) },
-                color = MovieBoxTheme.colors.details.textPrimary,
+                color = MovieBoxTheme.colorsV2.text.primary,
                 style = MovieBoxTheme.typography.bodyMedium,
                 textAlign = TextAlign.Center,
                 modifier = Modifier
@@ -168,9 +168,8 @@ private fun MovieDetailsContent(details: MovieDetails) {
                     .fillMaxWidth()
                     .weight(1f),
                 colors = ButtonDefaults.textButtonColors(
-                    backgroundColor = MovieBoxTheme.colors.primary,
-                    contentColor = MovieBoxTheme.colors.white,
-                    disabledContentColor = MovieBoxTheme.colors.secondary
+                    backgroundColor = MovieBoxTheme.colorsV2.background.accent,
+                    contentColor = MovieBoxTheme.colorsV2.text.primaryOnDark
                 )
             ) {
                 Text(
@@ -184,12 +183,12 @@ private fun MovieDetailsContent(details: MovieDetails) {
                 onClick = { },
                 modifier = Modifier.size(48.dp),
                 shape = RoundedCornerShape(12.dp),
-                color = MovieBoxTheme.colors.details.btnBgSecondary
+                color = MovieBoxTheme.colorsV2.background.neutral
             ) {
                 Icon(
                     painter = painterResource(id = CoreDrawable.ic_options_black_24),
                     contentDescription = null,
-                    tint = MovieBoxTheme.colors.details.favoriteBtnDefault,
+                    tint = MovieBoxTheme.colorsV2.foreground.neutralAccent,
                     modifier = Modifier
                         .size(48.dp)
                         .padding(12.dp)
@@ -200,12 +199,12 @@ private fun MovieDetailsContent(details: MovieDetails) {
                 onClick = { },
                 modifier = Modifier.size(48.dp),
                 shape = RoundedCornerShape(12.dp),
-                color = MovieBoxTheme.colors.details.btnBgSecondary
+                color = MovieBoxTheme.colorsV2.background.neutral
             ) {
                 Icon(
                     painter = painterResource(id = CoreDrawable.ic_round_favorite_black_24),
                     contentDescription = null,
-                    tint = MovieBoxTheme.colors.details.favoriteBtnDefault,
+                    tint = MovieBoxTheme.colorsV2.foreground.neutralAccent,
                     modifier = Modifier
                         .size(48.dp)
                         .padding(16.dp)
@@ -221,7 +220,7 @@ private fun MovieDetailsContent(details: MovieDetails) {
                 .animateContentSize()
                 .clickable { overviewExpanded = !overviewExpanded },
             style = MovieBoxTheme.typography.textMedium,
-            color = MovieBoxTheme.colors.details.textPrimary,
+            color = MovieBoxTheme.colorsV2.text.primary,
             maxLines = 3,
             expanded = overviewExpanded,
             toggleContent = {
@@ -234,7 +233,7 @@ private fun MovieDetailsContent(details: MovieDetails) {
                 Text(
                     text = " " + stringResource(textRes),
                     style = MovieBoxTheme.typography.textMedium,
-                    color = MovieBoxTheme.colors.primary
+                    color = MovieBoxTheme.colorsV2.background.accent
                 )
             }
         )
@@ -291,7 +290,7 @@ private fun ReleaseDate(releaseDate: Date?, releaseStatus: String?, modifier: Mo
     ) {
         Text(
             text = AppDateFormat.parseReadableDate(releaseDate).getOrElse { "" },
-            color = MovieBoxTheme.colors.details.textPrimary,
+            color = MovieBoxTheme.colorsV2.text.primary,
             style = MovieBoxTheme.typography.bodyMedium
         )
 
@@ -300,9 +299,9 @@ private fun ReleaseDate(releaseDate: Date?, releaseStatus: String?, modifier: Mo
                 text = releaseStatus,
                 modifier = Modifier
                     .clip(RoundedCornerShape(8.dp))
-                    .background(MovieBoxTheme.colors.details.placeholderBg)
+                    .background(MovieBoxTheme.colorsV2.background.opposite)
                     .padding(horizontal = 8.dp, vertical = 4.dp),
-                color = MovieBoxTheme.colors.details.textPlaceholder,
+                color = MovieBoxTheme.colorsV2.text.primaryOnDark,
                 style = MovieBoxTheme.typography.bodyMedium
             )
         }
@@ -331,7 +330,7 @@ private fun Tagline(tagline: String?) {
                 .padding(horizontal = 16.dp)
                 .heightIn(min = 40.dp)
                 .clip(RoundedCornerShape(12.dp))
-                .background(MovieBoxTheme.colors.details.backgroundSecondary)
+                .background(MovieBoxTheme.colorsV2.background.neutral)
                 .padding(horizontal = 8.dp, vertical = 8.dp),
             horizontalArrangement = Arrangement.Start
         ) {
@@ -340,7 +339,7 @@ private fun Tagline(tagline: String?) {
                 style = MovieBoxTheme.typography.text,
                 modifier = Modifier.align(Alignment.CenterVertically),
                 inlineContent = inlineContentMap,
-                color = MovieBoxTheme.colors.details.textPrimary
+                color = MovieBoxTheme.colorsV2.text.primary
             )
         }
     }
@@ -353,7 +352,7 @@ private fun buildQuoteInlineContent(@DrawableRes drawableRes: Int) = InlineTextC
         painter = painterResource(id = drawableRes),
         modifier = Modifier.size(12.dp),
         contentDescription = "",
-        tint = MovieBoxTheme.colors.details.textPrimary
+        tint = MovieBoxTheme.colorsV2.text.primary
     )
 }
 
@@ -363,13 +362,13 @@ private fun InfoBlock(title: String, description: String, modifier: Modifier = M
         Text(
             text = title,
             style = MovieBoxTheme.typography.textMedium,
-            color = MovieBoxTheme.colors.details.textPrimary
+            color = MovieBoxTheme.colorsV2.text.primary
         )
 
         Text(
             text = description,
             style = MovieBoxTheme.typography.captionMedium,
-            color = MovieBoxTheme.colors.details.textSecondary
+            color = MovieBoxTheme.colorsV2.text.secondary
         )
     }
 }
@@ -397,14 +396,14 @@ private fun CreditsBlock(
                         .size(32.dp)
                         .border(
                             width = 2.dp,
-                            color = MovieBoxTheme.colors.details.background,
+                            color = MovieBoxTheme.colorsV2.background.base,
                             shape = CircleShape
                         )
                         .padding(2.dp)
                         .clip(CircleShape)
-                        .background(MovieBoxTheme.colors.details.placeholderBg),
-                    placeholder = getSmallProfilePlaceholder(isLight = MovieBoxTheme.colors.isLight),
-                    error = getSmallProfilePlaceholder(isLight = MovieBoxTheme.colors.isLight)
+                        .background(MovieBoxTheme.colorsV2.background.opposite),
+                    placeholder = getSmallProfilePlaceholder(isLight = MovieBoxTheme.colorsV2.isLight),
+                    error = getSmallProfilePlaceholder(isLight = MovieBoxTheme.colorsV2.isLight)
                 )
             }
 
@@ -414,18 +413,18 @@ private fun CreditsBlock(
                     .height(32.dp)
                     .border(
                         width = 2.dp,
-                        color = MovieBoxTheme.colors.details.background,
+                        color = MovieBoxTheme.colorsV2.background.base,
                         shape = CircleShape
                     )
                     .padding(2.dp)
                     .clip(CircleShape)
-                    .background(MovieBoxTheme.colors.details.placeholderBg)
+                    .background(MovieBoxTheme.colorsV2.background.opposite)
                     .padding(horizontal = 16.dp),
             ) {
                 Text(
                     text = stringResource(StringResource.common_more),
                     style = MovieBoxTheme.typography.captionMedium,
-                    color = MovieBoxTheme.colors.details.textPlaceholder,
+                    color = MovieBoxTheme.colorsV2.text.primaryOnDark,
                     textAlign = TextAlign.Center
                 )
             }
@@ -435,7 +434,7 @@ private fun CreditsBlock(
             Text(
                 text = stringResource(StringResource.details_casts_count_plus, totalAmount),
                 modifier = Modifier.align(Alignment.CenterVertically),
-                color = MovieBoxTheme.colors.details.textPrimary,
+                color = MovieBoxTheme.colorsV2.text.primary,
                 style = MovieBoxTheme.typography.captionMedium
             )
         }

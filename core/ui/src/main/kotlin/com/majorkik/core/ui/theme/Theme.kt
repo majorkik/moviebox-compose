@@ -11,35 +11,65 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.sp
+import com.majorkik.core.ui.theme.AppColorV2.Companion.light
 
-data class AppColorV2(
-    val background: Background,
-    val foreground: Foreground,
-    val text: Text,
+@Immutable
+class AppColorV2 internal constructor(
     val isLight: Boolean,
+    val background: Background = Background(isLight),
+    val foreground: Foreground = Foreground(isLight),
+    val text: Text = Text(isLight),
 ) {
-    data class Background(
-        val base: Color,
-        val opposite: Color,
-        val primary: Color,
-        val accent: Color,
+    @Immutable
+    class Background internal constructor(
+        private val isLight: Boolean,
+        /** The main background of the application */
+        val base: Color = if (isLight) White else Charade,
+        /** Opposite background [base] */
+        val opposite: Color = if (isLight) Charade else White,
+        val primary: Color = Color.Unspecified,
+        val secondary: Color = if (isLight) Alabaster else CodGray,
+        val accent: Color = BlueCrayola,
+        val neutral: Color = if (isLight) Alabaster else CodGray
     )
 
-    data class Foreground(
-        val accent: Color,
+    @Immutable
+    class Foreground internal constructor(
+        private val isLight: Boolean,
+        val neutralAccent: Color = if (isLight) SilverChalice else DoveGray,
+        val accent: Color = Color.Unspecified,
     )
 
-    data class Text(
-        val primary: Color,
-        val primaryOnLight: Color,
-        val primaryOnDark: Color,
-        val secondary: Color,
-        val tertiary: Color,
-        val accent: Color,
-        val positive: Color,
-        val negative: Color,
+    @Immutable
+    class Text internal constructor(
+        private val isLight: Boolean,
+
+        /** Text on backgrounds: [Background.base] */
+        val primary: Color = if (isLight) Charade else White,
+        /** Text on light backgrounds */
+        val primaryOnLight: Color = Charade,
+        /** Text on dark backgrounds */
+        val primaryOnDark: Color = White,
+        /** Secondary text on backgrounds: [Background.base] */
+        val secondary: Color = if (isLight) Silver else Emperor,
+        /** Placeholders text */
+        val tertiary: Color = Color.Unspecified,
+        val accent: Color = Color.Unspecified,
+        val positive: Color = Color.Unspecified,
+        val negative: Color = Color.Unspecified,
     )
+
+    companion object {
+        @Composable
+        fun systemTheme(): AppColorV2 = if (isSystemInDarkTheme()) dark() else light()
+
+        fun dark(): AppColorV2 = AppColorV2(false)
+
+        fun light(): AppColorV2 = AppColorV2(true)
+    }
 }
+
+internal val LocalAppColorsV2 = staticCompositionLocalOf { light() }
 
 @Immutable
 data class AppColor(
@@ -221,29 +251,19 @@ internal val LocalCustomColors = staticCompositionLocalOf {
     )
 }
 
-internal val LocalCustomTypography = staticCompositionLocalOf {
-    AppTypography(
-        title = TextStyle.Default,
-        h1 = TextStyle.Default,
-        h2 = TextStyle.Default,
-        h3 = TextStyle.Default,
-        h4 = TextStyle.Default,
-        body1 = TextStyle.Default,
-        body2 = TextStyle.Default,
-        smallBold = TextStyle.Default,
-        bodyMedium = TextStyle.Default,
-        titleMedium = TextStyle.Default,
-        titleSmall = TextStyle.Default,
-        captionMedium = TextStyle.Default
-    )
-}
+internal val LocalCustomTypography = staticCompositionLocalOf { AppTypography() }
 
 @Composable
-fun MovieBoxTheme(isDark: Boolean = isSystemInDarkTheme(), content: @Composable () -> Unit) {
+fun MovieBoxTheme(
+    colorsV2: AppColorV2 = MovieBoxTheme.colorsV2,
+    customTypography: AppTypography = MovieBoxTheme.typography,
+    isDark: Boolean = isSystemInDarkTheme(),
+    content: @Composable () -> Unit
+) {
     val customColors = if (isDark) darkColors() else lightColors()
-    val customTypography = AppTypography()
 
     CompositionLocalProvider(
+        LocalAppColorsV2 provides colorsV2,
         LocalCustomColors provides customColors,
         LocalCustomTypography provides customTypography,
         LocalRippleTheme provides SecondaryRippleTheme,
@@ -255,6 +275,10 @@ object MovieBoxTheme {
     val colors: AppColor
         @Composable
         get() = LocalCustomColors.current
+
+    val colorsV2: AppColorV2
+        @Composable
+        get() = LocalAppColorsV2.current
 
     val typography: AppTypography
         @Composable
