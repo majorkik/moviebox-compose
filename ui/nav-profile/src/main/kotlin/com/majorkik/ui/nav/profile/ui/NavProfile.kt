@@ -17,6 +17,7 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.majorkik.core.ui.CoreDrawable
 import com.majorkik.core.ui.theme.MovieBoxTheme
+import com.majorkik.core.ui.theme.MBTheme
 import com.ramcosta.composedestinations.annotation.Destination
 import org.koin.androidx.compose.getViewModel
 
@@ -31,7 +32,7 @@ internal fun NavProfileContent(viewModel: NavProfileViewModel) {
     Box(
         modifier = Modifier
             .fillMaxSize()
-            .background(MovieBoxTheme.colors.background)
+            .background(MovieBoxTheme.colors.background.base)
             .statusBarsPadding()
     ) {
         Row(
@@ -40,19 +41,15 @@ internal fun NavProfileContent(viewModel: NavProfileViewModel) {
                 .padding(8.dp),
             horizontalArrangement = Arrangement.End
         ) {
-            ThemeButton(
-                MovieBoxTheme.colors.isLight.not(),
-                onChangeTheme = viewModel::actionSaveTheme
-            )
+            ThemeButton(viewModel::actionSaveTheme)
         }
     }
 }
 
 @Composable
-internal fun ThemeButton(
-    isDark: Boolean,
-    onChangeTheme: (Boolean) -> Unit = {}
-) {
+internal fun ThemeButton(onChangeTheme: (Boolean) -> Unit) {
+    val isDark = MovieBoxTheme.colors.isLight.not()
+
     IconToggleButton(
         checked = isDark,
         onCheckedChange = onChangeTheme
@@ -61,13 +58,13 @@ internal fun ThemeButton(
             Icon(
                 painter = painterResource(id = CoreDrawable.ic_light_mode_black_24dp),
                 contentDescription = null,
-                tint = MovieBoxTheme.colors.themeColor
+                tint = MovieBoxTheme.colors.foreground.neutralAccent
             )
         } else {
             Icon(
                 painter = painterResource(id = CoreDrawable.ic_dark_mode_black_24),
                 contentDescription = null,
-                tint = MovieBoxTheme.colors.themeColor
+                tint = MovieBoxTheme.colors.foreground.neutralAccent
             )
         }
     }
@@ -76,7 +73,7 @@ internal fun ThemeButton(
 @Preview(showBackground = true)
 @Composable
 internal fun HomeContentPreview() {
-    MovieBoxTheme(isDark = true) {
+    MBTheme(isDark = true) {
         NavProfileContent(viewModel = getViewModel())
     }
 }

@@ -22,6 +22,7 @@ import com.majorkik.core.localization.R
 import com.majorkik.core.ui.CoreDrawable
 import com.majorkik.core.ui.extension.clickableWithSimpleRipple
 import com.majorkik.core.ui.theme.MovieBoxTheme
+import com.majorkik.core.ui.theme.MBTheme
 
 @Composable
 internal fun RoundedButton(text: String, modifier: Modifier = Modifier, onClick: () -> Unit) {
@@ -30,11 +31,11 @@ internal fun RoundedButton(text: String, modifier: Modifier = Modifier, onClick:
         textAlign = TextAlign.Center,
         modifier = modifier
             .clip(CircleShape)
-            .background(MovieBoxTheme.colors.backgroundReverse)
+            .background(MovieBoxTheme.colors.background.opposite)
             .padding(horizontal = 12.dp, vertical = 8.dp)
             .clickableWithSimpleRipple(onClick),
         style = MovieBoxTheme.typography.bodyMedium,
-        color = MovieBoxTheme.colors.background
+        color = MovieBoxTheme.colors.text.primaryOnOpposite
     )
 }
 
@@ -51,14 +52,14 @@ internal fun LoginButton(onClick: () -> Unit) {
             Icon(
                 painter = painterResource(id = CoreDrawable.ic_round_arrow_right_black_24),
                 contentDescription = null,
-                tint = MovieBoxTheme.colors.accent
+                tint = MovieBoxTheme.colors.foreground.positiveAccent
             )
 
             Text(
                 stringResource(id = R.string.nav_home_screen_login_button),
                 modifier = Modifier,
                 style = MovieBoxTheme.typography.h4,
-                color = MovieBoxTheme.colors.accent
+                color = MovieBoxTheme.colors.text.positiveAccent
             )
         }
     }
@@ -67,7 +68,7 @@ internal fun LoginButton(onClick: () -> Unit) {
 @Preview(showBackground = true)
 @Composable
 fun ButtonPreview() {
-    MovieBoxTheme {
+    MBTheme {
         Column {
             RoundedButton(text = "Button") {
                 /* no-op */

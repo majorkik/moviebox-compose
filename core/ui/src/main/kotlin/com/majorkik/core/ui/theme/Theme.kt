@@ -8,13 +8,13 @@ import androidx.compose.runtime.CompositionLocalProvider
 import androidx.compose.runtime.Immutable
 import androidx.compose.runtime.staticCompositionLocalOf
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.graphics.Color.Companion.Black
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.sp
-import com.majorkik.core.ui.theme.AppColorV2.Companion.light
 
 @Immutable
-class AppColorV2 internal constructor(
+class AppColor internal constructor(
     val isLight: Boolean,
     val background: Background = Background(isLight),
     val foreground: Foreground = Foreground(isLight),
@@ -27,101 +27,71 @@ class AppColorV2 internal constructor(
         val base: Color = if (isLight) White else Charade,
         /** Opposite background [base] */
         val opposite: Color = if (isLight) Charade else White,
-        val primary: Color = Color.Unspecified,
-        val secondary: Color = if (isLight) Alabaster else CodGray,
+        /** Container for interactive elements */
         val accent: Color = BlueCrayola,
-        val neutral: Color = if (isLight) Alabaster else CodGray
+        /** Information elements */
+        val info: Color = RoseMadder,
+        /** TODO */
+        val neutral1: Color = Black.copy(alpha = 0.5f),
+        /** Secondary elements on [base] backgrounds: buttons, cards */
+        val elevation1: Color = if (isLight) Alabaster else CodGray,
+        /** Main ripple color for interactive elements */
+        val ripple: Color = Black,
     )
 
     @Immutable
     class Foreground internal constructor(
         private val isLight: Boolean,
-        val neutralAccent: Color = if (isLight) SilverChalice else DoveGray,
-        val accent: Color = Color.Unspecified,
+        /** Interactive elements */
+        val accent: Color = BlueCrayola,
+        /** Accent neutral elements on [Background.base] background */
+        val neutralAccent: Color = if (isLight) Charade else White,
+        /** Accent elements for positive containers */
+        val positiveAccent: Color = VistaBlue,
+        /** Accent elements for negative containers */
+        val negativeAccent: Color = RoseMadder,
+        /** Transparent containers */
+        val infoAccent: Color = if (isLight) SilverChalice else DoveGray,
+        /** Elements on light backgrounds */
+        val onLight: Color = Charade,
+        /** Elements on dark backgrounds */
+        val onDark: Color = White,
     )
 
     @Immutable
     class Text internal constructor(
         private val isLight: Boolean,
-
         /** Text on backgrounds: [Background.base] */
         val primary: Color = if (isLight) Charade else White,
         /** Text on light backgrounds */
         val primaryOnLight: Color = Charade,
         /** Text on dark backgrounds */
         val primaryOnDark: Color = White,
+        /** Text on opposite background */
+        val primaryOnOpposite: Color = if (isLight) White else Charade,
+        /** Text on inactive background */
+        val primaryInactive: Color = if (isLight) Alabaster else CodGray,
         /** Secondary text on backgrounds: [Background.base] */
         val secondary: Color = if (isLight) Silver else Emperor,
         /** Placeholders text */
-        val tertiary: Color = Color.Unspecified,
-        val accent: Color = Color.Unspecified,
-        val positive: Color = Color.Unspecified,
-        val negative: Color = Color.Unspecified,
+        val tertiary: Color = Black.copy(alpha = 0.5f),
+        /** Accent text color */
+        val accent: Color = BlueCrayola,
+        /** Accent text for positive containers */
+        val positiveAccent: Color = VistaBlue,
     )
 
     companion object {
         @Composable
-        fun systemTheme(): AppColorV2 = if (isSystemInDarkTheme()) dark() else light()
+        fun systemTheme(): AppColor = if (isSystemInDarkTheme()) dark() else light()
 
-        fun dark(): AppColorV2 = AppColorV2(false)
+        fun dark(): AppColor = AppColor(false)
 
-        fun light(): AppColorV2 = AppColorV2(true)
+        fun light(): AppColor = AppColor(true)
     }
 }
 
-internal val LocalAppColorsV2 = staticCompositionLocalOf { light() }
-
-@Immutable
-data class AppColor(
-    val primary: Color,
-    val primaryLight: Color,
-    val secondary: Color,
-    val accent: Color,
-    val background: Color,
-    val backgroundReverse: Color,
-    val backgroundDark50: Color,
-    val secondaryBackground: Color,
-
-    val themeColor: Color,
-
-    val ripple: Color,
-
-    // Groups
-    val text: Text,
-    val placeholder: Placeholder,
-    val white: Color,
-
-    // Screens
-    val details: DetailsScreenColors,
-
-    // Theme
-    val isLight: Boolean = true
-) {
-    data class Text(
-        val primary: Color,
-        val secondary: Color,
-        val white: Color,
-        val success: Color
-    )
-
-    data class Placeholder(
-        val background: Color,
-        val backgroundDark: Color
-    )
-
-    data class DetailsScreenColors(
-        val background: Color, // base
-        val backgroundSecondary: Color,
-        val placeholderBg: Color,
-        val textPrimary: Color,
-        val textSecondary: Color,
-        val textPlaceholder: Color,
-        val favoriteBtnDefault: Color,
-        val favoriteBtnSelected: Color,
-        val btnBgSecondary: Color,
-        val btnTintSecondary: Color,
-    )
-}
+internal val LocalAppColors = staticCompositionLocalOf { AppColor.light() }
 
 @Immutable
 data class AppTypography(
@@ -201,70 +171,29 @@ data class AppTypography(
 private object SecondaryRippleTheme : RippleTheme {
     @Composable
     override fun defaultColor() = RippleTheme.defaultRippleColor(
-        contentColor = MovieBoxTheme.colors.ripple,
+        contentColor = MovieBoxTheme.colors.background.ripple,
         lightTheme = MovieBoxTheme.colors.isLight
     )
 
     @Composable
     override fun rippleAlpha() = RippleTheme.defaultRippleAlpha(
-        contentColor = MovieBoxTheme.colors.ripple,
+        contentColor = MovieBoxTheme.colors.background.ripple,
         lightTheme = MovieBoxTheme.colors.isLight
-    )
-}
-
-internal val LocalCustomColors = staticCompositionLocalOf {
-    AppColor(
-        primary = Color.Unspecified,
-        primaryLight = Color.Unspecified,
-        secondary = Color.Unspecified,
-        accent = Color.Unspecified,
-        background = Color.Unspecified,
-        backgroundReverse = Color.Unspecified,
-        backgroundDark50 = Color.Unspecified,
-        secondaryBackground = Color.Unspecified,
-        themeColor = Color.Unspecified,
-        ripple = Color.Unspecified,
-        text = AppColor.Text(
-            primary = Color.Unspecified,
-            secondary = Color.Unspecified,
-            white = Color.Unspecified,
-            success = Color.Unspecified
-        ),
-        placeholder = AppColor.Placeholder(
-            background = Color.Unspecified,
-            backgroundDark = Color.Unspecified
-        ),
-        white = Color.Unspecified,
-        details = AppColor.DetailsScreenColors(
-            background = Color.Unspecified,
-            backgroundSecondary = Color.Unspecified,
-            placeholderBg = Color.Unspecified,
-            textPrimary = Color.Unspecified,
-            textPlaceholder = Color.Unspecified,
-            favoriteBtnSelected = Color.Unspecified,
-            favoriteBtnDefault = Color.Unspecified,
-            btnBgSecondary = Color.Unspecified,
-            textSecondary = Color.Unspecified,
-            btnTintSecondary = Color.Unspecified
-        ),
-        isLight = false
     )
 }
 
 internal val LocalCustomTypography = staticCompositionLocalOf { AppTypography() }
 
 @Composable
-fun MovieBoxTheme(
-    colorsV2: AppColorV2 = MovieBoxTheme.colorsV2,
-    customTypography: AppTypography = MovieBoxTheme.typography,
+fun MBTheme(
     isDark: Boolean = isSystemInDarkTheme(),
     content: @Composable () -> Unit
 ) {
-    val customColors = if (isDark) darkColors() else lightColors()
+    val colors: AppColor = if (isDark) AppColor.dark() else AppColor.light()
+    val customTypography: AppTypography = MovieBoxTheme.typography
 
     CompositionLocalProvider(
-        LocalAppColorsV2 provides colorsV2,
-        LocalCustomColors provides customColors,
+        LocalAppColors provides colors,
         LocalCustomTypography provides customTypography,
         LocalRippleTheme provides SecondaryRippleTheme,
         content = content
@@ -274,11 +203,7 @@ fun MovieBoxTheme(
 object MovieBoxTheme {
     val colors: AppColor
         @Composable
-        get() = LocalCustomColors.current
-
-    val colorsV2: AppColorV2
-        @Composable
-        get() = LocalAppColorsV2.current
+        get() = LocalAppColors.current
 
     val typography: AppTypography
         @Composable

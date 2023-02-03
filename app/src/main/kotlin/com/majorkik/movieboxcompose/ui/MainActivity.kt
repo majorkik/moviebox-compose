@@ -13,6 +13,7 @@ import androidx.core.view.WindowCompat
 import com.google.accompanist.systemuicontroller.rememberSystemUiController
 import com.majorkik.core.ui.CoreStyle
 import com.majorkik.core.ui.theme.MovieBoxTheme
+import com.majorkik.core.ui.theme.MBTheme
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class MainActivity : ComponentActivity() {
@@ -30,7 +31,7 @@ class MainActivity : ComponentActivity() {
                 viewModel.shouldUseDarkTheme.collectAsState(initial = isSystemInDarkTheme())
             val systemUiController = rememberSystemUiController()
 
-            MovieBoxTheme(isDark = shouldUseDarkTheme.value) {
+            MBTheme(isDark = shouldUseDarkTheme.value) {
 
                 SideEffect {
                     systemUiController.setSystemBarsColor(

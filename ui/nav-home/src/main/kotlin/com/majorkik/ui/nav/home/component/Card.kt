@@ -29,6 +29,7 @@ import com.majorkik.common.percentOf
 import com.majorkik.core.ui.components.getPopcornPlaceholderResId
 import com.majorkik.core.ui.extension.clickableWithSimpleRipple
 import com.majorkik.core.ui.theme.MovieBoxTheme
+import com.majorkik.core.ui.theme.MBTheme
 import com.majorkik.tmdb.api.model.BackdropPath
 import com.majorkik.tmdb.api.model.PosterPath
 import com.soywiz.klock.Date
@@ -46,7 +47,7 @@ internal fun HorizontalMovieCard(
         modifier = Modifier
             .size(width = 300.dp, height = 150.dp)
             .clip(RoundedCornerShape(12.dp))
-            .background(MovieBoxTheme.colors.placeholder.backgroundDark)
+            .background(MovieBoxTheme.colors.background.elevation1)
             .clickableWithSimpleRipple(onClick),
         contentAlignment = Alignment.BottomStart
     ) {
@@ -57,9 +58,9 @@ internal fun HorizontalMovieCard(
                     .data(data = backdropPath?.build(size = BackdropPath.Size.Width1280))
                     .apply(block = {
                         crossfade(true)
-                        placeholder(getPopcornPlaceholderResId(MovieBoxTheme.colors.isLight))
-                        error(getPopcornPlaceholderResId(MovieBoxTheme.colors.isLight))
-                        fallback(getPopcornPlaceholderResId(MovieBoxTheme.colors.isLight))
+                        placeholder(getPopcornPlaceholderResId())
+                        error(getPopcornPlaceholderResId())
+                        fallback(getPopcornPlaceholderResId())
                     })
                     .build()
             ),
@@ -72,12 +73,12 @@ internal fun HorizontalMovieCard(
         Text(
             "${voteAverage.percentOf(from = 10)}%",
             style = MovieBoxTheme.typography.titleSmall,
-            color = MovieBoxTheme.colors.text.white,
+            color = MovieBoxTheme.colors.text.primaryOnDark,
             modifier = Modifier
                 .align(Alignment.TopEnd)
                 .padding(8.dp)
                 .clip(CircleShape)
-                .background(MovieBoxTheme.colors.backgroundDark50)
+                .background(MovieBoxTheme.colors.background.neutral1)
                 .padding(vertical = 4.dp, horizontal = 8.dp)
         )
 
@@ -86,7 +87,7 @@ internal fun HorizontalMovieCard(
             Text(
                 title,
                 style = MovieBoxTheme.typography.h4,
-                color = MovieBoxTheme.colors.text.white,
+                color = MovieBoxTheme.colors.text.primaryOnDark,
                 maxLines = 1
             )
 
@@ -94,7 +95,7 @@ internal fun HorizontalMovieCard(
                 Text(
                     releaseDate.year.toString(),
                     style = MovieBoxTheme.typography.titleMedium,
-                    color = MovieBoxTheme.colors.text.white
+                    color = MovieBoxTheme.colors.text.primaryOnDark
                 )
             }
         }
@@ -115,7 +116,7 @@ internal fun VerticalMovieCard(
                 .fillMaxWidth()
                 .height(310.dp)
                 .clip(RoundedCornerShape(12.dp))
-                .background(MovieBoxTheme.colors.placeholder.background)
+                .background(MovieBoxTheme.colors.background.elevation1)
                 .clickableWithSimpleRipple(onClick),
         ) {
             Image(
@@ -124,9 +125,9 @@ internal fun VerticalMovieCard(
                         .data(data = posterPath?.build(size = PosterPath.Size.Width500))
                         .apply(block = {
                             crossfade(true)
-                            placeholder(getPopcornPlaceholderResId(MovieBoxTheme.colors.isLight))
-                            error(getPopcornPlaceholderResId(MovieBoxTheme.colors.isLight))
-                            fallback(getPopcornPlaceholderResId(MovieBoxTheme.colors.isLight))
+                            placeholder(getPopcornPlaceholderResId())
+                            error(getPopcornPlaceholderResId())
+                            fallback(getPopcornPlaceholderResId())
                         })
                         .build()
                 ),
@@ -144,12 +145,12 @@ internal fun VerticalMovieCard(
                 Text(
                     text = releaseDate.year.toString(),
                     style = MovieBoxTheme.typography.titleSmall,
-                    color = MovieBoxTheme.colors.text.white,
+                    color = MovieBoxTheme.colors.text.primaryOnDark,
                     modifier = Modifier
                         .align(Alignment.BottomEnd)
                         .padding(8.dp)
                         .clip(CircleShape)
-                        .background(MovieBoxTheme.colors.secondary)
+                        .background(MovieBoxTheme.colors.background.info)
                         .padding(vertical = 4.dp, horizontal = 8.dp)
                 )
             }
@@ -165,24 +166,50 @@ internal fun VerticalMovieCard(
     }
 }
 
-@Preview(showBackground = true)
+@Preview
 @Composable
-fun CardPreview() {
-    MovieBoxTheme {
-        Column {
-            HorizontalMovieCard(
-                backdropPath = null,
-                title = "Dune",
-                voteAverage = 9.23,
-                releaseDate = DateTime.now().date
-            ) {}
+fun CardLightPreview() {
+    MBTheme(isDark = false) {
+        Box(modifier = Modifier.background(MovieBoxTheme.colors.background.base)) {
+            Column {
+                HorizontalMovieCard(
+                    backdropPath = null,
+                    title = "Dune",
+                    voteAverage = 9.23,
+                    releaseDate = DateTime.now().date
+                ) {}
 
-            VerticalMovieCard(
-                posterPath = null,
-                title = "Dune",
-                voteAverage = 9.23,
-                releaseDate = DateTime.now().date
-            ) {}
+                VerticalMovieCard(
+                    posterPath = null,
+                    title = "Dune",
+                    voteAverage = 9.23,
+                    releaseDate = DateTime.now().date
+                ) {}
+            }
+        }
+    }
+}
+
+@Preview
+@Composable
+fun CardDarkPreview() {
+    MBTheme(isDark = true) {
+        Box(modifier = Modifier.background(MovieBoxTheme.colors.background.base)) {
+            Column {
+                HorizontalMovieCard(
+                    backdropPath = null,
+                    title = "Dune",
+                    voteAverage = 9.23,
+                    releaseDate = DateTime.now().date
+                ) {}
+
+                VerticalMovieCard(
+                    posterPath = null,
+                    title = "Dune",
+                    voteAverage = 9.23,
+                    releaseDate = DateTime.now().date
+                ) {}
+            }
         }
     }
 }

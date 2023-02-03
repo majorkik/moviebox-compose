@@ -28,11 +28,11 @@ fun BottomNavigation(navController: NavController) {
     val currentSelectedItem by navController.currentScreenAsState()
 
     BottomNavigation(
-        backgroundColor = MovieBoxTheme.colors.background,
+        backgroundColor = MovieBoxTheme.colors.background.base,
         modifier = Modifier
             .navigationBarsPadding()
             .imePadding()
-            .background(MovieBoxTheme.colors.background),
+            .background(MovieBoxTheme.colors.background.base),
         elevation = 0.dp
     ) {
         BottomNavigationItems.forEach { item ->
@@ -89,7 +89,11 @@ fun BottomNavigationIcon(item: BottomNavigationItem, isSelected: Boolean) {
     Icon(
         painter = painterResource(id = item.iconResId),
         contentDescription = null,
-        tint = if (isSelected) MovieBoxTheme.colors.primary else MovieBoxTheme.colors.backgroundReverse
+        tint = if (isSelected) {
+            MovieBoxTheme.colors.foreground.accent
+        } else {
+            MovieBoxTheme.colors.foreground.infoAccent
+        }
     )
 }
 

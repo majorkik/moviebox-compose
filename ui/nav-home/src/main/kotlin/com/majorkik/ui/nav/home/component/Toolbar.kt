@@ -15,6 +15,7 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.majorkik.core.ui.CoreDrawable
 import com.majorkik.core.ui.theme.MovieBoxTheme
+import com.majorkik.core.ui.theme.MBTheme
 
 @Composable
 internal fun Toolbar(onLoginClick: () -> Unit, onOpenSettings: () -> Unit) {
@@ -31,7 +32,7 @@ internal fun Toolbar(onLoginClick: () -> Unit, onOpenSettings: () -> Unit) {
             Icon(
                 painter = painterResource(id = CoreDrawable.ic_nut_bolt_black_24),
                 contentDescription = null,
-                tint = MovieBoxTheme.colors.backgroundReverse
+                tint = MovieBoxTheme.colors.background.opposite
             )
         }
     }
@@ -40,7 +41,7 @@ internal fun Toolbar(onLoginClick: () -> Unit, onOpenSettings: () -> Unit) {
 @Preview(showBackground = true)
 @Composable
 fun ToolbarPreview() {
-    MovieBoxTheme {
+    MBTheme {
         Box {
             Toolbar(
                 onLoginClick = {},

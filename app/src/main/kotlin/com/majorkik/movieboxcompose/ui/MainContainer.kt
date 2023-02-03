@@ -34,7 +34,7 @@ fun MainContainer() {
     val navController = rememberAnimatedNavController()
 
     Scaffold(
-        containerColor = MovieBoxTheme.colors.background,
+        containerColor = MovieBoxTheme.colors.background.base,
         bottomBar = { BottomNavigation(navController = navController) },
         modifier = Modifier.fillMaxSize()
     ) { innerPadding ->

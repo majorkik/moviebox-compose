@@ -44,6 +44,7 @@ import com.majorkik.core.ui.components.InfiniteListHandler
 import com.majorkik.core.ui.extension.clickableWithSimpleRipple
 import com.majorkik.core.ui.extension.showToast
 import com.majorkik.core.ui.theme.MovieBoxTheme
+import com.majorkik.core.ui.theme.MBTheme
 import com.majorkik.tmdb.api.model.Genre
 import com.majorkik.ui.nav.home.component.GenresSwitch
 import com.majorkik.ui.nav.home.component.HorizontalMovieCard
@@ -100,7 +101,7 @@ internal fun NavHomeContent(viewModel: NavHomeViewModelViewModel, openMovieDetai
                 .fillMaxWidth()
                 .height(48.dp)
                 .clip(RoundedCornerShape(12.dp))
-                .background(MovieBoxTheme.colors.placeholder.backgroundDark)
+                .background(MovieBoxTheme.colors.background.elevation1)
                 .clickableWithSimpleRipple { }
         ) {
             Row(
@@ -112,7 +113,7 @@ internal fun NavHomeContent(viewModel: NavHomeViewModelViewModel, openMovieDetai
                 Icon(
                     painter = painterResource(id = CoreDrawable.ic_search_black_24),
                     contentDescription = null,
-                    tint = MovieBoxTheme.colors.text.primary,
+                    tint = MovieBoxTheme.colors.foreground.infoAccent,
                 )
 
                 Text(
@@ -126,14 +127,14 @@ internal fun NavHomeContent(viewModel: NavHomeViewModelViewModel, openMovieDetai
                 modifier = Modifier
                     .size(48.dp)
                     .clip(RoundedCornerShape(12.dp))
-                    .background(MovieBoxTheme.colors.primary)
+                    .background(MovieBoxTheme.colors.background.accent)
                     .clickableWithSimpleRipple { }
                     .align(Alignment.CenterEnd)
             ) {
                 Icon(
                     painter = painterResource(id = CoreDrawable.ic_tune_white_24),
                     contentDescription = null,
-                    tint = MovieBoxTheme.colors.white,
+                    tint = MovieBoxTheme.colors.foreground.onDark,
                     modifier = Modifier.align(Alignment.Center)
                 )
             }
@@ -225,7 +226,7 @@ fun GenresBlock(
             Text(
                 text = stringResource(id = StringResource.common_genres),
                 style = MovieBoxTheme.typography.h3,
-                color = MovieBoxTheme.colors.backgroundReverse
+                color = MovieBoxTheme.colors.text.primary
             )
 
             GenresSwitchBox(
@@ -260,9 +261,9 @@ internal fun GenresSwitchBox(isMovieGenresSelected: Boolean, onToggleSwitch: () 
             text = stringResource(id = StringResource.common_movie),
             style = MovieBoxTheme.typography.titleMedium,
             color = if (isMovieGenresSelected) {
-                MovieBoxTheme.colors.backgroundReverse
+                MovieBoxTheme.colors.text.primary
             } else {
-                MovieBoxTheme.colors.secondaryBackground
+                MovieBoxTheme.colors.text.primaryInactive
             }
         )
 
@@ -272,9 +273,9 @@ internal fun GenresSwitchBox(isMovieGenresSelected: Boolean, onToggleSwitch: () 
             text = stringResource(id = StringResource.common_tv),
             style = MovieBoxTheme.typography.titleMedium,
             color = if (isMovieGenresSelected.not()) {
-                MovieBoxTheme.colors.backgroundReverse
+                MovieBoxTheme.colors.text.primary
             } else {
-                MovieBoxTheme.colors.secondaryBackground
+                MovieBoxTheme.colors.text.primaryInactive
             }
         )
     }
@@ -319,9 +320,9 @@ private fun handleSideEffect(sideEffect: NavHomeViewModelSideEffect, context: Co
 @Preview(showBackground = true)
 @Composable
 private fun Preview() {
-    MovieBoxTheme(isDark = true) {
+    MBTheme(isDark = true) {
         Surface(
-            color = MovieBoxTheme.colors.background, modifier = Modifier
+            color = MovieBoxTheme.colors.background.base, modifier = Modifier
                 .fillMaxWidth()
         ) {
             GenresBlock(
