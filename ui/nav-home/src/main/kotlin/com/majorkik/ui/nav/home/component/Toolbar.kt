@@ -15,7 +15,6 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.majorkik.core.ui.CoreDrawable
 import com.majorkik.core.ui.theme.MovieBoxTheme
-import com.majorkik.core.ui.theme.MBTheme
 
 @Composable
 internal fun Toolbar(onLoginClick: () -> Unit, onOpenSettings: () -> Unit) {
@@ -41,7 +40,7 @@ internal fun Toolbar(onLoginClick: () -> Unit, onOpenSettings: () -> Unit) {
 @Preview(showBackground = true)
 @Composable
 fun ToolbarPreview() {
-    MBTheme {
+    MovieBoxTheme {
         Box {
             Toolbar(
                 onLoginClick = {},

@@ -22,7 +22,6 @@ import com.majorkik.core.localization.R
 import com.majorkik.core.ui.CoreDrawable
 import com.majorkik.core.ui.extension.clickableWithSimpleRipple
 import com.majorkik.core.ui.theme.MovieBoxTheme
-import com.majorkik.core.ui.theme.MBTheme
 
 @Composable
 internal fun RoundedButton(text: String, modifier: Modifier = Modifier, onClick: () -> Unit) {
@@ -34,7 +33,7 @@ internal fun RoundedButton(text: String, modifier: Modifier = Modifier, onClick:
             .background(MovieBoxTheme.colors.background.opposite)
             .padding(horizontal = 12.dp, vertical = 8.dp)
             .clickableWithSimpleRipple(onClick),
-        style = MovieBoxTheme.typography.bodyMedium,
+        style = MovieBoxTheme.typography.body.medium,
         color = MovieBoxTheme.colors.text.primaryOnOpposite
     )
 }
@@ -58,7 +57,7 @@ internal fun LoginButton(onClick: () -> Unit) {
             Text(
                 stringResource(id = R.string.nav_home_screen_login_button),
                 modifier = Modifier,
-                style = MovieBoxTheme.typography.h4,
+                style = MovieBoxTheme.typography.header.h4,
                 color = MovieBoxTheme.colors.text.positiveAccent
             )
         }
@@ -68,7 +67,7 @@ internal fun LoginButton(onClick: () -> Unit) {
 @Preview(showBackground = true)
 @Composable
 fun ButtonPreview() {
-    MBTheme {
+    MovieBoxTheme {
         Column {
             RoundedButton(text = "Button") {
                 /* no-op */

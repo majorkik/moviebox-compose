@@ -17,7 +17,6 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.majorkik.core.ui.CoreDrawable
 import com.majorkik.core.ui.theme.MovieBoxTheme
-import com.majorkik.core.ui.theme.MBTheme
 import com.ramcosta.composedestinations.annotation.Destination
 import org.koin.androidx.compose.getViewModel
 
@@ -73,7 +72,7 @@ internal fun ThemeButton(onChangeTheme: (Boolean) -> Unit) {
 @Preview(showBackground = true)
 @Composable
 internal fun HomeContentPreview() {
-    MBTheme(isDark = true) {
+    MovieBoxTheme(isDark = true) {
         NavProfileContent(viewModel = getViewModel())
     }
 }
