@@ -10,14 +10,14 @@ android {
         applicationId = "com.majorkik.movieboxcompose"
         versionCode = 1
         versionName = "0.0.1"
-
-        vectorDrawables {
-            useSupportLibrary = true
-        }
     }
 
+    namespace = "com.majorkik.movieboxcompose"
+
     applicationVariants.all {
-        sourceSets { getByName(name) { kotlin.srcDir("build/generated/ksp/$name/kotlin") } }
+        kotlin.sourceSets {
+            getByName(name) { kotlin.srcDir("build/generated/ksp/$name/kotlin") }
+        }
     }
 }
 

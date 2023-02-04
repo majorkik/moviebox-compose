@@ -3,6 +3,10 @@ plugins {
     id("moviebox.code.quality")
 }
 
+android {
+    namespace = "com.majorkik.feature.app.preferences.impl"
+}
+
 dependencies {
     implementation(libs.bundles.logging)
 

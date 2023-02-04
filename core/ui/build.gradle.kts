@@ -1,6 +1,9 @@
 plugins {
     id("moviebox.library.compose")
-//    id("moviebox.code.quality")
+}
+
+android {
+    namespace = "com.majorkik.core.ui"
 }
 
 dependencies {

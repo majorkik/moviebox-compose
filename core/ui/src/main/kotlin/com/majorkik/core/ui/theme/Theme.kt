@@ -31,7 +31,7 @@ class AppColor internal constructor(
         val accent: Color = BlueCrayola,
         /** Information elements */
         val info: Color = RoseMadder,
-        /** TODO */
+        /** Transparent containers */
         val neutral1: Color = Black.copy(alpha = 0.5f),
         /** Secondary elements on [base] backgrounds: buttons, cards */
         val elevation1: Color = if (isLight) Alabaster else CodGray,
@@ -50,7 +50,7 @@ class AppColor internal constructor(
         val positiveAccent: Color = VistaBlue,
         /** Accent elements for negative containers */
         val negativeAccent: Color = RoseMadder,
-        /** Transparent containers */
+        /** Accent elements for info containers */
         val infoAccent: Color = if (isLight) SilverChalice else DoveGray,
         /** Elements on light backgrounds */
         val onLight: Color = Charade,

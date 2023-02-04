@@ -1,11 +1,10 @@
 plugins {
     id("moviebox.library")
-//    id("moviebox.code.quality")
 }
 
-//linter {
-//    isArrowAnalysisEnabled = false
-//}
+android {
+    namespace = "com.majorkik.feature.app.preferences.api"
+}
 
 dependencies {
     implementation(projects.feature.appPreferences.api)
