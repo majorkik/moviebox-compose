@@ -59,7 +59,7 @@ import com.majorkik.core.localization.StringResource
 import com.majorkik.core.ui.CoreDrawable
 import com.majorkik.core.ui.components.getSmallProfilePlaceholder
 import com.majorkik.core.ui.extension.clickableWithSimpleRipple
-import com.majorkik.core.ui.theme.MovieBoxTheme
+import com.majorkik.core.ui.theme.MBTheme
 import com.majorkik.tmdb.api.model.BackdropPath
 import com.majorkik.tmdb.api.model.MovieDetails
 import com.majorkik.tmdb.api.model.ProfilePath
@@ -117,8 +117,8 @@ private fun MovieDetailsContent(details: MovieDetails) {
         ) {
             Text(
                 text = details.title,
-                color = MovieBoxTheme.colors.text.primary,
-                style = MovieBoxTheme.typography.header.h2,
+                color = MBTheme.colors.text.primary,
+                style = MBTheme.typography.header.h2,
                 textAlign = TextAlign.Center,
                 modifier = Modifier
                     .padding(horizontal = 16.dp)
@@ -135,8 +135,8 @@ private fun MovieDetailsContent(details: MovieDetails) {
             // Genres
             Text(
                 text = details.genres.joinToString { genre -> genre.name.capitalize(Locale.current) },
-                color = MovieBoxTheme.colors.text.primary,
-                style = MovieBoxTheme.typography.body.medium,
+                color = MBTheme.colors.text.primary,
+                style = MBTheme.typography.body.medium,
                 textAlign = TextAlign.Center,
                 modifier = Modifier
                     .align(Alignment.CenterHorizontally)
@@ -168,14 +168,14 @@ private fun MovieDetailsContent(details: MovieDetails) {
                     .fillMaxWidth()
                     .weight(1f),
                 colors = ButtonDefaults.textButtonColors(
-                    backgroundColor = MovieBoxTheme.colors.background.accent,
-                    contentColor = MovieBoxTheme.colors.text.primaryOnDark
+                    backgroundColor = MBTheme.colors.background.accent,
+                    contentColor = MBTheme.colors.text.primaryOnDark
                 )
             ) {
                 Text(
                     text = stringResource(StringResource.details_will_watch),
                     maxLines = 1,
-                    style = MovieBoxTheme.typography.header.titleSmall,
+                    style = MBTheme.typography.header.titleSmall,
                 )
             }
 
@@ -183,12 +183,12 @@ private fun MovieDetailsContent(details: MovieDetails) {
                 onClick = { },
                 modifier = Modifier.size(48.dp),
                 shape = RoundedCornerShape(12.dp),
-                color = MovieBoxTheme.colors.background.elevation1
+                color = MBTheme.colors.background.elevation1
             ) {
                 Icon(
                     painter = painterResource(id = CoreDrawable.ic_options_black_24),
                     contentDescription = null,
-                    tint = MovieBoxTheme.colors.foreground.infoAccent,
+                    tint = MBTheme.colors.foreground.infoAccent,
                     modifier = Modifier
                         .size(48.dp)
                         .padding(12.dp)
@@ -199,12 +199,12 @@ private fun MovieDetailsContent(details: MovieDetails) {
                 onClick = { },
                 modifier = Modifier.size(48.dp),
                 shape = RoundedCornerShape(12.dp),
-                color = MovieBoxTheme.colors.background.elevation1
+                color = MBTheme.colors.background.elevation1
             ) {
                 Icon(
                     painter = painterResource(id = CoreDrawable.ic_round_favorite_black_24),
                     contentDescription = null,
-                    tint = MovieBoxTheme.colors.foreground.infoAccent,
+                    tint = MBTheme.colors.foreground.infoAccent,
                     modifier = Modifier
                         .size(48.dp)
                         .padding(16.dp)
@@ -219,8 +219,8 @@ private fun MovieDetailsContent(details: MovieDetails) {
                 .padding(horizontal = 16.dp)
                 .animateContentSize()
                 .clickable { overviewExpanded = !overviewExpanded },
-            style = MovieBoxTheme.typography.body.textMedium,
-            color = MovieBoxTheme.colors.text.primary,
+            style = MBTheme.typography.body.textMedium,
+            color = MBTheme.colors.text.primary,
             maxLines = 3,
             expanded = overviewExpanded,
             toggleContent = {
@@ -232,8 +232,8 @@ private fun MovieDetailsContent(details: MovieDetails) {
 
                 Text(
                     text = " " + stringResource(textRes),
-                    style = MovieBoxTheme.typography.body.textMedium,
-                    color = MovieBoxTheme.colors.background.accent
+                    style = MBTheme.typography.body.textMedium,
+                    color = MBTheme.colors.background.accent
                 )
             }
         )
@@ -290,8 +290,8 @@ private fun ReleaseDate(releaseDate: Date?, releaseStatus: String?, modifier: Mo
     ) {
         Text(
             text = AppDateFormat.parseReadableDate(releaseDate).getOrElse { "" },
-            color = MovieBoxTheme.colors.text.primary,
-            style = MovieBoxTheme.typography.body.medium
+            color = MBTheme.colors.text.primary,
+            style = MBTheme.typography.body.medium
         )
 
         if (releaseStatus != null) {
@@ -299,10 +299,10 @@ private fun ReleaseDate(releaseDate: Date?, releaseStatus: String?, modifier: Mo
                 text = releaseStatus,
                 modifier = Modifier
                     .clip(RoundedCornerShape(8.dp))
-                    .background(MovieBoxTheme.colors.background.opposite)
+                    .background(MBTheme.colors.background.opposite)
                     .padding(horizontal = 8.dp, vertical = 4.dp),
-                color = MovieBoxTheme.colors.text.primaryOnOpposite,
-                style = MovieBoxTheme.typography.body.medium
+                color = MBTheme.colors.text.primaryOnOpposite,
+                style = MBTheme.typography.body.medium
             )
         }
     }
@@ -330,16 +330,16 @@ private fun Tagline(tagline: String?) {
                 .padding(horizontal = 16.dp)
                 .heightIn(min = 40.dp)
                 .clip(RoundedCornerShape(12.dp))
-                .background(MovieBoxTheme.colors.background.elevation1)
+                .background(MBTheme.colors.background.elevation1)
                 .padding(horizontal = 8.dp, vertical = 8.dp),
             horizontalArrangement = Arrangement.Start
         ) {
             Text(
                 text = annotatedString,
-                style = MovieBoxTheme.typography.body.text,
+                style = MBTheme.typography.body.text,
                 modifier = Modifier.align(Alignment.CenterVertically),
                 inlineContent = inlineContentMap,
-                color = MovieBoxTheme.colors.text.primary
+                color = MBTheme.colors.text.primary
             )
         }
     }
@@ -352,7 +352,7 @@ private fun buildQuoteInlineContent(@DrawableRes drawableRes: Int) = InlineTextC
         painter = painterResource(id = drawableRes),
         modifier = Modifier.size(12.dp),
         contentDescription = "",
-        tint = MovieBoxTheme.colors.text.primary
+        tint = MBTheme.colors.text.primary
     )
 }
 
@@ -361,14 +361,14 @@ private fun InfoBlock(title: String, description: String, modifier: Modifier = M
     Column(modifier = modifier) {
         Text(
             text = title,
-            style = MovieBoxTheme.typography.body.textMedium,
-            color = MovieBoxTheme.colors.text.primary
+            style = MBTheme.typography.body.textMedium,
+            color = MBTheme.colors.text.primary
         )
 
         Text(
             text = description,
-            style = MovieBoxTheme.typography.ui.captionMedium,
-            color = MovieBoxTheme.colors.text.secondary
+            style = MBTheme.typography.ui.captionMedium,
+            color = MBTheme.colors.text.secondary
         )
     }
 }
@@ -396,14 +396,14 @@ private fun CreditsBlock(
                         .size(32.dp)
                         .border(
                             width = 2.dp,
-                            color = MovieBoxTheme.colors.background.base,
+                            color = MBTheme.colors.background.base,
                             shape = CircleShape
                         )
                         .padding(2.dp)
                         .clip(CircleShape)
-                        .background(MovieBoxTheme.colors.background.opposite),
-                    placeholder = getSmallProfilePlaceholder(isLight = MovieBoxTheme.colors.isLight),
-                    error = getSmallProfilePlaceholder(isLight = MovieBoxTheme.colors.isLight)
+                        .background(MBTheme.colors.background.opposite),
+                    placeholder = getSmallProfilePlaceholder(isLight = MBTheme.colors.isLight),
+                    error = getSmallProfilePlaceholder(isLight = MBTheme.colors.isLight)
                 )
             }
 
@@ -413,18 +413,18 @@ private fun CreditsBlock(
                     .height(32.dp)
                     .border(
                         width = 2.dp,
-                        color = MovieBoxTheme.colors.background.base,
+                        color = MBTheme.colors.background.base,
                         shape = CircleShape
                     )
                     .padding(2.dp)
                     .clip(CircleShape)
-                    .background(MovieBoxTheme.colors.background.opposite)
+                    .background(MBTheme.colors.background.opposite)
                     .padding(horizontal = 16.dp),
             ) {
                 Text(
                     text = stringResource(StringResource.common_more),
-                    style = MovieBoxTheme.typography.ui.captionMedium,
-                    color = MovieBoxTheme.colors.text.primaryOnDark,
+                    style = MBTheme.typography.ui.captionMedium,
+                    color = MBTheme.colors.text.primaryOnDark,
                     textAlign = TextAlign.Center
                 )
             }
@@ -434,8 +434,8 @@ private fun CreditsBlock(
             Text(
                 text = stringResource(StringResource.details_casts_count_plus, totalAmount),
                 modifier = Modifier.align(Alignment.CenterVertically),
-                color = MovieBoxTheme.colors.text.primary,
-                style = MovieBoxTheme.typography.ui.captionMedium,
+                color = MBTheme.colors.text.primary,
+                style = MBTheme.typography.ui.captionMedium,
             )
         }
     }
@@ -444,7 +444,7 @@ private fun CreditsBlock(
 @Preview(showBackground = true, backgroundColor = 0xFFFFFF)
 @Composable
 private fun MovieDetailsPreview() {
-    MovieBoxTheme(isDark = false) {
+    MBTheme(isDark = false) {
         MovieDetailsScreen(
             state = MovieDetailsViewState(
                 screen = State.MovieDetailsState(

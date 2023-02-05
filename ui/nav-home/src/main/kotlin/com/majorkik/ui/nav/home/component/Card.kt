@@ -28,7 +28,7 @@ import coil.request.ImageRequest
 import com.majorkik.common.percentOf
 import com.majorkik.core.ui.components.getPopcornPlaceholderResId
 import com.majorkik.core.ui.extension.clickableWithSimpleRipple
-import com.majorkik.core.ui.theme.MovieBoxTheme
+import com.majorkik.core.ui.theme.MBTheme
 import com.majorkik.tmdb.api.model.BackdropPath
 import com.majorkik.tmdb.api.model.PosterPath
 import com.soywiz.klock.Date
@@ -46,7 +46,7 @@ internal fun HorizontalMovieCard(
         modifier = Modifier
             .size(width = 300.dp, height = 150.dp)
             .clip(RoundedCornerShape(12.dp))
-            .background(MovieBoxTheme.colors.background.elevation1)
+            .background(MBTheme.colors.background.elevation1)
             .clickableWithSimpleRipple(onClick),
         contentAlignment = Alignment.BottomStart
     ) {
@@ -71,13 +71,13 @@ internal fun HorizontalMovieCard(
         // Rating as a percentage
         Text(
             "${voteAverage.percentOf(from = 10)}%",
-            style = MovieBoxTheme.typography.header.titleSmall,
-            color = MovieBoxTheme.colors.text.primaryOnDark,
+            style = MBTheme.typography.header.titleSmall,
+            color = MBTheme.colors.text.primaryOnDark,
             modifier = Modifier
                 .align(Alignment.TopEnd)
                 .padding(8.dp)
                 .clip(CircleShape)
-                .background(MovieBoxTheme.colors.background.neutral1)
+                .background(MBTheme.colors.background.neutral1)
                 .padding(vertical = 4.dp, horizontal = 8.dp)
         )
 
@@ -85,16 +85,16 @@ internal fun HorizontalMovieCard(
         Column(modifier = Modifier.padding(16.dp)) {
             Text(
                 title,
-                style = MovieBoxTheme.typography.header.h4,
-                color = MovieBoxTheme.colors.text.primaryOnDark,
+                style = MBTheme.typography.header.h4,
+                color = MBTheme.colors.text.primaryOnDark,
                 maxLines = 1
             )
 
             if (releaseDate != null) {
                 Text(
                     releaseDate.year.toString(),
-                    style = MovieBoxTheme.typography.header.titleMedium,
-                    color = MovieBoxTheme.colors.text.primaryOnDark
+                    style = MBTheme.typography.header.titleMedium,
+                    color = MBTheme.colors.text.primaryOnDark
                 )
             }
         }
@@ -115,7 +115,7 @@ internal fun VerticalMovieCard(
                 .fillMaxWidth()
                 .height(310.dp)
                 .clip(RoundedCornerShape(12.dp))
-                .background(MovieBoxTheme.colors.background.elevation1)
+                .background(MBTheme.colors.background.elevation1)
                 .clickableWithSimpleRipple(onClick),
         ) {
             Image(
@@ -143,13 +143,13 @@ internal fun VerticalMovieCard(
             if (releaseDate != null) {
                 Text(
                     text = releaseDate.year.toString(),
-                    style = MovieBoxTheme.typography.header.titleSmall,
-                    color = MovieBoxTheme.colors.text.primaryOnDark,
+                    style = MBTheme.typography.header.titleSmall,
+                    color = MBTheme.colors.text.primaryOnDark,
                     modifier = Modifier
                         .align(Alignment.BottomEnd)
                         .padding(8.dp)
                         .clip(CircleShape)
-                        .background(MovieBoxTheme.colors.background.info)
+                        .background(MBTheme.colors.background.info)
                         .padding(vertical = 4.dp, horizontal = 8.dp)
                 )
             }
@@ -157,8 +157,8 @@ internal fun VerticalMovieCard(
 
         Text(
             text = title,
-            style = MovieBoxTheme.typography.header.h4,
-            color = MovieBoxTheme.colors.text.primary,
+            style = MBTheme.typography.header.h4,
+            color = MBTheme.colors.text.primary,
             maxLines = 1,
             overflow = TextOverflow.Ellipsis,
         )
@@ -168,8 +168,8 @@ internal fun VerticalMovieCard(
 @Preview
 @Composable
 fun CardLightPreview() {
-    MovieBoxTheme(isDark = false) {
-        Box(modifier = Modifier.background(MovieBoxTheme.colors.background.base)) {
+    MBTheme(isDark = false) {
+        Box(modifier = Modifier.background(MBTheme.colors.background.base)) {
             Column {
                 HorizontalMovieCard(
                     backdropPath = null,
@@ -192,8 +192,8 @@ fun CardLightPreview() {
 @Preview
 @Composable
 fun CardDarkPreview() {
-    MovieBoxTheme(isDark = true) {
-        Box(modifier = Modifier.background(MovieBoxTheme.colors.background.base)) {
+    MBTheme(isDark = true) {
+        Box(modifier = Modifier.background(MBTheme.colors.background.base)) {
             Column {
                 HorizontalMovieCard(
                     backdropPath = null,

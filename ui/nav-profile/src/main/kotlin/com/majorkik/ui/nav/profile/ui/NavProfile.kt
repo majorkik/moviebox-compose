@@ -16,7 +16,7 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.majorkik.core.ui.CoreDrawable
-import com.majorkik.core.ui.theme.MovieBoxTheme
+import com.majorkik.core.ui.theme.MBTheme
 import com.ramcosta.composedestinations.annotation.Destination
 import org.koin.androidx.compose.getViewModel
 
@@ -31,7 +31,7 @@ internal fun NavProfileContent(viewModel: NavProfileViewModel) {
     Box(
         modifier = Modifier
             .fillMaxSize()
-            .background(MovieBoxTheme.colors.background.base)
+            .background(MBTheme.colors.background.base)
             .statusBarsPadding()
     ) {
         Row(
@@ -47,7 +47,7 @@ internal fun NavProfileContent(viewModel: NavProfileViewModel) {
 
 @Composable
 internal fun ThemeButton(onChangeTheme: (Boolean) -> Unit) {
-    val isDark = MovieBoxTheme.colors.isLight.not()
+    val isDark = MBTheme.colors.isLight.not()
 
     IconToggleButton(
         checked = isDark,
@@ -57,13 +57,13 @@ internal fun ThemeButton(onChangeTheme: (Boolean) -> Unit) {
             Icon(
                 painter = painterResource(id = CoreDrawable.ic_light_mode_black_24dp),
                 contentDescription = null,
-                tint = MovieBoxTheme.colors.foreground.neutralAccent
+                tint = MBTheme.colors.foreground.neutralAccent
             )
         } else {
             Icon(
                 painter = painterResource(id = CoreDrawable.ic_dark_mode_black_24),
                 contentDescription = null,
-                tint = MovieBoxTheme.colors.foreground.neutralAccent
+                tint = MBTheme.colors.foreground.neutralAccent
             )
         }
     }
@@ -72,7 +72,7 @@ internal fun ThemeButton(onChangeTheme: (Boolean) -> Unit) {
 @Preview(showBackground = true)
 @Composable
 internal fun HomeContentPreview() {
-    MovieBoxTheme(isDark = true) {
+    MBTheme(isDark = true) {
         NavProfileContent(viewModel = getViewModel())
     }
 }

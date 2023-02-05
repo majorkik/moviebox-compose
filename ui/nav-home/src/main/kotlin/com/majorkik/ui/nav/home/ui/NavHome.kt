@@ -43,7 +43,7 @@ import com.majorkik.core.ui.CoreDrawable
 import com.majorkik.core.ui.components.InfiniteListHandler
 import com.majorkik.core.ui.extension.clickableWithSimpleRipple
 import com.majorkik.core.ui.extension.showToast
-import com.majorkik.core.ui.theme.MovieBoxTheme
+import com.majorkik.core.ui.theme.MBTheme
 import com.majorkik.tmdb.api.model.Genre
 import com.majorkik.ui.nav.home.component.GenresSwitch
 import com.majorkik.ui.nav.home.component.HorizontalMovieCard
@@ -87,8 +87,8 @@ internal fun NavHomeContent(viewModel: NavHomeViewModelViewModel, openMovieDetai
 
         Text(
             stringResource(id = StringResource.nav_home_screen_search_desc),
-            style = MovieBoxTheme.typography.body.medium,
-            color = MovieBoxTheme.colors.text.primary,
+            style = MBTheme.typography.body.medium,
+            color = MBTheme.colors.text.primary,
             textAlign = TextAlign.Center,
             modifier = Modifier.fillMaxWidth()
         )
@@ -100,7 +100,7 @@ internal fun NavHomeContent(viewModel: NavHomeViewModelViewModel, openMovieDetai
                 .fillMaxWidth()
                 .height(48.dp)
                 .clip(RoundedCornerShape(12.dp))
-                .background(MovieBoxTheme.colors.background.elevation1)
+                .background(MBTheme.colors.background.elevation1)
                 .clickableWithSimpleRipple { }
         ) {
             Row(
@@ -112,13 +112,13 @@ internal fun NavHomeContent(viewModel: NavHomeViewModelViewModel, openMovieDetai
                 Icon(
                     painter = painterResource(id = CoreDrawable.ic_search_black_24),
                     contentDescription = null,
-                    tint = MovieBoxTheme.colors.foreground.infoAccent,
+                    tint = MBTheme.colors.foreground.infoAccent,
                 )
 
                 Text(
                     stringResource(StringResource.common_search),
-                    style = MovieBoxTheme.typography.body.medium,
-                    color = MovieBoxTheme.colors.text.primary
+                    style = MBTheme.typography.body.medium,
+                    color = MBTheme.colors.text.primary
                 )
             }
 
@@ -126,14 +126,14 @@ internal fun NavHomeContent(viewModel: NavHomeViewModelViewModel, openMovieDetai
                 modifier = Modifier
                     .size(48.dp)
                     .clip(RoundedCornerShape(12.dp))
-                    .background(MovieBoxTheme.colors.background.accent)
+                    .background(MBTheme.colors.background.accent)
                     .clickableWithSimpleRipple { }
                     .align(Alignment.CenterEnd)
             ) {
                 Icon(
                     painter = painterResource(id = CoreDrawable.ic_tune_white_24),
                     contentDescription = null,
-                    tint = MovieBoxTheme.colors.foreground.onDark,
+                    tint = MBTheme.colors.foreground.onDark,
                     modifier = Modifier.align(Alignment.Center)
                 )
             }
@@ -224,8 +224,8 @@ fun GenresBlock(
         ) {
             Text(
                 text = stringResource(id = StringResource.common_genres),
-                style = MovieBoxTheme.typography.header.h3,
-                color = MovieBoxTheme.colors.text.primary
+                style = MBTheme.typography.header.h3,
+                color = MBTheme.colors.text.primary
             )
 
             GenresSwitchBox(
@@ -258,11 +258,11 @@ internal fun GenresSwitchBox(isMovieGenresSelected: Boolean, onToggleSwitch: () 
     ) {
         Text(
             text = stringResource(id = StringResource.common_movie),
-            style = MovieBoxTheme.typography.header.titleMedium,
+            style = MBTheme.typography.header.titleMedium,
             color = if (isMovieGenresSelected) {
-                MovieBoxTheme.colors.text.primary
+                MBTheme.colors.text.primary
             } else {
-                MovieBoxTheme.colors.text.primaryInactive
+                MBTheme.colors.text.primaryInactive
             }
         )
 
@@ -270,11 +270,11 @@ internal fun GenresSwitchBox(isMovieGenresSelected: Boolean, onToggleSwitch: () 
 
         Text(
             text = stringResource(id = StringResource.common_tv),
-            style = MovieBoxTheme.typography.header.titleMedium,
+            style = MBTheme.typography.header.titleMedium,
             color = if (isMovieGenresSelected.not()) {
-                MovieBoxTheme.colors.text.primary
+                MBTheme.colors.text.primary
             } else {
-                MovieBoxTheme.colors.text.primaryInactive
+                MBTheme.colors.text.primaryInactive
             }
         )
     }
@@ -319,9 +319,9 @@ private fun handleSideEffect(sideEffect: NavHomeViewModelSideEffect, context: Co
 @Preview(showBackground = true)
 @Composable
 private fun Preview() {
-    MovieBoxTheme(isDark = true) {
+    MBTheme(isDark = true) {
         Surface(
-            color = MovieBoxTheme.colors.background.base, modifier = Modifier
+            color = MBTheme.colors.background.base, modifier = Modifier
                 .fillMaxWidth()
         ) {
             GenresBlock(

@@ -20,7 +20,7 @@ import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
 import androidx.navigation.NavGraph.Companion.findStartDestination
 import com.majorkik.core.ui.CoreDrawable
-import com.majorkik.core.ui.theme.MovieBoxTheme
+import com.majorkik.core.ui.theme.MBTheme
 import com.ramcosta.composedestinations.spec.NavGraphSpec
 
 @Composable
@@ -28,11 +28,11 @@ fun BottomNavigation(navController: NavController) {
     val currentSelectedItem by navController.currentScreenAsState()
 
     BottomNavigation(
-        backgroundColor = MovieBoxTheme.colors.background.base,
+        backgroundColor = MBTheme.colors.background.base,
         modifier = Modifier
             .navigationBarsPadding()
             .imePadding()
-            .background(MovieBoxTheme.colors.background.base),
+            .background(MBTheme.colors.background.base),
         elevation = 0.dp
     ) {
         BottomNavigationItems.forEach { item ->
@@ -90,9 +90,9 @@ fun BottomNavigationIcon(item: BottomNavigationItem, isSelected: Boolean) {
         painter = painterResource(id = item.iconResId),
         contentDescription = null,
         tint = if (isSelected) {
-            MovieBoxTheme.colors.foreground.accent
+            MBTheme.colors.foreground.accent
         } else {
-            MovieBoxTheme.colors.foreground.infoAccent
+            MBTheme.colors.foreground.infoAccent
         }
     )
 }

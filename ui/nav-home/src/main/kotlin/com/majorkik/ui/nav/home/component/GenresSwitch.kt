@@ -12,15 +12,15 @@ import androidx.compose.ui.geometry.Offset
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalDensity
 import androidx.compose.ui.unit.dp
-import com.majorkik.core.ui.theme.MovieBoxTheme
+import com.majorkik.core.ui.theme.MBTheme
 
 @Composable
 internal fun GenresSwitch(
     checked: Boolean,
-    checkedThumbColor: Color = MovieBoxTheme.colors.background.opposite,
-    uncheckedThumbColor: Color = MovieBoxTheme.colors.background.opposite,
-    checkedTrackColor: Color = MovieBoxTheme.colors.background.elevation1,
-    uncheckedTrackColor: Color = MovieBoxTheme.colors.background.elevation1,
+    checkedThumbColor: Color = MBTheme.colors.background.opposite,
+    uncheckedThumbColor: Color = MBTheme.colors.background.opposite,
+    checkedTrackColor: Color = MBTheme.colors.background.elevation1,
+    uncheckedTrackColor: Color = MBTheme.colors.background.elevation1,
 ) {
     // Sizes
     val trackWidth = 24.dp

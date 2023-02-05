@@ -5,7 +5,7 @@ import androidx.compose.material.ripple.LocalRippleTheme
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.CompositionLocalProvider
 
-object MovieBoxTheme {
+object MBTheme {
     val colors: AppColor
         @Composable
         get() = LocalAppColors.current
@@ -16,12 +16,12 @@ object MovieBoxTheme {
 }
 
 @Composable
-fun MovieBoxTheme(
+fun MBTheme(
     isDark: Boolean = isSystemInDarkTheme(),
     content: @Composable () -> Unit
 ) {
     val colors: AppColor = if (isDark) AppColor.dark() else AppColor.light()
-    val typography: AppTypography = MovieBoxTheme.typography
+    val typography: AppTypography = MBTheme.typography
 
     CompositionLocalProvider(
         LocalAppColors provides colors,
