@@ -9,23 +9,24 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.geometry.CornerRadius
 import androidx.compose.ui.geometry.Offset
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalDensity
 import androidx.compose.ui.unit.dp
-import com.majorkik.core.ui.theme.MovieBoxTheme
+import com.majorkik.core.ui.theme.MBTheme
 
 @Composable
-internal fun GenresSwitch(checked: Boolean) {
+internal fun GenresSwitch(
+    checked: Boolean,
+    checkedThumbColor: Color = MBTheme.colors.background.opposite,
+    uncheckedThumbColor: Color = MBTheme.colors.background.opposite,
+    checkedTrackColor: Color = MBTheme.colors.background.elevation1,
+    uncheckedTrackColor: Color = MBTheme.colors.background.elevation1,
+) {
     // Sizes
     val trackWidth = 24.dp
     val trackHeight = 12.dp
     val thumbSize = 8.dp
     val gap = 2.dp
-
-    // Theme
-    val checkedThumbColor = MovieBoxTheme.colors.backgroundReverse
-    val uncheckedThumbColor = MovieBoxTheme.colors.backgroundReverse
-    val checkedTrackColor = MovieBoxTheme.colors.secondaryBackground
-    val uncheckedTrackColor = MovieBoxTheme.colors.secondaryBackground
 
     val animatePosition = animateFloatAsState(
         targetValue = if (checked) {
@@ -43,7 +44,10 @@ internal fun GenresSwitch(checked: Boolean) {
         // Track
         drawRoundRect(
             color = if (checked) checkedTrackColor else uncheckedTrackColor,
-            cornerRadius = CornerRadius(x = trackHeight.div(2).toPx(), y = trackHeight.div(2).toPx())
+            cornerRadius = CornerRadius(
+                x = trackHeight.div(2).toPx(),
+                y = trackHeight.div(2).toPx()
+            )
         )
         // Thumb
         drawCircle(

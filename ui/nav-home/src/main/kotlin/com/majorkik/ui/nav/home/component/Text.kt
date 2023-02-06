@@ -14,14 +14,14 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.majorkik.common.percentOf
-import com.majorkik.core.ui.theme.MovieBoxTheme
+import com.majorkik.core.ui.theme.MBTheme
 
 @Composable
 internal fun TitleText(@StringRes text: Int) {
     Text(
         text = stringResource(id = text),
-        style = MovieBoxTheme.typography.h3,
-        color = MovieBoxTheme.colors.backgroundReverse,
+        style = MBTheme.typography.header.h3,
+        color = MBTheme.colors.text.primary,
         maxLines = 1,
         modifier = Modifier
             .fillMaxWidth()
@@ -33,12 +33,12 @@ internal fun TitleText(@StringRes text: Int) {
 internal fun PercentVoteAverageText(voteAverage: Double, modifier: Modifier = Modifier) {
     Text(
         "${voteAverage.percentOf(from = 10)}%",
-        style = MovieBoxTheme.typography.titleSmall,
-        color = MovieBoxTheme.colors.text.white,
+        style = MBTheme.typography.header.titleSmall,
+        color = MBTheme.colors.text.primaryOnDark,
         modifier = modifier
             .padding(8.dp)
             .clip(CircleShape)
-            .background(MovieBoxTheme.colors.backgroundDark50)
+            .background(MBTheme.colors.background.neutral1)
             .padding(vertical = 4.dp, horizontal = 8.dp)
     )
 }
@@ -46,9 +46,9 @@ internal fun PercentVoteAverageText(voteAverage: Double, modifier: Modifier = Mo
 @Preview(showBackground = true)
 @Composable
 fun TextPreview() {
-    MovieBoxTheme {
+    MBTheme {
         Column {
-            TitleText(text = com.majorkik.core.ui.R.string.trending_movies)
+            TitleText(text = com.majorkik.core.localization.R.string.common_trending_movies)
 
             PercentVoteAverageText(voteAverage = 7.39)
         }

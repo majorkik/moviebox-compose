@@ -19,7 +19,8 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
 import androidx.navigation.NavGraph.Companion.findStartDestination
-import com.majorkik.core.ui.theme.MovieBoxTheme
+import com.majorkik.core.ui.CoreDrawable
+import com.majorkik.core.ui.theme.MBTheme
 import com.ramcosta.composedestinations.spec.NavGraphSpec
 
 @Composable
@@ -27,11 +28,11 @@ fun BottomNavigation(navController: NavController) {
     val currentSelectedItem by navController.currentScreenAsState()
 
     BottomNavigation(
-        backgroundColor = MovieBoxTheme.colors.background,
+        backgroundColor = MBTheme.colors.background.base,
         modifier = Modifier
             .navigationBarsPadding()
             .imePadding()
-            .background(MovieBoxTheme.colors.background),
+            .background(MBTheme.colors.background.base),
         elevation = 0.dp
     ) {
         BottomNavigationItems.forEach { item ->
@@ -66,20 +67,20 @@ data class BottomNavigationItem(
 val BottomNavigationItems = listOf(
     BottomNavigationItem(
         screen = NavGraphs.home,
-        iconResId = com.majorkik.core.ui.R.drawable.ic_tv_black_24,
-        selectedIconResId = com.majorkik.core.ui.R.drawable.ic_tv_black_24
+        iconResId = CoreDrawable.ic_tv_black_24,
+        selectedIconResId = CoreDrawable.ic_tv_black_24
     ),
 
     BottomNavigationItem(
         screen = NavGraphs.search,
-        iconResId = com.majorkik.core.ui.R.drawable.ic_search_black_24,
-        selectedIconResId = com.majorkik.core.ui.R.drawable.ic_search_black_24
+        iconResId = CoreDrawable.ic_search_black_24,
+        selectedIconResId = CoreDrawable.ic_search_black_24
     ),
 
     BottomNavigationItem(
         screen = NavGraphs.profile,
-        iconResId = com.majorkik.core.ui.R.drawable.ic_profile_black_24,
-        selectedIconResId = com.majorkik.core.ui.R.drawable.ic_profile_black_24
+        iconResId = CoreDrawable.ic_profile_black_24,
+        selectedIconResId = CoreDrawable.ic_profile_black_24
     ),
 )
 
@@ -88,7 +89,11 @@ fun BottomNavigationIcon(item: BottomNavigationItem, isSelected: Boolean) {
     Icon(
         painter = painterResource(id = item.iconResId),
         contentDescription = null,
-        tint = if (isSelected) MovieBoxTheme.colors.primary else MovieBoxTheme.colors.backgroundReverse
+        tint = if (isSelected) {
+            MBTheme.colors.foreground.accent
+        } else {
+            MBTheme.colors.foreground.infoAccent
+        }
     )
 }
 

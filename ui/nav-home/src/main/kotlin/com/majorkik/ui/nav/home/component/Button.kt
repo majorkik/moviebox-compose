@@ -18,9 +18,10 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import com.majorkik.core.ui.R
+import com.majorkik.core.localization.R
+import com.majorkik.core.ui.CoreDrawable
 import com.majorkik.core.ui.extension.clickableWithSimpleRipple
-import com.majorkik.core.ui.theme.MovieBoxTheme
+import com.majorkik.core.ui.theme.MBTheme
 
 @Composable
 internal fun RoundedButton(text: String, modifier: Modifier = Modifier, onClick: () -> Unit) {
@@ -29,11 +30,11 @@ internal fun RoundedButton(text: String, modifier: Modifier = Modifier, onClick:
         textAlign = TextAlign.Center,
         modifier = modifier
             .clip(CircleShape)
-            .background(MovieBoxTheme.colors.backgroundReverse)
+            .background(MBTheme.colors.background.opposite)
             .padding(horizontal = 12.dp, vertical = 8.dp)
             .clickableWithSimpleRipple(onClick),
-        style = MovieBoxTheme.typography.bodyMedium,
-        color = MovieBoxTheme.colors.background
+        style = MBTheme.typography.body.medium,
+        color = MBTheme.colors.text.primaryOnOpposite
     )
 }
 
@@ -48,16 +49,16 @@ internal fun LoginButton(onClick: () -> Unit) {
     ) {
         Row(modifier = Modifier.padding(8.dp), verticalAlignment = Alignment.CenterVertically) {
             Icon(
-                painter = painterResource(id = R.drawable.ic_round_arrow_right_black_24),
+                painter = painterResource(id = CoreDrawable.ic_round_arrow_right_black_24),
                 contentDescription = null,
-                tint = MovieBoxTheme.colors.accent
+                tint = MBTheme.colors.foreground.positiveAccent
             )
 
             Text(
                 stringResource(id = R.string.nav_home_screen_login_button),
                 modifier = Modifier,
-                style = MovieBoxTheme.typography.h4,
-                color = MovieBoxTheme.colors.accent
+                style = MBTheme.typography.header.h4,
+                color = MBTheme.colors.text.positiveAccent
             )
         }
     }
@@ -66,7 +67,7 @@ internal fun LoginButton(onClick: () -> Unit) {
 @Preview(showBackground = true)
 @Composable
 fun ButtonPreview() {
-    MovieBoxTheme {
+    MBTheme {
         Column {
             RoundedButton(text = "Button") {
                 /* no-op */

@@ -5,8 +5,12 @@ plugins {
 }
 
 android {
+    namespace = "com.majorkik.ui.nav.home"
+
     libraryVariants.all {
-        sourceSets { getByName(name) { kotlin.srcDir("build/generated/ksp/$name/kotlin") } }
+        kotlin.sourceSets {
+            getByName(name) { kotlin.srcDir("build/generated/ksp/$name/kotlin") }
+        }
     }
 
     ksp {
@@ -19,6 +23,7 @@ dependencies {
     implementation(projects.core.common)
     implementation(projects.core.ui)
     implementation(projects.feature.tmdb.api)
+    implementation(projects.core.localizaton)
 
     implementation(libs.bundles.logging)
 

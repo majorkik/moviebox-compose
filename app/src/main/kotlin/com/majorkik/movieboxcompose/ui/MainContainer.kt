@@ -9,7 +9,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import com.google.accompanist.navigation.animation.rememberAnimatedNavController
 import com.google.accompanist.navigation.material.ExperimentalMaterialNavigationApi
-import com.majorkik.core.ui.theme.MovieBoxTheme
+import com.majorkik.core.ui.theme.MBTheme
 import com.majorkik.movieboxcompose.navigation.BottomNavigation
 import com.majorkik.movieboxcompose.navigation.CommonNavigator
 import com.majorkik.movieboxcompose.navigation.NavGraphs
@@ -34,7 +34,7 @@ fun MainContainer() {
     val navController = rememberAnimatedNavController()
 
     Scaffold(
-        containerColor = MovieBoxTheme.colors.background,
+        containerColor = MBTheme.colors.background.base,
         bottomBar = { BottomNavigation(navController = navController) },
         modifier = Modifier.fillMaxSize()
     ) { innerPadding ->
