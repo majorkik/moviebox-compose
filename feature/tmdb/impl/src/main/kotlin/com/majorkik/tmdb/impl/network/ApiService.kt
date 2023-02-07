@@ -1,9 +1,9 @@
 package com.majorkik.tmdb.impl.network
 
-import com.majorkik.tmdb.impl.respone.GenresResponse
-import com.majorkik.tmdb.impl.respone.MovieDetailsResponse
-import com.majorkik.tmdb.impl.respone.PagedMoviesResponse
-import com.majorkik.tmdb.impl.respone.PagedTVsResponse
+import com.majorkik.tmdb.impl.response.GenresResponse
+import com.majorkik.tmdb.impl.response.MovieDetailsResponse
+import com.majorkik.tmdb.impl.response.PagedMoviesResponse
+import com.majorkik.tmdb.impl.response.PagedTVsResponse
 import com.slack.eithernet.ApiResult
 import retrofit2.Response
 import retrofit2.http.GET
