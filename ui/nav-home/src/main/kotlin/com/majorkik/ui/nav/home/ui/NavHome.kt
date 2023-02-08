@@ -28,6 +28,7 @@ import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.collectAsState
+import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
@@ -49,7 +50,7 @@ import com.majorkik.ui.nav.home.component.GenresSwitch
 import com.majorkik.ui.nav.home.component.HorizontalMovieCard
 import com.majorkik.ui.nav.home.component.RoundedButton
 import com.majorkik.ui.nav.home.component.TitleText
-import com.majorkik.ui.nav.home.component.Toolbar
+import com.majorkik.ui.nav.home.component.AppBar
 import com.majorkik.ui.nav.home.component.VerticalMovieCard
 import com.ramcosta.composedestinations.annotation.Destination
 import kotlinx.coroutines.flow.collectLatest
@@ -58,24 +59,46 @@ import org.koin.androidx.compose.getViewModel
 
 @Destination
 @Composable
-fun NavHomeScreen(navigator: NavHomeNavigator) {
-    NavHomeContent(viewModel = getViewModel(), openMovieDetails = navigator::openMovieDetails)
-}
-
-@Suppress("Detekt.LongMethod")
-@Composable
-internal fun NavHomeContent(viewModel: NavHomeViewModelViewModel, openMovieDetails: (Int) -> Unit) {
+fun NavHomeScreen(
+    navigator: NavHomeNavigator,
+) {
     val context = LocalContext.current
-    val state = viewModel.container.stateFlow.collectAsState()
-    val scrollState = rememberScrollState()
+    val viewModel: NavHomeViewModelViewModel = getViewModel()
+    val state by viewModel.container.stateFlow.collectAsState()
 
-    LaunchedEffect(viewModel) {
+    NavHomeContent(
+        state = state,
+        actionToggleGenresMode = viewModel::toggleGenresMode,
+        actionFetchPopularMovies = viewModel::fetchPopularMovies,
+        actionFetchPopularTVs = viewModel::fetchPopularTVs,
+        actionFetchTrendingMovies = viewModel::fetchTrendingMovies,
+        actionFetchTrendingTVs = viewModel::fetchTrendingTVs,
+        openMovieDetails = navigator::openMovieDetails,
+        openGenresList = { /* no-op */ }
+    )
+
+    LaunchedEffect(Unit) {
         launch {
             viewModel.container.sideEffectFlow.collectLatest { sideEffect ->
                 handleSideEffect(sideEffect = sideEffect, context = context)
             }
         }
     }
+}
+
+@Suppress("Detekt.LongMethod")
+@Composable
+internal fun NavHomeContent(
+    state: NavHomeViewModelViewState,
+    actionToggleGenresMode: () -> Unit,
+    actionFetchPopularTVs: () -> Unit,
+    actionFetchPopularMovies: () -> Unit,
+    actionFetchTrendingTVs: () -> Unit,
+    actionFetchTrendingMovies: () -> Unit,
+    openMovieDetails: (Int) -> Unit,
+    openGenresList: (Genre) -> Unit,
+) {
+    val scrollState = rememberScrollState()
 
     Column(
         modifier = Modifier
@@ -83,8 +106,9 @@ internal fun NavHomeContent(viewModel: NavHomeViewModelViewModel, openMovieDetai
             .verticalScroll(state = scrollState)
             .fillMaxSize()
     ) {
-        Toolbar(onLoginClick = {}, onOpenSettings = {})
+        AppBar(onLoginClick = {}, onOpenSettings = {})
 
+        // Description above search
         Text(
             stringResource(id = StringResource.nav_home_screen_search_desc),
             style = MBTheme.typography.body.medium,
@@ -93,6 +117,7 @@ internal fun NavHomeContent(viewModel: NavHomeViewModelViewModel, openMovieDetai
             modifier = Modifier.fillMaxWidth()
         )
 
+        // Search bar with filter button
         Box(
             modifier = Modifier
                 .padding(vertical = 16.dp)
@@ -103,6 +128,7 @@ internal fun NavHomeContent(viewModel: NavHomeViewModelViewModel, openMovieDetai
                 .background(MBTheme.colors.background.elevation1)
                 .clickableWithSimpleRipple { }
         ) {
+            // Temporary stub for search without the ability to enter text
             Row(
                 modifier = Modifier
                     .padding(horizontal = 16.dp)
@@ -122,6 +148,7 @@ internal fun NavHomeContent(viewModel: NavHomeViewModelViewModel, openMovieDetai
                 )
             }
 
+            // Filter button
             Box(
                 modifier = Modifier
                     .size(48.dp)
@@ -139,19 +166,22 @@ internal fun NavHomeContent(viewModel: NavHomeViewModelViewModel, openMovieDetai
             }
         }
 
+        // Vertical list of genres, movies and series lists
         Column(verticalArrangement = Arrangement.spacedBy(16.dp)) {
+            // List of genres with the ability to switch between movie / series genres
+            // due to the fact that they may differ
             GenresBlock(
-                genres = state.value.genres,
-                isMovieGenresSelected = state.value.isMovieGenresSelected,
-                onToggle = viewModel::toggleGenresMode,
-                onGenreClick = {
-                    // Navigate to search with selected genre
-                })
+                genres = state.genres,
+                isMovieGenresSelected = state.isMovieGenresSelected,
+                onToggle = actionToggleGenresMode,
+                onGenreClick = openGenresList
+            )
 
+            // Endless list with trending tv shows
             InfinityCollection(
                 title = StringResource.common_trending_tv_shows,
-                items = state.value.trendingTVsState.tvs,
-                onLoadMore = viewModel::fetchTrendingTVs
+                items = state.trendingTVsState.tvs,
+                onLoadMore = actionFetchTrendingTVs
             ) { item ->
                 VerticalMovieCard(
                     posterPath = item.posterPath,
@@ -162,10 +192,11 @@ internal fun NavHomeContent(viewModel: NavHomeViewModelViewModel, openMovieDetai
                 )
             }
 
+            // Endless list with popular tv shows
             InfinityCollection(
                 title = StringResource.common_popular_tvs,
-                items = state.value.popularTVsState.tvs,
-                onLoadMore = viewModel::fetchPopularTVs
+                items = state.popularTVsState.tvs,
+                onLoadMore = actionFetchPopularTVs
             ) { item ->
                 HorizontalMovieCard(
                     backdropPath = item.backdropPath,
@@ -176,10 +207,11 @@ internal fun NavHomeContent(viewModel: NavHomeViewModelViewModel, openMovieDetai
                 )
             }
 
+            // Endless list with trending movies
             InfinityCollection(
                 title = StringResource.common_trending_movies,
-                items = state.value.trendingMoviesState.movies,
-                onLoadMore = viewModel::fetchTrendingMovies
+                items = state.trendingMoviesState.movies,
+                onLoadMore = actionFetchTrendingMovies
             ) { item ->
                 VerticalMovieCard(
                     posterPath = item.posterPath,
@@ -190,10 +222,11 @@ internal fun NavHomeContent(viewModel: NavHomeViewModelViewModel, openMovieDetai
                 )
             }
 
+            // Endless list with popular movies
             InfinityCollection(
                 title = StringResource.common_popular_movies,
-                items = state.value.popularMoviesState.movies,
-                onLoadMore = viewModel::fetchPopularMovies
+                items = state.popularMoviesState.movies,
+                onLoadMore = actionFetchPopularMovies
             ) { item ->
                 HorizontalMovieCard(
                     backdropPath = item.backdropPath,
@@ -212,7 +245,7 @@ fun GenresBlock(
     genres: List<Genre>,
     isMovieGenresSelected: Boolean,
     onToggle: () -> Unit,
-    onGenreClick: (Int) -> Unit
+    onGenreClick: (Genre) -> Unit
 ) {
     Column {
         Row(
@@ -239,7 +272,7 @@ fun GenresBlock(
             horizontalArrangement = Arrangement.spacedBy(8.dp)
         ) {
             items(genres) { genre ->
-                RoundedButton(text = genre.name) { onGenreClick(genre.id) }
+                RoundedButton(text = genre.name) { onGenreClick(genre) }
             }
         }
     }

@@ -17,7 +17,7 @@ import com.majorkik.core.ui.CoreDrawable
 import com.majorkik.core.ui.theme.MBTheme
 
 @Composable
-internal fun Toolbar(onLoginClick: () -> Unit, onOpenSettings: () -> Unit) {
+internal fun AppBar(onLoginClick: () -> Unit, onOpenSettings: () -> Unit) {
     Row(
         modifier = Modifier
             .fillMaxWidth()
@@ -42,7 +42,7 @@ internal fun Toolbar(onLoginClick: () -> Unit, onOpenSettings: () -> Unit) {
 fun ToolbarPreview() {
     MBTheme {
         Box {
-            Toolbar(
+            AppBar(
                 onLoginClick = {},
                 onOpenSettings = {}
             )

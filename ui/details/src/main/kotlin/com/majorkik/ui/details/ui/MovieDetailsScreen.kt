@@ -71,12 +71,16 @@ import org.koin.androidx.compose.getViewModel
 
 @Destination(navArgsDelegate = MovieDetailsNavArgs::class)
 @Composable
-fun MovieDetailsScreen(viewModel: MovieDetailsViewModel = getViewModel()) {
+fun MovieDetailsScreen() {
+    val viewModel: MovieDetailsViewModel = getViewModel()
     val state by viewModel.container.stateFlow.collectAsState()
 
     MovieDetailsScreen(state)
 }
 
+/**
+ * Container for handling screen states
+ */
 @Composable
 internal fun MovieDetailsScreen(state: MovieDetailsViewState) {
     when (state.screen) {
@@ -85,6 +89,9 @@ internal fun MovieDetailsScreen(state: MovieDetailsViewState) {
     }
 }
 
+/**
+ * Screen status for displaying basic movie information
+ */
 @OptIn(ExperimentalPagerApi::class, ExperimentalMaterial3Api::class)
 @Composable
 private fun MovieDetailsContent(details: MovieDetails) {
@@ -110,11 +117,11 @@ private fun MovieDetailsContent(details: MovieDetails) {
             )
         }
 
-        // Movie title
         Column(
             modifier = Modifier.fillMaxWidth(),
             verticalArrangement = Arrangement.spacedBy(8.dp)
         ) {
+            // Movie title
             Text(
                 text = details.title,
                 color = MBTheme.colors.text.primary,
@@ -149,11 +156,12 @@ private fun MovieDetailsContent(details: MovieDetails) {
             )
         }
 
-        // Action button
+        // Block with buttons
         Row(
             horizontalArrangement = Arrangement.spacedBy(8.dp),
             modifier = Modifier.padding(horizontal = 16.dp)
         ) {
+            // Button to add a movie to the "will watch" list
             Button(
                 onClick = { /* no-op */ },
                 elevation = ButtonDefaults.elevation(
@@ -179,6 +187,7 @@ private fun MovieDetailsContent(details: MovieDetails) {
                 )
             }
 
+            // Button to add a movie to bookmarks
             Surface(
                 onClick = { },
                 modifier = Modifier.size(48.dp),
@@ -195,6 +204,7 @@ private fun MovieDetailsContent(details: MovieDetails) {
                 )
             }
 
+            // Button to add a movie to favorites
             Surface(
                 onClick = { },
                 modifier = Modifier.size(48.dp),
@@ -212,9 +222,9 @@ private fun MovieDetailsContent(details: MovieDetails) {
             }
         }
 
-        // Overview
+        // Expandable movie description
         ExpandableText(
-            text = details.overview ?: "",
+            text = details.overview.orEmpty(),
             modifier = Modifier
                 .padding(horizontal = 16.dp)
                 .animateContentSize()
@@ -241,18 +251,19 @@ private fun MovieDetailsContent(details: MovieDetails) {
         // Tagline
         Tagline(tagline = details.tagline)
 
-        // Credits
+        // Cast list (max. 5 people) and "More" button
         CreditsBlock(
             casts = details.casts,
             totalAmount = details.casts.count() + details.crews.count(),
             modifier = Modifier.padding(horizontal = 12.dp)
         )
 
-        // Budget & Revenue
+        // Detailed information about the film, budget, box office and more
         Column(
             modifier = Modifier.fillMaxWidth(),
             verticalArrangement = Arrangement.spacedBy(space = 8.dp)
         ) {
+            // Film's budget-to-revenue ratio
             InfoBlock(
                 title = stringResource(
                     StringResource.details_revenue_slash_budget_value,
@@ -264,6 +275,7 @@ private fun MovieDetailsContent(details: MovieDetails) {
 
             )
 
+            // Original title
             InfoBlock(
                 title = details.originalTitle,
                 description = stringResource(StringResource.details_original_title),
@@ -274,6 +286,9 @@ private fun MovieDetailsContent(details: MovieDetails) {
     }
 }
 
+/**
+ * Screen state when an error occurs while executing a network request
+ */
 @Composable
 private fun ErrorStateContent() {
     Box(modifier = Modifier.fillMaxSize()) {

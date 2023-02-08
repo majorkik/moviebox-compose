@@ -1,4 +1,4 @@
-package com.majorkik.tmdb.impl.respone
+package com.majorkik.tmdb.impl.response
 
 import com.majorkik.tmdb.api.model.Movie
 import com.majorkik.tmdb.api.model.PagedMovieResult

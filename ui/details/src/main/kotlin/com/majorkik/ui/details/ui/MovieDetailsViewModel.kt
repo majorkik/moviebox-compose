@@ -12,7 +12,7 @@ import org.orbitmvi.orbit.syntax.simple.intent
 import org.orbitmvi.orbit.syntax.simple.reduce
 import org.orbitmvi.orbit.viewmodel.container
 
-class MovieDetailsViewModel(
+internal class MovieDetailsViewModel(
     handle: SavedStateHandle,
     private val getMovieDetailsByIdUseCase: GetMovieDetailsByIdUseCase,
 ) : ViewModel(), ContainerHost<MovieDetailsViewState, MovieDetailsSideEffect> {

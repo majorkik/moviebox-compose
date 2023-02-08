@@ -10,8 +10,8 @@ import org.orbitmvi.orbit.viewmodel.container
 
 internal class NavProfileViewModel(
     private val appPreferences: MovieBoxPreferences
-) : ViewModel(), ContainerHost<HomeState, HomeSideEffect> {
-    override val container: Container<HomeState, HomeSideEffect> = container(initialState = HomeState())
+) : ViewModel(), ContainerHost<ProfileState, ProfileSideEffect> {
+    override val container: Container<ProfileState, ProfileSideEffect> = container(initialState = ProfileState())
 
     fun actionSaveTheme(isDark: Boolean) {
         viewModelScope.launch {
@@ -20,6 +20,6 @@ internal class NavProfileViewModel(
     }
 }
 
-internal class HomeState
+internal class ProfileState
 
-internal sealed class HomeSideEffect
+internal sealed class ProfileSideEffect

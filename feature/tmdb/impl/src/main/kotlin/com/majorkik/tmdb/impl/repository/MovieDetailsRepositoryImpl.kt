@@ -7,7 +7,7 @@ import com.majorkik.tmdb.api.model.MovieDetails
 import com.majorkik.tmdb.api.repository.MovieDetailsError
 import com.majorkik.tmdb.api.repository.MovieDetailsRepository
 import com.majorkik.tmdb.impl.network.ApiService
-import com.majorkik.tmdb.impl.respone.toDomainModel
+import com.majorkik.tmdb.impl.response.toDomainModel
 import com.majorkik.tmdb.impl.util.printLog
 import com.slack.eithernet.ApiResult
 

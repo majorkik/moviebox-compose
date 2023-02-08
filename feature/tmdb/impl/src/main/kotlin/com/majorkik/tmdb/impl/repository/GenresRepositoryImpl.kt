@@ -5,7 +5,7 @@ import com.majorkik.tmdb.api.network.NetworkResult
 import com.majorkik.tmdb.api.repository.GenresRepository
 import com.majorkik.tmdb.impl.network.ApiService
 import com.majorkik.tmdb.impl.network.safeRequest
-import com.majorkik.tmdb.impl.respone.toDomainModel
+import com.majorkik.tmdb.impl.response.toDomainModel
 
 internal class GenresRepositoryImpl(private val api: ApiService) : GenresRepository {
     override suspend fun getMovieGenres(): NetworkResult<List<Genre>, String> {
