@@ -71,7 +71,8 @@ import org.koin.androidx.compose.getViewModel
 
 @Destination(navArgsDelegate = MovieDetailsNavArgs::class)
 @Composable
-fun MovieDetailsScreen(viewModel: MovieDetailsViewModel = getViewModel()) {
+fun MovieDetailsScreen() {
+    val viewModel: MovieDetailsViewModel = getViewModel()
     val state by viewModel.container.stateFlow.collectAsState()
 
     MovieDetailsScreen(state)
