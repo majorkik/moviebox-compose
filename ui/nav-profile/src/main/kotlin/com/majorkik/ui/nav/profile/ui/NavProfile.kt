@@ -23,11 +23,13 @@ import org.koin.androidx.compose.getViewModel
 @Destination
 @Composable
 fun NavProfileScreen() {
-    NavProfileContent(viewModel = getViewModel())
+    val viewModel: NavProfileViewModel = getViewModel()
+
+    NavProfileContent(enableDarkTheme = viewModel::actionSaveTheme)
 }
 
 @Composable
-internal fun NavProfileContent(viewModel: NavProfileViewModel) {
+internal fun NavProfileContent(enableDarkTheme: (Boolean) -> Unit) {
     Box(
         modifier = Modifier
             .fillMaxSize()
@@ -40,18 +42,18 @@ internal fun NavProfileContent(viewModel: NavProfileViewModel) {
                 .padding(8.dp),
             horizontalArrangement = Arrangement.End
         ) {
-            ThemeButton(viewModel::actionSaveTheme)
+            ThemeButton(enableDarkTheme)
         }
     }
 }
 
 @Composable
-internal fun ThemeButton(onChangeTheme: (Boolean) -> Unit) {
+internal fun ThemeButton(enableDarkTheme: (Boolean) -> Unit) {
     val isDark = MBTheme.colors.isLight.not()
 
     IconToggleButton(
         checked = isDark,
-        onCheckedChange = onChangeTheme
+        onCheckedChange = enableDarkTheme
     ) {
         if (isDark) {
             Icon(
@@ -73,6 +75,6 @@ internal fun ThemeButton(onChangeTheme: (Boolean) -> Unit) {
 @Composable
 internal fun HomeContentPreview() {
     MBTheme(isDark = true) {
-        NavProfileContent(viewModel = getViewModel())
+        NavProfileContent(enableDarkTheme = {})
     }
 }
