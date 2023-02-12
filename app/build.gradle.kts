@@ -23,15 +23,18 @@ android {
 
 dependencies {
     implementation(projects.core.ui)
+    implementation(projects.core.localizaton)
+
+    implementation(projects.ui.authorization)
     implementation(projects.ui.details)
     implementation(projects.ui.navHome)
     implementation(projects.ui.navProfile)
     implementation(projects.ui.navSearch)
+
     implementation(projects.feature.tmdb.api)
     implementation(projects.feature.tmdb.impl)
     implementation(projects.feature.appPreferences.api)
     implementation(projects.feature.appPreferences.impl)
-    implementation(projects.core.localizaton)
 
     implementation(libs.bundles.androidx.ui)
     implementation(libs.bundles.compose)
