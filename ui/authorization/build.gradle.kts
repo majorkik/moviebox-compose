@@ -21,6 +21,7 @@ android {
 
 dependencies {
     implementation(projects.core.ui)
+    implementation(projects.core.common)
     implementation(projects.core.localizaton)
 
     implementation(libs.bundles.logging)
