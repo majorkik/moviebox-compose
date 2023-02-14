@@ -12,6 +12,7 @@ kotest = "5.3.0"
 android_gradle = "7.4.0"
 # Compose
 androidx_compose_bom = "2023.01.00"
+androidx_compose_material3 = "1.1.0-alpha06"
 compose_compiler = "1.4.0"
 androidx_compose_runtime_tracing = "1.0.0-alpha01"
 accompanist = "0.28.0"
@@ -56,8 +57,8 @@ androidx_compose_foundation = { group = "androidx.compose.foundation", name = "f
 androidx_compose_foundation_layout = { group = "androidx.compose.foundation", name = "foundation-layout" }
 androidx_compose_material_iconsExtended = { group = "androidx.compose.material", name = "material-icons-extended" }
 androidx_compose_material = { group = "androidx.compose.material", name = "material" }
-androidx_compose_material3 = { group = "androidx.compose.material3", name = "material3" }
-androidx_compose_material3_windowSizeClass = { group = "androidx.compose.material3", name = "material3-window-size-class" }
+androidx_compose_material3 = { module = "androidx.compose.material3:material3", version.ref = "androidx_compose_material3" }
+androidx_compose_material3_windowSizeClass = { module = "androidx.compose.material3:material3-window-size-class", version.ref = "androidx_compose_material3" }
 androidx_compose_runtime = { group = "androidx.compose.runtime", name = "runtime" }
 androidx_compose_runtime_livedata = { group = "androidx.compose.runtime", name = "runtime-livedata" }
 androidx_compose_runtime_tracing = { group = "androidx.compose.runtime", name = "runtime-tracing", version.ref = "androidx_compose_runtime_tracing" }
@@ -117,14 +118,13 @@ androidx_ui = [
     "androidx_lifecycle_ktx"
 ]
 compose_ui = [
-    #    "compose_ui",
     "androidx_compose_material3",
     "androidx_compose_ui_tooling_preview",
     "androidx_compose_ui_tooling"
 ]
 compose = [
-    #    "compose_ui",
     "androidx_compose_material3",
+    "androidx_compose_material3_windowSizeClass",
     "androidx_compose_ui_tooling_preview",
     "androidx_compose_ui_tooling",
     "androidx_compose_foundation",

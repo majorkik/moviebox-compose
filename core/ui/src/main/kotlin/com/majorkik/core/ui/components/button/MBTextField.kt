@@ -89,7 +89,7 @@ fun MBTextField(
     BasicTextField(
         value = value,
         onValueChange = onValueChange,
-        modifier = modifier.height(56.dp),
+        modifier = modifier.height(48.dp),
         enabled = enabled,
         readOnly = readOnly,
         textStyle = mergedTextStyle,
@@ -141,7 +141,7 @@ private fun DecorationBox(
             Text(
                 text = hint,
                 color = MBTheme.colors.foreground.infoAccent,
-                style = MBTheme.typography.body.medium
+                style = MBTheme.typography.body.text
             )
         }
 

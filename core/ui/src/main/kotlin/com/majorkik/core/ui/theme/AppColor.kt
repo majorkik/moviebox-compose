@@ -49,6 +49,10 @@ class AppColor internal constructor(
         val onLight: Color = Charade,
         /** Elements on dark backgrounds */
         val onDark: Color = White,
+        /** Transparent elements */
+        val transparent: Color = Color.Transparent,
+        /** Base dividers color */
+        val divider: Color = if (isLight) AlabasterLight else MineShaft,
     )
 
     @Immutable
@@ -72,6 +76,8 @@ class AppColor internal constructor(
         val accent: Color = BlueCrayola,
         /** Accent text for positive containers */
         val positiveAccent: Color = VistaBlue,
+        /** TMDB brand */
+        val tmdbBrand: Color = VistaBlue
     )
 
     companion object {

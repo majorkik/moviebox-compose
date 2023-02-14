@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="app_name">MovieBox Compose</string>
+    <string name="app_title">MovieBox</string>
 
     <!--    Base-->
     <string name="common_tv">TV</string>
@@ -12,6 +13,7 @@
     <string name="common_trending_movies">Trending movies</string>
     <string name="common_search">Search</string>
     <string name="common_more">More</string>
+    <string name="tmdb_full_title">The Movie Database</string>
 
     <!--    Errors-->
     <string name="error_something_went_wrong">Something went wrong, try again</string>
@@ -34,4 +36,9 @@
     <string name="details_revenue_slash_budget_value">%s / %s</string>
     <string name="details_original_title">Original title</string>
     <string name="details_casts_count_plus">"+ %s Cast (including crew)"</string>
+
+    <!--    Auth-->
+    <string name="auth_what_is">What is</string>
+
+    <!--    Other-->
 </resources>

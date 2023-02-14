@@ -60,7 +60,7 @@ class AppTypography internal constructor(
         ),
         val text: TextStyle = TextStyle(
             fontFamily = rubikFamily,
-            fontSize = 12.sp,
+            fontSize = 14.sp,
             fontWeight = FontWeight.Normal
         ),
         val textMedium: TextStyle = TextStyle(
@@ -76,6 +76,11 @@ class AppTypography internal constructor(
             fontFamily = rubikFamily,
             fontSize = 10.sp,
             fontWeight = FontWeight.Medium
+        ),
+        val logoLarge: TextStyle = TextStyle(
+            fontFamily = rubikFamily,
+            fontSize = 42.sp,
+            fontWeight = FontWeight.Black
         ),
     )
 }

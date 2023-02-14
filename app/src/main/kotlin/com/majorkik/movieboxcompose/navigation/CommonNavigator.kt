@@ -1,8 +1,11 @@
 package com.majorkik.movieboxcompose.navigation
 
 import androidx.navigation.NavController
+import com.majorkik.ui.authorization.ui.AuthNavigator
 import com.majorkik.ui.details.ui.destinations.MovieDetailsScreenDestination
+import com.majorkik.ui.authorization.ui.destinations.AuthScreenDestination
 import com.majorkik.ui.nav.home.ui.NavHomeNavigator
+import com.majorkik.ui.nav.profile.ui.NavProfileNavigator
 import com.ramcosta.composedestinations.dynamic.within
 import com.ramcosta.composedestinations.navigation.navigate
 import com.ramcosta.composedestinations.spec.NavGraphSpec
@@ -10,7 +13,7 @@ import com.ramcosta.composedestinations.spec.NavGraphSpec
 class CommonNavigator(
     private val navGraph: NavGraphSpec,
     private val navController: NavController
-) : NavHomeNavigator {
+) : NavHomeNavigator, NavProfileNavigator, AuthNavigator {
     override fun navigateUp() {
         navController.navigateUp()
     }
@@ -18,5 +21,9 @@ class CommonNavigator(
     override fun openMovieDetails(movieId: Int) {
         val direction = MovieDetailsScreenDestination(movieId = movieId) within navGraph
         navController.navigate(direction)
+    }
+
+    override fun openAuthorization() {
+        navController.navigate(AuthScreenDestination within navGraph)
     }
 }
