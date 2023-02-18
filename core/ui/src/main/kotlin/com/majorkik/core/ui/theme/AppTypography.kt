@@ -68,6 +68,11 @@ class AppTypography internal constructor(
             fontSize = 12.sp,
             fontWeight = FontWeight.Medium
         ),
+        val captionSmall: TextStyle = TextStyle(
+            fontFamily = rubikFamily,
+            fontSize = 12.sp,
+            fontWeight = FontWeight.Normal
+        ),
     )
 
     @Immutable

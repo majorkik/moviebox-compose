@@ -11,12 +11,14 @@ import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
-import androidx.compose.foundation.layout.navigationBarsPadding
 import androidx.compose.foundation.layout.offset
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.statusBarsPadding
 import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.foundation.text.ClickableText
+import androidx.compose.material3.Button
+import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.Divider
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Icon
@@ -38,6 +40,7 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.SpanStyle
 import androidx.compose.ui.text.buildAnnotatedString
 import androidx.compose.ui.text.style.TextAlign
+import androidx.compose.ui.text.style.TextDecoration
 import androidx.compose.ui.text.withStyle
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
@@ -78,8 +81,10 @@ private fun AuthContent(
             .background(MBTheme.colors.background.base)
     ) {
         Column {
+            // Several cards with movie posters
             MovieCards(modifier = Modifier.weight(1f))
 
+            // App name
             Text(
                 text = stringResource(StringResource.app_title).uppercase(),
                 style = MBTheme.typography.ui.logoLarge,
@@ -93,9 +98,10 @@ private fun AuthContent(
             Column(modifier = Modifier.weight(1f), verticalArrangement = Arrangement.Center) {
                 Spacer(modifier = Modifier.weight(1f))
 
+                // Login field
                 MBTextField(
                     value = state.login,
-                    hint = "Enter your login",
+                    hint = stringResource(StringResource.auth_login_field_hint),
                     onValueChange = updateLogin,
                     modifier = Modifier
                         .fillMaxWidth()
@@ -109,16 +115,18 @@ private fun AuthContent(
                     modifier = Modifier.padding(horizontal = 16.dp),
                     horizontalArrangement = Arrangement.spacedBy(8.dp)
                 ) {
+                    // Password field
                     MBPasswordTextField(
                         value = state.password,
-                        hint = "Enter your password",
+                        hint = stringResource(StringResource.auth_password_field_hint),
                         onValueChange = updatePassword,
                         modifier = Modifier.weight(1f),
                     )
 
+                    // Sign-in button
                     Surface(
                         onClick = {},
-                        shape = RoundedCornerShape(16.dp),
+                        shape = RoundedCornerShape(12.dp),
                         color = MBTheme.colors.background.accent,
                         modifier = Modifier.size(48.dp)
                     ) {
@@ -133,14 +141,53 @@ private fun AuthContent(
                     }
                 }
 
+                // Sign up description
+                SignUpDescription(
+                    modifier = Modifier.padding(
+                        horizontal = 16.dp,
+                        vertical = 16.dp
+                    )
+                ) {
+                    /* TODO */
+                }
+
+                // A button to log in as a guest
+                Button(
+                    onClick = { /*TODO*/ },
+                    shape = RoundedCornerShape(12.dp),
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .height(48.dp)
+                        .padding(horizontal = 16.dp),
+                    colors = ButtonDefaults.buttonColors(containerColor = MBTheme.colors.background.elevation1)
+                ) {
+                    Text(
+                        text = stringResource(StringResource.auth_sign_in_guest),
+                        style = MBTheme.typography.body.medium,
+                        color = MBTheme.colors.text.secondary
+                    )
+                }
+
+                Spacer(modifier = Modifier.height(4.dp))
+
+                // Description of the "Log in as a guest" button
+                Text(
+                    text = stringResource(StringResource.auth_sign_in_guest_description),
+                    style = MBTheme.typography.body.captionSmall,
+                    color = MBTheme.colors.text.secondary,
+                    modifier = Modifier.align(Alignment.CenterHorizontally)
+                )
+
                 Spacer(modifier = Modifier.weight(1f))
 
                 Divider(color = MBTheme.colors.foreground.divider)
 
+                // Bottom panel (clickable) to go to the TMDB information page
                 FooterButton { /** TODO */ }
             }
         }
 
+        // Back button
         IconButton(onClick = onBackPress, modifier = Modifier.align(Alignment.TopStart)) {
             Icon(
                 painter = painterResource(id = CoreDrawable.ic_arrow_left_24),
@@ -205,7 +252,7 @@ private fun FooterButton(onClick: () -> Unit) {
         append("?")
     }
 
-    Surface(onClick = {}, color = Color.Transparent) {
+    Surface(onClick = onClick, color = Color.Transparent) {
         Box(
             contentAlignment = Alignment.Center,
             modifier = Modifier
@@ -219,6 +266,45 @@ private fun FooterButton(onClick: () -> Unit) {
                 style = MBTheme.typography.body.textMedium
             )
         }
+    }
+}
+
+@Composable
+private fun SignUpDescription(modifier: Modifier = Modifier, onClick: () -> Unit) {
+    Row(
+        verticalAlignment = Alignment.CenterVertically,
+        modifier = modifier,
+        horizontalArrangement = Arrangement.spacedBy(8.dp)
+    ) {
+        Divider(
+            modifier = Modifier.weight(1f),
+            color = MBTheme.colors.foreground.divider
+        )
+
+        val signUpText = buildAnnotatedString {
+            pushStyle(SpanStyle(color = MBTheme.colors.text.primary))
+            append(stringResource(StringResource.auth_sign_up_description))
+
+            withStyle(
+                style = SpanStyle(
+                    textDecoration = TextDecoration.Underline,
+                    fontWeight = MBTheme.typography.body.textMedium.fontWeight
+                )
+            ) {
+                append(" " + stringResource(StringResource.auth_sign_up))
+            }
+        }
+
+        ClickableText(
+            text = signUpText,
+            style = MBTheme.typography.body.text,
+            onClick = { onClick() }
+        )
+
+        Divider(
+            modifier = Modifier.weight(1f),
+            color = MBTheme.colors.foreground.divider
+        )
     }
 }
 

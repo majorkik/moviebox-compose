@@ -39,6 +39,12 @@
 
     <!--    Auth-->
     <string name="auth_what_is">What is</string>
+    <string name="auth_sign_up_description">Don\'t have an account?</string>
+    <string name="auth_sign_up">Sign up</string>
+    <string name="auth_sign_in_guest">Login as guest</string>
+    <string name="auth_sign_in_guest_description">Most of the functions will be unavailable</string>
+    <string name="auth_login_field_hint">"Enter your login"</string>
+    <string name="auth_password_field_hint">"Enter your password"</string>
 
     <!--    Other-->
 </resources>
